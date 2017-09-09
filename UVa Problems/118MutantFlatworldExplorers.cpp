@@ -5,7 +5,7 @@
 #include <string>
 using namespace std;
 vector < vector <int> > arr(51,vector <int>(51,0));
-
+//created a 2d vector of size 51x51
 void mark(char dir,int &f)
 {
 	switch(dir)
