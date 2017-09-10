@@ -22,15 +22,16 @@ than the previous max, update the max and set the value whom_to_send as that ith
 using namespace std;
 
 
-int dfs(int s, bool visited[], vector<int>adj[])
+int dfs(int s, bool visited[], vector<int>adj[],bool temp_visited[])
 {
 	int count = 1;
-	if(visited[s])
+	if(temp_visited[s])
 		return 0;
 	visited[s]=true;
+	temp_visited[s]=true;
 	for(int i=0;i<adj[s].size();i++)
 	{
-		count += dfs(adj[s][i],visited,adj); 
+		count += dfs(adj[s][i],visited,adj,temp_visited); 
 
 		//at each level it adds 1 to the count, so finally it returns max level in the graph
 	}
@@ -62,19 +63,28 @@ int main()
 		}
 
 		int max=INT_MIN,whom_to_send;
+
+		bool visited[n+1]; //the main visited array which keeps track of all visited nodes, so we dont
+							// spend time visiting those already visited
+		for(int j=1;j<=n;j++)
+			visited[j]=false;
+
 		for(int i=1;i<=n;i++)
 		{
-			int no; //total no of emails which can be sent if ith martian is sent an email
-			bool visited[n+1];
-			for(int j=1;j<=n;j++)
-				visited[j]=false;
-			no = dfs(i,visited,adj); //count the no of mails that can be sent if dfs done from ith
-			if(no>max) //strict inequality makes sure that in case of more than one max, it output the node which is least numbered
+			if(visited[i]==false)
 			{
-				max = no;
-				whom_to_send = i;
+				bool visited2[n+1]; //temp visited array which has all nodes unvisited
+				for(int j=1;j<=n;j++) 
+					visited2[j]=false;
+				int no; //total no of emails which can be sent if ith martian is sent an email
+				no = dfs(i,visited,adj,visited2); //count the no of mails that can be sent if dfs done from ith
+				if(no>max) //strict inequality makes sure that in case of more than one max, it output the node which is least numbered
+				{
+					max = no;
+					whom_to_send = i;
+				}
+				//cout<<no<<" ";  //just for purpose of debugging
 			}
-			//cout<<no<<" ";  just for purpose of debugging
 		}
 		//cout<<endl;
 		cout<<"Case "<<case_no<<": "<<whom_to_send<<endl;
