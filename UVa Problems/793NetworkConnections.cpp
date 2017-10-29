@@ -1,3 +1,6 @@
+/* Problem URL
+https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=734
+*/
 #include <iostream>
 #include <vector>
 #include <cstdio>
