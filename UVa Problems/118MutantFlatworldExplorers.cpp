@@ -1,8 +1,7 @@
 //problem URL : https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=54 
 
-#include <iostream>
-#include <vector>
-#include <string>
+#include <bits/stdc++.h> //included master header file
+
 using namespace std;
 vector < vector <int> > arr(51,vector <int>(51,0));
 //created a 2d vector of size 51x51
