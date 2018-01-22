@@ -1,3 +1,7 @@
+/* 	Problem Link : http://codeforces.com/problemset/problem/466/C
+	Problem Name : Number of Ways
+*/
+
 #include <iostream>
 #include <algorithm>
 #include <vector>

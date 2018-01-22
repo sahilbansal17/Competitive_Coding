@@ -1,3 +1,5 @@
+// UVA 152 - Tree's a Crowd
+
 #include <iostream>
 #include <algorithm>
 #include <vector>
@@ -35,11 +37,14 @@ int dist(point p1, point p2){
 
 int main(){
 
-	
+	/* FOR READING INPUT FROM FILE & WRITING OUTPUT TO FILE 
+
 	#ifndef ONLINE_JUDGE
 	freopen("input.txt","r",stdin);
 	freopen("output.txt","w",stdout);
 	#endif
+
+	*/
 	
 	int x,y,z;
 	vector <point> p;
@@ -71,7 +76,7 @@ int main(){
 
 	*/
 
-	// since the points are sorted, we first check on the left side of the point and then right side
+	// FASTER APPROACH : since the points are sorted, we first check on the left side of the point and then right side
 	int min_dist,current_dist;
 	FOR(i,0,p.size()){
 		min_dist = 10;
@@ -101,9 +106,16 @@ int main(){
 			count[min_dist]++; // update the count table with appropriate distance value
 		}
 	}
+	/* TO SEE THE SORTED LIST OF POINTS
+
+	FOR(i,0,p.size()){
+		cout << p[i].x << " " << p[i].y << " " << p[i].z << "\n";
+	}
+
+	*/
 	FOR(i,0,10){
 		printf("%4d",count[i]); // as specified in output formatting for the problem
 	}
-	printf("\n");
+	printf("\n");  // without this you get a WA verdict
 	return 0;
 }
