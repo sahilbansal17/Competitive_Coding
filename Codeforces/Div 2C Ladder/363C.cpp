@@ -1,7 +1,7 @@
-/* 	Problem Link : http://codeforces.com/problemset/problem/363/C
-	Problem Name : Fixing Typos
- 	author 	: 	sahilbansal17
-	date	:	22nd Jan, 2018	
+/* 	Problem Link 	: 	http://codeforces.com/problemset/problem/363/C
+	Problem Name 	: 	Fixing Typos
+ 	author 			: 	sahilbansal17
+	date			:	22nd Jan, 2018	
 */
 #include <bits/stdc++.h>
 
