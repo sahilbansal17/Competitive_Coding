@@ -72,6 +72,10 @@ int main(){
 	freopen("input.txt","r",stdin);
 	freopen("output.txt","w",stdout);
 	#endif
+
+	char* op = "hello";
+	string t = op;
+	cout << t ;
 	int t;
 	ll n, res;
 	cin >> t;  
