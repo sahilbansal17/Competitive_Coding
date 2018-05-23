@@ -10,6 +10,7 @@ The solutions to various problems in different contests or practice problems on 
 - [Hacker Rank](HackerRank/)
 - [Top Coder](TopCoder/)
 - [UVa Online Judge](UVa%20Problems/)
+- [CS Academy](CSAcademy/)
 
 ### Algorithms
 1. [Graph Algorithms](Graphs/)
