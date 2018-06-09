@@ -34,22 +34,46 @@ using namespace std;
 
 /* Global variable declaration space */
 
-/* Function definition space */
-	
+int a[MAX];
+/* visited[i] denotes whether i is already seen or not */
+bool visited[MAX];
+/* dp[i] represents the no. distinct elements from a[i - 1] to a[n] */
+int dp[MAX];
+
 int main(){
 
-	/* Input & Output from files for easy testing
-	 * These lines do not affect the submission on Online Judges.
-	 * Comment them if input is to be taken from stdin and output is to be given to stdout. 
-	 * If input and output is to be taken from file, then:
-	 * Change the input file address as the first parameter of the first freopen.
-	 * Change the output file address as the first parameter of the second freopen. */
 	#ifndef ONLINE_JUDGE
 	freopen("/Users/sahilbansal/Desktop/input.txt","r",stdin);
 	freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
 	#endif
 
-		
+	int n, m, count = 0, x;
+	/* count denotes the no of distinct elements seen */
+	cin >> n >> m;
 
+	rep(i, n){
+		cin >> a[i];
+	}
+
+	/* start from the last element, 
+	 * if the element is seen then increase the count
+	 * set dp[i + 1] = count */ 
+	rfl(i, n - 1, 0){
+		if(!visited[a[i]]){
+			visited[a[i]] = true;
+			count ++;
+		}
+		dp[i + 1] = count;
+	}
+	/*
+	rep(i, n){
+		cout << dp[i] << " ";
+	}
+	cout << "\n";
+	//*/
+	rep(i, m){
+		cin >> x;
+		cout << dp[x] << "\n";
+	}
 	return 0;
 }

@@ -2,7 +2,7 @@
 
 using namespace std;
 
-/* Template file for Online Algorithmic Competitions */
+/* Template file for Online Algorithmic Competitions (Lines 6 - 33) */
 /* Typedefs */
 	/* Basic types */
 	typedef long long ll;
@@ -18,6 +18,7 @@ using namespace std;
 	/* Loops */
 	#define fl(i,a,b) for(int i(a);i<(b);i++)
 	#define rep(i,n) fl(i,0,n)
+	#define rep1(i,n) fl(i,1,n)
 	#define rfl(i,a,b) for(int i(a);i>=(b);i--)
 	/* Algorithmic functions */
 	#define srt(v) sort((v).begin(),(v).end())
@@ -30,26 +31,39 @@ using namespace std;
 	#define F first
 	#define S second
 	#define MOD 1000000007
-	#define MAX 100010
+	#define MAX 10010
 
-/* Global variable declaration space */
+/* Global variable declarations */
 
-/* Function definition space */
-	
+
 int main(){
 
-	/* Input & Output from files for easy testing
-	 * These lines do not affect the submission on Online Judges.
-	 * Comment them if input is to be taken from stdin and output is to be given to stdout. 
-	 * If input and output is to be taken from file, then:
-	 * Change the input file address as the first parameter of the first freopen.
-	 * Change the output file address as the first parameter of the second freopen. */
 	#ifndef ONLINE_JUDGE
 	freopen("/Users/sahilbansal/Desktop/input.txt","r",stdin);
 	freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
 	#endif
+	
 
-		
+	int n;
+	cin >> n;
+
+	string s;
+	cin >> s;
+
+	int count = 0;
+	rep(i, n){
+		if(s[i] == '1'){
+			count ++;
+		}
+	}	
+	if(count == 0){
+		cout << "0";
+		return 0;
+	}
+	cout << "1" ;
+	rep(i, n - count){
+		cout << "0";
+	}
 
 	return 0;
 }

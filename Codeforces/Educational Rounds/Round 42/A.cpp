@@ -18,6 +18,7 @@ using namespace std;
 	/* Loops */
 	#define fl(i,a,b) for(int i(a);i<(b);i++)
 	#define rep(i,n) fl(i,0,n)
+	#define rep1(i,n) fl(i,1,n)
 	#define rfl(i,a,b) for(int i(a);i>=(b);i--)
 	/* Algorithmic functions */
 	#define srt(v) sort((v).begin(),(v).end())
@@ -30,26 +31,38 @@ using namespace std;
 	#define F first
 	#define S second
 	#define MOD 1000000007
-	#define MAX 100010
+	#define MAX 200010
 
-/* Global variable declaration space */
+int a[MAX];
+int sum[MAX];
 
-/* Function definition space */
-	
 int main(){
 
-	/* Input & Output from files for easy testing
-	 * These lines do not affect the submission on Online Judges.
-	 * Comment them if input is to be taken from stdin and output is to be given to stdout. 
-	 * If input and output is to be taken from file, then:
-	 * Change the input file address as the first parameter of the first freopen.
-	 * Change the output file address as the first parameter of the second freopen. */
 	#ifndef ONLINE_JUDGE
 	freopen("/Users/sahilbansal/Desktop/input.txt","r",stdin);
 	freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
 	#endif
 
-		
+	int n, total;
+
+	cin >> n;
+
+	rep(i, n){
+		cin >> a[i];
+		if(i >= 1){
+			sum[i] = sum[i - 1] + a[i];
+		}
+		else{
+			sum[0] = a[0];
+		}
+	}
+	total = sum[n - 1];
+	rep(i, n){
+		if(sum[i] >= ceil(1.0*total/2)){
+			cout << i + 1;
+			break;
+		}
+	}
 
 	return 0;
 }
