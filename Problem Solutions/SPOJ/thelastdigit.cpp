@@ -1,30 +1,24 @@
 #include <iostream>
-#include <bits/stdc++.h>
-
 using namespace std;
-
+int mod(int,int);//modular function
 int main() {
-	int t;
-	scanf("%d",&t);
-	
-	while(t--)
-	{
-		int x,y,res=1;
-		
-		scanf("%d",&x);
-		scanf("%d",&y);
-		
-		x=x%10;
-		
-		while(y>0)
-		{
-			if(y%2!=0)
-			res=(res*x)%10;
-
-			y=y/2;
-			x=(x*x)%10;
-		}
-		
-		printf("%d\n",res);
+	//will be using modular exponentiation (check wikipedia for details over the algo)
+	int t;cin>>t;
+	while(t--){
+	    int a,b;cin>>a>>b;//we need to find last digit of a^b
+	    cout<<mod(a,b);
+	    cout<<endl;
 	}
-	}
+	return 0;
+}
+int mod(int a,int b){
+    if(b==0)//power is 0
+        return 1;
+    else if(b%2==0){//power is even
+        int y = mod(a,b/2);
+        return (y*y)%10;
+    }
+    else{//power is odd
+        return ((a%10)*(mod(a,b-1)%10))%10;
+    }
+}
