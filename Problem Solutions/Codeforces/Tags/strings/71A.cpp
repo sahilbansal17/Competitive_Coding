@@ -20,8 +20,8 @@ int main() {
             
             j--; //j becomes index of last char of s
             
-            cout<<s[0]<<j-1<<s[j]; //first char + no.of chars in between + last char
+            cout<<s[0]<<j-1<<s[j]<<endl; //first char + no.of chars in between + last char
         }
-        else cout<<s; //if length <= 10
+        else cout<<s<<endl; //if length <= 10
     }
 }
