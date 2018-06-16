@@ -1,0 +1,5 @@
+_site/
+Gemfile*
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata/

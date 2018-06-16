@@ -1,0 +1,5 @@
+title: Competitive_Coding
+description: >
+  Blog to share what is learnt!
+theme: minima
+plugins: [jekyll_github_sample]
