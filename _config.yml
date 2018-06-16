@@ -1,6 +1,7 @@
 title: Competitive_Coding
 description: >
   Blog to share what is learnt!
+baseurl: /Competitive_Coding # to fix the issue that CSS files linked have relative path
 url: http://sahilbansal17.github.io/Competitive_Coding
 theme: minima
 plugins: [jekyll_github_sample]
