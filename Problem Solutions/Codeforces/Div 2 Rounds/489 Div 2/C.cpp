@@ -47,10 +47,20 @@ int main(){
 
 	 So, we need to convert these modular values to long long first (since m is typically 10^9 + 7 which fits in long long)
 	 => we need to do (1ll * a % m - 1ll * b % m + m) % m
+
+	 One more thing to note that, when we will be doing 
+	 2^(k + 1)*x % MOD = (2^(k + 1) % MOD * x) % MOD
+	 This will produce incorrect result since x is also very large and we need to take its modulo MOD first
+	 i.e. 2^(k + 1)*x % MOD = (2^(k + 1) % MOD * (x % MOD)) % MOD 
 	*/
 
 	if(k == 0){
+		/* Trivial case, k = 0 => output should be 2*x % MOD */
 		cout << (2 * x) % MOD;		
+	}
+	else if(x == 0){
+		/* Also, this is the corner case, when x = 0, output is simply 0 */
+		cout << 0;
 	}
 	else{
 		ull pow_2_k, pow_2_kPlus1, positive_term, negative_term;
@@ -59,7 +69,7 @@ int main(){
 
 		pow_2_kPlus1 = (2 * pow_2_k) % MOD; // just to avoid multiple computations
 		
-		positive_term = ((pow_2_kPlus1 * x) % MOD + 1) % MOD;
+		positive_term = ((pow_2_kPlus1 * (x % MOD)) % MOD + 1) % MOD;
 		
 		negative_term = pow_2_k;
 
