@@ -78,3 +78,15 @@ int main()
 	In this case k=n/2 as median will be as n/2 th position */
 	cout<<findmedian(array,n,n/2);
 }
+
+/* Complexity of the algorithm is O(n)
+ At each step of the algorithm we do the following:
+ -> Divide the array into partitions - O(n)
+ -> Solve one subproblem for 1/5 of the size of original (Finding median of medians)
+ -> Solve one subproblem for 7/10 of the size of original (Recursion part)
+ 	( This 7/10 can be tricky so I'll try explaining it. We select the pivot from the median of the partitions.Now in the worst
+ 	case we might select a pivot such that each partition with median less than pivot has all elements less than pivot and
+ 	each partition having median greater than pivot has 2 elements less than pivot. So the size of the array for the next
+ 	step of recursion can be (n/10)*5+(n/10)*2 = (7n/10) in the worst case. {(n/5)/2 partitions on both sides of pivot.} )
+ So the reccurence for the algorithm is given by T(n) = T(n/5) + T(7n/10) + n  .Try solving it using your preferred method
+ to get the complexity of O(n);   */
