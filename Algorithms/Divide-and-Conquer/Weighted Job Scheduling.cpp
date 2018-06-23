@@ -56,3 +56,4 @@ int main(){
     cout << "Maximum profit obtained is " << findMaxProfit(array, n);
     return 0;
 }
+// The complexity of this algorithm is O(nLogn) as it uses Binary Search.

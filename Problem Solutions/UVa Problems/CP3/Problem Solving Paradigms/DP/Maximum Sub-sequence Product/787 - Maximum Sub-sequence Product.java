@@ -35,3 +35,4 @@ public class Main {
 		}
 	}
 }
+// The complexity of this solution is O(n^2).
