@@ -1,8 +1,20 @@
+/* The following program represents the Prim's algorithm
+for finding the Minimum Spanning Tree of a graph represented
+as an adjacency matrix (2d matrix).
+
+The time complexity of this algorithm is O(v^2), where
+v is the number of vertices, since adjacent vertices of each
+vertex are being iterated through (v*v).
+
+*/
+
 #include <iostream>
+#include<bits/stdc++.h>
+
 using namespace std;
 
 int findMin( int* keys, bool* included, int v){
-    int mini = 9999;
+    int mini = INT_MAX;
     int index;
     int i;
 
@@ -15,15 +27,13 @@ int findMin( int* keys, bool* included, int v){
     return index;
 }
 
-
-
 int main(){
     cout<<"Enter number of vertices of the graph"<<endl;
     int v;
     cin>>v;
 
     int graph[v][v];
-    int i,j; //Iterators
+    int i, j; //Iterators
 
     cout<<"Enter number of edges of the graph"<<endl;
     int e;
@@ -39,7 +49,6 @@ int main(){
         graph[v1][v2] = w;
     }
 
-
     int mst[v];
     //Array to store MST
     int keys[v];
@@ -48,7 +57,7 @@ int main(){
     //The corresponding vertex has already been included if true
 
     for ( i=0 ; i<v ; i++){
-        keys[i] = 9999;
+        keys[i] = INT_MAX;
         //Set all key values to infinity
         included[i] = false;
         //None of the vertices have been included yet
@@ -70,31 +79,12 @@ int main(){
                 keys[j] = graph[minKey][j];
             }
        }
-
-       cout<<"Minimum spanning tree has been generated."<<endl;
-
-       for( i=0 ; i<v ; i++){
-            cout<<mst[i]<<" to "<<i<<" weighs "<<graph[i][mst[i]]<<endl;
-
-       }
-
-
     }
 
+    cout<<"Minimum spanning tree has been generated."<<endl;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    for( i=0 ; i<v ; i++){
+        cout<< mst[i] <<" to "<<i<<" weighs "<< graph[i][mst[i]] <<endl;
+    }
+    return 0;
 }
