@@ -33,7 +33,7 @@ int main(){
     scanf("%lld",&n);
     ll arr[n];
     for(ll i=0;i<n;i++)
-      scanf("%lld",&a[i]);
+      scanf("%lld",&arr[i]);
     printf("Entered elements:\n");
     printArray(arr,n);
     bubbleSort(arr, n); //function to sort elements in ascending order using bubble sort
