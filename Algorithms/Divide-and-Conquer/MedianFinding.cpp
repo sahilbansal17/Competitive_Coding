@@ -79,7 +79,7 @@ int main()
 	cout<<findmedian(array,n,n/2);
 }
 
-/* Complexity of the algorithm is O(n)
+ /* Complexity of the algorithm is O(n)
  At each step of the algorithm we do the following:
  -> Divide the array into partitions - O(n)
  -> Solve one subproblem for 1/5 of the size of original (Finding median of medians)
@@ -88,5 +88,11 @@ int main()
  	case we might select a pivot such that each partition with median less than pivot has all elements less than pivot and
  	each partition having median greater than pivot has 2 elements less than pivot. So the size of the array for the next
  	step of recursion can be (n/10)*5+(n/10)*2 = (7n/10) in the worst case. {(n/5)/2 partitions on both sides of pivot.} )
- So the reccurence for the algorithm is given by T(n) = T(n/5) + T(7n/10) + n  .Try solving it using your preferred method
- to get the complexity of O(n);   */
+ So the reccurence for the algorithm is given by T(n) = T(n/5) + T(7n/10) + cn  .Try solving it using your preferred method
+ to get the complexity of O(n).   
+ 
+ But why partitions of 5 elements?
+ Firstly ,computing median of an odd list is easier as we can simply select the middle element of the partition contrary to
+ an even sized list in which we must take average of two middle elements.
+ Also 5 is the smallest odd number for which median of median works. If we divide the array into partitions of size 3 then we
+ get the reccurence T(n) = T(n/3) + T(2n/3) + cn solving which we get O(nlogn).Not so good! */
