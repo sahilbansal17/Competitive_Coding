@@ -18,7 +18,7 @@ int findMin( int* keys, bool* included, int v){
     int index;
     int i;
 
-    for( i=0 ; i<v ; i++ ){
+    for( i = 0; i < v; i ++){
         if( !included[i] && keys[i] < mini){
             mini = keys[i];
             index = i;
@@ -56,7 +56,7 @@ int main(){
     bool included[v];
     //The corresponding vertex has already been included if true
 
-    for ( i=0 ; i<v ; i++){
+    for (i = 0; i < v; i ++){
         keys[i] = INT_MAX;
         //Set all key values to infinity
         included[i] = false;
@@ -67,13 +67,13 @@ int main(){
     mst[0] = -1;
     //So that first vertex is picked first, it's the root for an MST
 
-    for( i=0 ; i<v-1 ; i++){
+    for(i = 0; i < v-1; i ++){
        int minKey = findMin( keys, included, v);
        //The index of the vertex with the least key value
 
        included[minKey] = true;
 
-       for( j=0 ; j<v ; j++){
+       for(j = 0; j < v; j ++){
             if ( !included[j] && graph[minKey][j] && graph[minKey][j] < keys[j]){
                 mst[j] = minKey;
                 keys[j] = graph[minKey][j];
@@ -83,7 +83,7 @@ int main(){
 
     cout<<"Minimum spanning tree has been generated."<<endl;
 
-    for( i=0 ; i<v ; i++){
+    for(i = 0; i < v; i ++){
         cout<< mst[i] <<" to "<<i<<" weighs "<< graph[i][mst[i]] <<endl;
     }
     return 0;
