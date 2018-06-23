@@ -35,7 +35,7 @@ int findmedian (int array[], int size, int position)
 	}
 	else
 	{
-		//as size is large find median of medians
+		//as size of median array is large find median of medians
 		pivot = findmedian(median, partition, partition/2);
 	}
 	int low[size],high[size];
@@ -74,6 +74,7 @@ int main()
 	{
 		cin>>array[i];
 	}
-	// Parameters : array, sizeofArray , k for finding kth smallest number
-	cout<<findmedian(array,n,n/2); // Bonus:replace n/2 by k to find kth smallest number :)
+	/* Parameters : array, sizeofArray , k for finding kth smallest number
+	In this case k=n/2 as median will be as n/2 th position */
+	cout<<findmedian(array,n,n/2);
 }
