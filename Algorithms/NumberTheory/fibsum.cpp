@@ -1,3 +1,5 @@
+/*Implementing a time-efficient algorithm to find the mod of the sum of the Fibonacci number ranging from
+the nth to the mth Fibonacci numbers using Matrix Exponentiation algorithm.*/
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long //ll would be used throughout the code to refer to long long
