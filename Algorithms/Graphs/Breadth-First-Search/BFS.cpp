@@ -83,6 +83,7 @@ int main()
     g.addEdge(2,3);
     g.addEdge(3,5);
     g.addEdge(3,4);
+    g.print();
     g.bfs(0);
     return 0;
 }
