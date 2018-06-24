@@ -11,8 +11,8 @@ void displayArray( vector<int> v)
     cout<<endl;
 }
 int main()
-{     int i, n, value;
-      vector<int> array;     
+{     int i, n, value, position, position1, position2;
+      vector<int> array;
       cout<<"Input the number of elemnts you want to store in array:\n";
       cin>>n;
       cout<<"Enter the elements:\n";
@@ -23,19 +23,25 @@ int main()
       }
 
       // Syntax to append a value at the end of the array ,time complexity:O(1)
-      array.push_back(10); 
-      
-      array[3] = 7; // Syntax to modify a value of the array
-      
+      array.push_back(10);
+
+      // Syntax to modify a value of the array
+      cout<<"Enter the index at which value is to be changed: \n";
+      cin>>position;
+      cout<<"Enter the value:\n";
+      cin>>value;
+      array[position] = value;
       // To find the number of elements in the array ,time complexity:O(1)
-      cout<<"The size of the array is : "<<array.size()<<endl; 
-      
-      //The format to know the value at particular index is :(for ex. at 4) ,time complexity:O(1)
-      cout<<"The value at index 4 is "<<array[4]<<endl;
-      
+      cout<<"The size of the array is : "<<array.size()<<endl;
+
+      //The format to know the value at particular index ,time complexity:O(1)
+      cout<<"Enter the index at which you want to know the value:\n";
+      cin>>position;
+      cout<<"The value at index "<<position<<" is "<<array[position]<<endl;
+
       //Another alternative is array.at(position) ,time complexity:O(1)
-      cout<<"The value at index 1 is "<<array.at(1)<<endl;
-      
+      cout<<"The value at index "<<position<<" is "<<array.at(position)<<endl;
+
       //To traverse the array ,time complexity:O(n)
       cout<<"The array is:";
       for( i = 0 ; i < array.size(); ++i)
@@ -43,11 +49,11 @@ int main()
           cout<<array[i]<<" ";
       }
       cout<<endl;
-      
+
       //The displayArray() function created above is the recommended method of traversing the array ,time complexity:O(n)
       cout<<"The array is:";
       displayArray(array);
-      
+
       //To traverse the array in reverse  ,time complexity:O(n)
       cout<<"The array in reverse is:";
       vector<int> :: reverse_iterator itr;
@@ -56,31 +62,39 @@ int main()
           cout<<*itr<<" ";
       }
       cout<<endl;
-      
-      
-      //To erase a single element (For example at position 0) ,time complexity:O(n)
+
+      //To erase a single element ,time complexity:O(n)
+      cout<<"Enter the index at which value is to erased: \n";
+      cin>>position;
       vector<int> :: iterator it1 = array.begin();
+      //This for loop is to point iterator it1 at required position
+      for(int i = 0; i < position ; ++i)
+          it1++;
       array.erase(it1);
-      cout<<"The array after erasing element at position 0 is:"; 
-      display_array(array);
-       
-      //To erase elements in a range (For example between position 0 and position 2) ,time complexity:O(n)
+      cout<<"The array after erasing element at required position is:";
+      displayArray(array);
+
+      //To erase elements in a range ,time complexity:O(n)
       it1 = array.begin();
       vector<int> :: iterator it2 = array.begin();
-      //This for loop is to point iterator it2 at position 2
-      for( i = 0; i < 2; ++i)
-        it2++;                      
+      cout<<"Enter the indexes between which values are to erased: \n";
+      cin>>position1>>position2;
+      for(int i = 0; i < position1 ; ++i)
+        it1++;
+      for( i = 0; i < position2; ++i)
+        it2++;
       array.erase(it1, it2);
-      cout<<"The array after erasing elements between position 0 and 2 is:";
-      display_array(array);
-      
+      cout<<"The array after erasing elements between the asked positions is:";
+      displayArray(array);
+
       //To completely clear the array  ,time complexity:O(n)
       array.clear();
-      
+
       //To check if the array is empty  ,time complexity:O(1)
       if( array.empty() == true)
         cout<<"Yes, the array is empty\n";
       else
         cout<<"No, the array is not empty\n";
-   return 0;     
+
+   return 0;
 }
