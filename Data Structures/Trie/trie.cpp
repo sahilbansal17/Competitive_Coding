@@ -48,6 +48,7 @@ TrieNode* createNode(){
     cp -> EndOfWord = true;
 }
 
+<<<<<<< HEAD
 /*  Calculating the time complexity and space complexity of insertion operation
 
     Time Complexity clearly depends on the length of the word so total time being being calculated as
@@ -69,6 +70,8 @@ TrieNode* createNode(){
 */
 
 
+=======
+>>>>>>> 083cc97f29805f995bbaea55063c7e0c7a85082b
 //Search Operation :- Searches the word and if the word not found inserts into the tree
 bool searchWord(TrieNode *root , string word){
     TrieNode *cp = root;
@@ -92,12 +95,15 @@ bool searchWord(TrieNode *root , string word){
         return false;
 }
 
+<<<<<<< HEAD
 /*  Calculating the time complexity of search operation
 
     Time Complexity clearly depends on the length of the word so total time being being directly
     dependent on the length of string
 */
 
+=======
+>>>>>>> 083cc97f29805f995bbaea55063c7e0c7a85082b
 int main(){
 
     string wordArray[] = {"peacock", "peahen", "ram","shyam", "hello" ,"world" };
