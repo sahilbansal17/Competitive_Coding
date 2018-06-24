@@ -18,6 +18,14 @@ void multiply( ll a[2][2], ll b[2][2] ) // Function is supposed to perform multi
     pow(a,n) = pow(a,n/2)*pow(a,n/2) if n is even
     pow(a,n) = pow(a,(n-1)/2*pow(a,(n-1)/2)*a if n is odd
     This allows us to reduce the time complexity to O(log n)*/
+/* 
+Time complexity proof:
+ T(n) = T(n/2) + 1 It takes unit time for multiplication
+now note that 1 == pow(n,log 1)
+therefore by master theorem your time complexity is O(log n)
+An alternative interpretaion can be made by considering a recursion tree. Height of such a tree is log(n) and 
+every operation will take o(1) time. Therefore, time complexity is O(log n) 
+*/
 void power( ll a[2][2], ll n ) // recursively multiplies the matrix to give the matrix a[2][2]^n
 {
   if( n == 0 || n == 1)
