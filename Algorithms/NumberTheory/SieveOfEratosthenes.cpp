@@ -1,5 +1,4 @@
-// Sieve Of Eratosthenes
-// Time Complexity O(nlog(log(n))) whereas following brute force will end you up with O(n*sqrt(n))
+// @ lavishsaluja
 #include <iostream>
 #include<math.h>
 using namespace std;
@@ -36,3 +35,11 @@ int main(void){
     }
     return 0;
 }
+/*
+Time Complexity O(nlog(log(n))) whereas following brute force will end you up with O(n*sqrt(n))
+T(n) = n/2 + n/3 + n/5 + .... + n/p' + .... n/p + .. (where p and p' are prime numbers less than n)
+thus it becomes T(n) = n * (sum of reciprocals of all primes till n).
+which is equal to n*log(log(n)), a complexity very near to O(n)
+you may refer to this article for the proof of same:
+https://www.wikiwand.com/en/Divergence_of_the_sum_of_the_reciprocals_of_the_primes
+*/
