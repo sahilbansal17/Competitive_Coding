@@ -53,10 +53,12 @@ ll fib( ll n ) // used to find the value of nth finbonacci number
  int main()
 {
   ll t;
+   cout << "Enter the number of test cases" << endl;
   cin >> t ; // number of testcases
   while(t--)
   {
     ll l,r;     //we take input of l and r as the lth and rth fibonacci numbers
+    cout << "enter the leftmost and rightmost fibonacci terms you want"<<endl;
     cin>>l>>r;
     cout<<(fib(r+2) - fib(l+1) + MOD)%MOD<<endl; //(F(l) + F(l + 1) + ... + F(r)+ MOD) % MOD
   }
