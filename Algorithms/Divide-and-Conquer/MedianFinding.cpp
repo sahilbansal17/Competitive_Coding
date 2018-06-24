@@ -2,8 +2,6 @@
 
 #include<bits/stdc++.h>
 using namespace std;
-#define sz(a)	int(a.size())
-#define pb 	 	push_back
 
 // function for finding median
 int findMedian (int array[], int size, int position)
@@ -18,7 +16,7 @@ int findMedian (int array[], int size, int position)
 	{
 		for (j = i; j < i+5 && j < size; ++j)
 		{
-			sublist[i/5].pb(array[j]);				
+			sublist[i/5].push_back(array[j]);				
 		}
 		sort(sublist[i/5].begin() ,sublist[i/5].end());
 	}
@@ -28,7 +26,7 @@ int findMedian (int array[], int size, int position)
 	
 	for (i = 0; i < partition; ++i)
 	{
-		int size_of_sublist = sz(sublist[i]);
+		int size_of_sublist = int(sublist[i].size());
 		median[i] = sublist[i][size_of_sublist/2];
 	}
 	
