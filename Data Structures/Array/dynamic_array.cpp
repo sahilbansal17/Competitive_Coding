@@ -3,7 +3,7 @@
 //TITLE: DYNAMIC ARRAY-VECTOR(STL)
 #include<bits/stdc++.h>
 using namespace std;
-void display_array( vector<int> v)
+void displayArray( vector<int> v)
 {
     vector<int> :: iterator it;
     for( it = v.begin() ; it!= v.end() ; ++it)
@@ -44,9 +44,9 @@ int main()
       }
       cout<<endl;
       
-      //The display_array() function created above is the recommended method of traversing the array ,time complexity:O(n)
+      //The displayArray() function created above is the recommended method of traversing the array ,time complexity:O(n)
       cout<<"The array is:";
-      display_array(array);
+      displayArray(array);
       
       //To traverse the array in reverse  ,time complexity:O(n)
       cout<<"The array in reverse is:";
