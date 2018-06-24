@@ -1,41 +1,47 @@
+//Name : Shivam Singhal
+//Email ID : shivamsinghal0610@gmail.com
+
 #include<bits/stdc++.h>
 using namespace std;
-#define ll long long //using macro definition (directive) to simplify code
  
-void selectionSort(ll arr[], ll n){
-    ll min_index;
-    for(ll i = 0; i <(n-1); i++){
+void selectionSort(long arr[], long n){
+    long min_index;
+    for(long i = 0; i <(n-1); i++){
         min_index = i;
-        for (ll j = i+1; j < n; j++){
-          if (arr[j] < arr[min_index]) //finding smallest elememt wrt to ith element 
-            min_index = j;
+        for (long j = i+1; j < n; j++){
+            //finding smallest elememt wrt to ith element 
+            if (arr[j] < arr[min_index]) 
+                min_index = j;
         }
-        ll t=arr[min_index]; //swapping elements keeping ith element as pivot
-        arr[min_index]=arr[i];
-        arr[i]=t;
+        //swapping elements keeping ith element as pivot
+        long t = arr[min_index]; 
+        arr[min_index] = arr[i];
+        arr[i] = t;
     }
 }
  
-void printArray(ll arr[], ll n){
-    for (ll i=0; i<n; i++)
+void printArray(long arr[], long n){
+    for (long i=0; i<n; i++)
         printf("%d ", arr[i]);
     printf("\n");
 }
  
 // Driver program to test above functions
 int main(){
-    ll n;
+    long n;
     scanf("%lld",&n);
-    ll arr[n]; //declaring array of given size
-    for(ll i=0;i<n;i++)
+    //declaring array of given size
+    long arr[n]; 
+    for(long i=0; i<n ;i++)
         scanf("%lld",&arr[i]);
     printf("Entered elements: \n");
     printArray(arr, n);
-    selectionSort(arr, n); //function to sort elements in ascending order
+    //function to sort elements in ascending order
+    selectionSort(arr, n); 
     printf("Sorted array: \n");
     printArray(arr, n);
     return 0;
 }
 
-//Time Complexity : O(n^2)
-//Auxiliary Space Complexity : O(1)
+//Time Complexity : O(n^2). Same for all cases as we use 2 nested loops of n runtime each.
+//Auxiliary Space Complexity : O(1). We make max use of an extra variable.

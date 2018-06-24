@@ -1,64 +1,81 @@
+//Name : Shivam Singhal
+//Email ID : shivamsinghal0610@gmail.com
+
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long
 
-void merge(ll arr[], ll l, ll m, ll r){
-    ll i, j, k;
-    ll n1 = m - l + 1; //number of elements in first array (left half)
-    ll n2 =  r - m; //number of elements in second array (right half)
-    ll L[n1], R[n2]; //temporary arrays to store sorted sub-arrays 
+void merge(long arr[], long l, long m, long r){
+    long i, j, k;  
+    //number of elements in first array (left half)
+    long n1 = m - l + 1; 
+    //number of elements in second array (right half)
+    long n2 =  r - m; 
+    //temporary arrays to store sorted sub-arrays 
+    long L[n1], R[n2]; 
     for (i = 0; i < n1; i++)
         L[i] = arr[l + i];
     for (j = 0; j < n2; j++)
         R[j] = arr[m + 1+ j];
-    i = 0; //Initial index of first subarray
-    j = 0; //Initial index of second subarray
-    k = l; //Initial index of merged subarray in original array
+    //Initial index of first subarray
+    i = 0; 
+    //Initial index of second subarray
+    j = 0; 
+    //Initial index of merged subarray in original array
+    k = l; 
     while (i < n1 && j < n2){
-        if (L[i] <= R[j]){ //picking element from first sub-array
+        //picking element from first sub-array
+        if (L[i] <= R[j]){ 
             arr[k++] = L[i++];
         }
-        else{ //picking element from second sub-array
+        //picking element from second sub-array
+        else{ 
             arr[k++] = R[j++];
         }
     }
-    while (i < n1){ //picking remaining elements of left sub-array, if any are left
+    //picking remaining elements of left sub-array, if any are left
+    while (i < n1){ 
         arr[k++] = L[i++];
     }
-    while (j < n2){  //picking remaining elements of right sub-array, if any are left
+    //picking remaining elements of right sub-array, if any are left
+    while (j < n2){  
         arr[k++] = R[j++];
     }
 }
  
-void mergeSort(ll arr[], ll low, ll high){
+void mergeSort(long arr[], long low, long high){
     if (low < high){
-        ll mid = low+(high-low)/2; //using this concept to avoid overflow in case of large numbers
-        mergeSort(arr, low, mid); //sorting left half of array
-        mergeSort(arr, mid+1, high); //sorting right half of array
-        merge(arr, low, mid, high); //merging both sorted sub-arrays in a sorted fashion
+        //using this concept to avoid overflow in case of large numbers
+        long mid = low + ((high-low)/2); 
+        //sorting left half of array
+        mergeSort(arr, low, mid); 
+        //sorting right half of array
+        mergeSort(arr, mid+1, high);
+        //merging both sorted sub-arrays in a sorted fashion 
+        merge(arr, low, mid, high); 
     }
 }
 
-void printArray(ll a[], ll n){
-    for(ll i=0;i<n;i++)
+void printArray(long a[], long n){
+    for(long i=0; i<n ;i++)
      printf("%lld ",a[i]);
     printf("\n");
 }
  
 int main()
 {
-    ll n;
+    long n;
     scanf("%lld",&n);
-    ll arr[n];
-    for(ll i=0;i<n;i++)
+    long arr[n];
+    for(long i=0; i<n ;i++)
      scanf("%lld",&arr[i]);
     printf("Entered elements :\n");
     printArray(arr,n);
-    mergeSort(arr, 0,n-1); //function to sort array in ascending order using merge sort
+    //function to sort array in ascending order using merge sort
+    mergeSort(arr, 0,n-1); 
     printf("\nSorted array:\n");
     printArray(arr,n);
     return 0;
 }
 
-//Time Complexity : O(nlogn)
-//Auxiliary Space Complexity : O(n)
+//Time Complexity : O(nlogn). For all 3 cases, time complexity is same because merge sort always uses divide and conquer technique. 
+//Auxiliary Space Complexity : O(n). We use an extra array of n size. 
