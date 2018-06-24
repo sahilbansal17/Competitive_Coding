@@ -154,8 +154,7 @@ Node* reverseLinkedListIterative(Node* head)
 	return prev;
 }
 int main(){	
-	//taking the input from the user and storing it's head in head variable
-	//this take input function wille take inputs until user enters -1
+	//takeInput() function takes the input from the user until user enters -1
 	cout<<"Enter the linked list: ";
 	Node *head =takeInput();
 	cout<<"Input linkedList is : ";
