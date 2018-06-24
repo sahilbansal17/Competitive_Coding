@@ -84,6 +84,18 @@ int main()
     cout<<"Reversing list l4: ";
     l4.reverse();
     displayint(l4);
+    /*Splicing*/
+    cout<<"Splicing l4 with l5: ";
+    l4.splice(l4.begin(),l5);//transfer elements from one list to another after given position
+    displayint(l4);
+    list<int> l6={10,11,12};
+    cout<<"Splicing l5: ";
+    l5.splice(l5.begin(),l6,l6.begin());//splicing a list with single element of another list after given position
+    displayint(l5);
+    cout<<"Splicing l1 with l4 in range[1,4): ";
+    l1.splice(l1.begin(),l4,l4.begin(),l4.end());//transfer elements in a given range from(including first) one list to another
+    displayint(l1);
+
     return 0;
 
 }
@@ -92,5 +104,6 @@ int main()
    Deletion         O(1)
    Traversal        O(n)
    Reversal         O(n)
+   Splicing	    O(n)
 */
 

@@ -79,6 +79,17 @@ int main()
     cout<<"Reversing list fl4: ";
     fl4.reverse();
     displayint(fl4);
+    /*Splicing*/
+    cout<<"Splicing fl4 with fl5: ";
+    fl4.splice_after(fl4.before_begin(),fl5);//transfer elements from one list to another after given position
+    displayint(fl4);
+    forward_list<int> fl6={10,11,12};
+    cout<<"Splicing fl5: ";
+    fl5.splice_after(fl5.before_begin(),fl6,fl6.begin());//splicing a list with single element of another list after given position
+    displayint(fl5);
+    cout<<"Splicing fl1 with fl4in range(1,4): ";
+    fl1.splice_after(fl1.begin(),fl4,fl4.before_begin(),fl4.end());//transfer elements in a given range(exclusive) from one list to another
+    displayint(fl1);
     return 0;
 }
 /* Operation        Complexity
@@ -86,5 +97,6 @@ int main()
    Deletion         O(1)
    Traversal        O(n)
    Reversal         O(n)
+   Splicing	    O(n)
 */
 
