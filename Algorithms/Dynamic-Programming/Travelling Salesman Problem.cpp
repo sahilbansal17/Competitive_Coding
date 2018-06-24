@@ -3,12 +3,31 @@ This program addresses the famous, Travelling Salesman Problem:
 Probem Statement: Given a set of cities and distance between every pair of cities, 
 				  the problem is to find the shortest possible route that visits every 
 				  city exactly once and returns to the starting point.
-Input Format : The first line contains n,the number of cities in the region. (1 <= n <=20 )
+Input Format : The first line contains n,the number of cities in the region. (1 <= n <=20 (Explained Below))
 			   Each of the next n lines contain n numbers describing the distance matrix.
 			   (The distance from a city to itself is taken as zero)
 Output Format: A single number , the length of the shortest such path.
 
-Approach Used : Dynamic Programming
+Approach Used : Dynamic Programming, Bit Masking
+
+Intuition for using Bit masking:
+The bitmasking technique is used to keep track of the cities visited so far.
+Say for example there are 4 cities and after certain steps cities B,D are visited only.
+At this instant the variable mask would appear as 1010 as the MSB signifies that city D has been visited
+and the LSB signifies that city A is not yet visited and so on. Now suppose if we carry out an AND operation as
+1010 & 0010(for City B) , the result is non zero if City B has been already visited and zero if City B
+is not yet visited(1000 & 0010). This approach is used to continue the recursion. Bit masking + the current city position
+uniquely specifies the subproblem for the main-problem. 
+
+
+
+Time Complexity Analysis:
+It is clear that at each stage of the problem there can be a maximum n * (2^n) subproblems, with each taking O(n) time to compute.
+So the overall time complexity is O( (n*n) * (2^n) ) . This is very less than that of the brute approach i.e O(n!). However this
+approach is not suitable for very high values of n either. It is due to the size constraint of the 2d dp array. The maximum number of
+cities can be taken 22 . So 20 can be taken as a safe limit. (Maximum global array size : 10^9).
+
+
 Author : monsijb
 */
 
