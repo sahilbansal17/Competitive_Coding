@@ -13,7 +13,8 @@ struct node
 };
 
 //function to create a node
-
+//worst case time complexity O(1)
+//best case time complexity O(1)
 struct node *create_new_node(int d)
 {
     struct node *temp;
@@ -24,6 +25,8 @@ struct node *create_new_node(int d)
 }
 
 //function to add a new node at the beginning of the list
+//worst case time complexity O(1)
+//best case time complexity O(1)
 
 struct node *add_at_beg(struct node *head, int d)
 {
@@ -43,6 +46,8 @@ struct node *add_at_beg(struct node *head, int d)
 }
 
 //function to add a new node at the end of the list
+//worst case time complexity O(N)
+//best case time complexity O(N)
 
 struct node *add_at_end(struct node *head, int d)
 {
@@ -66,7 +71,10 @@ struct node *add_at_end(struct node *head, int d)
 }
 
 
+
 //function to add a new node at any required position, n of the list
+//worst case time complexity O(N)
+//best case time complexity O(1)
 
 struct node *insert_at_posn_n(struct node *head,int n,int d)
 {
@@ -93,7 +101,10 @@ struct node *insert_at_posn_n(struct node *head,int n,int d)
     return head;
 }
 
+
 //function to delete a node from the beginning of the list
+//worst case time complexity O(1)
+//best case time complexity O(1)
 
 struct node *delete_from_beg(struct node *head)
 {
@@ -103,8 +114,10 @@ struct node *delete_from_beg(struct node *head)
     return head;
 }
 
-//function to delete a node from the end of the list
 
+//function to delete a node from the end of the list
+//worst case time complexity O(N)
+//best case time complexity O(N)
 struct node *delete_from_end(struct node *head)
 {
     if(head==NULL)
@@ -126,6 +139,8 @@ struct node *delete_from_end(struct node *head)
 
 //function to traverse through the liked list and print all the nodes
 //iterative approach
+//worst case time complexity O(N)
+//best case time complexity O(N)
 
 void traversal(struct node *head)
 {
@@ -143,6 +158,8 @@ void traversal(struct node *head)
 //function will return the index of the first occurence of the element
 //search will return result on 1 based indexing
 //iterative approach
+//worst case time complexity O(N)
+//best case time complexity O(1)
 
 int search(struct node *head,int d)
 {
@@ -168,6 +185,8 @@ int search(struct node *head,int d)
 
 //function to reverse a linked list
 //iterative approach
+//worst case time complexity O(N)
+//best case time complexity O(N)
 
 struct node *reversal(struct node *head)
 {
@@ -196,20 +215,52 @@ struct node *reversal(struct node *head)
     }
 }
 
+//function to splice
+//accepts three parameters, head, start and end,
+//start and end are the indices from which and till which splicing is to be done
+//indexing zero based, so first index is 0
+//worst case time complexity O(N)
+//best case time complexity O(1)
+
+struct node *splice(struct node *head, int start, int end)
+{
+    if(head==NULL)
+    return head;
+    struct node *temp=head;
+    int count=0;
+    while(count<start && temp!=NULL)
+    {
+        temp=temp->next;
+        count++;
+    }
+    head=temp;
+    
+    while(count<end && temp!=NULL)
+    {
+        temp=temp->next;
+        count++;
+    }
+    temp->next=NULL;
+    return head;
+    
+}
+
 //the main function to run the code
 
 int main()
 {
     int option = 0;
     int d,n,position;
+    int start,end;
 
     struct node *head=NULL;
+
 
 //different options to select from what to do
 // a menu is given to select from
 //the menu repeats until the user selects 9 that is Exit
 
-    while (option != 9 )
+    while (option != 10 )
     {
         printf("\n\nPress the index of the work to be performed : \n");
         printf("1.Insert at beginning\n");
@@ -220,7 +271,8 @@ int main()
         printf("6.Traverse\n");
         printf("7.Search\n");
         printf("8.Reverse the linked list\n");
-        printf("9.Exit\n");
+        printf("9.Splice the linked list\n");
+        printf("10.Exit\n");
 
         scanf("%d", &option);
 
@@ -308,6 +360,20 @@ int main()
         {
             head=reversal(head);
             printf("Reversal done:\n");
+        }
+        
+        
+        //option to splice the linked list
+        //splice function called
+        if (option == 9)
+        {
+            
+            printf("From which index do you want to splice?\n");
+            scanf("%d", &start);
+            printf("Till which index do you want to splice? \n");
+            scanf("%d", &end);
+            head=splice(head,start,end);
+            printf("Splicing done:\n");
         }
 
     }
