@@ -8,7 +8,6 @@ vertex are being iterated through (v*v).
 
 */
 
-#include <iostream>
 #include<bits/stdc++.h>
 
 using namespace std;
@@ -43,7 +42,7 @@ int main(){
     cout<<"Vertex1 Vertex2 Weight"<<endl;
     cout<<"PS : First vertex should be 0."<<endl;
 
-    while(e--){
+    for (i = 0; i < e; i ++){
         int v1,v2,w;
         cin>>v1>>v2>>w;
         graph[v1][v2] = w;
