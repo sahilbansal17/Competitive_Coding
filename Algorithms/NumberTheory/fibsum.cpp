@@ -4,6 +4,7 @@ using namespace std;
 #define MOD 1000000007
 void multiply( ll a[2][2], ll b[2][2] ) // Function is supposed to perform multiplication of the a matrices a and b
 {
+  // x, y, z store the answers that result for matrix multiplication of a & b
   ll x =  a[0][0] * b[0][0] + a[0][1] * b[1][0];
   ll y =  a[0][0] * b[0][1] + a[0][1] * b[1][1];
   ll z =  a[1][0] * b[0][0] + a[1][1] * b[1][0];
@@ -24,11 +25,12 @@ Time complexity proof:
 now note that 1 == pow(n,log 1)
 therefore by master theorem your time complexity is O(log n)
 An alternative interpretaion can be made by considering a recursion tree. Height of such a tree is log(n) and 
-every operation will take o(1) time. Therefore, time complexity is O(log n) 
+every operation will take O(1) time. Therefore, time complexity is O(log n) 
 */
+/* Variable info: a[2][2] -> 2*2 matrix input by a function, n is the power to which the matrix is raised*/
 void power( ll a[2][2], ll n ) // recursively multiplies the matrix to give the matrix a[2][2]^n
 {
-  if( n == 0 || n == 1)
+  if( n == 0 || n == 1) 
       return;
   ll b[2][2] = {{1,1},{1,0}};//creating a 2d array/matrix b
  
@@ -41,7 +43,7 @@ void power( ll a[2][2], ll n ) // recursively multiplies the matrix to give the 
  //fibonacci_matrix equation relation -> pow({{1,1},{1,0}},n) =={{F(n+1),F(n)},{F(n),F(n-1)}} where F(n) is the nth fibonacci number
 ll fib( ll n ) // used to find the value of nth finbonacci number
 {
-  ll a[2][2] = {{1,1},{1,0}};
+  ll a[2][2] = {{1,1},{1,0}};//the matrix as explained above
   if (n == 0)
     return 0;
   power(a, n-1);
@@ -51,12 +53,12 @@ ll fib( ll n ) // used to find the value of nth finbonacci number
  int main()
 {
   ll t;
-  cin >> t ;
+  cin >> t ; // number of testcases
   while(t--)
   {
-    ll l,r;
+    ll l,r;     //we take input of l and r as the lth and rth fibonacci numbers
     cin>>l>>r;
-    cout<<(fib(r+2) - fib(l+1) + MOD)%MOD<<endl; 
+    cout<<(fib(r+2) - fib(l+1) + MOD)%MOD<<endl; //(F(l) + F(l + 1) + ... + F(r)+ MOD) % MOD
   }
   return 0;
 }
