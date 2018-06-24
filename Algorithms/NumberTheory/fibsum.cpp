@@ -1,10 +1,8 @@
-/*Implementing a time-efficient algorithm to find the mod of the sum of the Fibonacci number ranging from
-the nth to the mth Fibonacci numbers using Matrix Exponentiation algorithm.*/
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long //ll would be used throughout the code to refer to long long
 #define MOD 1000000007
-void multiply( ll a[2][2], ll b[2][2] )
+void multiply( ll a[2][2], ll b[2][2] ) // Function is supposed to perform multiplication of the a matrices a and b
 {
   ll x =  a[0][0] * b[0][0] + a[0][1] * b[1][0];
   ll y =  a[0][0] * b[0][1] + a[0][1] * b[1][1];
@@ -16,27 +14,30 @@ void multiply( ll a[2][2], ll b[2][2] )
   a[1][0] = z;
   a[1][1] = w;
 }
- 
-void power( ll a[2][2], ll n )
+ /* Concept used to optimize the calcluation of the power:
+    pow(a,n) = pow(a,n/2)*pow(a,n/2) if n is even
+    pow(a,n) = pow(a,(n-1)/2*pow(a,(n-1)/2)*a if n is odd
+    This allows us to reduce the time complexity to O(log n)*/
+void power( ll a[2][2], ll n ) // recursively multiplies the matrix to give the matrix a[2][2]^n
 {
   if( n == 0 || n == 1)
       return;
-  ll b[2][2] = {{1,1},{1,0}};//creating array b
+  ll b[2][2] = {{1,1},{1,0}};//creating a 2d array/matrix b
  
   power(a, n/2);
-  multiply(a, a); // modular exponentiation
- 
+  multiply(a, a); //exponentiation
+//  
   if ( n%2 != 0 )
      multiply(a, b);
 }
- 
-ll fib( ll n )
+ //fibonacci_matrix equation relation -> pow({{1,1},{1,0}},n) =={{F(n+1),F(n)},{F(n),F(n-1)}} where F(n) is the nth fibonacci number
+ll fib( ll n ) // used to find the value of nth finbonacci number
 {
   ll a[2][2] = {{1,1},{1,0}};
   if (n == 0)
     return 0;
   power(a, n-1);
-  return a[0][0];
+  return a[0][0];//(as from fibonacci matrix equation a[0][0] == F((n-1)+1))
 }
  
  int main()
@@ -47,7 +48,7 @@ ll fib( ll n )
   {
     ll l,r;
     cin>>l>>r;
-    cout<<(fib(r+2) - fib(l+1) + MOD)%MOD<<endl;
+    cout<<(fib(r+2) - fib(l+1) + MOD)%MOD<<endl; 
   }
   return 0;
 }
