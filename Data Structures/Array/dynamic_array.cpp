@@ -22,7 +22,7 @@ int main()
           array.push_back(value);
       }
 
-      // Syntax to append a value at the end of the array time complexity:O(1)
+      // Syntax to append a value at the end of the array ,time complexity:O(1)
       array.push_back(10); 
       
       array[3] = 7; // Syntax to modify a value of the array
