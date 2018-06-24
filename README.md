@@ -15,4 +15,6 @@ The solutions to various problems in different contests or practice problems on 
 Some tricks and templates are available in [Templates](Templates/) folder.
 
 ### How to contribute
-#### Refer to the [GSSoC Wiki Page](https://github.com/sahilbansal17/Competitive_Coding/wiki/GSSoC) for contribution guidelines.
+  1. #### Refer to the [GSSoC Wiki Page](https://github.com/sahilbansal17/Competitive_Coding/wiki/GSSoC) for contribution guidelines.
+
+  2. #### Refer to the [Coding Standards Wiki Page](https://github.com/sahilbansal17/Competitive_Coding/wiki/Coding-Standards) for the coding standards to be followed. 
