@@ -43,7 +43,7 @@ int findMedian (int array[], int size, int position)
 	else
 	{
 		//as size of median array is large find median of medians
-		pivot = findmedian(median, partition, partition/2);
+		pivot = findMedian(median, partition, partition/2);
 	}
 	
 	int low[size],high[size];
@@ -70,10 +70,10 @@ int findMedian (int array[], int size, int position)
 		return pivot;
 	// if actual position of median is towards the left recurse to left
 	else if (position < l)
-		return findmedian(low, l, position);
+		return findMedian(low, l, position);
 	// if actual position of median is to the right recurse to the right
 	else
-		return findmedian(high, r, position-(l+counter));
+		return findMedian(high, r, position-(l+counter));
 }
 int main()
 {
@@ -85,7 +85,7 @@ int main()
 	}
 	// Parameters : array, sizeofArray , k for finding kth smallest number
 	// In this case k=n/2 as median will be as n/2 th position 
-	cout<<findmedian(array,n,n/2)<<"\n";
+	cout<<findMedian(array,n,n/2)<<"\n";
 }
 
 // Time Complexity : O(n)
