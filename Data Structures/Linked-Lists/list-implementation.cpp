@@ -1,4 +1,6 @@
-/* THIS IS A PROGRAM TO IMPLEMENT LIST . IT CONSISTS OF INSERTION, DELETION, TRAVERSAL, SEARCH, REVERSE.*/
+// Name: Harsh Aryan
+// Email-id: 12harsharyan@gmail.com
+// THIS IS A PROGRAM TO IMPLEMENT LIST . IT CONSISTS OF INSERTION, DELETION, TRAVERSAL, SEARCH, REVERSE.
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,7 +17,10 @@ struct node
 //function to create a node
 //worst case time complexity O(1)
 //best case time complexity O(1)
-struct node *create_new_node(int d)
+//these are just constant time operations
+// Space Complexity: O(1), Since we have just used an additional variable max inside the function.
+
+struct node *createNewNode(int d)
 {
     struct node *temp;
     temp=(struct node *)malloc(sizeof(struct node));
@@ -27,11 +32,14 @@ struct node *create_new_node(int d)
 //function to add a new node at the beginning of the list
 //worst case time complexity O(1)
 //best case time complexity O(1)
+//these are just constant time operations
+// Space Complexity: O(1), Since we have just used an additional variable max inside the function.
 
-struct node *add_at_beg(struct node *head, int d)
+
+struct node *addAtBeg(struct node *head, int d)
 {
     struct node *temp;
-    temp=create_new_node(d);
+    temp=createNewNode(d);
     if(head==NULL)
     {
         head=temp;
@@ -48,11 +56,14 @@ struct node *add_at_beg(struct node *head, int d)
 //function to add a new node at the end of the list
 //worst case time complexity O(N)
 //best case time complexity O(N)
+// Inside the for loop, there is just a condition check ,
+// Overall, time taken is O(n) thus.
+// Space Complexity: O(1), Since we have just used an additional variable max inside the function.
 
-struct node *add_at_end(struct node *head, int d)
+struct node *addAtEnd(struct node *head, int d)
 {
     struct node *temp;
-    temp=create_new_node(d);
+    temp=createNewNode(d);
     if(head==NULL)
     {
         head=temp;
@@ -75,10 +86,14 @@ struct node *add_at_end(struct node *head, int d)
 //function to add a new node at any required position, n of the list
 //worst case time complexity O(N)
 //best case time complexity O(1)
+// Inside the for loop, there is just a condition check ,
+// Overall, time taken is O(n) thus.
+// Space Complexity: O(1), Since we have just used an additional variable max inside the function.
+//1 based indexing
 
-struct node *insert_at_posn_n(struct node *head,int n,int d)
+struct node *insertAtPosn(struct node *head, int n, int d)
 {
-    struct node *temp=create_new_node(d);
+    struct node *temp=createNewNode(d);
     if(head==NULL)
         return temp;
     if(n==1)
@@ -105,8 +120,12 @@ struct node *insert_at_posn_n(struct node *head,int n,int d)
 //function to delete a node from the beginning of the list
 //worst case time complexity O(1)
 //best case time complexity O(1)
+//these are just constant time operations
+// Space Complexity: O(1), Since we have just used an additional variable max inside the function.
 
-struct node *delete_from_beg(struct node *head)
+
+
+struct node *deleteFromBeg(struct node *head)
 {
     if(head==NULL)
         return;
@@ -118,7 +137,11 @@ struct node *delete_from_beg(struct node *head)
 //function to delete a node from the end of the list
 //worst case time complexity O(N)
 //best case time complexity O(N)
-struct node *delete_from_end(struct node *head)
+// Inside the for loop, there is just a condition check ,
+// Overall, time taken is O(n) thus.
+// Space Complexity: O(1), Since we have just used an additional variable max inside the function.
+
+struct node *deleteFromEnd(struct node *head)
 {
     if(head==NULL)
         return;
@@ -141,6 +164,9 @@ struct node *delete_from_end(struct node *head)
 //iterative approach
 //worst case time complexity O(N)
 //best case time complexity O(N)
+// Inside the for loop, there is just a condition check ,
+// Overall, time taken is O(n) thus.
+// Space Complexity: O(1), Since we have just used an additional variable max inside the function.
 
 void traversal(struct node *head)
 {
@@ -160,8 +186,11 @@ void traversal(struct node *head)
 //iterative approach
 //worst case time complexity O(N)
 //best case time complexity O(1)
+// Inside the for loop, there is just a condition check ,
+// Overall, time taken is O(n) thus.
+// Space Complexity: O(1), Since we have just used an additional variable max inside the function.
 
-int search(struct node *head,int d)
+int search(struct node *head, int d)
 {
     int flag=-1;
     if(head==NULL)
@@ -187,6 +216,9 @@ int search(struct node *head,int d)
 //iterative approach
 //worst case time complexity O(N)
 //best case time complexity O(N)
+// Inside the for loop, there is just a condition check ,
+// Overall, time taken is O(n) thus.
+// Space Complexity: O(1), Since we have just used an additional variable max inside the function.
 
 struct node *reversal(struct node *head)
 {
@@ -221,6 +253,9 @@ struct node *reversal(struct node *head)
 //indexing zero based, so first index is 0
 //worst case time complexity O(N)
 //best case time complexity O(1)
+// Inside the for loop, there is just a condition check ,
+// Overall, time taken is O(n) thus.
+// Space Complexity: O(1), Since we have just used an additional variable max inside the function.
 
 struct node *splice(struct node *head, int start, int end)
 {
@@ -250,10 +285,10 @@ struct node *splice(struct node *head, int start, int end)
 int main()
 {
     int option = 0;
-    int d,n,position;
-    int start,end;
+    int d, n, position;
+    int start, end;
 
-    struct node *head=NULL;
+    struct node *head = NULL;
 
 
 //different options to select from what to do
@@ -277,30 +312,30 @@ int main()
         scanf("%d", &option);
 
         //option for insertion at beginning
-        //add_at_beg function to be called
+        //addAtBeg function to be called
 
         if (option == 1)
         {
             printf("Enter the value to be inserted :\n");
             scanf("%d", &d);
-            head=add_at_beg(head,d);
+            head=addAtBeg(head,d);
             printf("Insertion Successful\n");
         }
 
         //option for insertion at end
-        //add_at_end function to be called
+        //addAtEnd function to be called
 
 
         if (option == 2)
         {
             printf("Enter the value to be inserted :\n");
             scanf("%d", &d);
-            head=add_at_end(head,d);
+            head=addAtEnd(head,d);
             printf("Insertion Successful\n");
         }
 
         //option for insertion at any required position
-        //ainsert_at_posn_n function to be called
+        //insertAtPosn function to be called
 
         if (option == 3)
         {
@@ -308,23 +343,23 @@ int main()
             scanf("%d", &d);
             printf("Enter the position where you want to insert : \n");
             scanf("%d", &n);
-            head=insert_at_posn_n(head,n,d);
+            head=insertAtPosn(head,n,d);
             printf("Insertion Successful\n");
         }
 
         //option to delete a node from the beginning
-        //delete_from_beg function to be called
+        //deleteFromBeg function to be called
 
         if (option == 4)
-        {   head=delete_from_beg(head);
+        {   head=deleteFromBeg(head);
             printf("Deletion Successful\n");
         }
 
         //option to delete a node from the end
-        //delete_from_end function to be called
+        //deleteFromEnd function to be called
 
         if (option == 5)
-        {   head=delete_from_end(head);
+        {   head=deleteFromEnd(head);
             printf("Deletion Successful\n");
         }
 
