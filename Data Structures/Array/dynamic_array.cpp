@@ -10,6 +10,20 @@ void displayArray( vector<int> v)
         cout<<*it<<" ";
     cout<<endl;
 }
+//The iterator in the below for loop is decremented because after erasing, the next element occupies the current position
+vector<int> delEvenValues(vector<int> v)
+{
+  vector<int> :: iterator it;
+  for( it = v.begin() ; it!= v.end() ; ++it)
+    {
+        if((*it)%2 == 0)
+        {
+          v.erase(it);
+          it--;
+        }
+    }
+    return v;
+}
 int main()
 {     int i, n, value, position, position1, position2;
       vector<int> array;
@@ -87,6 +101,11 @@ int main()
       cout<<"The array after erasing elements between the asked positions is:";
       displayArray(array);
 
+      //Function to delete even valued elements, time coplexity = O(n^2)
+      array = delEvenValues(array);
+      cout<<"The array after erasing even valued elements is:";
+      displayArray(array);
+
       //To completely clear the array  ,time complexity:O(n)
       array.clear();
 
@@ -95,6 +114,5 @@ int main()
         cout<<"Yes, the array is empty\n";
       else
         cout<<"No, the array is not empty\n";
-
    return 0;
 }
