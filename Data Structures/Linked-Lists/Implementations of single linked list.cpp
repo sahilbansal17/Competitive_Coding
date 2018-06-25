@@ -106,7 +106,8 @@ int main()                                                         //MAIN FUNCTI
 		}/*End of switch */
 	}/*End of while */
 return 0;
-}/*End of main()*/
+}
+/*End of main()*/
 
 struct node *createList(struct node *start)
 {
@@ -128,7 +129,8 @@ struct node *createList(struct node *start)
 		start=addAtEnd(start,data);	
 	}
 	return start;
-}/*End of create_list()*/
+}
+/*End of create_list()*/
 
 void display(struct node *start)
 {
@@ -146,7 +148,8 @@ void display(struct node *start)
 		p=p->link;
 	}
 	printf("\n\n");
-}/*End of display() */
+}
+/*End of display() */
 
 void count(struct node *start)
 {
@@ -159,7 +162,8 @@ void count(struct node *start)
 		cnt++;
 	}
 	printf("Number of elements are %d\n",cnt);
-}/*End of count() */
+}
+/*End of count() */
 
 void search(struct node *start,int item)
 {
@@ -176,7 +180,8 @@ void search(struct node *start,int item)
 		pos++;
 	}
 	printf("Item %d not found in list\n",item);
-}/*End of search()*/
+}
+/*End of search()*/
 
 struct node *addAtBeg(struct node *start,int data)
 {
@@ -186,7 +191,8 @@ struct node *addAtBeg(struct node *start,int data)
 	tmp->link=start;
 	start=tmp;
 	return start;
-}/*End of addAtBeg()*/
+}
+/*End of addAtBeg()*/
 
 struct node *addAtEnd(struct node *start,int data)
 {
@@ -199,7 +205,8 @@ struct node *addAtEnd(struct node *start,int data)
 	p->link=tmp;
 	tmp->link=NULL;
 	return start;
-}/*End of addAtEnd()*/
+}
+/*End of addAtEnd()*/
 
 struct node *addAfter(struct node *start,int data,int item)
 {
@@ -219,7 +226,8 @@ struct node *addAfter(struct node *start,int data,int item)
 	}
 	printf("%d not present in the list\n",item);
 	return start;
-}/*End of addafter()*/
+}
+/*End of addafter()*/
 
 struct node *addBefore(struct node *start,int data,int item)
 {
@@ -253,7 +261,8 @@ struct node *addBefore(struct node *start,int data,int item)
 	}
 	printf("%d not present in the list\n",item);
 	return start;
-}/*End of addBefore()*/	
+}
+/*End of addBefore()*/	
 
 struct node *addAtPos(struct node *start,int data,int pos)
 {
@@ -278,7 +287,8 @@ struct node *addAtPos(struct node *start,int data,int pos)
 		p->link=tmp;
 	}	
 	return start;
-}/*End of addAtPos()*/
+}
+/*End of addAtPos()*/
 
 struct node *del(struct node *start,int data)
 {
@@ -311,7 +321,8 @@ struct node *del(struct node *start,int data)
 	}
 	printf("Element %d not found\n",data);
 	return start;
-}/*End of del()*/
+}
+/*End of del()*/
 
 struct node *reverse(struct node *start)
 {
@@ -327,7 +338,8 @@ struct node *reverse(struct node *start)
 	}
 	start=prev;
 	return start;
-}/*End of reverse()*/
+}
+/*End of reverse()*/
 
 /*  In whole program there is only one loop many times in different block os time complexity will be k*O(n)=O(n)  */ 
 /*  The time complexity and space complexity for this program is O(n)  */
