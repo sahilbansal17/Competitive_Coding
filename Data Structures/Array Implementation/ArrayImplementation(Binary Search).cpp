@@ -2,8 +2,8 @@
 
 #include <stdio.h>
 
-  int binarysearch(int value, int left, int right, int array[]) {
-    //Function which performs a binary search in a sorted array and returns the index.
+int binarysearch(int value, int left, int right, int array[]) {
+//Function which performs a binary search in a sorted array and returns the index.
     if (right >= left) {
       int mid = left + (right - left) / 2;
 
@@ -15,11 +15,9 @@
 
       if (array[mid] < value)
         return binarysearch(value, mid + 1, right, array); //Not found, as array is sorted, item is present in right.
-
     }
-
     return -1; //Returns -1 if not found
-  }
+}
 void swap(int * x, int * y) {
   int temp = * x; * x = * y; * y = temp;
 }
