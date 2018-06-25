@@ -213,7 +213,7 @@ struct node* BST::deletion(int x, struct node *root) {
     else {
         //CASE: Node with only one/no child
         
-        //If root->left is NULL, root->right gets returned, and 'root' gets deleted 
+        //If root->left is NULL, root->right gets returned, and 'root' gets deleted
         //If both left & right are NULL, this condition is encountered, 'root' gets deleted, NULL gets returned
         if(root->left == NULL) {
             struct node *temp = root->right;
