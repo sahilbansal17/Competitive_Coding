@@ -1,6 +1,5 @@
 //NAME = Rishabh Garg
 //EMAIL ID = rishabhgarg25699@gmail.com
-
 /*  Program of single linked list and various implementations  */
 
 #include<stdio.h>
@@ -108,7 +107,6 @@ int main()                                                         //MAIN FUNCTI
 	}/*End of while */
 return 0;
 }/*End of main()*/
-
 struct node *createList(struct node *start)
 {
 	int i,n,data;
@@ -130,7 +128,6 @@ struct node *createList(struct node *start)
 	}
 	return start;
 }/*End of create_list()*/
-
 void display(struct node *start)
 {
 	struct node *p;
@@ -148,7 +145,6 @@ void display(struct node *start)
 	}
 	printf("\n\n");
 }/*End of display() */
-
 void count(struct node *start)
 {
 	struct node *p;
@@ -161,7 +157,6 @@ void count(struct node *start)
 	}
 	printf("Number of elements are %d\n",cnt);
 }/*End of count() */
-
 void search(struct node *start,int item)
 {
 	struct node *p=start;
@@ -178,7 +173,6 @@ void search(struct node *start,int item)
 	}
 	printf("Item %d not found in list\n",item);
 }/*End of search()*/
-
 struct node *addAtBeg(struct node *start,int data)
 {
 	struct node *tmp;
@@ -188,7 +182,6 @@ struct node *addAtBeg(struct node *start,int data)
 	start=tmp;
 	return start;
 }/*End of addAtBeg()*/
-
 struct node *addAtEnd(struct node *start,int data)
 {
 	struct node *p,*tmp;
@@ -201,7 +194,6 @@ struct node *addAtEnd(struct node *start,int data)
 	tmp->link=NULL;
 	return start;
 }/*End of addAtEnd()*/
-
 struct node *addAfter(struct node *start,int data,int item)
 {
 	struct node *tmp,*p;
@@ -221,7 +213,6 @@ struct node *addAfter(struct node *start,int data,int item)
 	printf("%d not present in the list\n",item);
 	return start;
 }/*End of addafter()*/
-
 struct node *addBefore(struct node *start,int data,int item)
 {
 	struct node *tmp,*p;
@@ -255,7 +246,6 @@ struct node *addBefore(struct node *start,int data,int item)
 	printf("%d not present in the list\n",item);
 	return start;
 }/*End of addBefore()*/	
-
 struct node *addAtPos(struct node *start,int data,int pos)
 {
 	struct node *tmp,*p;
@@ -280,7 +270,6 @@ struct node *addAtPos(struct node *start,int data,int pos)
 	}	
 	return start;
 }/*End of addAtPos()*/
-
 struct node *del(struct node *start,int data)
 {
 	struct node *tmp,*p;
@@ -317,7 +306,6 @@ struct node *del(struct node *start,int data)
 	printf("Element %d not found\n",data);
 	return start;
 }/*End of del()*/
-
 struct node *reverse(struct node *start)
 {
 	struct node *prev, *ptr, *next;
