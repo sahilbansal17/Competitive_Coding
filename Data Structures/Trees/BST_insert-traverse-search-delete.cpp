@@ -79,6 +79,7 @@ int main() {
 //-------------------INSERTION--------------------
 
 //O(n) worst case, when a BST is in form of a linked list.
+//T(n)=T(1)+k, where 2^k = n. Hence k = log n
 //Average complexity is O(log n), as it keeps recurring in left/right sub-trees
 
 struct node* BST::insertion(int x, struct node *root) {
@@ -149,7 +150,8 @@ void BST::postorder(struct node *root) {
 //-------------------SEARCH--------------------
 
 //O(n) worst case, when a BST is in form of a linked list.
-//Average complexity is O(log n), as it keeps recurring in left/right sub-trees
+//T(n)=T(1)+k, where 2^k = n. Hence k = log n
+//Thus complexity is O(log n), as it keeps recurring in left/right sub-trees 
 
 struct node* BST::search(int x, struct node *root) {
     
@@ -193,7 +195,8 @@ struct node* BST::minValue(struct node *nodep) {
 }
 
 //O(n) worst case, when a BST is in form of a linked list.
-//Average complexity is O(log n), as it keeps recurring in left/right sub-trees
+//T(n)=T(1)+k, where 2^k = n. Hence k = log n
+//Thus complexity is O(log n), as it keeps recurring in left/right sub-trees
 
 //CASE: When node to be deleted has no child, it gets deleted directly, making the corresponding left/right value in parent NULL
 //CASE: When node has one child, eg. left; its parent's left should point to the child, and node gets deleted
