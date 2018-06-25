@@ -2,8 +2,8 @@
 
 #include <stdio.h>
 
-  int linearsearch(int value, int n, int array[]) {
-    //Function which performs a linear search and returns the index.
+int linearsearch(int value, int n, int array[]) {
+//Function which performs a linear search and returns the index.
     int p = -1;
     for (int i = 0; i < n; i++) {
       if (value == array[i]) {
@@ -12,7 +12,36 @@
       }
     }
     return p;
-  }
+}
+void insertvalue(int value,int position,int array[],int n){
+	//A function to insert 
+	for (int p = n - 1; p >= position - 1; p--) {
+        array[p + 1] = array[p];
+    }
+    array[position - 1] = value;
+    printf("Insertion Successful\n");
+    printf("Resultant array is\n");
+    n++;
+    for (int c = 0; c < n; c++) {
+      printf("%d ",array[c]);
+    }
+    printf("\n");
+}
+void deletevalue(int value,int array[],int n){
+	
+	int position = linearsearch(value, n,array);
+    
+    for (int i = position; i < n; i++) {
+        array[i] = array[i + 1];
+    }
+    n--;
+    printf("Successful !\n");
+    printf("Resultant array is\n");
+    for (int c = 0; c < n; c++) {
+        printf("%d ", array[c]);
+    }
+    printf("\n");
+}
 int main() {
   int task = 0, position, n;
   int value;
@@ -41,33 +70,26 @@ int main() {
       scanf("%d", & value);
       printf("Enter the position where you want to insert : \n");
       scanf("%d", & position);
-      for (int p = n - 1; p >= position - 1; p--) {
-        sample_array[p + 1] = sample_array[p];
-      }
-      sample_array[position - 1] = value;
-      printf("Insertion Successful\n");
-      printf("Resultant array is\n");
+      insertvalue(value,position,sample_array,n);
       n++;
-      for (int c = 0; c < n; c++) {
-        printf("%d ", sample_array[c]);
-      }
-      printf("\n");
     }
     if (task == 2) {
       printf("Enter the value to be deleted : \n");
       scanf("%d", & value);
-      position = linearsearch(value, n, sample_array);
-      printf("Position : %d\n", position);
-      for (int i = position; i < n; i++) {
-        sample_array[i] = sample_array[i + 1];
-      }
+      deletevalue(value,sample_array,n);
       n--;
-      printf("Successful !\n");
-      printf("Resultant array is\n");
-      for (int c = 0; c < n; c++) {
-        printf("%d ", sample_array[c]);
-      }
-      printf("\n");
+//      position = linearsearch(value, n, sample_array);
+//    
+//      for (int i = position; i < n; i++) {
+//        sample_array[i] = sample_array[i + 1];
+//      }
+//      n--;
+//      printf("Successful !\n");
+//      printf("Resultant array is\n");
+//      for (int c = 0; c < n; c++) {
+//        printf("%d ", sample_array[c]);
+//      }
+//      printf("\n");
     }
     if (task == 3) {
       printf("Enter the value to search : \n");
