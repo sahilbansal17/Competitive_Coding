@@ -76,13 +76,24 @@ public:
 int main()
 {
     Graph<int> g;
-    g.addEdge(0,1);
+    int E,s,en;
+    cout<<"\n How many edge you want to add";
+    cin>>E;
+
+    for(int i =0;i<E;i++){
+
+        cout<<"\n Enter starting and Ending coordinates(First should be starting from 0)";
+        cin>>s>>en;
+        g.addEdge(s,en);
+    }
+    /*g.addEdge(0,1);
     g.addEdge(1,2);
     g.addEdge(0,4);
     g.addEdge(2,4);
     g.addEdge(2,3);
     g.addEdge(3,5);
     g.addEdge(3,4);
+    */
     g.print();
     g.bfs(0);
     return 0;
