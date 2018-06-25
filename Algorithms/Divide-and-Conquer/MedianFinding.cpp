@@ -113,7 +113,7 @@ int main()
 //      		cn/25         7cn/50			  7cn/50            49cn/100	           (9/10)^2 cn
 //      	    /        \        /	    \			/	 \          / 	       \
 //               cn/125  7cn/250  7cn/250  49cn/500  	   7cn/250     49cn/500	 49cn/500  343cn/1000	   (9/10)^3 cn
-//     		/  \	/    \	  /     \  /     \	  /   \	        /     \   /     \    /     \	
+//       	 /  \	/    \	  /     \  /     \	  /   \	        /     \   /     \    /     \	
 // For calculating T(n) we need the sum of nodes of tree.
 // So T(n) = cn + 9cn/10 + (9/10)^2 cn + (9/10)^3 cn + ....... 
 // This won't be a balanced tree but we are bothered about an upper bound so we can simply sum 
