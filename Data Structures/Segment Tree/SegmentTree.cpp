@@ -64,16 +64,19 @@ int query(int tree[],int start,int end,int l,int r,int node){
     
 int main(){ 
   //n for size of array and l,r for range interval whose sum is to be found
-  //the tree array will have n leaf nodes which will have the array elements when l=r and n-1 internal nodes so its size is 2n-1
   int n;
   cout<<"Enter the size of array\n";
   cin>>n;
-  int a[n+1],tree[2*n],l,r;
+  //the array a[1....n] is divided into two segments at each level and when the segment is of length 1 there is no further division 
+  //making it a leaf node.As there can be n segments of length 1 i.e the array elements so there are n leaf nodes and as the tree is a 
+  //full binary tree(all nodes has either 2 or 0 children) with n leaf nodes there will be (n-1) internal nodes.So total number of nodes
+  //is n+n-1 i.e 2n-1 so the tree array will have 2n-1 size.
+  int a[100001],tree[200003],l,r;
   cout<<"Input the array elements\n";
   for(int i=1;i<=n;i++)
     cin>>a[i];
  
-  //recursive function to build the tree with all array elements(1 to n) starting with first node
+  //recursive function to build the tree with all array elements(1 to n) starting with first node assuming 1 based-indexing.
   build(a,tree,1,n,1);
  
   //indx for index of the array whose new value is updated to val
