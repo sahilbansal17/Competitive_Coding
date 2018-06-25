@@ -66,8 +66,10 @@ int main(){
   //n for size of array and l,r for range interval whose sum is to be found
   //the tree array will have n leaf nodes which will have the array elements when l=r and n-1 internal nodes so its size is 2n-1
   int n;
+  cout<<"Enter the size of array\n";
   cin>>n;
   int a[n+1],tree[2*n],l,r;
+  cout<<"Input the array elements\n";
   for(int i=1;i<=n;i++)
     cin>>a[i];
  
@@ -76,10 +78,12 @@ int main(){
  
   //indx for index of the array whose new value is updated to val
   int indx,val;
+  cout<<"Enter the index you want to update and its new array value\n";
   cin>>indx>>val;
   a[indx]=val;
   update(tree,a,1,n,indx,1);
   
+  cout<<"Enter the query range\n";
   cin>>l>>r;
   //sum of given range
   int ans=query(tree,1,n,l,r,1);
