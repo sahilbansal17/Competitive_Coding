@@ -38,7 +38,9 @@ void printArray(long arr[],long n){
 
 int main(){
     long n;
+    printf("Please enter the number of elements."); 
     scanf("%lld",&n);
+    printf("\nPlease enter elements to be sorted.\n");
     long arr[n];
     //make sure that the maximum element is lesser than the maximum number of elements an array can hold
     for(long i=0; i<n ;i++)

@@ -29,9 +29,10 @@ void printArray(long arr[], long n){
 // Driver program to test above functions
 int main(){
     long n;
+    printf("Please enter the number of elements."); 
     scanf("%lld",&n);
-    //declaring array of given size
-    long arr[n]; 
+    long arr[n];
+    printf("\nPlease enter elements to be sorted.\n");
     for(long i=0; i<n ;i++)
         scanf("%lld",&arr[i]);
     printf("Entered elements: \n");

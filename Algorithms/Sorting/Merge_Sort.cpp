@@ -64,8 +64,10 @@ void printArray(long a[], long n){
 int main()
 {
     long n;
+    printf("Please enter the number of elements."); 
     scanf("%lld",&n);
     long arr[n];
+    printf("\nPlease enter elements to be sorted.\n");
     for(long i=0; i<n ;i++)
      scanf("%lld",&arr[i]);
     printf("Entered elements :\n");

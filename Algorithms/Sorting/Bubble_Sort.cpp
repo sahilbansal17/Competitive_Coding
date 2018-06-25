@@ -12,7 +12,7 @@ void bubbleSort(long arr[], long n)
     for(long j=0; j<(n-i-1) ;j++)
     {
       if(arr[j]>arr[j+1]){
-        ll t = arr[j];
+        long t = arr[j];
         arr[j] = arr[j+1];
         arr[j+1] = t;
         flag = 1;
@@ -33,8 +33,10 @@ void printArray(long arr[],long size){
 // Driver program to test above functions
 int main(){
     long n;
+    printf("Please enter the number of elements."); 
     scanf("%lld",&n);
     long arr[n];
+    printf("\nPlease enter elements to be sorted.\n");
     for(long i=0; i<n ;i++)
       scanf("%lld",&arr[i]);
     printf("Entered elements:\n");
