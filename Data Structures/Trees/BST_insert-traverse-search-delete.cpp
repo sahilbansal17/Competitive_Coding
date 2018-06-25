@@ -5,14 +5,13 @@ using namespace std;
 struct node {
     int data;
     struct node* left;
-    struct node* right; 
+    struct node* right;
 };
 
 //Class functions declaration
 class BST {
     public:
         struct node* insertion(int ,struct node*);
-        
         void inorder(struct node*);
         void preorder(struct node*);
         void postorder(struct node*);
@@ -26,7 +25,6 @@ class BST {
 //-------------------DRIVER CODE--------------------
 
 int main() {
-
     struct node *root = NULL;    //Initializing root as NULL
     BST bst;
 
@@ -36,7 +34,7 @@ int main() {
     //    4  9
     //   /   /\
     //  1   7  11
-    //   \    
+    //   \
     //    3
 
     root =  bst.insertion(5, root);    //First insertion becomes root
@@ -67,7 +65,6 @@ int main() {
     //Deleting for key
     cout<<"Enter key to delete: "; cin>>key;
     root = bst.deletion(key, root);
-    
     cout<<"Inorder: "; bst.inorder(root);    //Displaying tree in inorder after deletion
     cout<<endl;
 
@@ -83,7 +80,6 @@ int main() {
 //Average complexity is O(log n), as it keeps recurring in left/right sub-trees
 
 struct node* BST::insertion(int x, struct node *root) {
-    
     //Creating new node to insert
     struct node *p = new struct node;
     p->data = x;    //Data of the node equal to argument x
@@ -123,7 +119,6 @@ struct node* BST::insertion(int x, struct node *root) {
 //After encountering null, prints the data, then recurs in right sub-tree
 void BST::inorder(struct node *root) {
     if(root == NULL) return;
-    
     inorder(root->left);    //Recursion in left sub-tree
     cout<< root->data << " ";    //Prints the data of node
     inorder(root->right);    //Recursion in right sub-tree
@@ -151,10 +146,9 @@ void BST::postorder(struct node *root) {
 
 //O(n) worst case, when a BST is in form of a linked list.
 //T(n)=T(1)+k, where 2^k = n. Hence k = log n
-//Thus complexity is O(log n), as it keeps recurring in left/right sub-trees 
+//Thus complexity is O(log n), as it keeps recurring in left/right sub-trees
 
 struct node* BST::search(int x, struct node *root) {
-    
     //If NULL is reached, the node does not exist
     if(root==NULL) {
         cout<<"Node not found!"<<endl;
@@ -167,7 +161,6 @@ struct node* BST::search(int x, struct node *root) {
         return root;
     }
     //Search is called until any of the above two conditions are satisfied
-    
     //Goes to left sub-tree and calls search again
     if(x < root->data) {
         return search(x,root->left);
@@ -184,7 +177,6 @@ struct node* BST::search(int x, struct node *root) {
 //This is used to return the node with least value in a subtree with root node 'nodep'
 //When used to a node->right, it becomes its inorder successor
 struct node* BST::minValue(struct node *nodep) {
-
     struct node *p = nodep;
 
     //p keeps going to left until NULL
@@ -200,15 +192,13 @@ struct node* BST::minValue(struct node *nodep) {
 
 //CASE: When node to be deleted has no child, it gets deleted directly, making the corresponding left/right value in parent NULL
 //CASE: When node has one child, eg. left; its parent's left should point to the child, and node gets deleted
-//CASE: When node has both children, it copies inorder successor's content and puts it in place of node to be deleted 
+//CASE: When node has both children, it copies inorder successor's content and puts it in place of node to be deleted
 struct node* BST::deletion(int x, struct node *root) {
-    
     //If NULL is reached, the node does not exist
     if(root == NULL) {
         cout<<"Node not found.";
         return root;
     }
-    
     //if x < data of current node
     //Goes to left sub-tree and calls deletion again
     if(x < root->data)
@@ -224,14 +214,14 @@ struct node* BST::deletion(int x, struct node *root) {
         //CASE: Node with only one/no child
         
         //If root->left is NULL, root->right gets returned, and 'root' gets deleted 
-        //If both left & right are NULL, this condition is encountered, 'root' gets deleted, NULL gets returned 
+        //If both left & right are NULL, this condition is encountered, 'root' gets deleted, NULL gets returned
         if(root->left == NULL) {
             struct node *temp = root->right;
             delete root;
             return temp;
         }
 
-        //If root->right is NULL, root->left gets returned, and 'root' gets deleted 
+        //If root->right is NULL, root->left gets returned, and 'root' gets deleted
         else if(root->right == NULL) {
             struct node *temp = root->left;
             delete root;
