@@ -1,33 +1,26 @@
 #include<iostream>
 #define ALPHABET_SIZE 26   //defining the alphabet size of the english language
 using namespace std;
-
 //a single trienode definition
 class TrieNode{
     //creating array for holding references to child nodes
     public:
     TrieNode *child[ALPHABET_SIZE];
     //checks whether the current node is the including end of word
-    bool EndOfWord;
-
+    bool end_of_word;
 };
-
 TrieNode* createNode(){
     //creating the instance of TrieNode by using new keyword
     TrieNode *ptr = new TrieNode();
-
     //loop for inserting values into the reference array which is a part of structure
     for(int i = 0; i < ALPHABET_SIZE; i++){
             ptr -> child[i] = NULL;
     }
-
     //initially each node has default value to false
-    ptr -> EndOfWord = false;
+    ptr -> end_of_word = false;
     return ptr;
 }
-
 //Insertion operation
-
 //function to insert a new node to build a branch path forming a word
  void insertNode(TrieNode * root , string word){
     //Initialize current pointer to point to root node
@@ -38,17 +31,15 @@ TrieNode* createNode(){
     for(int i = 0; i < word.length(); i++){
 
         //assuming that entered string is in small case letters only
-        int arrIndex = word[i] - 'a';
-            if(!cp -> child[arrIndex]){
-                cp -> child[arrIndex] = createNode();
+        int arr_index = word[i] - 'a';
+            if(!cp -> child[arr_index]){
+                cp -> child[arr_index] = createNode();
             }
-        cp = cp ->child[arrIndex];
+        cp = cp ->child[arr_index];
     }
     //We have reached the end of letter of the word so set value of node corresponding to last letter to true
-    cp -> EndOfWord = true;
+    cp -> end_of_word = true;
 }
-
-<<<<<<< HEAD
 /*  Calculating the time complexity and space complexity of insertion operation
 
     Time Complexity clearly depends on the length of the word so total time being being calculated as
@@ -68,55 +59,44 @@ TrieNode* createNode(){
      where size of each node = ((size of array of pointers containing references to child nodes) + sizeof(bool))
 
 */
-
-
-=======
->>>>>>> 083cc97f29805f995bbaea55063c7e0c7a85082b
 //Search Operation :- Searches the word and if the word not found inserts into the tree
 bool searchWord(TrieNode *root , string word){
     TrieNode *cp = root;
-
       //iterating over the each letter of the word and checking if present already or not
         for(int i = 0; i < word.length(); i++){
-            int arrIndex = word[i] -'a';
+            int arr_index = word[i] -'a';
 
             //checks whether current has any reference to its child node at a particular arrayIndex in its array
-            if(!cp -> child[arrIndex]){
+            if(!cp -> child[arr_index]){
                 return false;
             }
-            cp = cp -> child[arrIndex];
+            cp = cp -> child[arr_index];
         }
-
     //either prefix of the word is found and the value corresponding to it is false in the node
     //so both of condition must be true
-    if(cp != NULL && cp ->EndOfWord)
+    if(cp != NULL && cp ->end_of_word)
         return true;
     else
         return false;
 }
-
-<<<<<<< HEAD
 /*  Calculating the time complexity of search operation
 
     Time Complexity clearly depends on the length of the word so total time being being directly
     dependent on the length of string
 */
-
-=======
->>>>>>> 083cc97f29805f995bbaea55063c7e0c7a85082b
 int main(){
-
-    string wordArray[] = {"peacock", "peahen", "ram","shyam", "hello" ,"world" };
-
-    int numberOfWords = sizeof(wordArray)/sizeof(wordArray[0]);
+    string word_array[10];
+    int number_of_words;
+    cout<< "How many values do you want to insert ?" <<endl;
+    cin >> number_of_words;
 
     //creating the root node
     TrieNode *root = createNode();
-
-
-    for (int i = 0; i < numberOfWords; i++)
-        insertNode(root, wordArray[i]);
-
+    cout<<"Enter the values which you want to insert to the trie" <<endl;
+    for(int i = 0; i < number_of_words; i++){
+        cin >> word_array[i];
+        insertNode(root, word_array[i]);
+    }
     string key;
     cout << "Enter the word which you want to search" << endl;
     cin >> key;
@@ -124,6 +104,5 @@ int main(){
         cout << "Word is found" << endl;
     else
         cout <<"Not Found !!" << endl;
-
     return 0;
 }
