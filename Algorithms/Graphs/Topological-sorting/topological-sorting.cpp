@@ -87,7 +87,19 @@ public:
 int main()
 {
     Graph<string> g;
-    g.addEdge("English","ProgrammingLogic",false);
+    int E;
+    string s,en;
+    cout<<"\n How many edge you want to add";
+    cin>>E;
+
+    for(int i =0;i<E;i++){
+
+        cout<<"\n Enter starting and Ending coordinates(First should be starting from 0)";
+        cin>>s>>en;
+        g.addEdge(s,en,false);
+    }
+
+    /*g.addEdge("English","ProgrammingLogic",false);
     g.addEdge("Maths","ProgrammingLogic",false);
     g.addEdge("ProgrammingLogic","HTML",false);
     g.addEdge("ProgrammingLogic","python",false);
@@ -96,7 +108,7 @@ int main()
     g.addEdge("Python","WebDev",false);
     g.addEdge("HTML","CSS",false);
     g.addEdge("JS","WebDev",false);
-    g.print();
+    */g.print();
     g.topologicalSort();
     return 0;
 }
