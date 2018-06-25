@@ -95,7 +95,7 @@ int main()
 		}
 	}
 	
-	cout << "\nMinimum possible distance: "<<tsproblem(1,0) << "\n";
+	cout << "\nMinimum possible distance: "<<tsProblem(1,0) << "\n";
 	return 0;
 }
 
