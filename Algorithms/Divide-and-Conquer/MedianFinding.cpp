@@ -1,6 +1,8 @@
 // This program finds median of a given array
 
-#include<bits/stdc++.h>
+#include<iostream>
+#include<vector>
+#include<algorithm>
 using namespace std;
 
 // function for finding median
