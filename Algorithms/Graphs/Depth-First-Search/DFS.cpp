@@ -22,7 +22,7 @@ public :
             adjList[v].push_back(u);
         }
     }
-    void print()
+    void print()      // Complexity O(V)
     {
         //Iteration
         for(auto i:adjList)
@@ -42,7 +42,7 @@ public :
         visited[node] = true;
         cout<<node<<" ";
         //TRY TO find out neighbour node which is not visited yet
-        for(T neighbour: adjList[node])
+        for(T neighbour: adjList[node])      //O(E)
         {
             if(!visited[neighbour])
             {
@@ -50,7 +50,7 @@ public :
             }
         }
     }
-    void dfs( T src)
+    void dfs( T src)             //O(V)
     {
         map<T,bool> visited;
         dfsHelper(src,visited);
@@ -61,7 +61,17 @@ public :
 int main()
 {
     Graph<int> g;
-    g.addEdge(0,1);
+    int E,s,en;
+    cout<<"\n How many edge you want to add";
+    cin>>E;
+
+    for(int i =0;i<E;i++){
+
+        cout<<"\n Enter starting and Ending coordinates";
+        cin>>s>>en;
+        g.addEdge(s,en);
+    }
+    /*g.addEdge(0,1);
     g.addEdge(1,2);
     g.addEdge(0,4);
     g.addEdge(2,4);
@@ -69,7 +79,7 @@ int main()
     g.addEdge(3,5);
     g.addEdge(3,4);
     g.print();
-    g.dfs(0);
+    */g.dfs(0);
     return 0;
 }
 // Time complexity of above algorithm is O(V+E)
