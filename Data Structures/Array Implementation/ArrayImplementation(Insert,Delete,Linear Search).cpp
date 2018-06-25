@@ -78,18 +78,6 @@ int main() {
       scanf("%d", & value);
       deletevalue(value,sample_array,n);
       n--;
-//      position = linearsearch(value, n, sample_array);
-//    
-//      for (int i = position; i < n; i++) {
-//        sample_array[i] = sample_array[i + 1];
-//      }
-//      n--;
-//      printf("Successful !\n");
-//      printf("Resultant array is\n");
-//      for (int c = 0; c < n; c++) {
-//        printf("%d ", sample_array[c]);
-//      }
-//      printf("\n");
     }
     if (task == 3) {
       printf("Enter the value to search : \n");
