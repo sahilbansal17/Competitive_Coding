@@ -99,9 +99,27 @@ int main()
 //		each partition having median greater than pivot has 2 elements less than pivot. 
 //		So the size of the array for the next step of recursion can be (n/10)*5+(n/10)*2 = (7n/10) 
 //		in the worst case.  {(n/5)/2 partitions on both sides of pivot.} )
-// So the reccurence for the algorithm is given by T(n) = T(n/5) + T(7n/10) + cn  .Try solving it 
-// using your preferred method to get the complexity of O(n).   
- 
+// So the reccurence for the algorithm is given by T(n) = T(n/5) + T(7n/10) + cn  .
+// Let's solve this reccurence using the reccurence tree method
+//								  	    cn
+//        							 /      \
+    						 	T(n/5)     T(7n/10)
+// 	On further breaking down these expressions we get,
+//    						    													        Sum
+//    						    	   cn 												    cn
+//           				/    		           	   \      
+//       				cn/5        		           7cn/10					   		   9cn/10							
+//      			 /        \              	    /             \
+//      		cn/25         7cn/50			  7cn/50           49cn/100			     (9/10)^2 cn
+//      	 /       \        /	    \			/	    \        / 	       \
+        cn/125  7cn/250  7cn/250	49cn/500  7cn/250  49cn/500	 49cn/500  343cn/1000	 (9/10)^3 cn
+//     /  \		/    \	/      \	/     \	  /   \	   /     \   /     \    /     \	
+// For calculating T(n) we need the sum of nodes of tree.
+// So T(n) = cn + 9cn/10 + (9/10)^2 cn + (9/10)^3 cn + ....... 
+// This won't be a balanced tree but we are bothered about an upper bound so we can simply sum 
+// the geometric series considering it as an infinite series to get an upper bound.
+// T(n) = cn / (1-9/10) = 10cn which is O(n)
+
 // But why partitions of 5 elements?
 // Firstly ,computing median of an odd list is easier as we can simply select the middle element 
 // of the partition contrary to an even sized list in which we must take average of two middle 
