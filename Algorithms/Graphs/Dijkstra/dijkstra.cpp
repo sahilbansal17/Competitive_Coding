@@ -1,81 +1,86 @@
-#include <cstdio>
-#include <cstdlib>
-#include <queue>
-#include <vector>
-
+#include<bits/stdc++.h>
 using namespace std;
 
-#define MAXN 105
-#define INF 1<<30
-
-typedef struct node{
-	int t, c;
-	node(){}
-	node(int T, int C) : t(T), c(C){}
-	bool operator < (const node &x) const{
-    return c < x.c;
-  }
-}No;
-
-vector<No> adj[MAXN];
-int mark[MAXN];
-int d[MAXN];
-priority_queue<No> pq;
-
-int dijkstra(int s, int t){
-
-  for(int i = 0; i < MAXN; i++) {
-    mark[i] = 0;
-    d[i] = INF;
-  }
-
-	printf("%d %d", s, t);
-
-  pq.push(No(s,0));
-
-  while(!pq.empty()){
-    No top = pq.top(); pq.pop();
-
-    if(top.t == t){
-			return top.c;
-    }
-
-    if(mark[top.t] == 1) continue;
-    mark[top.t] = 1;
-
-    for(int i = 0; i < adj[top.t].size(); i++){
-      int v = adj[top.t][i].t;
-      int cost = adj[top.t][i].c;
-
-      if (top.c + cost < d[v]){
-        d[v] = top.c + cost;
-        pq.push(No(v, top.c + cost));
-      }
-    }
-	}
-
-  return -1;
+class Graph{
+public:
+int V;
+list<pair<int,int> > * adjlist;
+Graph(int nodeCount)
+{
+    V=nodeCount;
+    adjlist=new list<pair<int,int> >[V];
+}
+void addEdge(int u ,int v,int dist){
+    adjlist[u].push_back(*(new pair<int,int>(v,dist)));
 }
 
+};
+
+int Dijikstra(Graph graph,int source)
+{
+int* dist=new int[graph.V];
+for(int i=0;i<graph.V;i++)
+{
+    dist[i]=INT_MAX;
+}
+dist[source]=0;
+bool* visited= new bool[graph.V];
+for (int i = 0; i < graph.V; ++i)
+{
+    visited[i]=false;
+}
+visited[source]=true;
+
+int node=source;
+int minNode=0;
+
+while(minNode!=-1){
+for(auto ele:graph.adjlist[node]){
+    if(!visited[ele.first])
+    {
+        if(dist[node]+ele.second<dist[ele.first]){
+            dist[ele.first]=dist[node]+ele.second;
+        }
+    }
+}
+    int min=INT_MAX;
+    minNode=-1;
+    for(int j=0;j<graph.V;j++){
+        
+         
+        if(!visited[j]==true && dist[j]<min){
+            min=dist[j];
+            minNode=j;
+        }
+    }
+    if(minNode!=-1)
+    {node=minNode;
+    visited[node]=true;}
+}
+
+for (int i = 0; i < graph.V; ++i)
+{
+    cout<<"distance between "<<source<<" and "<<i<<"-->"<<dist[i]<<endl;
+}
+
+return 0;
+}
+
+
 int main(){
-  int T; // Number of edges
-	scanf("%d", &T);
-  //Nodes are numbered from 0 to MAXN-1
-  while(T-- > 0){
-      int a,b,c;
-      scanf("%d %d %d", &a, &b, &c);
-      adj[a].push_back(No(b,c)); //Unidirectional adj
-  }
-
-	int source, destination;
-
-	scanf("%d %d", &source, &destination);
-
-	int result = dijkstra(source, destination);
-
-  if(result == -1){
-    printf("There is no path to destination\n");
-  }else{
-    printf("The path from %d to %d has cost %d\n", source, destination, result);
-  }
+int noOfNodes=0;
+cout<<"enter no of nodes for graph"<<endl;
+cin>>noOfNodes;
+Graph graph(noOfNodes);
+int firstNode,secondNode,distance=0;
+for(int i=0;i<noOfNodes;i++){
+cout<<"enter edge of graph and its weight"<<endl;
+cin>>firstNode>>secondNode>>distance;
+graph.addEdge(firstNode,secondNode,distance);
+}
+int sourceNode=0;
+cout<<"enter starting/source node from which we have to calculate minimum distance to all other nodes"<<endl;
+cin>>sourceNode;
+Dijikstra(graph,sourceNode);
+return 0;
 }
