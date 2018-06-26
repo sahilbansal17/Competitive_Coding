@@ -22,12 +22,6 @@ using namespace std;
 
 int main(){
 
-    int k = 0;
-    for (k = 0; k < 5; k++){
-        cout<<k;
-    }
-
-
     cout << "Enter number of vertices of the graph" << endl;
     int v;
     cin >> v;
