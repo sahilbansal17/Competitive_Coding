@@ -23,11 +23,11 @@ void build(int start = 1, int end = size_of_base, int index = 1)
 	int mid = (start + end)/2;
 
 	// Recursive calls for children
-	build(start, mid, index << 1);
-	build(mid+1, end, (index << 1) + 1);
+	build(start, mid, 2*index);
+	build(mid+1, end, 2*index + 1);
 
 	// current index stores the minimum value in its subtree
-	seg[index] = min( seg[index<<1] , seg[(index << 1) + 1] );
+	seg[index] = min( seg[ 2*index ] , seg[ 2*index + 1] );
 	return;
 }
 
@@ -48,11 +48,11 @@ void update(int updateindex, int start = 1, int end = size_of_base, int index = 
 	int mid = (start + end)/2;
 
 	// Recursive calls for children
-	update(updateindex, start, mid, index << 1);
-	update(updateindex, mid+1, end, (index << 1) + 1);
+	update(updateindex, start, mid, 2*index );
+	update(updateindex, mid+1, end, 2*index + 1);
 
 	// current index stores the minimum value in its subtree
-	seg[index] = min( seg[index<<1] , seg[(index << 1) + 1] );
+	seg[index] = min( seg[ 2*index ] , seg[ 2*index + 1] );
 	return;
 }
 
@@ -63,17 +63,17 @@ int query(int l, int r, int start = 1, int end = size_of_base, int index = 1)
 	if( start > r || end < l )return INT_MAX;
 
 	// current range lies completely inside the query range so return value stored
-	// in segment tree
+	// in the node
 	if(start >= l && end <= r)
 	{
 		return seg[index];
 	}
 
-	int mid = (start + end)>>1, query_left, query_right;
+	int mid = (start + end)/2, query_left, query_right;
 
 	// query both children to find minimum value in the subtree
-	query_left = query(l, r, start, mid, (index<<1) );
-	query_right = query(l, r, mid+1, end, (index<<1) + 1);
+	query_left = query(l, r, start, mid, 2*index );
+	query_right = query(l, r, mid+1, end, 2*index + 1);
 
 	return min(query_left, query_right);
 }
@@ -108,7 +108,7 @@ int main()
 		}
 		else if( type == 'U' )
 		{
-			cout<<"Enter index and value (1 based index)=";
+			cout<<"Enter index and value (1 based indexing)=";
 			cin >> idx >> value;
 			baseArray[idx] = value;
 			update(idx);
@@ -136,16 +136,16 @@ int main()
 // build - Each node in the segment tree must be visited atleast once and  we have already proved number 
 //		   of nodes is O(n) .So complexity of build function is O(n).
 
-// update - At each node visited we either move to it's left subtree or right subtree as the index to 
-//		    be updated can only be in one of the two subtrees. This means that we visit exactly one node
-//  		at each level of the tree and as height of the tree is O(logN) time complexity of update is O(logN).
+// update -	At each visited node we either move to it's left subtree or right subtree as the index to 
+//			be updated can only be in one of the two subtrees. This means that we visit exactly one node
+//			at each level of the tree and as height of the tree is O(logN) time complexity of update is O(logN).
 
 // query - We first prove that at each level at most two nodes are expanded.
-// 		   We'll prove this by contradiction.Consider a case that 3 nodes must be expanded(namely c1,c2,c3)
-// 		   			p1       p2
+//			We'll prove this by contradiction.Consider a case that 3 nodes must be expanded(namely c1,c2,c3)
+// 		   		p1       p2
 //				  /    \   /    \
 //				c1     c2  c3   c4 		
 // 		   This means range [l,r] lies from c1-c3.But if it is so then node p1 wouldn't have been expanded as
 // 		   it already contains the minimum value in the subtree of c1 and c2.This is a contradiction.So at 
-//		   each level at most 2 nodes will be expanded.So total no of nodes visited = 2*height of tree
+//		   each level at most 2 nodes will be expanded.So total no of visited nodes = 2*height of tree
 //		   Time complexity = O(logN)	as height of tree = O(logN)
