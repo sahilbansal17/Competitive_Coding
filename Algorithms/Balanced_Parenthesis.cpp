@@ -1,3 +1,12 @@
+/*
+This code is to check the balanced parenthesis of the given string. We process each characters of the string only once. 
+If the processed character is opening parenthesis it is pushed to the stack.
+If the processed character is a closing parenthesis, it is compared with top of stack.
+If stack is empty or character at top of stack does not match with corresponding closing parenthesis, the given string is not balanced.
+Else pop the top of stack and continue processing.
+If after processing, stack is empty , it means the given string is balanced else it is not balanced.
+*/
+
 #include <iostream>
 #include <stack>
 #include <string>
