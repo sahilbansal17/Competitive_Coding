@@ -339,19 +339,19 @@ struct node *reverse(struct node *start)
 /*End of reverse()*/
 /*
              TIME COMPLEXITY OF ALL ALGORITHMS
-  Operation                                        Complexity
+  Operation                                  Complexity(WORST CASE)         Complexity(BEST CASE) 
   
-  TO CREATE LIST                                    O(N)
-  TO DSPLAY DIFFERENT NODES                         O(N)
-  TO COUNT NUMBER OF NODES                          O(N)
-  TO SEARCH ANY NODE                                O(N)
-  TO ADD A NODE AT THE BEGINNING OF ALL NODES       O(1)
-  TO ADD A NODE AFTER THE ALL NODES                 O(N)
-  TO ADD A NODE AFTER A PARTCULAR NODE              O(N)  
-  TO ADD A NODE BEFORE A PARTCULAR NODE             O(N) 
-  TO ADD A NODE AT A PARTCULAR NODE                 O(N)
-  TO DELETE A NODE                                  O(N)
-  TO REVERSE A NODE                                 O(N)
+  TO CREATE LIST                                    O(N)                             O(1)     
+  TO DSPLAY DIFFERENT NODES                         O(N)                             O(1)   
+  TO COUNT NUMBER OF NODES                          O(N)                             O(1)
+  TO SEARCH ANY NODE                                O(N)                             O(1)                             
+  TO ADD A NODE AT THE BEGINNING OF ALL NODES       O(1)                             O(1)                           
+  TO ADD A NODE AFTER THE ALL NODES                 O(N)                             O(1)
+  TO ADD A NODE AFTER A PARTCULAR NODE              O(N)                             O(1)
+  TO ADD A NODE BEFORE A PARTCULAR NODE             O(N)                             O(1)
+  TO ADD A NODE AT A PARTCULAR NODE                 O(N)                             O(1)
+  TO DELETE A NODE                                  O(N)                             O(1)
+  TO REVERSE A NODE                                 O(N)                             O(1)
 */
 
 
