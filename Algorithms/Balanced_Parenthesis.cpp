@@ -63,3 +63,6 @@ int main()
 	}
 	return 0;
 }
+
+TIME COMPLEXITY: O(L)
+	For the given strings, we have to process all the characters of the strings only once. So the time complexity is O(L), where L is length of string
