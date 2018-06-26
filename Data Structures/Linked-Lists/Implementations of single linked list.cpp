@@ -240,12 +240,9 @@ struct node *addBefore(struct node *start,int data,int item)
 	/*If data to be inserted before first node*/
 	if(item==start->info)
 	{
-		tmp=(struct node *)malloc(sizeof(struct node));
-		tmp->info=data;
-		tmp->link=start;
-		start=tmp;
+		start=addAtBeg(start,data);
 		return start;
-	}	
+	}
 	p=start;
 	while(p->link!=NULL) 
 	{
@@ -340,7 +337,22 @@ struct node *reverse(struct node *start)
 	return start;
 }
 /*End of reverse()*/
+/*
+             TIME COMPLEXITY OF ALL ALGORITHMS
+  Operation                                        Complexity
+  
+  TO CREATE LIST                                    O(N)
+  TO DSPLAY DIFFERENT NODES                         O(N)
+  TO COUNT NUMBER OF NODES                          O(N)
+  TO SEARCH ANY NODE                                O(N)
+  TO ADD A NODE AT THE BEGINNING OF ALL NODES       O(1)
+  TO ADD A NODE AFTER THE ALL NODES                 O(N)
+  TO ADD A NODE AFTER A PARTCULAR NODE              O(N)  
+  TO ADD A NODE BEFORE A PARTCULAR NODE             O(N) 
+  TO ADD A NODE AT A PARTCULAR NODE                 O(N)
+  TO DELETE A NODE                                  O(N)
+  TO REVERSE A NODE                                 O(N)
+*/
 
-/*  In whole program there is only one loop many times in different block os time complexity will be k*O(n)=O(n)  */ 
-/*  The time complexity and space complexity for this program is O(n)  */
+
 /*  Thank You  */
