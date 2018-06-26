@@ -25,19 +25,19 @@ bool checkBalancedParenthesis(string s) // Function to check if the string has b
 	{
 		if(s[i]=='(' || s[i]=='{' || s[i]=='[') // if the character of the string is opening paranthesis, push it to stack
 		{
-		st.push(s[i]);
-		top=top+1;   // increament top by 1 as character is pushed
+		        st.push(s[i]);
+		        top=top+1;   // increament top by 1 as character is pushed
 		}
 		else if(s[i]==')' || s[i]=='}' || s[i]==']')  // if character is closing parenthesis, compare with stack top
 		{
 			if(top==-1 || checkCharacter(st.top(),s[i])==false) // if no element in stack or character at top does not match with corresponding current character
 			{
-				return false;
+			      return false;
 			}
 			else
 			{
-			st.pop(); // if matches , pop the top of stack 
-			top=top-1; // decreament top by -1
+			      st.pop(); // if matches , pop the top of stack 
+			      top=top-1; // decreament top by -1
 			}
 		}
 	}
@@ -53,16 +53,18 @@ int main()
 	cin>>test;
 	while(test-->0)
 	{
-	string s;
-        cout<<"Enter the string you want to check"<<endl;
-	cin>>s;
-	if(checkBalancedParenthesis(s)==true) // check if input stribg has balanced parenthesis or not
-	cout<<"BALANCED"<<endl;
-	else
-	cout<<"NOT BALANCED"<<endl;
+	    string s;
+            cout<<"Enter the string you want to check"<<endl;
+	    cin>>s;
+	    if(checkBalancedParenthesis(s)==true) // check if input stribg has balanced parenthesis or not
+	       cout<<"BALANCED"<<endl;
+	    else
+	       cout<<"NOT BALANCED"<<endl;
 	}
 	return 0;
 }
 
+/*   
 TIME COMPLEXITY: O(L)
-	For the given strings, we have to process all the characters of the strings only once. So the time complexity is O(L), where L is length of string
+For the given strings, we have to process all the characters of the strings only once. So the time complexity is O(L), where L is length of string 
+*/
