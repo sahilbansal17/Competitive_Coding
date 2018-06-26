@@ -52,9 +52,17 @@ int main(){
 Time Complexity -
   Worst Case : O(n^2). 
   Average Case : O(n^2). 
-  Best Case : O(n^2). 
+  Best Case : O(n). 
 
-This is because irrespective of the contents of the array, both the loops are executed. This makes the complexity O(n^2).
+Worst case is O(n^2) because there might be a case (say, when array is reverse sorted) 
+when both the loops of n runtime execute completely. 
+
+Best case is O(n) because when the array is already sorted in required order, the inner 
+loop will just execute n times and flag will remain as 0 indicating that the array is already
+sorted and outer loop will break because of applied condition.
+
+In average case calculation, we usually consider all possible cases. We know that the worst case
+complexity is O(n^2) which will included in average case calculation as well, so that becomes the dominant term.
 
 Auxiliary Space Complexity - O(1). We use just one extra variable. 
 */
