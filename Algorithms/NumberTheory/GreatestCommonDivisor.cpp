@@ -26,7 +26,6 @@ int gcdNaive(int a, int b) {
 }
 
 //Euclid's algorithm for finding GCD
-
 //this algo is simmilar to that we studied in shools for finding hcf
 int gcd(int a, int b)
 {
@@ -36,24 +35,13 @@ int gcd(int a, int b)
 	{
 		return b;
 	}
-	//calling of ewcursion on smaller problem
+	//calling of recursion on smaller problem
 	else{
 		return gcd(b,r);
 	}
 	
 }
 
-//this is a helper function to gcd() function because our gcd function 
-// is very precise about first and second arguements of function 
-//in gcd() function first arguement should be greater so we made a helper function for this purpose
-int gcdHelper(int a,int b){
-	if(a>=b){
-		return gcd(a,b);
-	}
-	else{
-		return gcd(b,a);
-	}
-}
 
 int main() {
   int a, b;
@@ -62,9 +50,9 @@ int main() {
   cin >> a >> b;
   
   //Our Euclid's algorithm is precise about first and 2nd arguements
-  cout << "GCD by Euclid's algorithm is :" << gcdHelper(a,b) << endl;
+  cout << "GCD by Euclid's algorithm is :" << gcd(a,b) << endl;
   
-  cout << "GCD by naive algorithm is :" << gcd(a, b) << endl;
+  cout << "GCD by naive algorithm is :" << gcdNaive(a, b) << endl;
   
   return 0;
 }
@@ -75,5 +63,5 @@ int main() {
 	//Space Complexity: O(1)
 	
 //gcd() function:-
-	//Time Complexity: O(1) this is the ain advantage of Euclid's algorithm that it gives the esult in constant amount of time
+	//Time Complexity: O(logn) this is the main advantage of Euclid's algorithm that it has great complexity
 	//Space Complexity: O(1)
