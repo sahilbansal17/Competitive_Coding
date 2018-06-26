@@ -35,7 +35,7 @@ void build(int start = 1, int end = size_of_base, int index = 1)
 // updateindex corresponds to the index which is to be updated
 void update(int updateindex, int start = 1, int end = size_of_base, int index = 1)
 {
-	// index doesn't lie in current range return
+	// index doesn't lie in current range so return
 	if(updateindex < start || updateindex > end)return;
 
 	// current node corresponds to updateindex in baseArray
