@@ -10,6 +10,9 @@
     v+e times, in addition to log(v) time for adding to priority_queue.
     Overall, O(v+e)*O(log(v)) = O((e+v)*log(v)) = O(e*log(v))
     Since for a connected graph, v = O(e).
+
+    The pop() and top() operations take O(log(v)) and O(1) time
+    respectively.
 */
 
 #include<bits/stdc++.h>
