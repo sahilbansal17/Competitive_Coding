@@ -134,18 +134,18 @@ int main()
 
 // Time complexity:
 // build - Each node in the segment tree must be visited atleast once and  we have already proved number 
-//		   of nodes is O(n) .So complexity of build function is O(n).
+//	   of nodes is O(n) .So complexity of build function is O(n).
 
-// update -	At each visited node we either move to it's left subtree or right subtree as the index to 
-//			be updated can only be in one of the two subtrees. This means that we visit exactly one node
-//			at each level of the tree and as height of the tree is O(logN) time complexity of update is O(logN).
+// update - At each visited node we either move to it's left subtree or right subtree as the index to 
+//	    be updated can only be in one of the two subtrees. This means that we visit exactly one node
+//	    at each level of the tree and as height of the tree is O(logN) time complexity of update is O(logN).
 
 // query - We first prove that at each level at most two nodes are expanded.
-//			We'll prove this by contradiction.Consider a case that 3 nodes must be expanded(namely c1,c2,c3)
-// 		   		p1       p2
+//	   We'll prove this by contradiction.Consider a case that 3 nodes must be expanded(namely c1,c2,c3)
+// 		   		    p1       p2
 //				  /    \   /    \
 //				c1     c2  c3   c4 		
-// 		   This means range [l,r] lies from c1-c3.But if it is so then node p1 wouldn't have been expanded as
-// 		   it already contains the minimum value in the subtree of c1 and c2.This is a contradiction.So at 
-//		   each level at most 2 nodes will be expanded.So total no of visited nodes = 2*height of tree
-//		   Time complexity = O(logN)	as height of tree = O(logN)
+// 	   This means range [l,r] lies from c1-c3.But if it is so then node p1 wouldn't have been expanded as
+//         it already contains the minimum value in the subtree of c1 and c2.This is a contradiction.So at 
+//	   each level at most 2 nodes will be expanded.So total no of visited nodes = 2*height of tree
+//         Time complexity = O(logN)	as height of tree = O(logN)
