@@ -50,9 +50,11 @@ int main(){
 
 /*
 Time Complexity -
-  Worst Case : O(n^2). It occurs when the array elements are reverse sorted. 
-  Average Case : O(n^2). We use 2 loops of n runtime each, so n^2 complexity.
-  Best Case : O(n). Occurs when array is already sorted. 
+  Worst Case : O(n^2). 
+  Average Case : O(n^2). 
+  Best Case : O(n^2). 
+
+This is because irrespective of the contents of the array, both the loops are executed. This makes the complexity O(n^2).
 
 Auxiliary Space Complexity - O(1). We use just one extra variable. 
 */

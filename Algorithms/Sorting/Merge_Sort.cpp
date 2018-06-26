@@ -79,5 +79,9 @@ int main()
     return 0;
 }
 
-//Time Complexity : O(nlogn). For all 3 cases, time complexity is same because merge sort always uses divide and conquer technique. 
-//Auxiliary Space Complexity : O(n). We use an extra array of n size. 
+/*
+Time Complexity : O(nlogn). 
+The entire input is iterated over. This occurs O(log(n)) times (the input can only be halved O(log(n)) times). n items iterated log(n) times gives O(n log(n)).
+
+Auxiliary Space Complexity : O(n). We use an extra array of n size. 
+*/
