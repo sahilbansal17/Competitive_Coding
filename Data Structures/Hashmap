@@ -1,0 +1,137 @@
+#include <string>
+#include<iostream>
+using namespace std;
+
+template <typename V>
+class MapNode {
+	public:
+		string key;
+		V value;
+		MapNode* next;
+
+		MapNode(string key, V value) {
+			this->key = key;
+			this->value = value;
+			next = NULL;
+		}
+
+		~MapNode() {
+			delete next;
+		}
+};
+
+template <typename V>
+class ourmap {
+	MapNode<V>** buckets; // MapNode Object to hold key-value pairs
+	int count; //gives the size of hashmap (number of key-value pair present in the map)
+	int numBuckets; //define capacity of buckets
+
+	public:
+	ourmap() {
+		count = 0;  //initially no key value pair is present
+		numBuckets = 5; // creating a Buckets of size 5 ( you can change the size)
+		buckets = new MapNode<V>*[numBuckets]; 
+		for (int i = 0; i < numBuckets; i++) {
+			buckets[i] = NULL;                 //Dynamically initializing buckets to NULL   
+		}
+	}
+
+	~ourmap() {
+		for (int i = 0; i < numBuckets; i++) { //Freeing the memory after we are done 
+			delete buckets[i];
+		}
+		delete [] buckets;
+	}
+
+	int size() {   //function to return size of our hashmap
+		return count;
+	}
+	private:
+	int getBucketIndex(string key) {   //function to find bucketIndex for a key
+		int hashCode = 0;
+
+		/*
+		for any number/string of the form "abc" its hashCode is calculated using formula : a*p^2 + b*p+ c*p^0. 
+		where p is any prime number. (prime number is chosen so as to have a good distribution)
+		to avoid overflow in hashCode we will use compression function which is simply (a*p^2 + b*p+ c*p^0)%bucket size.
+		 And we know that (a*b*c)%n =((a%n)*(b%n)*(c%n))%n;
+		 */
+		
+		int currentCoeff = 1;
+		for (int i = key.length() - 1; i >= 0; i--) {
+			hashCode += key[i] * currentCoeff;
+			hashCode = hashCode % numBuckets; //compression function
+			currentCoeff *= 37;              //37 is the chosen prime number here. u can choose any other 
+			currentCoeff = currentCoeff % numBuckets; //compression function
+		}
+
+		return hashCode % numBuckets;   //compression function so that result may not exceed range of int
+	}
+	public:
+
+	V getValue(string key) {        //function to get value of a key
+		int bucketIndex = getBucketIndex(key);
+		MapNode<V>* head = buckets[bucketIndex];
+		while (head != NULL) {
+			if (head->key == key) {
+				return head->value;
+			}
+			head = head->next;
+		}
+		return 0;
+	}
+	void insert(string key, V value) {        //function to insert a key-value pair
+		int bucketIndex = getBucketIndex( key);
+		MapNode<V>* head = buckets[bucketIndex];
+		while (head != NULL) {
+			if (head->key == key) {
+				head->value = value;
+				return;
+			}
+			head = head->next;
+		}
+		head = buckets[bucketIndex];
+		MapNode<V>* node = new MapNode<V>(key, value);
+		node->next = head;
+		buckets[bucketIndex] = node;
+		count++;                      //increment count after inserting a key-value pair
+	}
+
+	V remove(string key) {                   //function for removing a key and returning its value
+		int bucketIndex = getBucketIndex(
+			key);
+		MapNode<V>* head = buckets[bucketIndex]; 
+		MapNode<V>* prev = NULL;
+		while (head != NULL) {           
+			if (head->key == key) {               //move head until required key is not found
+				if (prev == NULL) {
+					buckets[bucketIndex] = head->next;
+				} else {
+					prev->next = head->next;
+				}
+				V value = head->value;
+				head->next = NULL;
+				delete head;
+				count--;         //decrement size of hash map
+				return value;
+			}
+			prev = head;
+			head = head->next;
+		}
+		return 0;
+	}
+
+};
+int main()
+{
+	
+	ourmap<int> mp;
+             mp.insert("abc",1);
+             mp.insert("def",2);
+             mp.insert("xyz",67);
+            cout<<"size of map is "<<mp.size()<<"\n";
+            cout<<"value of string abc is "<<mp.getValue("abc")<<"\n";
+            cout<<"Removing key abc from the map and printing value of removed key "<<mp.remove("abc")<<"\n";
+            cout<<"After removal size of map is "<<mp.size();
+            
+}
