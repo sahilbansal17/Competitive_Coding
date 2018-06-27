@@ -61,8 +61,15 @@ Best case is O(n) because when the array is already sorted in required order, th
 loop will just execute n times and flag will remain as 0 indicating that the array is already
 sorted and outer loop will break because of applied condition.
 
-In average case calculation, we usually consider all possible cases. We know that the worst case
-complexity is O(n^2) which will included in average case calculation as well, so that becomes the dominant term.
+In average case calculation, we usually consider all possible cases for given n elements, i.e., n! permutations. 
+Now, our algorithm performs one swap for each inversion (an inversion is a condition where a[i]>a[j] for i<j), so 
+the runtime for our algorithm will depend simply on the number of inversions. 
+We consider a permutation P and its reverse R. It can be easily understood here that there will be a particular inversion
+in exactly either P or R. You can verify it for any example, say, P = {3,1,2} and R = {2,1,3}. The total number of pairs that
+we can have is nC2, i.e., (n(n-1)/2), and each of the pairs is inverted in exactly half of the permutations, so total number of 
+inversions can be said to be (n(n-1)/4). 
+We can also easily see that the number of iterations is greater than the number of swaps (or inversions). 
+Hence, number of iterations > (n(n-1)/4). Therefore, average case complexity turns out to be (n^2). 
 
 Auxiliary Space Complexity - O(1). We use just one extra variable. 
 */
