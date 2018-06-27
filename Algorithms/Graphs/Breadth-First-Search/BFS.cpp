@@ -100,3 +100,25 @@ int main()
 }
 // Time Complexity And Space Complexity of above code is O(V+E) and O(V)
 // where V is vertex and E is edge
+                                             //Explanation of Time complexity
+
+   /*Pseudocode of BFS:
+
+  put starting node in the queue
+  while queue is not empty
+  get first node from the queue, name it v
+  (process v)
+  for each edge e going from v to other nodes
+   put the other end of edge e at the end of the queue
+   end pseudocode
+As you can see, the worst case (which is what O means), is basically for all vertices if the graph, do a O(1) operation with them - getting it
+from the queue, then for all outbound edges of v do another O(1) operation, adding their other end to the queue. Thus summing the first O(1)
+operation for all vertices gives O(V) and summing the O(outbound edge count) over all the vertices gives O(E), which gives O(V)+O(E)=O(V+E). Without the processing of course, or assuming it is O(1) like adding the vertex to a list.
+
+Note that for sparse graphs, where E = O(V), you have overall O(V). While for dense graphs where you have E=O(V^2), you get overall O(E).
+
+And O(V+E)=O(max(V,E)) too. In fact all we discussed in terms of O, can be proven to be the case for omega(V+E) and theta(V+E), which means that
+there is a first order polynomial in V+E which is upper bound to the execution steps count and another first order polynomial which is lower bound
+to the execution steps.
+
+I hope the above explanation makes sense */
