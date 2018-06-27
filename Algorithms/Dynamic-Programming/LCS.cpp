@@ -3,112 +3,87 @@
 
 // Author: Pritam Negi.
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-// Declaration of global variables
-// Program supports two string of upto 10000 characters.
-// 2D Array c is used to store the length of LCS
-// 2D Array b stores the direction of tracing the array c at a particular point to find the LCS.
-int i, j, m, n, c[10010][10010];
-char b[10010][10010];
-string x, y;
+string s1, s2;
 
-// Function to print the LCS after building of (m+1) * (n+1) matrix
-void printLCS(int i,int j)
+int lcs(int idx1, int idx2, vector<char> &v)
 {
-	if(i==0 || j==0)
-	{
-		return;
-	}
-	// Firstly recursively calling the printLCS function until
-	// no diagonal direction is encountered and then printing the LCS
-	if(b[i][j]=='d')
-	{
-		printLCS(i-1,j-1);
-		cout<< x[i-1];
-	}
-	// Moving to the cell above to the current cell on encountering up (u) direction
-	// in array b
-	else if(b[i][j]=='u')
-	{
-		printLCS(i-1,j);
-	}
-	// Moving to the cell left of the current cell on encountering left (l) direction
-	// in array b
-	else
-	{
-		printLCS(i,j-1);
-	}
+    // If any string is empty then length of LCS is 0
+    if (idx1 == -1 || idx2 == -1)
+    {
+        return 0;
+    }
+
+    if (s1[idx1] == s2[idx2])
+    {
+        // If character in string s1 at index idx1 
+        // matches with character in string s2 at index idx2
+        // then that character is part of LCS
+        v.push_back(s1[idx1]); 
+        return 1 + lcs(idx1 - 1, idx2 - 1, v);
+    } 
+    else 
+    {
+
+        vector<char> v1, v2;
+
+        // If characters in both strings are not same
+        // then perfoming LCS calculation for two possibilities
+        // In first possibility we are ignoring one character from string s1
+        // In second possibility we are ignoeing one character from string s2
+        int p1 = lcs(idx1 - 1, idx2, v1); 
+        int p2 = lcs(idx1, idx2 - 1, v2);
+
+        if (p1 > p2)
+        {
+            // If LCS obtained from first possibilty is larger than
+            // second possibility then we use this result 
+            // we used the characters we already had in v + the ones in v1
+            v.insert(v.end(), v1.begin(), v1.end());
+            return p1;
+        } 
+        else
+        { 
+            // If LCS obtained from second possibilty is larger than
+            // first possibility then we use this result
+            // we used the characters we already had in v + the ones in v2
+            v.insert(v.end(), v2.begin(), v2.end());
+            return p2;
+        }
+    }
 }
 
-// Function to find the LCS using memoization technique
-void lcsMemo()
+int main(int argc, const char * argv[])
 {
-	// Getting the lengths of two strings
-	m = x.length();
-	n = y.length();
+    // Taking first string as input
+    cout<< "Enter the first string: ";
+    cin>>s1;
 
-	// Setting elements of first column to 0
-	for(i=0; i <= m; i++)
-	{
-		c[i][0] = 0;
-	}
+    // Taking second string as input
+    cout<< "Enter the second string: ";
+    cin>>s2;
 
-	// Setting elements of first row to 0
-	for(i=0; i<=n; i++)
-	{
-		c[0][i] = 0;
-	}
+    // Vector for storing the LCS characters
+    vector<char> v;
 
-	// Updating the length in each cell of array c depending on the
-	// characters encountered in both strings x and y.
-	for(i=1; i<= m; i++)
-	{
-		for(j=1; j<=n; j++)
-		{
-			// If both characters match then length is incremented by 1
-			// Direction of tracing is set as 'd' i.e. diagonal.
-			if(x[i-1]==y[j-1])
-			{
-				c[i][j] = c[i-1][j-1] + 1;
-				b[i][j] = 'd';
-			}
+    int sol = lcs(s1.length() - 1, s2.length() - 1, v); 
+    
+    cout << "Length of Longest Common Subsequence is: "<< sol << endl;
+    reverse(v.begin(), v.end());
 
-			// If length in the cell above to the current cell
-			// is greater than the length value present in the left cell 
-			// then length from cell present above is copied
-			// and direction of tracing is set as 'u' i.e. up
-			else if(c[i-1][j]>=c[i][j-1])
-			{
-				c[i][j] = c[i-1][j];
-				b[i][j] = 'u';
-			}
+    cout<< "Longest Common Subsequence is: ";
+    for (auto num : v) {
+        cout << num;
+    }
+    cout<<endl;
 
-			// Else the length value is copied from the left cell
-			// and direction of tracing is set as 'l' i.e. left
-			else
-			{
-				c[i][j] = c[i][j-1];
-				b[i][j] = 'l';
-			}
-		}
-	}
+    return 0;
 }
 
-int main()
-{
-	// Taking first string as input
-	cout<< "Enter the first string: ";
-	cin>> x;
-
-	// Taking second string as input
-	cout<< "Enter the second string: ";
-	cin>> y;
-
-	cout<< "The Longest Common Subsequence is: ";
-	
-	lcsMemo();
-	printLCS(m,n);
-	return 0;
-}
+// Time Complexity: If the length of one string is n and another string is m 
+// then complexity of this approach is O(2^(n+m))
+// because it test every possible substring of one string with every other substring of another string
+// which can be understood by tree or graph representation of recursive calls
+// If we take n+m = N then complexity is O (2^N).
