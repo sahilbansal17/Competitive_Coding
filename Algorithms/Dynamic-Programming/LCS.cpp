@@ -3,7 +3,11 @@
 
 // Author: Pritam Negi.
 
-#include <bits/stdc++.h>
+#include <iostream>
+#include <string>
+#include <queue>
+#include <math.h>
+#include <algorithm>
 using namespace std;
 
 string s1, s2;
