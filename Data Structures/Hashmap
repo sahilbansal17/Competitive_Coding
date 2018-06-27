@@ -177,22 +177,51 @@
 	}
 	
 	
-	// Time Complexity :
-	// Insertion : for inserting a key value pair, first required bucket index is to be found which takes O(l) time 
-	// where l is length of key. After getting the bucket_Index you check whether a key already exists if so you update the value, 
-	// otherwise u keep on moving till head is NULL and insert the key, this take O(n) time in worst case.
-	// So total of O(nl) time for insertion.
-	// Since n>>l l can be neglected.
-	// Therefore, for insertion time complexity is O(n)
 	
-	// Removal: We need to find bucket_index of key which is to be deleted, it takes 0(l) time.
-	// Iterate through the bucket_index to find the key ( O(n) time ) and delete the key 0(1).
-	// Total complexity O(nl). 
-	// Since n>>l l can be neglected.
-	// Therefore, for deletion time complexity is O(n).
+	// Time and space Complexity
+
+	//FOR INSERTION
+//From the above code, it is clear that, insert operation in hashmap requires :
+
+//Step 1. Computing hashcode of key, 
+
+//Step 2. Calculating array index/bucket from hashcode which takes O(l) time where l is length of key and then, 
+
+// Step 3. With the help of index calculated, directly jump to that index/bucket. 
+
+//Step 4. Now, each and every element in the bucket is scanned sequentially to see, is there any 
+ //         key-value pair present, which has the same key we are trying to put in. 
+   //          If key-value pair is found, which has same key then instead of storing 
+   //            new entry / key-value pair, it simply replace value stored against key.
+
+         //        If no matching key is found then it will go till end of the list and create a new key-value
+            //      pair at the end. {O(n) time }
+
+//So, ONLY COSTLY OPERATION WHAT WE SEE HERE IS ITERATING THE LINKED LIST AFTER GETTING THE BUCKET OR ARRAY INDEX.
+ 
+//SO Complexity of Hashmap insert :
+
+1. O(1) with assumption that key-value pairs are well distributed across the buckets.It means hashcode implemented is good.
+2. O(n) if all pairs are placed in one bucket,because insert operation has to scan each key inside the bucket.
+
+
+// FOR SEARCH AND DELETE
+// Hashmap search requires:
+//Step 1. Calculating array index/bucket from hashcode which takes O(l) time where l is length of key and then, 
+// Step 3. With the help of index calculated, directly jump to that index/bucket. 
+//Step 4. Now, a linear search will be performed for Key look-up.
+
+//So, ONLY COSTLY OPERATION WHAT WE SEE HERE IS ITERATING THE LINKED LIST AFTER GETTING THE BUCKET OR ARRAY INDEX.
+ 
+//Complexity of Hashmap search/delete:
+
+//1. O(1) with assumption that key-value pairs are well distributed across the buckets.
+//2. O(n) if all pairs are placed in one bucket, because search/delete operation has to do linear search in bucket for Key look up,
+//since all key-value pair are placed in one bucket
+
+
+
+// Hence Hashmap best and average case for Search, Insert and Delete is O(1) and worst case is O(n). 
+//Space Complexity : O(n) where n is size of hashmap
 	
-	// Searching: Find the bucket_index of the key iterate through the required bucket[i] and
-	// stop as soon as key is found.
-	// Time Complexity : O(n)
-	
-	//Space Complexity : O(n) where n is size of hashmap
+
