@@ -1,8 +1,10 @@
 /*
-This code is to check the balanced parenthesis of the given string. We process each characters of the string only once. 
+This code is to check the balanced parenthesis of the given string. 
+We process each characters of the string only once. 
 If the processed character is opening parenthesis it is pushed to the stack.
 If the processed character is a closing parenthesis, it is compared with top of stack.
-If stack is empty or character at top of stack does not match with corresponding closing parenthesis, the given string is not balanced.
+If stack is empty or character at top of stack does not match with corresponding closing parenthesis,
+the given string is not balanced.
 Else pop the top of stack and continue processing.
 If after processing, stack is empty , it means the given string is balanced else it is not balanced.
 */
@@ -12,7 +14,8 @@ If after processing, stack is empty , it means the given string is balanced else
 #include <string>
 using namespace std;
 
-// Function to check if character x is an opening parenthesis and character y is an closing parenthesis or character x is 'less than' and character y is 'greater than' operator
+// Function to check if character x is an opening parenthesis and character y is an closing parenthesis 
+// or character x is 'less than' and character y is 'greater than' operator
 bool checkCharacter(char x, char y) 
 {
 	if ((x=='(' && y==')') || (x=='{' && y=='}') || (x=='[' && y==']') || (x=='<' && y=='>')) // compare characters
@@ -37,8 +40,10 @@ bool checkBalancedParenthesis(string s) // Function to check if the string has b
 		}
 		else if(s[i]==')' || s[i]=='}' || s[i]==']')  // if character is closing parenthesis, compare with stack top
 		{
-			if(st.empty() || checkCharacter(st.top(),s[i])==false) // if no element in stack or character at top does not match with corresponding current character
+			if(st.empty() || checkCharacter(st.top(),s[i])==false) 
 			{
+			      // if no element in stack 
+			      // or character at top does not match with corresponding current character
 			      return false;
 			}
 			else
@@ -48,9 +53,9 @@ bool checkBalancedParenthesis(string s) // Function to check if the string has b
 		}
 	}
 	if(st.empty()) // if top is -1 it indicates that number of opening parenthesis is same as closing parenthesis
-	return true;
+	 return true;
 	else
-	return false;
+	 return false;
 }
 int main() 
 {
@@ -72,5 +77,6 @@ int main()
 
 /*   
 TIME COMPLEXITY: O(L)
-For the given strings, we have to process all the characters of the strings only once. So the time complexity is O(L), where L is length of string 
+For the given strings, we have to process all the characters of the strings only once.
+So the time complexity is O(L), where L is length of string 
 */
