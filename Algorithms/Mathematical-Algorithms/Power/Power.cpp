@@ -10,6 +10,7 @@
 
 #include<iostream>
 #include<cstdio>
+#include<vector>
 
 using namespace std;
 //To handle large numbers for more info -> (https://codeaccepted.wordpress.com/2014/02/15/output-the-answer-modulo-109-7/)
@@ -22,14 +23,13 @@ long long fastPower(long long base, long long power){
   long long result = 1;
 
   while(power > 0) {
-        // Can also use (power & 1) to make code even faster
-        if(power % 2 == 1) { 
+        
+        if(power & 1) { 
             result = (result*base) % MOD;
         }
         base = (base * base) % MOD;
 
-        // Can also use power >>= 1; to make code even faster
-        power = power / 2; 
+        power >>= 1; 
     }
 
     return (result);
@@ -37,10 +37,40 @@ long long fastPower(long long base, long long power){
 
 }
 
+//3x3 Matrix 
+vector<vector<long long>> matrixPower(vector<vector<long long>> &matrix , int power){
+  
+  for(int i=0;i<3;i++){
+    for(int j=0;j<3;j++){
+      matrix[i][j]= fastPower(matrix[i][j], power);
+    }
+  }
+
+  return (matrix);
+}
+
 
 //main 
 int main(){
-  printf("Power: %l", fastPower(2, 10000000000000));    //Outputs Power: 836339738
+  printf("Power: %lld\n", fastPower(2, 10000000000000));    //Outputs Power: 836339738
+
+//Matrix Initialization
+  vector<vector<long long> > matrix{ {1,2,3},
+                                {4, 5,6},
+                                {7,8,9}
+                              };
+  int power = 20;
+
+  vector< vector<long long>> res = matrixPower(matrix, power);
+
+  for (int i = 0; i <3; ++i)
+  {
+    for (int j = 0; j <3; ++j)
+    {
+       printf("%lld ", res[i][j]);
+    }
+    printf("\n");
+  }
 }
 
 
