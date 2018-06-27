@@ -29,6 +29,10 @@ int gcdNaive(int a, int b) {
 //this algo is simmilar to that we studied in shools for finding hcf
 int gcd(int a, int b)
 {
+	//in this method of finding gcdfirst we divide the big of two numbers with smaller one
+	//if the remainder comes out to be  0 then th gcd is smaller number othewise
+	//we divide the the smaller number by the remainder that we got i.e the divisor is to be divided by the remainder
+	//we continue to do that until we get remainder 0 and we will return the dvisor when remainer becomes zero
 	int r=a%b;
 	//base case for recursion
 	if(r==0)
@@ -64,4 +68,7 @@ int main() {
 	
 //gcd() function:-
 	//Time Complexity: O(logn) this is the main advantage of Euclid's algorithm that it has great complexity
+	//the reccurence relation for the euclids algorithm is T(n) = T(n%10) + k  ; k is the constant amount of work
+	//to find time compexity we find the T(n%10) = T(n%100)+k and so on till T(1) and finally add all those expressions
+	//and by calvulation we will get n/10^x= 1 which gives x= log n whic is the time complexity . 
 	//Space Complexity: O(1)
