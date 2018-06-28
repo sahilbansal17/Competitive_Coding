@@ -51,6 +51,10 @@ void print(Node *head){
 
 //Midpoint Function
 //this method is not ordinary one but a fast approach
+//this method we maintain two nodes that is fast and slow
+//swo increses one by one while fast increses with a gap of one node
+//when the fast or fast->next becomes NULL then the slow node is at the mid point of the linkedlist
+//I suggest everyone who is reading this function should dryrun this code atleast once
 Node* midpointLinkedList(Node *head)
 {
 	//in this function i maintain 2 variables of Node type
@@ -197,5 +201,11 @@ int main()
 	//Space Complexity: O(1) only some constant space is required
 //mergeSort() function :-----------
 	//Time Complexity: O(nlogn) because 1calling recursion on 2 parts of LL anf further merging them
+		//the recurrence relation of merge sort is 
+		//T(n) = 2T(n/2) + O(n) /this recurrence relation is because in mergeSort() function we call  
+		//recursion on two halfs of mergeSort of half of the size of linkeList
+		//in additon to that O(n) is because of the we call mergeTwoLLs() function on two sorted Linkedlist
+		//whose time complexity is O(n)
+
 	//Space Complexity: O(1) only some constant space is required
 
