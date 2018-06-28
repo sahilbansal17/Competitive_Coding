@@ -4,7 +4,7 @@
 //                    in increasing order.
 // Input Format : The first line contains n,the number of elements of the array.
 //                The second line contains n space separated integers.
-// Output Format : A single number specifying the length of LIS.
+// Output Format : A single number specifying the length of LIS followed by the sequence.
 
 // Approach Used : Dynamic Programming
 
@@ -13,9 +13,10 @@
 // last element arr[i](ith element of the input array). So clearly, the first element of aux stores just 1(only arr[0]).
 // Next for finding LIS for other elements as last element of that sequence, an iteration is made for
 // all the previous LIS whose last element is less than the current element. If such a sequence is found
-// the largest of these is taken with the last element appended at the end of it(one is added actually to realise it). Finally the 
-// size of the maximum sequence is printed. The memoization of previous LIS length is a key to dynamic programming here 
-// and is the technique to store the solutions of subproblems.
+// the largest of these is taken with the last element appended at the end of it(one is added actually to realise it). 
+// Additionally the location of the last element is simultaneously stored in lis_parent array.Finally the 
+// size of the maximum sequence is printed along with the sequence. The memoization of previous LIS length is a key to dynamic 
+// programming here and is the technique to store the solutions of subproblems.
  
 #include<iostream>
 #include<vector>
@@ -26,9 +27,16 @@ void calLIS(vector<int>arr)
 {
 	int n = arr.size();
 	int aux[n];
-	
+	int ending_index=0;
+	int lis_parent[n];
+	vector<int>result_sequence;
 	// By default the sequence ending with first element can only be of length 1
 	aux[0]=1;
+	
+	// Initialising lis_parent with the own index as initially all have a size of 1
+	for(int i=0; i<n; i++)
+		lis_parent[i]=i;
+
 	int final_ans = aux[0];
 	for(int i=1; i<n; i++)
 	{
@@ -40,6 +48,7 @@ void calLIS(vector<int>arr)
 			if(arr[j] < arr[i] && aux[j]> curr_max)
 			{
 				curr_max = aux[j];
+				lis_parent[i]=j;
 			}
 		}
 		
@@ -50,11 +59,24 @@ void calLIS(vector<int>arr)
 		if(aux[i]>final_ans)
 		{
 			final_ans = aux[i];
+			ending_index=i;
 		}
 	}
-		
-	cout << "Maximum size :" << final_ans << "\n";
-
+	
+	cout << "Size of longest increasing subsequence: " << final_ans << "\n";
+	
+	// Continuously moving to the previous element and adding to the vector result_sequence
+	result_sequence.push_back(arr[ending_index]);
+	while(lis_parent[ending_index]!=ending_index)
+	{
+		ending_index = lis_parent[ending_index];
+		result_sequence.push_back(arr[ending_index]);
+	}
+	
+	cout << "Sequence is: ";
+	for(int i=final_ans-1; i>=0; i--)
+		cout << result_sequence[i] << " ";
+	cout << "\n";
 }
 
 int main()
