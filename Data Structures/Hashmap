@@ -1,12 +1,11 @@
-//  Name: Bhawana
-//  Email_id: bhawana053@gmail.com
+	//  Name: Bhawana
+	//  Email_id: bhawana053@gmail.com
 
-//  Hashmap Implementation: This program focuses on how insertion, searching and deletion works in a hashmap internally. 
+	//  Hashmap Implementation: This program focuses on how insertion, searching and deletion works in a hashmap internally. 
 
 	#include <string>
 	#include<iostream>
 	using namespace std;
-   
 	// user can specify the data type(V) of value 
 	template <typename V>
 	class MapNode {
@@ -35,7 +34,7 @@
 	//gives the size of hashmap (number of key-value pair present in the map)
 		int count; 
 		
-	 //define capacity of buckets
+		 //define capacity of buckets
 		int num_buckets;
 
 		public:
@@ -178,7 +177,10 @@
 	
 	
 	
-	// Time and space Complexity
+	
+	
+	
+// Time and space Complexity
 
 	//FOR INSERTION
 //From the above code, it is clear that, insert operation in hashmap requires :
@@ -199,10 +201,10 @@
 
 //So, ONLY COSTLY OPERATION WHAT WE SEE HERE IS ITERATING THE LINKED LIST AFTER GETTING THE BUCKET OR ARRAY INDEX.
  
-//SO Complexity of Hashmap insert :
+//SO Complexity of Hashmap insert is :
 
-1. O(1) with assumption that key-value pairs are well distributed across the buckets.It means hashcode implemented is good.
-2. O(n) if all pairs are placed in one bucket,because insert operation has to scan each key inside the bucket.
+//1. O(1)[BEST CASE] with assumption that key-value pairs are well distributed across the buckets.It means hashcode implemented is good.
+//2. O(n) [WORST CASE] if all pairs are placed in one bucket,because insert operation has to scan each key inside the bucket.
 
 
 // FOR SEARCH AND DELETE
@@ -215,13 +217,27 @@
  
 //Complexity of Hashmap search/delete:
 
-//1. O(1) with assumption that key-value pairs are well distributed across the buckets.
-//2. O(n) if all pairs are placed in one bucket, because search/delete operation has to do linear search in bucket for Key look up,
+//1. O(1)[BEST CASE] with assumption that key-value pairs are well distributed across the buckets.
+//2. O(n) [WORST CASE] if all pairs are placed in one bucket, because search/delete operation has to do linear search in bucket for Key look up,
 //since all key-value pair are placed in one bucket
 
+//Now talking about AVERAGE CASE
+//Hahmap is said to be O(1) average and amortized case compleixty because:
+//1.It is very rare that many items will be hashed to the same key [if you chose a good hash function ].
+//2.The rehash operation, which is O(n), can at most happen after n/2 operations, which are all assumed O(1): Thus when you sum the average time
+// per operation, you get : (n*O(1) + O(n)) / n) = O(1)
+
+// Note 1:
+// Rehashing is:
+//Build a second table twice as large {generally} as the original 
+//and rehash there all the keys of the original table. 
+
+// Note 2:
+//HASHMAP INSERT,SEARCH,DELETE ARE "AMORTIZED" O(1) AND NOT REAL O(1) because
+//It's impossible to know in advance how many collisions you will get with your hash function, as well as things like needing to resize.
+//This can add an element of unpredictability to the performance of a hash table, making it not true O(1) 
 
 
-// Hence Hashmap best and average case for Search, Insert and Delete is O(1) and worst case is O(n). 
 //Space Complexity : O(n) where n is size of hashmap
 	
 
