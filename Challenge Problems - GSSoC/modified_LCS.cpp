@@ -76,4 +76,4 @@ int main()
 // So our algorithm is correct
 
 // Time complexity : O(mn) as we have a nested loop.Outer loop runs n time and inner loop runs m times.
-// Space complexity : O(1)
+// Space complexity : O(1) 
