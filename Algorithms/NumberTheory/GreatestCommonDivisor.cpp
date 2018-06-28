@@ -70,5 +70,7 @@ int main() {
 	//Time Complexity: O(logn) this is the main advantage of Euclid's algorithm that it has great complexity
 	//the reccurence relation for the euclids algorithm is T(n) = T(n%10) + k  ; k is the constant amount of work
 	//to find time compexity we find the T(n%10) = T(n%100)+k and so on till T(1) and finally add all those expressions
-	//and by calvulation we will get n/10^x= 1 which gives x= log n whic is the time complexity . 
+	//and by calculation we will get n/10^x= 1 which gives x= log n whic is the time complexity .
+	//we get above reccurrence relation because we reduce the problem  to n%10 every time that is one less decimal place        
 	//Space Complexity: O(1)
+
