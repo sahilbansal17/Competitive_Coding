@@ -5,7 +5,7 @@
 using namespace std;
  
 void selectionSort(long arr[], long n){
-    long min_index;
+    long min_index, t;
     for(long i = 0; i <(n-1); i++){
         min_index = i;
         for (long j = i+1; j < n; j++){
@@ -14,7 +14,7 @@ void selectionSort(long arr[], long n){
                 min_index = j;
         }
         //swapping elements keeping ith element as pivot
-        long t = arr[min_index]; 
+        t = arr[min_index]; 
         arr[min_index] = arr[i];
         arr[i] = t;
     }
@@ -45,4 +45,4 @@ int main(){
 }
 
 //Time Complexity : O(n^2). Same for all cases as we use 2 nested loops of n runtime each.
-//Auxiliary Space Complexity : O(1). We make max use of an extra variable.
+//Auxiliary Space Complexity : O(1). We make use of an extra variable "min_index" and temp variable t.
