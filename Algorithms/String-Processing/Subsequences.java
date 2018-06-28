@@ -12,6 +12,8 @@ public class Subsequences {
 		// TODO Auto-generated method stub
 		Scanner in = new Scanner(System.in);
 
+		System.out.println("Enter string whose subsequences you wish to find :");
+		
 		// Input string
 		String str = in.next();
 
