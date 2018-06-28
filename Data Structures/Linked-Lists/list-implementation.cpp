@@ -1,6 +1,6 @@
 // Name: Harsh Aryan
 // Email-id: 12harsharyan@gmail.com
-// THIS IS A PROGRAM TO IMPLEMENT LIST . IT CONSISTS OF INSERTION, DELETION, TRAVERSAL, SEARCH, REVERSE.
+// THIS IS A PROGRAM TO IMPLEMENT LIST . IT CONSISTS OF INSERTION, DELETION, TRAVERSAL, SEARCH, REVERSE, SPLICE.
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -16,9 +16,10 @@ struct node
 
 //function to create a node
 //worst case time complexity O(1)
+//average case time complexity O(1)
 //best case time complexity O(1)
 //these are just constant time operations
-// Space Complexity: O(1), Since we have just used an additional variable max inside the function.
+// Space Complexity: O(1)
 
 struct node *createNewNode(int d)
 {
@@ -31,18 +32,20 @@ struct node *createNewNode(int d)
 
 //function to add a new node at the beginning of the list
 //worst case time complexity O(1)
+//average case time complexity O(1)
 //best case time complexity O(1)
 //these are just constant time operations
-// Space Complexity: O(1), Since we have just used an additional variable max inside the function.
+// Space Complexity: O(1)
 
 
-struct node *addAtBeg(struct node *head, int d)
+struct node *addAtBeg(struct node *head,struct node **end, int d)
 {
     struct node *temp;
     temp=createNewNode(d);
     if(head==NULL)
     {
         head=temp;
+        *end=temp;
         return head;
     }
     else
@@ -54,29 +57,25 @@ struct node *addAtBeg(struct node *head, int d)
 }
 
 //function to add a new node at the end of the list
-//worst case time complexity O(N)
-//best case time complexity O(N)
-// Inside the for loop, there is just a condition check ,
-// Overall, time taken is O(n) thus.
-// Space Complexity: O(1), Since we have just used an additional variable max inside the function.
+//worst case time complexity O(1)
+//average case time complexity O(1)
+//best case time complexity O(1)
+// Space Complexity: O(1)
 
-struct node *addAtEnd(struct node *head, int d)
+struct node *addAtEnd(struct node *head,struct node **end, int d)
 {
     struct node *temp;
     temp=createNewNode(d);
     if(head==NULL)
     {
         head=temp;
+        *end=temp;
         return head;
     }
     else
     {
-        struct node *temp2=head;
-        while(temp2->next!=NULL)
-        {
-            temp2=temp2->next;
-        }
-        temp2->next=temp;
+        (*end)->next=temp;
+        *end=temp;
         return head;
     }
 }
@@ -85,17 +84,21 @@ struct node *addAtEnd(struct node *head, int d)
 
 //function to add a new node at any required position, n of the list
 //worst case time complexity O(N)
+//average case time complexity O(N)
 //best case time complexity O(1)
-// Inside the for loop, there is just a condition check ,
-// Overall, time taken is O(n) thus.
-// Space Complexity: O(1), Since we have just used an additional variable max inside the function.
+// Space Complexity: O(1)
 //1 based indexing
 
-struct node *insertAtPosn(struct node *head, int n, int d)
+struct node *insertAtPosn(struct node *head,struct node **end, int n, int d)
 {
+    int flag=0;
     struct node *temp=createNewNode(d);
     if(head==NULL)
-        return temp;
+        {   
+            return temp;
+            *end=temp;
+        }
+        
     if(n==1)
     {
         temp->next=head;
@@ -111,24 +114,34 @@ struct node *insertAtPosn(struct node *head, int n, int d)
         temp2=temp2->next;
 
     }
+    if(temp2->next==NULL)
+    flag=1;
     temp->next=temp2->next;
     temp2->next=temp;
+    if(flag==1)
+    *end=(*end)->next;
+    
     return head;
 }
 
 
 //function to delete a node from the beginning of the list
 //worst case time complexity O(1)
+//average case time complexity O(1)
 //best case time complexity O(1)
 //these are just constant time operations
-// Space Complexity: O(1), Since we have just used an additional variable max inside the function.
+// Space Complexity: O(1)
 
 
-
-struct node *deleteFromBeg(struct node *head)
+struct node *deleteFromBeg(struct node *head,struct node **end)
 {
     if(head==NULL)
         return;
+    if(head->next==NULL)
+    {
+        *end=NULL;
+        
+    }
     head=head->next;
     return head;
 }
@@ -136,28 +149,33 @@ struct node *deleteFromBeg(struct node *head)
 
 //function to delete a node from the end of the list
 //worst case time complexity O(N)
-//best case time complexity O(N)
-// Inside the for loop, there is just a condition check ,
-// Overall, time taken is O(n) thus.
-// Space Complexity: O(1), Since we have just used an additional variable max inside the function.
+//average case time complexity O(N)
+//best case time complexity O(1)
+// Space Complexity: O(1)
 
-struct node *deleteFromEnd(struct node *head)
+struct node *deleteFromEnd(struct node *head,struct node **end)
 {
     if(head==NULL)
         return;
     else if(head->next==NULL)
     {
         head=NULL;
+        *end=NULL;
         return head;
     }
 
-    struct node *temp=head;
-    while(temp->next->next!=NULL)
+    else
     {
-        temp=temp->next;
+        struct node *temp1=head;
+        while(temp1->next->next!=NULL)
+        {
+            temp1=temp1->next;
+        }
+        *end=temp1;
+        temp1->next=NULL;
+        return head;
+        
     }
-    temp->next=NULL;
-    return head;
 }
 
 //function to traverse through the liked list and print all the nodes
@@ -166,7 +184,7 @@ struct node *deleteFromEnd(struct node *head)
 //best case time complexity O(N)
 // Inside the for loop, there is just a condition check ,
 // Overall, time taken is O(n) thus.
-// Space Complexity: O(1), Since we have just used an additional variable max inside the function.
+// Space Complexity: O(1)
 
 void traversal(struct node *head)
 {
@@ -185,10 +203,11 @@ void traversal(struct node *head)
 //search will return result on 1 based indexing
 //iterative approach
 //worst case time complexity O(N)
+//average case time complexity O(N)
 //best case time complexity O(1)
 // Inside the for loop, there is just a condition check ,
 // Overall, time taken is O(n) thus.
-// Space Complexity: O(1), Since we have just used an additional variable max inside the function.
+// Space Complexity: O(1)
 
 int search(struct node *head, int d)
 {
@@ -215,13 +234,15 @@ int search(struct node *head, int d)
 //function to reverse a linked list
 //iterative approach
 //worst case time complexity O(N)
+//average case time complexity O(N)
 //best case time complexity O(N)
 // Inside the for loop, there is just a condition check ,
 // Overall, time taken is O(n) thus.
-// Space Complexity: O(1), Since we have just used an additional variable max inside the function.
+// Space Complexity: O(1)
 
-struct node *reversal(struct node *head)
+struct node *reversal(struct node *head,struct node **end)
 {
+    *end=head;
     if(head==NULL)
         return head;
     else if(head->next==NULL)
@@ -252,12 +273,13 @@ struct node *reversal(struct node *head)
 //start and end are the indices from which and till which splicing is to be done
 //indexing zero based, so first index is 0
 //worst case time complexity O(N)
+//average case time complexity O(N)
 //best case time complexity O(1)
 // Inside the for loop, there is just a condition check ,
 // Overall, time taken is O(n) thus.
-// Space Complexity: O(1), Since we have just used an additional variable max inside the function.
+// Space Complexity: O(1)
 
-struct node *splice(struct node *head, int start, int end)
+struct node *splice(struct node *head,struct node **end, int start, int endd)
 {
     if(head==NULL)
     return head;
@@ -270,12 +292,13 @@ struct node *splice(struct node *head, int start, int end)
     }
     head=temp;
     
-    while(count<end && temp!=NULL)
+    while(count<endd && temp!=NULL)
     {
         temp=temp->next;
         count++;
     }
     temp->next=NULL;
+    *end=temp;
     return head;
     
 }
@@ -286,9 +309,11 @@ int main()
 {
     int option = 0;
     int d, n, position;
-    int start, end;
+    int start, endd;
 
     struct node *head = NULL;
+    struct node *end;
+    end=NULL;
 
 
 //different options to select from what to do
@@ -318,7 +343,7 @@ int main()
         {
             printf("Enter the value to be inserted :\n");
             scanf("%d", &d);
-            head=addAtBeg(head,d);
+            head=addAtBeg(head,&end,d);
             printf("Insertion Successful\n");
         }
 
@@ -330,7 +355,7 @@ int main()
         {
             printf("Enter the value to be inserted :\n");
             scanf("%d", &d);
-            head=addAtEnd(head,d);
+            head=addAtEnd(head,&end,d);
             printf("Insertion Successful\n");
         }
 
@@ -338,12 +363,13 @@ int main()
         //insertAtPosn function to be called
 
         if (option == 3)
-        {
+     
+         {
             printf("Enter the value to be inserted :\n");
             scanf("%d", &d);
             printf("Enter the position where you want to insert : \n");
             scanf("%d", &n);
-            head=insertAtPosn(head,n,d);
+            head=insertAtPosn(head,&end,n,d);
             printf("Insertion Successful\n");
         }
 
@@ -351,7 +377,7 @@ int main()
         //deleteFromBeg function to be called
 
         if (option == 4)
-        {   head=deleteFromBeg(head);
+        {   head=deleteFromBeg(head,&end);
             printf("Deletion Successful\n");
         }
 
@@ -359,7 +385,7 @@ int main()
         //deleteFromEnd function to be called
 
         if (option == 5)
-        {   head=deleteFromEnd(head);
+        {   head=deleteFromEnd(head,&end);
             printf("Deletion Successful\n");
         }
 
@@ -393,7 +419,7 @@ int main()
 
         if (option == 8)
         {
-            head=reversal(head);
+            head=reversal(head,&end);
             printf("Reversal done:\n");
         }
         
@@ -406,12 +432,11 @@ int main()
             printf("From which index do you want to splice?\n");
             scanf("%d", &start);
             printf("Till which index do you want to splice? \n");
-            scanf("%d", &end);
-            head=splice(head,start,end);
+            scanf("%d", &endd);
+            head=splice(head,&end,start,endd);
             printf("Splicing done:\n");
         }
 
     }
     return 0;
 }
-
