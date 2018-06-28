@@ -19,6 +19,7 @@ public class CoinProblem {
 		// Scanner declaration to take input
 		Scanner in = new Scanner(System.in);
 
+		System.out.println("Enter the number of distinct coin denominations:");
 		// This variable is for the size of coin array
 		int coin_size = in.nextInt();
 
@@ -26,11 +27,15 @@ public class CoinProblem {
 		// available
 		int[] coins = new int[coin_size];
 
+		System.out.println("Enter the "+coin_size+" denomination values:");
+		
 		// This loop is to take input in the coins array for different denominations
 		for (int i = 0; i < coin_size; i++) {
 			coins[i] = in.nextInt();
 		}
 
+		System.out.println("Enter the value for which change is to be made:");
+		
 		// This variable is to take input of a value whose change we want to make
 		int value = in.nextInt();
 
