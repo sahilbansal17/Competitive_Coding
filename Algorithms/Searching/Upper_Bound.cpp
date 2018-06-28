@@ -1,8 +1,8 @@
 //Name : Shivam Singhal
 //Email ID : shivamsinghal0610@gmail.com
 
-/*program to find minimum position of element greater than given value 
-in sorted fashion*/
+//program to find minimum position of element greater than given value 
+//in sorted fashion
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -45,11 +45,11 @@ int main(){
 	return 0;
 }
 
-/*
 
-Time Complexity -
-Worst Case : O(log n).  
+//Time Complexity -
+//Worst Case : O(log n).  
 
-Auxiliary Space Complexity : O(1). Use of just extra variables.
+//The time complexity turns out to be O(log n) because there are log n comaprisons made 
+//at most between the first and last element.
 
-*/
+//Auxiliary Space Complexity : O(1). 
