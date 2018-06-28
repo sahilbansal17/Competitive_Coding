@@ -48,7 +48,7 @@ int main(){
 /*
 
 Time Complexity -
-Worst Case : O(nlog n). 
+Worst Case : O(log n). 
 
 Auxiliary Space Complexity : O(1). 
 
