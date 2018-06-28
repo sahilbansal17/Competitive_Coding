@@ -5,7 +5,7 @@
 //Email-Id: anil.soccer.khatri@gmail.com
 
 //It calculate the power of base^power in O(log power) time complexity.
-//It is the function you need in your templete all the time.
+//It is the function you need in your template all the time.
 
 
 #include<iostream>
@@ -55,11 +55,16 @@ int main(){
   printf("Power: %lld\n", fastPower(2, 10000000000000));    //Outputs Power: 836339738
 
 //Matrix Initialization
-  vector<vector<long long> > matrix{ {1,2,3},
-                                {4, 5,6},
-                                {7,8,9}
-                              };
-  int power = 20;
+  vector<vector<long long> > matrix(3, vector<long long> (3));
+
+  for(int i=0;i<3;i++){
+    for(int j=0;j<3;j++){
+      cin >>matrix[i][j];
+    }
+  }
+  int power;
+
+  cin >> power;
 
   vector< vector<long long>> res = matrixPower(matrix, power);
 
@@ -74,7 +79,7 @@ int main(){
 }
 
 
-//Time Complexity - O(long power)  => O(log N) As we go "power /= 2" in each iteration.
+//Time Complexity - O(log power)  => O(log N) As we go "power /= 2" in each iteration.
 
 //Space Complexity - O(1) Since we only used an additional variable result in function.
 
