@@ -9,8 +9,8 @@ all the nodes in the last level appear as per left as possible.
 b. Heap: A Heap is a Complete Binary Tree which is implemented using an array(Linear Data Structure). 
 Max Heap: A heap is called max heap if all the nodes having a value greater than every children of the node. 
 This is used for Sorting in Ascending Order. 
-Min Heap: a heap is called min heap if all the nodes having smaller value than every children of the node '''
-*/
+Min Heap: a heap is called min heap if all the nodes having smaller value than every children of the node*/
+
 /*This function(swap()) is for swapping two values having Time Complexity O(1) and space Complexity O(1) as only one extra pointer required to swap values*/
 void swap(int *x,int *y)
 {
