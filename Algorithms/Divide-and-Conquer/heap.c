@@ -41,7 +41,7 @@ void heap(int *arr, int n, int i)
 /*This Function(heapSort()) is for Calling heap() functtion and causing sort, each time by removing last element after first and last elements are swapped.
 Space complexity of this is O(1) as each time only some constant number of Variables are needed.
 Time Coomplexity is O(nLogn) as it is calling heap() function(discussed complexity above the function) from an i loop having iteration n times(below i loop)
-first i loop has iterartions in order of n times so it is having complexity about O(nLogn)
+first i loop has iterartions lesser than n times so it is having complexity about less than O(nLogn)
 Therefore, Time Complexity is O(nLogn)
 */
 void heapSort(int *arr, int n)
@@ -49,7 +49,9 @@ void heapSort(int *arr, int n)
     int i;
 /*this loop is making max-heap because it is starting from last 2nd level(level just above leaf nodes)as parent and arranging it into
 heap and repeating the same upto the root node i.e.,heap function makes the root element having greatest value so,each parent having 
-higher values than their child nodes and this is condition of Max-Heap*/
+higher values than their child nodes and this is condition of Max-Heap
+Time Complexity for this is O((n/2)*Logn) as the loop runs n/2 times and each time heap() function is called. So,this has a complexity
+less than O(nlogn)*/
     for (i = n/2 - 1; i >= 0; i--)
 	    heap(arr, n, i);
     for (i=n-1; i>=0; i--)
