@@ -22,8 +22,9 @@
 using namespace std;
 
 
-void calLIS(vector<int>arr,int n)
+void calLIS(vector<int>arr)
 {
+	int n = arr.size();
 	int aux[n];
 	
 	// By default the sequence ending with first element can only be of length 1
@@ -68,7 +69,7 @@ int main()
 		cin >> x;
 		arr.push_back(x);
 	}
-	calLIS(arr,n);
+	calLIS(arr);
 	return 0;
 }
 
