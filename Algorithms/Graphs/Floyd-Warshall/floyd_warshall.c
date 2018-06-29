@@ -1,32 +1,31 @@
 #include<stdio.h>
 #include<stdlib.h>
-int n;
-int a[10][10];
-int p[10][10];
-int d[10][10];
+//Name- Jyoti Mishra(@jstjyoti)
+//E mail-jyotimishra29091997@gmail.com
+/*Floyed Warshall algorithm is a algorithm which can give all possible shortest part from a given source vertex to a given destination vertex,
+in a graph containing negative or positive weighted edges and not having any negative weight cycle(a cycle of graph resulting negative weight as whole)
+Constraints for Simplifying The problems(assumed):
+1)graph not having any negative weight cycle
+2)adjacency matrix is chosen for 'n' number of vertices(n<=25 I have assumed can be changed by just making size of 2D-array of adjacency matrix)
+*/
+int n;//graph is having n vertices
+int a[25][25];//the graph having <=25 vertices for sake of simplicity in understanding of implementation(n<=25) a[][] is adjacency matrix of the graph . vetices of graph are (0,1,2,..,n)
+int p[25][25];//p is parent matrix having immediate parent of each vertex 
+int d[10][10];//d is matrix having distance between nodes
+/*create() function is for reading number of vertices and adjacency matrix of the graph. The vertices not having any vertex are maked as an infinitve(999)here.
+Time complexity is O(n^2) and no extra variable is used so no space complexity.*/
 void create()
 {
-	int i;
-	FILE *fp;
-	fp = fopen("apsp.txt","r");
-	if(fp==NULL)
-	{
-		printf("File open failed");
-		exit(0);
-	}
-	fscanf(fp,"%d",&n);
-		
+	int i,j;
+	scanf("%d",&n);
 	for(i = 1;i<= n;i++)
-	
 	{
-		int j;
 		for(j=1;j<=n;j++)
-		fscanf(fp,"%d",&a[i][j]);
+		scanf("%d",&a[i][j]);
 	}
-	
-	fclose(fp);
 }
-
+/*This Function displays the graph in form of adjacency matrix
+Time Complexity is O(n^2) as adjacency matrix is used for implementation*/
 void showGraph(){
 	int i;
 	printf("\n The Graph is>>>>\n");
@@ -38,6 +37,10 @@ void showGraph(){
 		printf("\n");
 	}
 }
+/* the function floyedWarshall is actually manipulating and updating parent and distance array between all the vertices so that the min distance 
+and parent for each vertex for that minimum distance and corrosponding parent is updated for all the vertices .
+Time complexity of this is O(n^3) as there is all the distance and parents are updated for each vertex in 2nd k-i-j loop 
+*/
 void floyedWarshall()
 {
 	int i,j,k;
@@ -78,6 +81,8 @@ void floyedWarshall()
 		}
 	}
 }
+/* APSP gives the path between vertex i and j depending upon the value p[][] and gives distance depending upon d[][] as updated by floyed washall algorithm
+Time Complexity of this function is O(n) as there is a call until a parent exit i.e., there is a path and at most a path can have n vertices*/
 void APSP(int i,int j)
 {
 	if(i==j)
@@ -93,6 +98,10 @@ void APSP(int i,int j)
 	}
 	
 }
+/*from main function after taking input and running floyedWarshall algorithm here I have Calculated All possible pairs of shortest path and distance 
+by calling APSP() inside i,j loop for each pair of vertex(i and j) of the graph 
+Since here the simpliest array(adjacency matrix ) representation of graph is chosen,therefore time complexity of overall algorithm is O(n^3)
+The Time Complexity would have been differed depending upon number of vertices and edges if link representation of graph is used.*/
 int main()
 {
 	int i,j;
