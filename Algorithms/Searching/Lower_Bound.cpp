@@ -7,8 +7,8 @@
 #include <iostream>
 using namespace std;
 
-void lower_bound(long arr[], long n, long x){
-	long count = (n-1), step, low = 0;
+void lower_bound(long long int arr[], long long int n, long long int x){
+	long long int count = (n-1), step, low = 0;
 	while(count>0){
 		step = (count/2);
 		low+=step;
@@ -23,21 +23,22 @@ void lower_bound(long arr[], long n, long x){
 	printf("Lower_bound of %lld is at position: %lld\n",x,low);
 }
 
-void printArray(long arr[], long n){
-	for(long i=0; i<n ;i++)
+void printArray(long long int arr[], long long int n){
+	for(long long int i=0; i<n ;i++)
 		printf("%lld ",arr[i]);
 	printf("\n");
 }
 
 int main(){
-	long n;
+	long long int n;
 	printf("Please enter number of elements:\n");
 	scanf("%lld",&n);
-	long arr[n];
+	long long int arr[n];
 	printf("Please enter elements in sorted fashion:\n");
-	for(long i=0; i<n ;i++)
+	for(long long int i=0; i<n ;i++)
 		scanf("%lld",&arr[i]);
-	long x;
+	long long int x;
+	printf("Please enter element whose lower bound is to be found:\n");
 	scanf("%lld",&x);
 	printf("Entered elements:\n");
 	printArray(arr,n);
