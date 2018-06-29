@@ -1,5 +1,4 @@
-// This program finds the sum of numbers in given range of array and
-// also handles range updates
+// This program finds the sum of numbers in given range of array and also handles range updates
 
 #include <iostream>
 using namespace std;
@@ -124,33 +123,33 @@ int main()
 	int operations, idx, value, l, r;
 	char type;
 
-	cout<<"Enter size of array = ";
-	cin>>size_of_base;
-	cout<<"Enter numbers ";
+	cout << "Enter size of array = ";
+	cin >> size_of_base;
+	cout << "Enter numbers ";
 	for (int i = 1; i <= size_of_base; ++i)
 	{
-		cin>>baseArray[i];
+		cin >> baseArray[i];
 	}
 	// building the segment tree
 	build();
 
-	cout<<"Enter number of operations = ";
-	cin>>operations;
+	cout << "Enter number of operations = ";
+	cin >> operations;
 
 	while( operations-- )
 	{
-		cout<<"Enter operation: Q for query, U for update"<<endl;
-		cin>>type;
+		cout << "Enter operation: Q for query, U for update" << endl;
+		cin >> type;
 
 		if( type == 'Q' )
 		{
-			cout<<"Enter query range"<<endl;
+			cout << "Enter query range" << endl;
 			cin >> l >> r;
-			cout<<query(l, r)<<endl;
+			cout << query(l, r) << endl;
 		}
 		else if( type == 'U' )
 		{
-			cout<<"Enter updateRange and value (1 based indexing) = ";
+			cout << "Enter updateRange and value (1 based indexing) = ";
 			cin >> l >> r >> value;
 			updateRange(l, r, value);
 		}
@@ -165,7 +164,7 @@ int main()
 // For range update a naive approach can be updating each value in the given range one by one in 
 // the baseArray and then rebuilding the segment tree. Now updating each value would take O(n) time 
 // and building segment tree would also take O(n). So overall complexity of update would become O(n).
-// This is where lazy propagation comes to out rescue.
+// This is where lazy propagation comes to our rescue.
 
 // We keep a lazy array which stores the value which must be added to current range. Whenever we reach 
 // a node during query or update, we first update its value if the lazy value is non-zero and 
