@@ -4,7 +4,7 @@
 //program to find minimum position of element greater than given value 
 //in sorted fashion
 
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
 void upper_bound(long arr[], long n, long x){
