@@ -1,13 +1,30 @@
-// This program finds the sum of numbers in given range of array and also handles range updates
+// This program finds the LCM of numbers in given range of array and also handles range updates
+// of multiplying a range by a given number
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
 const int L=1e5+7;
 // baseArray is the input array
 // seg stores the values stored in nodes of segment trees
-// lazy stores the value which needs to be added to range represented by node in the segment tree
-int baseArray[L], seg[4*L], lazy[4*L], size_of_base;
+// lazy stores the value which needs to be multiplied to range represented by node in the segment tree
+// and is initialised with 1
+int size_of_base;
+std::vector<int> baseArray(L);
+std::vector<int> seg(4*L);
+std::vector<int> lazy(4*L, 1);
+
+int findLCM(int a, int b)
+{
+	int product = a * b;
+	int HCF = __gcd(a, b);
+
+	// Using the formula LCM * HCF = Product of numbers
+	int LCM = product / HCF;
+	return LCM;
+}
 
 // recursive function to build the segment tree
 // start and end represent the current range in the baseArray
@@ -17,6 +34,8 @@ void build(int start = 1, int end = size_of_base, int index = 1)
 	// Leaf Node
 	if( start == end )
 	{
+		// As leaf node stores single value and LCM of single number is
+		// the number itself
 		seg[index] = baseArray[start];
 		return;
 	}
@@ -26,31 +45,30 @@ void build(int start = 1, int end = size_of_base, int index = 1)
 	build(start, mid, 2*index);
 	build(mid+1, end, 2*index + 1);
 
-	// current node stores the sum of values in the subtree
-	seg[index] = seg[2*index] + seg[2*index + 1];
+	// current node stores the LCM of values in the subtree
+	seg[index] = findLCM(seg[2*index], seg[2*index + 1]);
 	return;
 }
 
 void lazyUpdate(int start, int end, int index)
 {
-	// if current node has a pending update then add value to current node
+	// if current node has a pending update then update value of current node
 	// and propagate the update value to children
-	if(lazy[index] != 0)
+	if(lazy[index] != 1)
 	{
-		// The current node stores the sum of range [start, end] in the baseArray. Now if 
-		// lazy[index] is added to each element in this range, the sum stored in the current node 
-		// would effectively increase by (number of elements in the range) * lazy[index]
-		// number of elements in the range = end - start + 1 
-		seg[index] += (end - start + 1) * lazy[index];
+		// The current node stores the LCM of range [start, end] in the baseArray. Now if 
+		// lazy[index] is multiplied to each element in this range, the highest power of 
+		// all prime factors of lazy[index] increases by 1 so new_LCM = original_LCM * lazy[index]
+		seg[index] *= lazy[index];
 
 		// propagating value to children if current node is not a leaf node
 		// if start == end then current node is a leaf node and thus has no children
 		if(start != end)
 		{
-			lazy[2*index] += lazy[index];
-			lazy[(2*index) + 1] += lazy[index];
+			lazy[2*index] *= lazy[index];
+			lazy[(2*index) + 1] *= lazy[index];
 		}
-		lazy[index] = 0;
+		lazy[index] = 1;
 	}
 	return;
 }
@@ -68,14 +86,14 @@ void updateRange(int l, int r, int value, int start = 1, int end = size_of_base,
 	// current range lies within [l, r]
 	if( l <= start && r >= end )
 	{
-		seg[index] += (end - start + 1) * value;
+		seg[index] *= value;
 
 		// if start != end then current node is not a leaf node and has children
 		// So propagate update value to children
 		if(start != end)
 		{
-			lazy[2*index] += value;
-			lazy[2*index + 1] += value;
+			lazy[2*index] *= value;
+			lazy[2*index + 1] *= value;
 		}
 		return;
 	}
@@ -86,8 +104,8 @@ void updateRange(int l, int r, int value, int start = 1, int end = size_of_base,
 	updateRange(l, r, value, start, mid, 2*index );
 	updateRange(l, r, value, mid+1, end, 2*index + 1);
 
-	// current node stores the sum of values in the subtree
-	seg[index] = seg[2*index] + seg[2*index + 1] ;
+	// current node stores the LCM of values in the subtree
+	seg[index] = findLCM(seg[2*index], seg[2*index + 1]) ;
 	return;
 }
 
@@ -97,10 +115,10 @@ int query(int l, int r, int start = 1, int end = size_of_base, int index = 1)
 	// check if update in this node is pending
 	lazyUpdate(start, end, index);
 
-	// current range is outside the query range so return 0
+	// current range is outside the query range so return 1
 	if( start > r || end < l || start > end)
 	{
-		return 0;
+		return 1;
 	}
 
 	// current range lies completely inside the query range so return value stored
@@ -112,11 +130,11 @@ int query(int l, int r, int start = 1, int end = size_of_base, int index = 1)
 
 	int mid = (start + end)/2, query_left, query_right;
 
-	// query both children to find sum of values in the subtree
+	// query both children to find LCM of values in the subtree
 	query_left = query(l, r, start, mid, 2*index );
 	query_right = query(l, r, mid+1, end, 2*index + 1);
 
-	return (query_left + query_right);
+	return findLCM(query_left, query_right);
 }
 int main()
 {
@@ -166,8 +184,8 @@ int main()
 // and building segment tree would also take O(n). So overall complexity of update would become O(n).
 // This is where lazy propagation comes to our rescue.
 
-// We keep a lazy array which stores the value which must be added to current range. Whenever we reach 
-// a node during query or update, we first update its value if the lazy value is non-zero and 
+// We keep a lazy array which stores the value which must be multiplied to current range. Whenever we reach 
+// a node during query or update, we first update its value if the lazy value is not 1 and 
 // propagate this value to its children as the whole subtree needs to be updated. 
 
 // Now during update operation if we come across a node which lies completely inside the update interval,
