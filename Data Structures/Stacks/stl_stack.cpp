@@ -29,12 +29,44 @@ void checkEmpty(stack <int> s1){
         cout << "Stack is not empty" << endl;
     }
 }
+
+void sortedInsert(stack<int> &s,int item){
+    //Checkig if stack is empty or if the top element has value greater than item
+    if(s.empty() || item < s.top()){
+        s.push(item);
+        return;
+    }
+    //storing the top of the stack
+    int temp = s.top();
+    //removing the top element from the stack
+    s.pop();
+    //Calling repeatedly until the condition is satisfied
+    sortedInsert(s,item);
+    //pushing the elements which were popped out back to the stack again
+    s.push(temp);
+}
+
+void sortStack(stack<int> &s){
+    //Checking if the stack is empty or not
+    //Also act as a base case for the recursive call
+    if(s.empty())
+        return;
+    //Store the top element in the temp
+    int temp = s.top();
+    //Removing the topmost element
+    s.pop();
+    //Recursive call to the sortStack() by passing remaining stack
+    sortStack(s);
+    //Calling sortedInsert() to insert elements in sorted order
+    sortedInsert(s,temp);
+}
+
 int main(){
     //creating a stack which holds integer values
     stack <int> s;
-    s.push(1);
     s.push(2);
     s.push(3);
+    s.push(1);
 
     /* Complexity of operation in stack STL
        As each operation takes constant time therefore the time complexity of all the operations
@@ -58,6 +90,14 @@ int main(){
     cout << "The size of the stack is " << s.size() << endl;
     s.pop();
     cout << "After popping the stack elements are" << endl;
+    displayStack(s);
+    s.push(8);
+    s.push(25);
+    s.push(15);
+    cout << "Before sorting stack elements are " << endl;
+    displayStack(s);
+    sortStack(s);
+    cout << "After sorting stack elements are " << endl;
     displayStack(s);
     return 0;
 }

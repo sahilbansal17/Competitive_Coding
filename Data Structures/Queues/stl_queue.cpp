@@ -3,6 +3,7 @@
 which includes predefined functions such as push(),pop(),front(),back() etc which are necessary
 in implementing a queue */
 #include<queue>
+#include<stack>
 using namespace std;
 
 void displayQueue(queue <int> q1){
@@ -29,6 +30,23 @@ void checkEmpty(queue <int> q1){
         cout << "Queue is not empty" << endl;
     }
 }
+
+//Reversing a queue by recursion
+void reverseQueue(queue <int> &q){
+    //Base Case
+    if(q.empty())
+        return;
+    else{
+        //Storing the front element of the queue
+        int temp = q.front();
+        //Removing the front element
+        q.pop();
+        //Calling the reverseQueue() on the remaining elements
+        reverseQueue(q);
+        q.push(temp);
+    }
+}
+
 int main(){
     //creating a stack which holds integer values
     queue <int> q;
@@ -60,6 +78,11 @@ int main(){
     cout << "The size of the queue is " << q.size() << endl;
     q.pop();
     cout << "After popping the queue elements are" << endl;
+    displayQueue(q);
+    cout << "The elements of queue before reversing " << endl;
+    displayQueue(q);
+    reverseQueue(q);
+    cout << "After reversing elements of queue are" << endl;
     displayQueue(q);
     return 0;
 }
