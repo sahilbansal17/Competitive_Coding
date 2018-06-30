@@ -23,8 +23,8 @@
     Reader will probably need a pen and paper to understand the
     equations for each of the conditions in the isSafe function.
 
-    The time complexity of this approach is O(n^3), since there's
-    a loop that runs n^2 times and recurs another n times.
+    The time complexity of this approach is O(n^2), since there's
+    a loop that runs n times and the function recurs another n times.
 
 */
 
