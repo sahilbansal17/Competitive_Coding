@@ -79,8 +79,9 @@ public class GraphController {
 
 // Space complexity analysis
 
-// This approach takes O(n^2) extra space where n is the number of vertices in
+// This approach takes O(n) extra space where n is the number of vertices in
 // the graph. This is so because we take two hash maps each of size n, one that
 // stores the minimum distances of each vertex from the source vertex and one
 // that stores if the vertex has or has not been included in the minimum
-// spanning tree of the graph.
+// spanning tree of the graph. This amounts to O(2n) extra space which is equal
+// to O(n).
