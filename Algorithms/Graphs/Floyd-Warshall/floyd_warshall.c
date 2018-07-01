@@ -17,7 +17,9 @@ Time complexity is O(n^2) and no extra variable is used so no space complexity.*
 void create()
 {
 	int i,j;
+	printf("Input the number of vertices");
 	scanf("%d",&n);
+	printf("Input the \( %d x %d \) adjacency matrix of the graph",n,n);
 	for(i = 1;i<= n;i++)
 	{
 		for(j=1;j<=n;j++)
