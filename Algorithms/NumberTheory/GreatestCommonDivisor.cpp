@@ -67,10 +67,23 @@ int main() {
 	//Space Complexity: O(1)
 	
 //gcd() function:-
-	//Time Complexity: O(logn) this is the main advantage of Euclid's algorithm that it has great complexity
+	//Time Complexity: 
+
+	//O(logn) this is the main advantage of Euclid's algorithm that it has great complexity
 	//the reccurence relation for the euclids algorithm is T(n) = T(n%10) + k  ; k is the constant amount of work
-	//to find time compexity we find the T(n%10) = T(n%100)+k and so on till T(1) and finally add all those expressions
 	//and by calculation we will get n/10^x= 1 which gives x= log n whic is the time complexity .
-	//we get above reccurrence relation because we reduce the problem  to n%10 every time that is one less decimal place        
+	//Consider any two steps of the algorithm.
+	//At some point, you have the numbers (a,b)(a,b) with a>b. After the first step these turn to (b,c) with c=a mod b, 
+	//and after the second step the two numbers will be (c,d) with d=b mod c.
+	//Now think backwards. As d=b mod c, we know that b=kc+d for some k>0. The smallest possibility is k=1, therefore b≥c+d.
+	//From that result and from a>b we get a>c+d. If we add the last two inequalities we just derived, we get that (a+b)>2(c+d).
+	//In words, after each two consecutive steps the sum of the two numbers decreases to less than half of its original size.
+	//Now look at the very first step of the algorithm. 
+	//At the beginning, we have some (a,b) with a>b. After the very first step we have (b,c) with c=a mod b, and clearly b>c. 
+	//Hence, after the very first step both numbers are at most equal to the smaller of the two input numbers.
+	//Putting those two results together, we may conclude that the number of iterations (recursive calls in other implementations) 
+	//is at most logarithmic in the smaller input number. In other words, the number of iterations is at most linear in 
+	//the number of digits in the smaller input number. 
+
 	//Space Complexity: O(1)
 
