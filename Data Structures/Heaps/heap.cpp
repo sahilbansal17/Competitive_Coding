@@ -4,16 +4,6 @@ using namespace std;
 
 class MinHeap{
     void heapify(int index){
-        /*
-        Heapifty function is basically used remove the heap violation conditon which ocuurs after
-        removing the minimum element from the heap (here it is MinHeap) so to remove this we call it.
-        In case of MaxHeap similar happens on removal of maximum element at root .The time complexity
-        of this can be understood as
-        Let us consider the worst case complexity.In these the element which is a root is maximum among
-        all elements so it goes down the branch till the leaf.Therefore time complexity is O(log n) which
-        as same as traversing through a branch in a tree
-        */
-
         //finding the index of left and right child respectively for comparison
         int left_child = 2 * index;
         int right_child = left_child +1;
@@ -39,13 +29,7 @@ class MinHeap{
                 //Setting v[0] to any garbage considering only positive elements inside heap
                 v.push_back(-1);
             }
-             /*
-             Time Complexity in building a heap
-             After inserting each data into the vector if the heap property violates then data
-             which is inserted at the end therefore moves upwards and the worst case comes when
-             the data occupies top of the heap or root node or first element of the vector
-             There it is same as traversing a branch therefore time complexity is O(log n)
-             */
+
             //building the heap
             void buildHeap(int data){
                 v.push_back(data);
@@ -59,7 +43,6 @@ class MinHeap{
                 }
             }
             //returning the mjnimum element from the heap
-            //Time complexity of returning minimum element is O(1)
             int getMin(){
                 return v[1];
             }
@@ -71,7 +54,6 @@ class MinHeap{
                 heapify(1);
             }
             //Checking whether the heap is empty or not
-            //Time Complexity for checking whether the heap is empty or not is O(1)
             bool isEmpty(){
                 return (v.size() == 1) ? 1:0;
             }
@@ -110,3 +92,25 @@ int main(){
 
     return 0;
 }
+/*
+        Time Complexity of various operations in the heap
+
+        Heapifty function is basically used remove the heap violation conditon which ocuurs after
+        removing the minimum element from the heap (here it is MinHeap) so to remove this we call it.
+        In case of MaxHeap similar happens on removal of maximum element at root .The time complexity
+        of this can be understood as
+        Let us consider the worst case complexity.In these the element which is a root is maximum among
+        all elements so it goes down the branch till the leaf.Therefore time complexity is O(log n) which
+        as same as traversing through a branch in a tree
+
+        Time Complexity in building a heap
+        After inserting each data into the vector if the heap property violates then data
+        which is inserted at the end therefore moves upwards and the worst case comes when
+        the data occupies top of the heap or root node or first element of the vector
+        There it is same as traversing a branch therefore time complexity is O(log n)
+
+        Time complexity of returning minimum element is O(1)
+
+        Time Complexity for checking whether the heap is empty or not is O(1)
+*/
+
