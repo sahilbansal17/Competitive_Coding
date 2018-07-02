@@ -36,7 +36,7 @@ Time Complexity ofthis function is O(n) as there is only a for loop for one by o
 void Fractinalknapsack(float m)
 {
 	int i;
-	float u,x[n];
+	float u,x[n],profit=0.0;
 	for(i=1;i<=n;i++)
 		x[i]=0.0;
 	u=m;
@@ -51,7 +51,11 @@ void Fractinalknapsack(float m)
 		x[i]=u/ptr[i].w;
 	printf("Fraction\tId\tprofit\tWeight\n");
 	for(i=0;i<n;i++)
+	{
 		printf("%0.2f\t\t %c\t %0.2f \t %0.2f\n",x[i],ptr[i].id,(ptr[i].p)*x[i],(ptr[i].w)*x[i]);
+		profit+=ptr[i].p*x[i];
+	}
+	printf("\nTotal profit is %f",profit);
 
 }
 /*n objects are inputed(weight,profit of each object).Each object is given an id starting from A .
@@ -92,7 +96,7 @@ int main()
 	}//objects are sorted as per profit per unit weight
 	printf("Enter the total weight of the Knapsack:\n");
 	scanf("%f",&m);
-	Fractinalknapsack(m,n);
+	Fractinalknapsack(m);
 	
 }
 
