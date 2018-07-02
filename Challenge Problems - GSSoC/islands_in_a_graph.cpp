@@ -38,7 +38,7 @@ bool dangerous(int i, int j)
 	{
 		return 0;
 	}
-	// if grid is red coloured then it shouldn't be counted in size of pool
+	// if location is red coloured then it shouldn't be counted in size of pool
 	// so no need to visit it
 	if( grid[i][j] != '.' )
 	{
