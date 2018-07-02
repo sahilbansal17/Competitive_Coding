@@ -1,8 +1,11 @@
-#include<iostream>
+#include<cstdlib> //srand and rand functions.
+#include<iostream> // cout and cin operators.
+#include<time.h> // time
 
 using namespace std;
 
 int Partition(int [], int, int);
+int RandomizedPartition(int [],int, int);
 int QuickSort(int [], int, int);
 
 /*
@@ -62,12 +65,22 @@ int Partition(int A[], int start, int end){
 	return j;
 }
 
+int RandomizedPartition(int A[], int start, int end){
+	int Random;
+	srand(time(NULL));
+	// generates a random number between start and end.
+	Random = start + (rand() % (end - start) ); 
+	// swapping the random indexed element with the last element.
+	swap(A[Random], A[start]);
+	return Partition(A, start, end);
+}
+
 int QuickSort(int A[], int start, int end){
 	// if start = end, there is no point in sorting since a single element is always sorted.
 	if(start < end){
 		// Getting the Perfect position for the starting element of elements
 		// between current "start" and end "variable"
-		int PivotProperPosition = Partition(A, start, end);
+		int PivotProperPosition = RandomizedPartition(A, start, end);
 		// Now the pivot is in its perfect position.
 
 		// Quicksorting elements to the left of pivot element.
@@ -76,8 +89,8 @@ int QuickSort(int A[], int start, int end){
 		QuickSort(A, PivotProperPosition + 1, end);
 	}
 }
-// TIME COMPLEXITY -
 
+// TIME COMPLEXITY -
 /*
 BEST CASE:
 Best case will be when we will be having the partition always at middle of the array since it will
@@ -105,4 +118,10 @@ At the nth turn we will make 1 comparison.
 So Total will be addition of these i.e, (n)(n-1)/2;
 Thus the Order of time complexity will be (n^2)!
 Time Complexity: O(n^2)
+*/
+
+/*
+AVERAGE CASE:
+Quick-Sort takes O(nlog(n)) time in expectation.
+This is found after considering all the n! permutations of all the n elements in the array.
 */
