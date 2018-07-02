@@ -95,22 +95,22 @@ int main(){
 /*
         Time Complexity of various operations in the heap
 
-        Heapifty function is basically used remove the heap violation conditon which ocuurs after
-        removing the minimum element from the heap (here it is MinHeap) so to remove this we call it.
-        In case of MaxHeap similar happens on removal of maximum element at root .The time complexity
-        of this can be understood as
         Let us consider the worst case complexity.In these the element which is a root is maximum among
         all elements so it goes down the branch till the leaf.Therefore time complexity is O(log n) which
         as same as traversing through a branch in a tree
 
         Time Complexity in building a heap
-        After inserting each data into the vector if the heap property violates then data
-        which is inserted at the end therefore moves upwards and the worst case comes when
-        the data occupies top of the heap or root node or first element of the vector
-        There it is same as traversing a branch therefore time complexity is O(log n)
+        The worst case comes when the data occupies top of the heap or root node or first element  of the vector
+        Then complexity is same as traversing a branch therefore time complexity is O(log n)
 
         Time complexity of returning minimum element is O(1)
 
         Time Complexity for checking whether the heap is empty or not is O(1)
+
+        
+        Space complexity for building the heap is described as
+        total space for n elements to be inserted + plus some temporary variables required
+        in building up the heap
+        Therefore overall space complexity depends upon n that is O(n)
 */
 
