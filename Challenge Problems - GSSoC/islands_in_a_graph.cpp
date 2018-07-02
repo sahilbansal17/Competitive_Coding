@@ -77,9 +77,9 @@ int main()
 			cin >> grid[i][j];
 		}
 	}
-	// As the entire grid is surrounded in blue, locations connected to points coloured blue on
-	// the boundary of grid can't be part of a pool so first mark them as atleast one of the sides 
-	// of this connected component will always be blue
+	// As the entire grid is surrounded in blue, locations connected to points coloured blue 
+	// on the boundary of grid can't be part of a pool as atleast one of the sides 
+	// of this connected component will always be blue, so first mark them
 	for (int j = 0; j < m; ++j)
 	{
 		if( visited[0][j] == 0 && grid[0][j] == '.' )
