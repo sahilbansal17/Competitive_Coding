@@ -25,9 +25,9 @@ Number of pools: 2; their size = 2, 1
 using namespace std;
 
 // stores the input grid
-char grid[105][105];
+vector< vector<char> > grid;
 // flag to check if a location is visited
-bool visited[105][105];
+vector< vector<bool> > visited;
 int n, m;
 
 // function to check if the location can be visited
@@ -69,12 +69,18 @@ int dfs(int i, int j)
 }
 int main()
 {
+	char ch;
 	cin >> n >> m;
 	for (int i = 0; i < n; ++i)
 	{
+		grid.push_back( vector<char>() );
+		visited.push_back( vector<bool>() );
 		for (int j = 0; j < m; ++j)
 		{
-			cin >> grid[i][j];
+			cin >> ch;
+			grid[i].push_back(ch);
+			// initialising the visited vector
+			visited[i].push_back(0);
 		}
 	}
 	// As the entire grid is surrounded in blue, locations connected to points coloured blue 
@@ -111,7 +117,7 @@ int main()
 	// Now since all nodes which are blue but can't be a pool have already been marked 
 	// remaining blue nodes will be part of some pool
 	int counter;
-	std::vector<int> ans;
+	vector<int> ans;
 	for (int i = 1; i < n-1 ; ++i)
 	{
 		for (int j = 1; j < m-1; ++j)
