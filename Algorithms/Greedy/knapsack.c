@@ -9,8 +9,8 @@ when they do,they are usually the simplest and most efficient algorithms availab
 
 the problems in fractional knapsack is to
 
-n items
-fraction of item i is taken to maximize profit unless the bag is full. Globally optimal choice is to take item with largest profit as p_i*(weight of object/weight remaining) and Greedy choice property for maximizing profit holds.
+--n items
+--fraction of item i is taken to maximize profit unless the bag is full. Globally optimal choice is to take item with largest profit as p_i*(weight of object/weight remaining) and Greedy choice property for maximizing profit holds.
 Dynamic Programming can solve Subproblems as well as overlapping Subproblems and finds a best solution by solving subproblems.
 
 Fractional Knapsack can be solved using both Greedy algorithm and Dynamic Programming but 0-1 Knapsack can not be solved using greedy Algorithm because of following two key ingredient leading to DP solution,
