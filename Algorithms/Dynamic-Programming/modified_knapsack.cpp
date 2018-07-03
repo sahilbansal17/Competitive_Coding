@@ -137,6 +137,14 @@ int main()
 	return 0;
 }
 
+//We have created our DP table in such a way that for total number of items = n or knapsack capacity = w,
+//the table contains the optimum value required. This is because we have already added conditions if each of the 
+//items are to be added or not under given constraints of limited number of items and knapsack weight. If the number 
+//of items taken for addition exceeds the total limit, then we either consider adding only that particular item, or 
+//for lesser number of items with same knapsack weight or for lesser number of items with lesser knapsack weight. For 
+// row = n or column = W, we have all possible values, and we only need to find the maximum of all these optimum values
+//under different constraints.
+
 // Time Complexity : O(nW)
 
 //Our modified algorithm is nothing but a dp-based approach which stores tha maximum number of items possible
