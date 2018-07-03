@@ -94,8 +94,21 @@ void knapSack(int W, int wt[], int val[], int n, int mit)
 			}
 		}
 	}
-	cout<< "Maximum value possible : " << K[n][W].maxval << endl;
-	cout<< "Number of items chosen : " << K[n][W].maxitems;
+	int maxvalue = K[n][1].maxval, maxitem = K[n][1].maxitems; 
+	for(i=2;i<=W;i++){
+		if(K[n][i].maxval > maxvalue){
+			maxvalue = K[n][i].maxval;
+			maxitem = K[n][i].maxitems;
+		}
+	}
+	for(i=1; i<=n; i++){
+		if(K[i][W].maxval > maxvalue){
+			maxvalue = K[i][W].maxval;
+			maxitem = K[n][i].maxitems;
+		}
+	}
+	cout<< "Maximum value possible : " << maxvalue << endl;
+	cout<< "Number of items chosen : " << maxitem;
 }
  
 int main()
