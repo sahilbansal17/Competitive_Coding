@@ -75,6 +75,14 @@ int RandomizedPartition(int A[], int start, int end){
 	return Partition(A, start, end);
 }
 
+/*
+We can choose pivot as the median of array which can be found in linear time i.e, 
+O(n) and then partition the array which will indeed chnage the worst case time complexity
+from O(n^2) to O(n*log(n)). 
+But, This median method is never used in practice because, the hidden constants in this approach are
+higher than normal Quicksort's complexity.
+*/
+
 int QuickSort(int A[], int start, int end){
 	// if start = end, there is no point in sorting since a single element is always sorted.
 	if(start < end){
