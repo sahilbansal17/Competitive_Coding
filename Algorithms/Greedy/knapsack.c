@@ -58,11 +58,23 @@ void Fractinalknapsack(float m)
 	printf("\nTotal profit is %f",profit);
 
 }
+/*This comparison function is used for qsort() C STL function's implementation .
+Time Complexity is O(1) as constant time 
+space ComplexityO(1) as constant number of variabes (only 2 here)*/
+PW comparison_func(const void * e1,const void *e2)
+{
+	PW fr=*((PW *)e1);
+	PW sc=*((PW *)e2);
+	if((fr.f)>(sc.f)) return 1;
+	if((fr.f)<(sc.f)) return -1;
+	return 0;
+}
+
 /*n objects are inputed(weight,profit of each object).Each object is given an id starting from A .
 The objects are sorted according to profit per unit weight (any sorting algorithm can be used).Here I have used C STL Sorting Function qsort() for Simplicity .
 Time Complexity of total program entirely depends upon the sorting algorithm as the complexity of greedy approach of Fractionalknapsack function is O(n).
 Here,total complexity is O(nlogn) as the complexity is 
-O(n^2)+O(n).*/
+O(nlogn)+O(n).*/
 int main()
 {
 	PW tmp;
@@ -88,5 +100,3 @@ int main()
 	Fractinalknapsack(m);
 	
 }
-
-
