@@ -94,7 +94,7 @@ void knapSack(int W, int wt[], int val[], int n, int mit)
 			}
 		}
 	}
-	cout<< "Maximum weight possible : " << K[n][W].maxval << endl;
+	cout<< "Maximum value possible : " << K[n][W].maxval << endl;
 	cout<< "Number of items chosen : " << K[n][W].maxitems;
 }
  
