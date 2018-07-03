@@ -30,8 +30,8 @@ class MinHeap{
                 v.push_back(-1);
             }
 
-            //building the heap
-            void buildHeap(int data){
+            //insertingt the elements into the heap
+            void insertToHeap(int data){
                 v.push_back(data);
                 int index = v.size()-1;
                 int parent = index/2;
@@ -42,7 +42,14 @@ class MinHeap{
                    parent = parent/2;
                 }
             }
-            //returning the mjnimum element from the heap
+            //Buidling the heap
+            void buildHeap(int n){
+                int heap_size = n;
+                for(int i = heap_size/2;i > 1;i--){
+                    heapify(i);
+                }
+            }
+            //returning the minimum element from the heap
             int getMin(){
                 return v[1];
             }
@@ -71,8 +78,9 @@ int main(){
     //inseting the elements and thus building the heap
     for(int i = 0;i < n ;i++){
         cin >> num;
-        h.buildHeap(num);
+        h.insertToHeap(num);
     }
+    h.buildHeap(n);
     //Printing the resultant heap
     cout << "The elements of heap are" << endl;
     for(int i = 1;i < h.v.size() ;i++){
@@ -95,19 +103,22 @@ int main(){
 /*
         Time Complexity of various operations in the heap
 
+        For removing minimum element or root node
         Let us consider the worst case complexity.In these the element which is a root is maximum among
         all elements so it goes down the branch till the leaf.Therefore time complexity is O(log n) which
         as same as traversing through a branch in a tree
 
-        Time Complexity in building a heap
+        Time Complexity in inserting elements into a heap
         The worst case comes when the data occupies top of the heap or root node or first element  of the vector
-        Then complexity is same as traversing a branch therefore time complexity is O(log n)
+        Then complexity is same as traversing a branch therefore time complexity is O(nlog n)
+
+        Time complexity of building the heap is O(n)
 
         Time complexity of returning minimum element is O(1)
 
         Time Complexity for checking whether the heap is empty or not is O(1)
 
-        
+
         Space complexity for building the heap is described as
         total space for n elements to be inserted + plus some temporary variables required
         in building up the heap
