@@ -102,6 +102,7 @@ int main(){
     cout << endl;
 
     //calling the buildHeap method to build the heap
+    //The time complexity of merging the two heaps into one is O(n)
     h.buildHeap(h.v3.size());
     cout << "After merging the elements of resulting heap are" << endl;
     for(int i = 1; i < h.v3.size();i++){
