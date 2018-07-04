@@ -24,6 +24,9 @@ int main(){
 	long long int x;
 	cin >> x;
 	cout << "Position from which element is to be deleted : " << x << endl;
+	//entered position in x is assumed to be of 1-based indexing format
+	//so we iterate from (x-1) to last element in array and shift each
+	//element by one to the left
 	for(long long int i = (x-1); i < (n-1); i++)
 		arr[i] = arr[i+1];
 	cout << "Modified array : ";
@@ -35,5 +38,7 @@ int main(){
 
 //Time Complexity -
 //Worst Case : O(n). 
+//In the worst case, the element at the first position may be asked to be removed.
+//This will cause our loop to run for n elements
 
 //Auxiliary Space Complexity : O(1). 

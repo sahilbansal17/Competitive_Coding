@@ -6,10 +6,12 @@
 #include <iostream>
 using namespace std;
 
-void linear_Search(long long int arr[], long long int n, long long int x){
+void linearSearch(long long int arr[], long long int n, long long int x){
 	int flag = 0;
 	for(long long int i=0; i<n; i++){
+		//looking for element sequentially
 		if(arr[i] == x){
+			//maintaining flag variable for element to be searched
 			flag = 1;
 			cout << "Element found at position : " << (i+1) << endl;
 		}
@@ -36,7 +38,7 @@ int main(){
 	long long int x;
 	cin >> x;
 	cout << "Element to be searched : " << x << endl;
-	linear_Search(arr,n,x);
+	linearSearch(arr,n,x);
 	return 0;
 }
 
@@ -44,5 +46,7 @@ int main(){
 
 //Time Complexity -
 //Worst Case : O(n). 
+//The algorithm uses a n runtime loop to iterate over all elements and print whether
+//element to be searched exists or not. 
 
 //Auxiliary Space Complexity : O(1). 
