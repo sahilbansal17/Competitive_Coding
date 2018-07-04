@@ -177,15 +177,15 @@ int main()
 
 // 2) Sparse matrix DP approach :
 // 	Preprocessing - O(nlogn)
-// 					The 2-D DP array stores the 2^i th parent of each node.Now the value of i in 
-// 					the worst case can be logN.So maximum number of ancestors stored for any node 
-// 					can be logN.Filling up the DP array requires one DFS for assigning immediate parent 
-// 					followed by filling up of DP array of size NlogN. 
+// 			The 2-D DP array stores the 2^i th parent of each node.Now the value of i in 
+// 			the worst case can be logN.So maximum number of ancestors stored for any node 
+// 			can be logN.Filling up the DP array requires one DFS for assigning immediate parent 
+// 			followed by filling up of DP array of size NlogN. 
 // 	Query -	O(logn)
-// 			The distance between node and LCA can be maximum 'n'.As the 2^i th parent is already computed
-// 			reaching the LCA would require at most logn jumps.
+// 		The distance between node and LCA can be maximum 'n'.As the 2^i th parent is already computed
+// 		reaching the LCA would require at most logn jumps.
 // 	Space Complexity - O(nlogn)
-// 					   2D DP array is of size nlogn as any node can have maximum logn parents.
+// 			   2D DP array is of size nlogn as any node can have maximum logn parents.
 
 // Now if we compare the RMQ approach with these 2 approaches, we see that the naive approach and RMQ approach
 // have the same space complexity which is less than Sparse DP approach.
