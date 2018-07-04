@@ -154,7 +154,7 @@ int main()
 // Preprocessing -> 
 // Euler Tour : DFS is done for creating the baseArray and assigning the depth to each node.
 // 		Complexity of DFS = O(V+E)
-// 		For a tree havind n nodes E = n-1
+// 		For a tree having n nodes E = n-1
 // 		So complexity of this step = O(n)
 // Building the segment tree : Each time a node is visited during the euler tour it is pushed into the baseArray.
 // 		Corresponding to each edge of the tree 2 nodes are pushed into the baseArray as each edge is 
