@@ -1,0 +1,20 @@
+package gssoc;
+
+public class Dublicateinarray {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		int[] arr = { 5, 8, 9, 5, 9, 7, 8 };
+		System.out.println(dublicateinarray1(arr));
+    
+	}
+
+	private static int dublicateinarray1(int[] arr) {
+		int a = arr[0];
+		for (int i = 1; i < arr.length; i++) {
+			a = a ^ arr[i];
+		}
+		return a;
+	}
+}
