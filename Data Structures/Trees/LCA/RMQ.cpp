@@ -16,6 +16,7 @@ const int L=1e5+7;
 int baseArray[L], seg[4*L], pos_in_base[L], level[L];
 int size_of_base, start_time = 1, number_of_nodes;
 std::vector<int> v[L];
+// DFS function for creating the baseArray
 void eulerTour(int vertex, int parent)
 {
 	// first occurrence of node in Euler Tour
@@ -47,7 +48,7 @@ void build(int start = 1, int end = size_of_base, int index = 1)
 	build(start, mid, 2*index);
 	build(mid+1, end, 2*index + 1);
 
-	// current node stores the node with minimum level in current range
+	// current segtree node stores the node with minimum level in current range
 	if(level[ seg[2*index] ] < level[ seg[2*index + 1] ])
 	{
 		seg[index] = seg[2*index];
@@ -67,7 +68,7 @@ int query(int l, int r, int start = 1, int end = size_of_base, int index = 1)
 	if( start > r || end < l )return number_of_nodes + 1;
 
 	// current range lies completely inside the query range so return value stored
-	// in the node
+	// in the segtree node
 	if(start >= l && end <= r)
 	{
 		return seg[index];
@@ -78,6 +79,7 @@ int query(int l, int r, int start = 1, int end = size_of_base, int index = 1)
 	// query both children to find node with minimum level in the subtree
 	query_left = query(l, r, start, mid, 2*index );
 	query_right = query(l, r, mid+1, end, 2*index + 1);
+	
 	if(level[ query_left ] < level[ query_right ])
 	{
 		return query_left;
@@ -135,10 +137,10 @@ int main()
 // between any two nodes of the tree and the LCA of the two nodes is the node with the minimum depth
 // in the path.
 // Consider this tree ->               1
-// 								 /	   \
-// 							    2		3
-// 							  /	 \
-// 							 4	  5
+// 		     		   / 	   \
+// 			    	  2	    3
+// 			       /    \
+// 			      4	     5
 // 		baseArray : 1 -> 2 -> 4 -> 2 -> 5 -> 2 -> 1 -> 3 -> 1
 // If we pick any two nodes of the tree we'll find a path between the nodes in the baseArray.
 // eg - 5 and 3 : 5 -> 2 -> 1 -> 3
@@ -151,18 +153,18 @@ int main()
 // Time Complexity:
 // Preprocessing -> 
 // Euler Tour : DFS is done for creating the baseArray and assigning the depth to each node.
-// 			 Complexity of DFS = O(V+E)
-// 			 For a tree havind n nodes E = n-1
-// 			 So complexity of this step = O(n)
+// 		Complexity of DFS = O(V+E)
+// 		For a tree havind n nodes E = n-1
+// 		So complexity of this step = O(n)
 // Building the segment tree : Each time a node is visited during the euler tour it is pushed into the baseArray.
-// 			 Corresponding to each edge of the tree 2 nodes are pushed into the baseArray as each edge is 
-// 			 traversed 2 times, once while going into the subtree and once while coming out and durign each
-// 			 traversal one node is pushed into the baseArray.The root is pushed into the baseArray at the start
-// 			 of the tour. So the total size of baseArray = 2*(n-1) + 1 = 2n-1
-// 			 We know for O(n) nodes the complexity of building a segment tree is O(n).
-// 			 Complexity of this step = O(n)
+// 		Corresponding to each edge of the tree 2 nodes are pushed into the baseArray as each edge is 
+// 		traversed 2 times, once while going into the subtree and once while coming out and durign each
+// 		traversal one node is pushed into the baseArray.The root is pushed into the baseArray at the start
+// 		of the tour. So the total size of baseArray = 2*(n-1) + 1 = 2n-1
+// 		We know for O(n) nodes the complexity of building a segment tree is O(n).
+// 		Complexity of this step = O(n)
 // Query -> Each query is simply range minimum query in the segment tree of size O(n).So time complexity per query
-// 		is O(n).
+// 	    is O(log n).
 
 // Space Complexity : O(n) space is required for segment tree as well as the input tree.
-// 				   So overall space complexity is O(n).
+// 		      So overall space complexity is O(n).
