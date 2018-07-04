@@ -168,3 +168,31 @@ int main()
 
 // Space Complexity : O(n) space is required for segment tree as well as the input tree.
 // 		      So overall space complexity is O(n).
+
+// Comparison with other methods of finding LCA :
+// 1) Naive approach :
+//  	No Preprocessing required
+//  	Query - O(n) as the tree needs to be traversed
+// 	Space Complexity - O(n)
+
+// 2) Sparse matrix DP approach :
+// 	Preprocessing - O(nlogn)
+// 					The 2-D DP array stores the 2^i th parent of each node.Now the value of i in 
+// 					the worst case can be logN.So maximum number of ancestors stored for any node 
+// 					can be logN.Filling up the DP array requires one DFS for assigning immediate parent 
+// 					followed by filling up of DP array of size NlogN. 
+// 	Query -	O(logn)
+// 			The distance between node and LCA can be maximum 'n'.As the 2^i th parent is already computed
+// 			reaching the LCA would require at most logn jumps.
+// 	Space Complexity - O(nlogn)
+// 					   2D DP array is of size nlogn as any node can have maximum logn parents.
+
+// Now if we compare the RMQ approach with these 2 approaches, we see that the naive approach and RMQ approach
+// have the same space complexity which is less than Sparse DP approach.
+
+// If there is a single query naive approach can be used as it requires no preprocessing and answers query in 
+// O(n), contrary to other approaches which require O(nlogn) time for preprocessing and O(logn) for query.
+
+// If there are multiple queries then sparse DP approach or RMQ must be used as they require O(logn) time answering 
+// per query. The time and space complexity of sparse DP approach is greater than the RMQ approach. So RMQ can be
+// preffered.
