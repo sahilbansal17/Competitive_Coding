@@ -2,26 +2,51 @@
 
 using namespace std;
 
-typedef vector <int> vi;
-typedef pair <int,int> pii;
-typedef long long ll;
-typedef unsigned long long ull;
-#define fl(i,a,b) for(int i(a);i<(b);i++)
-#define rep(i,n) fl(i,0,n)
-#define rfl(i,a,b) for(int i(a);i>=(b);i--)
-#define srt(v) sort((v).begin(),(v).end())
-#define pb push_back
-#define mp make_pair
-#define MOD 1000000007
-#define slen(s) s.length()
-#define F first
-#define S second
+/* Template file for Online Algorithmic Competitions */
+/* Typedefs */
+    /* Basic types */
+    typedef long long           ll;
+    typedef unsigned long long ull;
+    /* STL containers */
+    typedef vector <int>    vi;
+    typedef vector <ll>     vll;
+    typedef pair <int, int> pii;
+    typedef pair <ll, ll>   pll;
+    typedef vector < pii >  vpii;
+    typedef vector < pll >  vpll;
+    typedef vector <string> vs;
+    typedef vector < vi >   vvi;
+/* Macros */
+    /* Loops */
+    #define fl(i, a, b)     for(int i(a); i<(b); i++)
+    #define rep(i, n)       fl(i, 0, n)
+    #define rep1(i, n)      fl(i, 1, n)
+    #define rfl(i, a, b)    for(int i(a);i>=(b);i--)
+    /* Algorithmic functions */
+    #define srt(v)          sort((v).begin(),(v).end())
+    /* STL container methods */
+    #define pb              push_back
+    #define mp              make_pair
+    /* String methods */
+    #define slen(s)         s.length()
+    /* Shorthand notations */
+    #define F               first
+    #define S               second
+    #define MOD             1000000007
+    #define MAX             100010
+    #define re              return 
+    #define sz(x)           ((int) (x).size())
+    #define all(x)          ((x).begin(), (x).end())
+    #define sqr(x)          ((x) * (x))
+    #define fill(x, y)      memset(x, y, sizeof(x))
+/* Templates */
+template<class T> T abs(T x) { re x > 0 ? x : -x; }
 
 int main(){
 
 	#ifndef ONLINE_JUDGE
-	freopen("input.txt","r",stdin);
-	freopen("output.txt","w",stdout);
+	freopen("/Users/sahilbansal/Desktop/input.txt","r",stdin);
+	freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
 	#endif
 
 	int n, val;
@@ -34,46 +59,37 @@ int main(){
 		a.pb(val);
 	}
 
-	vi dp(n + 1, 1); // dp array, dp[i] representing the max length subsequence ending at index i
-	vi prev(n + 1, 0); // stores the previous at that location
+	map <int, int> dp;
+	
+	int ans = 0, lst = 0; // lst is the last element of the req subsequence
+
 	rep(i, n){
-		prev[i] = i;
-	}
-	rep(i, n){
-		int max = dp[i], max_ele_index = i;
-		fl(j, 0, i){
-			if(a[j] == a[i] - 1 && (dp[j] + 1) > max){
-				max = dp[j] + 1;
-				max_ele_index = j;
-			}
-		}
-		dp[i] = max;
-		prev[i] = max_ele_index;
+		int ele = a[i];
+		// largest length of subsequence ending at ele is = 1 + length of that ending at ele - 1
+		dp[ele] = dp[ele - 1] + 1;
+		if(ans < dp[ele]){
+			ans = dp[ele];
+			lst = ele;
+		}	
 	}
 
-	int max_length = 0, max_index = 0;
-	rep(j, n){
-		// cout << dp[j] << " " << prev[j] << "\n";
-		if(dp[j] > max_length){
-			max_length = dp[j];
-			max_index = j;
+	vi res; 
+
+	// find indices of the required subsequence
+	rfl(i, n - 1, 0){
+		if(a[i] == lst){
+			res.pb(i);
+			lst --;
 		}
 	}
 
-	// cout << dp[n-1];
-
-	int cur = max_index;
-	vi revList;
-	revList.pb(cur);
-
-	while(prev[cur] != cur){
-		cur = prev[cur];
-		revList.pb(cur);
+	reverse(res.begin(), res.end());
+	
+	cout << ans << "\n";
+	rep(i, ans){
+		cout << 1 + res[i] << " ";
 	}
 
-	cout << max_length << "\n"; 
-	rfl(i, revList.size()-1, 0){
-		cout << revList[i] + 1 << " ";
-	}
+
 	return 0;
 }
