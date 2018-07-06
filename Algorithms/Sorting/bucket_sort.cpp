@@ -52,7 +52,7 @@ int main()
 {
     long n;
     printf("Please enter the number of elements in Array."); 
-    scanf("%lld",&n);
+    scanf("%ld",&n);
     float arr[n];
     printf("\nPlease enter the elements of array to be sorted.\n");
     
@@ -78,6 +78,11 @@ int main()
 //Average Case and Best Case Time Complexity : O(n+k)
 //Worst Case Time Complexity : O(n^2) 
 //n is the number of elements to be sorted and k is the number of buckets
+//Since, the step in which we concatenate each bucket into single array takes O(k) time .
+//And inserting the array elements in bucket takes O(n) time.Sorting each bucket is taking 
+// O(k*n/k*log(n/k)) ~= O(n log(n/k)) . In best case we don't need to sort elements i.e.
+//all elements in different bucket , still the complexity will be O(n+k) as the other 
+//two steps are common .
 //Bucket Sort is a sorting method that subdivides the given data into various buckets .
 //Bucket sort’s best case occurs when the data being sorted can be distributed between 
 //the buckets perfectly. If the values are sparsely allocated over the possible value range, 
