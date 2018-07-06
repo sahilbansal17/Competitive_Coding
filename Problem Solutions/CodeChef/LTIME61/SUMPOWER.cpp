@@ -41,54 +41,61 @@ using namespace std;
     #define fill(x, y)      memset(x, y, sizeof(x))
 /* Templates */
 template<class T> T abs(T x) { re x > 0 ? x : -x; }
-
+	
 int main(){
-
-	#ifndef ONLINE_JUDGE
+    
+    #ifndef ONLINE_JUDGE
 	freopen("/Users/sahilbansal/Desktop/input.txt","r",stdin);
 	freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
 	#endif
 
-	int n, val;
-	vi a;
-
-	cin >> n;
-
-	rep(i, n){
-		cin >> val;
-		a.pb(val);
-	}
-
-	map <int, int> dp;
 	
-	int ans = 0, lst = 0; // lst is the last element of the req subsequence
+    int T, N, K;
 
-	rep(i, n){
-		int ele = a[i];
-		// largest length of subsequence ending at ele is = 1 + length of that ending at ele - 1
-		dp[ele] = dp[ele - 1] + 1;
-		if(ans < dp[ele]){
-			ans = dp[ele];
-			lst = ele;
-		}	
-	}
+    cin >> T;
 
-	vi res; 
+    string S;
 
-	// find indices of the required subsequence
-	rfl(i, n - 1, 0){
-		if(a[i] == lst){
-			res.pb(i);
-			lst --;
-		}
-	}
+    while (T --){
 
-	reverse(res.begin(), res.end());
-	
-	cout << ans << "\n";
-	rep(i, ans){
-		cout << 1 + res[i] << " ";
-	}
+        cin >> N >> K;
+
+        cin >> S;
+
+        vector <bool> check_equal_at_i(N, 0);
+
+        rep(i, N - 1){
+            if(S[i] == S[i + 1]){
+                check_equal_at_i[i] = 1 ; // i and i + 1 are same 
+            }
+        }
+
+        int occ = 1, ans = 0;
+
+        int index = 0;
+        
+        while(index < N - 1){
+            if(!check_equal_at_i[index]){
+                ans += occ;
+            }
+            index ++;
+            if(occ <= K && index < N - K){
+                occ ++;
+            }
+            if(index >= K){
+                occ --;
+            }
+            if(occ == 0){
+                occ = 1;
+            }
+            // cout << "occ: " << occ << "\n";
+        }
+
+        if(N == K){
+            ans = 0;
+        }
+        cout << ans << "\n";
+    }	
 
 
 	return 0;

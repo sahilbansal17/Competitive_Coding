@@ -41,54 +41,31 @@ using namespace std;
     #define fill(x, y)      memset(x, y, sizeof(x))
 /* Templates */
 template<class T> T abs(T x) { re x > 0 ? x : -x; }
-
+	
 int main(){
-
-	#ifndef ONLINE_JUDGE
+    
+    #ifndef ONLINE_JUDGE
 	freopen("/Users/sahilbansal/Desktop/input.txt","r",stdin);
 	freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
 	#endif
 
-	int n, val;
-	vi a;
-
-	cin >> n;
-
-	rep(i, n){
-		cin >> val;
-		a.pb(val);
-	}
-
-	map <int, int> dp;
 	
-	int ans = 0, lst = 0; // lst is the last element of the req subsequence
+    int T;
 
-	rep(i, n){
-		int ele = a[i];
-		// largest length of subsequence ending at ele is = 1 + length of that ending at ele - 1
-		dp[ele] = dp[ele - 1] + 1;
-		if(ans < dp[ele]){
-			ans = dp[ele];
-			lst = ele;
-		}	
-	}
+    cin >> T;
 
-	vi res; 
+    while (T --){
+        
+        int L, R, ans = 0;
+        cin >> L >> R;
 
-	// find indices of the required subsequence
-	rfl(i, n - 1, 0){
-		if(a[i] == lst){
-			res.pb(i);
-			lst --;
-		}
-	}
-
-	reverse(res.begin(), res.end());
-	
-	cout << ans << "\n";
-	rep(i, ans){
-		cout << 1 + res[i] << " ";
-	}
+        fl(i, L, R + 1){
+            if(i % 10 == 2 || i % 10 == 3 || i % 10 == 9){
+                ans ++;
+            }
+        }
+        cout << ans << "\n";
+    }
 
 
 	return 0;
