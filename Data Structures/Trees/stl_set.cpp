@@ -81,5 +81,8 @@ int main(){
     }
     return 0;
 }
-/*Time Complexity of all the functions is constant and Space Complexity depends on the number of elements
-therefore time complexity = O(1) for all operations and Space Complexity = O(n)*/
+/*Time Complexity of insertion function is O(log n) since set are implemented as Red Black Tree 
+If we are building a ordered set therefore red black is opted as best choice and the operations
+like to find the size ,to check whether the set is empty or not takes constant time therefore 
+time complexity = O(1) for all these operations and Space Complexity = O(n) where n is the number
+of elements*/
