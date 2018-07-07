@@ -154,11 +154,18 @@ int main()
     return 0;
 }
 
-// Time Complexity: Let Time complexity of above algorithm be T(n). Let us assume that we use a O(n * log (n)) sorting algorithm.
+// Time Complexity: Let Time complexity of above algorithm be T(n).
+// Let us assume that we use a O(nLogn) sorting algorithm.
 // The above algorithm divides all points in two sets and recursively calls for two sets.
-// After dividing, it finds the strip in O(n) time, sorts the strip in O(n * log (n)) time
-// and finally finds the closest points in strip in O(n) time. So T(n) can expressed as follows
-// T(n) = 2T(n/2) + O(n) + O(n * log (n)) + O(n)
-// T(n) = 2T(n/2) + O(n * log (n))
-// T(n) = T(n * log (n) * log (n))
+// After dividing, it finds the strip in O(n) time.
+// Also, it takes O(n) time to divide the Py array around the mid vertical line.
+// Finally finds the closest points in strip in O(n) time. So T(n) can expressed as follows
+
+// T(n) = 2T(n/2) + O(n) + O(n) + O(n)
+// T(n) = 2T(n/2) + O(n)
+// Using Master Theorem to find the final complexity
+// Here a = 2, b = 2, c = 1
+// log(2) to the base 2 equals to 1 which is equal to c
+// Hence second case of Master Theorem applies here 
+// T(n) = T(n * log (n))
 
