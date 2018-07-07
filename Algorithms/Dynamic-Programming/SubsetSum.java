@@ -44,6 +44,7 @@ public class SubsetSum {
 		}
 		// if no subset is found with the given sum
 		else {
+			ans=targetSum-ans;
 			System.out.println("There doesn't exist any subset of the given array with the target sum.");
 			System.out.println("Minimum difference of target sum from found sum = " + ans);
 		}
@@ -117,4 +118,4 @@ public class SubsetSum {
 // Space complexity analysis -
 
 // this method will take O(mn) extra space where m is the targetSum and n is the
-// number of elements in the given array to create the DP table subsetSums
+// number of elements in the given array to create the DP table subsetSumss
