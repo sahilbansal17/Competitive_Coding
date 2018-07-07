@@ -4,7 +4,7 @@ using namespace std;
 //Name:Jyoti Mishra(@jstjyoti)
 //E mail-jyotimishra29091997@gmail.com
  
-same length by adding leading 0s in the smaller string. Returns the
+//same length by adding leading 0s in the smaller string. Returns the
 // the new length
 int makeEqualLength(string &str1, string &str2)
 {
