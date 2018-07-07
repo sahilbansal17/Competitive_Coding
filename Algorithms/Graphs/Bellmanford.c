@@ -5,6 +5,8 @@
 //Name- Jyoti Mishra(@jstjyoti)
 //E mail-jyotimishra29091997@gmail.com
 /*Bellmanford's algorithm is a dynamic programming algorithm which can give all possible shortest part from a given source vertex to all the vertex in the graph containing negative or positive weighted edges and not having any negative weight cycle(a cycle of graph resulting negative weight as whole).It is a dynamic programming algorithm as need to use previous solutions of subproblems becuase we don't know future paths at the begining */
+/*It differs from floydWarshall's algorithm which gives all the shortest path from every pair of vertex but Bellmanford's Algorithm works for finding out shortest path from only given (single)source vertex. */ 
+/*BellmanFord's algorithm is an dynamic programming method because like Dynamic Programming Problems, the algorithm calculate shortest paths in bottom-up manner. It first calculates the shortest distances which have at-most one edge in the path. Then, it calculates shortest paths with at-most 2 edges, and so on. After the i-th(v-1) iteration of outer loop, the shortest paths with at most i edges are calculated.*/
 /*graph is having V vertices,E edges and S is the source Vertex, these three are input from user */
 int V,E,S;
 
