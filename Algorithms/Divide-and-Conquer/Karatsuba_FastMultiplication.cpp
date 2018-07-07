@@ -49,7 +49,7 @@ string addBitStrings( string s1, string s2 )
         // Full adder sum expresion i.e., boolean expression for sum of 3 bits
         int sum = (firstBit ^ secondBit ^ carry)+'0';
  
-        r = (char)sum + result;
+        r = (char)sum + r;
  
 	//full adder carry expression
 	carry = (firstBit&secondBit) | (secondBit&carry) | (firstBit&carry);
@@ -59,7 +59,7 @@ string addBitStrings( string s1, string s2 )
     if (carry)  
 		r = '1' + r;
  
-    return result;
+    return r;
 }
  
 // A function to multiply single bits of strings b1 and b2
@@ -92,7 +92,7 @@ long int multiply(string b1, string b2)
     int n = AddZeros(b1, b2);
  
     if (n == 0) return 0;
-    if (n == 1) return multiplyiSingleBit(X, Y);
+    if (n == 1) return multiplyiSingleBit(b1, b2);
  
     int first= n/2;   // First half of string, floor(n/2)
     int second= (n-fh); // Second half of string, ceil(n/2)
