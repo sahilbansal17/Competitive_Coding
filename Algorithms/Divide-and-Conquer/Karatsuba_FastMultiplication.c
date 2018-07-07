@@ -8,7 +8,7 @@ using namespace std;
 // the new length
 int makeEqualLength(string &str1, string &str2)
 {
-    int len1 = str();
+    int len1 = str1.size();
     int len2 = str2.size();
     if (len1 < len2)
     {
