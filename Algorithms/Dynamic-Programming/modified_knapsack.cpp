@@ -3,7 +3,7 @@
 // Modified Knapsack algorithm to obtain maximum weight from an array that can be put 
 // in a knapsack of given capacity with restricted number of weights to be taken
 
-#include<iostream>
+#include <iostream>
 using namespace std;
  
 struct node{
@@ -22,42 +22,42 @@ void knapSack(int W, int wt[], int val[], int n, int mit)
 		for (w = 0; w <= W; w++)
 		{
 			// initialising with 0 if number of items or weight in consideration is 0
-			if (i==0 || w==0){
+			if (i == 0 || w == 0){
 				K[i][w].maxval = 0;
 				K[i][w].maxitems = 0;
 			}
 			// if weight of current item is <= knapsack capacity in consideration
 			else if (wt[i-1] <= w){
 				// deciding it current item is to be taken or not
-           				if((val[i-1] + K[i-1][w-wt[i-1]].maxval)>K[i-1][w].maxval){
+           				if ((val[i-1] + K[i-1][w-wt[i-1]].maxval) > K[i-1][w].maxval){
            					// checking if max items limit is exceeded or not
-           					if((1+K[i-1][w-wt[i-1]].maxitems)<=mit){
+           					if ((1 + K[i-1][w-wt[i-1]].maxitems) <= mit){
            						K[i][w].maxval = val[i-1] + K[i-1][w-wt[i-1]].maxval;
-           						K[i][w].maxitems = 1+K[i-1][w-wt[i-1]].maxitems;
+           						K[i][w].maxitems = 1 + K[i-1][w-wt[i-1]].maxitems;
            					}
            					else{
            						// selecting current item if it has max value
-           						if(val[i-1]>=K[i-1][w].maxval && val[i-1]>=K[i-1][w-wt[i-1]].maxval){
-           							K[i][w].maxval=val[i-1];
-           							K[i][w].maxitems=1;
+           						if (val[i-1] >= K[i-1][w].maxval && val[i-1] >= K[i-1][w-wt[i-1]].maxval){
+           							K[i][w].maxval = val[i-1];
+           							K[i][w].maxitems = 1;
            						}
            						else{
-           							if(K[i-1][w].maxval>K[i-1][w-wt[i-1]].maxval){
-           								K[i][w].maxval=K[i-1][w].maxval;
+           							if (K[i-1][w].maxval > K[i-1][w-wt[i-1]].maxval){
+           								K[i][w].maxval = K[i-1][w].maxval;
            								K[i][w].maxitems = K[i-1][w].maxitems;
            							}
-           							else if(K[i-1][w].maxval<K[i-1][w-wt[i-1]].maxval){
-           								K[i][w].maxval=K[i-1][w-wt[i-1]].maxval;
+           							else if (K[i-1][w].maxval < K[i-1][w-wt[i-1]].maxval){
+           								K[i][w].maxval = K[i-1][w-wt[i-1]].maxval;
            								K[i][w].maxitems = K[i-1][w-wt[i-1]].maxitems;
            							}
            							else{
            								//selecting item which has minimum items taken already
-           								if(K[i-1][w].maxitems<=K[i-1][w-wt[i-1]].maxitems){
-           									K[i][w].maxval=K[i-1][w].maxval;
+           								if (K[i-1][w].maxitems <= K[i-1][w-wt[i-1]].maxitems){
+           									K[i][w].maxval = K[i-1][w].maxval;
            									K[i][w].maxitems = K[i-1][w].maxitems;
            								}
            								else{
-           									K[i][w].maxval=K[i-1][w-wt[i-1]].maxval;
+           									K[i][w].maxval = K[i-1][w-wt[i-1]].maxval;
            									K[i][w].maxitems = K[i-1][w-wt[i-1]].maxitems;
            								}
            							}
@@ -65,15 +65,15 @@ void knapSack(int W, int wt[], int val[], int n, int mit)
            					}
            				}
            				//not taking current item in knapsack
-           				else if((val[i-1] + K[i-1][w-wt[i-1]].maxval) < K[i-1][w].maxval){
+           				else if ((val[i-1] + K[i-1][w-wt[i-1]].maxval) < K[i-1][w].maxval){
             				K[i][w].maxval = K[i-1][w].maxval;
             				K[i][w].maxitems = K[i-1][w].maxitems;
            				}
            				else{
-           					if(K[i-1][w-wt[i-1]].maxitems<=K[i-1][w].maxitems){ 
-           						if((1+K[i-1][w-wt[i-1]].maxitems)<=mit){
+           					if (K[i-1][w-wt[i-1]].maxitems <= K[i-1][w].maxitems){ 
+           						if ((1+K[i-1][w-wt[i-1]].maxitems) <= mit){
            							K[i][w].maxval = val[i-1] + K[i-1][w-wt[i-1]].maxval;
-           							K[i][w].maxitems = 1+K[i-1][w-wt[i-1]].maxitems;
+           							K[i][w].maxitems = 1 + K[i-1][w-wt[i-1]].maxitems;
            						}
            						else{
            							K[i][w].maxval = K[i-1][w].maxval;
@@ -95,8 +95,8 @@ void knapSack(int W, int wt[], int val[], int n, int mit)
 		}
 	}
 	int maxvalue = K[n][1].maxval, maxitem = K[n][1].maxitems; 
-	for(i=2;i<=W;i++){
-		if(K[n][i].maxval > maxvalue){
+	for(i=2; i<=W; i++){
+		if (K[n][i].maxval > maxvalue){
 			maxvalue = K[n][i].maxval;
 			maxitem = K[n][i].maxitems;
 		}
