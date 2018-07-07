@@ -48,6 +48,7 @@ void knapSack(int W, int wt[], int val[], int n, int mit)
            							}
            							else if (K[i-1][w].maxval < K[i-1][w-wt[i-1]].maxval){
            								K[i][w].maxval = K[i-1][w-wt[i-1]].maxval;
+
            								K[i][w].maxitems = K[i-1][w-wt[i-1]].maxitems;
            							}
            							else{
