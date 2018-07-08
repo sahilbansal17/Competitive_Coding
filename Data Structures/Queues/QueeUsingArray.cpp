@@ -136,3 +136,9 @@ int main()
 	cout << q.isEmpty() << endl;
 	return 0;
 }
+//Time And Space Complexities
+
+//Time complexity of enqueue() function:-
+		//the time complexity is O(n) becuase when the array is allready full then there is complete copying of whi=ole existing array.
+//Space Complexity of enqueue() function:-
+		//Space complexity is O(n) as we are allocating an array of double size in case of the array is full.
