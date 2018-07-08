@@ -139,6 +139,8 @@ int main()
 //Time And Space Complexities
 
 //Time complexity of enqueue() function:-
-		//the time complexity is O(n) becuase when the array is allready full then there is complete copying of whi=ole existing array.
+		//the time complexity is O(n) when the array is allready full then there is complete copying of whole existing array.
+		// also time complexity is O(1) when the array is not full.
 //Space Complexity of enqueue() function:-
 		//Space complexity is O(n) as we are allocating an array of double size in case of the array is full.
+
