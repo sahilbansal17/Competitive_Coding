@@ -10,9 +10,11 @@ using namespace std;
 int main()
 {
 	int m, n, q;
+	cout << "Please enter the dimensions of the matrix." << endl;
 	cin >> m >> n;
 	cout << "Dimensions of matrix are : " << m <<", "<<n<<endl;
 	int a[m][n];
+	cout << "Please enter the elements of the matrix." << endl;
 	for(int i=0; i<m; i++){
 		for(int j=0; j<n; j++)
 			cin >> a[i][j];
@@ -43,17 +45,18 @@ int main()
 			cout<<a[i][j]<<" ";
 		cout<<endl;
 	}
+	cout << "Please enter the number of queries." << endl;
 	cin >> q;
+	cout << "Number of queries : " << q << endl;
 	cout << "Please enter the 2 co-ordinates for which sum is to be found.\n";
 	cout << "Make sure that the co-ordinates are 0-indexed.\n";
 	cout << "While the first co-ordinate should correspond to the top left co-ordinate, the second co-ordinate should correspond to the bottom right co-ordinate." << endl;
-	cout << "Number of queries : " << q << endl;
 	for(int i=1; i<=q; i++){
 		int ai, aj, bi, bj;
 		cin >> ai >> aj >> bi >> bj;
 		cout << "Query #" << i << " : " << "(" << ai << "," << aj << ") to (" << bi << "," << bj << ")" << endl;
 		// in case of improper rectangle
-		if	(ai > bi || aj > bj)
+		if	(ai > bi || aj > bj || ai < 0 || bi < 0 || ai >= m || bi >= m || aj < 0 || bj < 0 || aj >= n || bj >= n)
 			cout << "Invalid Query !" << endl;
 		else{
 			// sum of all elements from (0,0) to (bi,bj), i.e., the larger rectangle
