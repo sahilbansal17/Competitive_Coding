@@ -33,20 +33,20 @@ public class Chess {
 		// input for board size
 		int N = scn.nextInt();
 
-		System.out.println("Count of possible ways:");
+		System.out.print("Count of possible ways:");
 
 		// function call 1
-		System.out.print(countChessPaths(N, N, 0, 0));
+		System.out.println(countChessPaths(N-1, N-1, 0, 0));
 
 		System.out.println("Output of print path:");
 
 		// function call 2
-		printChessPaths(N, N, 0, 0, "");
+		printChessPaths(N-1, N-1, 0, 0, "");
 
 		System.out.println("Output of get path:");
 
 		// function call 3
-		System.out.println(getChessPaths(N, N, 0, 0));
+		System.out.println(getChessPaths(N-1, N-1, 0, 0));
 	}
 
 	// function to count the no. of ways the board can be crossed - er=end row,
