@@ -45,12 +45,13 @@ int findLCA(int v1, int v2)
 
 	for (int i = 21; i >= 0; --i)
 	{
-		// Jump higher only if the 2^i th ancestor of both the nodes are not the same. This is done because 
+		// We don't want to jump above the root of the tree so parent[v1][i] != -1 
+		// Also jump higher only if the 2^i th ancestor of both the nodes are not the same. This is done because 
 		// the nodes in the path from the LCA to the root are all common ancestors of the 2 nodes and if 
 		// we need to reach the LCA we should avoid jumping to a node at a higher level than the LCA. 
 		// This condition helps us avoid it. Ultimately we reach a node which is the 1st child of 
 		// LCA and then it's easy to get the LCA as it would be the 2^0 th ancestor of the node. 
-		if(parent[v1][i] != parent[v2][i])
+		if(parent[v1][i]!=-1 && parent[v1][i] != parent[v2][i])
 		{
 			v1 = parent[v1][i];
 			v2 = parent[v2][i];
