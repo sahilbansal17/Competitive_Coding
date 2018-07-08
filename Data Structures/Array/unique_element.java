@@ -1,3 +1,8 @@
+	
+public class Dublicateinarray {
+
+	public static void main(String[] args) {
+		
 		Scanner scn = new Scanner(System.in);
 		//Taking input for first array 
 		int n = scn.nextInt();
@@ -66,7 +71,7 @@
 				val2 = val2 ^ arr[i];
 			}
 		}
-	}
+	}}}
 	
 	//Time complexity for method one is O(n)
 	//Time complexity for method two is O(2n)
