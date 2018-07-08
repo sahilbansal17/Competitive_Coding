@@ -29,7 +29,7 @@ int findLCA(int v1, int v2)
 	{
 		swap(v1, v2);
 	}
-	// if both nodes at not at same level then bring them at same level 
+	// if both nodes are not at same level then bring them at same level 
 	int dist = level[v2] - level[v1];
 	for (int i = 0; i < 22; ++i)
 	{
@@ -83,8 +83,7 @@ int main()
 		}
 	}
 
-	// dfs to find immediate parent of each vertex 
-	// and assigning depth of each vertex wrt root
+	// dfs to find immediate parent of each vertex and assigning depth of each vertex wrt root
 	dfs(1, 0);
 
 	for (int j = 1; j < 22; ++j)
@@ -129,7 +128,8 @@ int main()
 // We prove  this by contradiction. Assume 2^m belongs to S. If 2^m belongs to S then n + 1 - 2^m must be greater 
 // than or equal to 2^m. n + 1 -2^m >= 2^m => n + 1 >= 2^(m+1) . So the highest power of 2 which is less than or 
 // equal to n+1 is 2^(m+1) which is a contradiction as we have assumed that the highest power of 2 less than n+1 
-// is 2^m. So P(n+1) is true. This completes our proof. So P(n) is true for all n.
+// is 2^m. So P(n+1) is true. 
+// Hence from the principle of strong induction we can say that P(n) is true for all n >= 1.
 
 // Another way of seeing it is that suppose that the ith, jth, kth bit of binary representation of a number is 1 
 // then the number can be written as 2^i + 2^j + 2^k. 
@@ -160,16 +160,16 @@ int main()
 // 2) RMQ approach : 
 // 	Preprocessing -> O(n)
 // 		Euler Tour : DFS is done for creating the baseArray and assigning the depth to each node.
-// 					Complexity of DFS = O(V+E)
-// 					For a tree having n nodes E = n-1
-// 					So complexity of this step = O(n)
+// 			     Complexity of DFS = O(V+E)
+// 			     For a tree having n nodes E = n-1
+// 			     So complexity of this step = O(n)
 // 		Building the segment tree : Each time a node is visited during the euler tour it is pushed into the baseArray.
-// 					Corresponding to each edge of the tree 2 nodes are pushed into the baseArray as each edge is 
-// 					traversed 2 times, once while going into the subtree and once while coming out and durign each
-// 					traversal one node is pushed into the baseArray.The root is pushed into the baseArray at the start
-// 					of the tour. So the total size of baseArray = 2*(n-1) + 1 = 2n-1
-// 					We know for O(n) nodes the complexity of building a segment tree is O(n).
-// 					Complexity of this step = O(n)
+// 			     Corresponding to each edge of the tree 2 nodes are pushed into the baseArray as each edge is 
+// 			     traversed 2 times, once while going into the subtree and once while coming out and durign each
+// 			     traversal one node is pushed into the baseArray.The root is pushed into the baseArray at the start
+// 			     of the tour. So the total size of baseArray = 2*(n-1) + 1 = 2n-1
+// 			     We know for a baseArray of size n the complexity of building a segment tree is O(n).
+// 			     Complexity of this step = O(n)
 // 	Query -> Each query is simply range minimum query in the segment tree of size O(n).So time complexity per query
 // 	    	is O(log n).
 
@@ -179,5 +179,5 @@ int main()
 // If there is a single query naive approach can be used as it requires no preprocessing and answers query in 
 // O(n), contrary to other approaches which require O(nlogn) time for preprocessing and O(logn) for query.
 
-// If there are multiple queries then sparse DP approach or RMQ must be used as they require O(logn) time answering 
+// If there are multiple queries then Binary Lifting or RMQ must be used as they require O(logn) time answering 
 // per query.
