@@ -55,6 +55,8 @@ public class Dublicateinarray {
 		}
 		
 		//Here I will find rightmost set bit 
+		// Why i am taking rightmost set bit beacuse if i get 0 Its means that two number must have that bit as (0 and 0) or ( 1 and 1) thats means it is has same value.
+		// If i get 1 if means it has bit 0 and 1 which i will use to find my solution 
 		no = a & ~(a-1);
 		
 		// Using value of no varible I will divide the array in two subsets 
@@ -71,7 +73,8 @@ public class Dublicateinarray {
 				val2 = val2 ^ arr[i];
 			}
 		}
-	}}}
+	}
+}
 	
 	//Time complexity for method one is O(n)
 	//Time complexity for method two is O(2n)
