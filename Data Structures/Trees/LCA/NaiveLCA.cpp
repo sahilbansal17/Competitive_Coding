@@ -29,10 +29,9 @@ int findLCA(int vertex,int parent)
 	// If both v1 and v2 exist in current node's subtree then set LCA = current node
 	// The current node is the lowest out of all the common ancestors of the query nodes as it is the 
 	// first node encountered in the dfs tree which has both v1 and v2 in its subtree, so it would be the LCA. 
-	// To avoid further update of LCA value we return 0 instead of counter. There won't be any further update of 
+	// To avoid further update of LCA value return 0 instead of counter. There won't be any further update of 
 	// the LCA value as this was the only subtree which could have returned 2 and instead of returning 2 we have 
 	// returned 0 from here.
-	
 	if(counter == 2)
 	{
 		LCA = vertex;
@@ -75,7 +74,7 @@ int main()
 // in its subtree would be the LCA.
 
 // Time complexity : Per query -> O(n)
-// 				  	Each query requires a dfs traversal. The completexity of dfs is O(V+E). For a tree E = n-1.
-// 				  	So complexity of dfs is O(n).
+// 		     Each query requires a dfs traversal. The completexity of dfs is O(V+E). For a tree E = n-1.
+// 		     So complexity of dfs is O(n).
 // Space Complexity : O(n)
-// 				  	Required for storing the input
+// 		      Required for storing the input
