@@ -2,13 +2,6 @@
  * nodes contain the digits, are multiplied. This is done by first
  * adding the digits to the tail of the linked list and then
  * extracting each digit from the head to make the complete number.
- *
- * The time complexity of this program is O(m*n) where m and n are
- * the number of digits in the respective numbers.
- *
- * Moreover, the insertion operations take O(n) time each, where n
- * is the number of nodes/digits to be inserted.
- *
  */
 
 #include <iostream>
@@ -90,3 +83,12 @@ int main(){
     multiply(head1, head2);
     return 0;
 }
+
+
+/*
+ * The time complexity of this program is O(m*n) where m and n are
+ * the number of digits in the respective numbers.
+ *
+ * Moreover, the insertion operations take O(n) time each, where n
+ * is the number of nodes/digits to be inserted.
+ */
