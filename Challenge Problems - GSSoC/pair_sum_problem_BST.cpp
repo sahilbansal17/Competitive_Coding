@@ -10,7 +10,8 @@ The following tasks need to be done for an entire score:
 2. Space taken should be less than O(n).
 3. Explanations for all methods and time/space complexities.
 
-*/#include <iostream>
+*/
+#include <iostream>
 #include <stack>
 using namespace std;
 struct node
@@ -46,7 +47,7 @@ node *insert(node * root,int val)
 	return root;
 }
 // stack to store the nodes encountered in the inorder and reverse inorder traversals
-// It is used in place of the recursion stack used in the traversal
+// It is used in place of the recursion stack as the algorithm is iterative and not recursive
 stack <node*> fwd, bwd;
 
 // v1 and v2 correspond to the array[l] and array[r] in array based implementation
@@ -95,7 +96,7 @@ node* findPredecessor(node * root)
 	// Right nodes are pushed into the stack and if current node is on top of the stack it means its right 
 	// child and its children have already been popped from stack which means they have already been traversed.
 	// In case of reverse inorder traversal we move from right->root->left. Since the right subtree of current 
-	// node has already been traversed we assign v1 = current->val and current->left to l so that traversal in 
+	// node has already been traversed we assign v1 = current->val and current->left to r so that traversal in 
 	// next step starts from the current node's left subtree. 
 	node *cur = bwd.top();
 	bwd.pop();
@@ -105,12 +106,15 @@ node* findPredecessor(node * root)
 int find(node* root, int val)
 {
 	// The left and right pointers in this case are slightly different from the array based implementation
-	// They point to the next node from where traversal starts in the next step contrary to the array based 
+	// They point to the node from where traversal starts in the next step contrary to the array based 
 	// implementation where the pointers point to the indices of both numbers whose sum is being considered.
 	// We keep separate variables (v1 and v2) to store the numbers whose sum is being considered. 
 	node *l = findSuccessor(root);
 	node *r = findPredecessor(root);
-	while(v1<v2)
+	// loop runs till v1 < v2
+	// In each step we either increase the value of v1 or decrease the value of v2 till we find the required
+	// sum or v1 becomes greater than v2
+	while(v1 < v2)
 	{
 		// if current sum = val return maximum of both values
 		if(v1 + v2 == val)
@@ -140,10 +144,10 @@ int main()
 	int num;
 	// Sample tree
 	//	 	10
-	//	 /		  \
-	//	 5		  50
-	//  /  \	  /  \
-	// 3    6	 40  51
+	//	   /	      \
+	//	 5	       50
+	//     /   \	      /  \
+	//    3     6	     40   51
 	node *root = NULL;
 	root = insert(root, 10);
 	root = insert(root, 5);
@@ -158,11 +162,11 @@ int main()
 	return 0;
 }
 // Time Complexity : O(n)
-// 				  Inorder and Reverse Inorder traversal is done, the complexity of these traversals is 
-// 				  O(n) for a tree having n nodes. So time complexity of the algorithm is O(n).
+// 		     Inorder and Reverse Inorder traversal is done, the complexity of these traversals is 
+// 		     O(n) for a tree having n nodes. So time complexity of the algorithm is O(n).
 
 // Space Complexity : O(log n)
-// 				   The stack stores all the ancestors of the current node. So the maximum size of stack at
-// 				   any point of time can be O(h) as maximum number of ancestors of any node can be maximum
-// 				   h. And since this is a balanced BST h= O(logN).
-// 				   So space complexity is O(logn)
+// 		      The stack stores all the ancestors of the current node. So the maximum size of stack at
+// 		      any point of time can be O(h) as maximum number of ancestors of any node can be maximum
+// 		      h. And since this is a balanced BST h= O(logN).
+// 		      So space complexity is O(logn)
