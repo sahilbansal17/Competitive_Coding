@@ -22,6 +22,8 @@ public class WaveSort {
 		// array declaration
 		int[] array = new int[n];
 
+		System.out.println("Enter array elements:");
+
 		// array input
 		for (int i = 0; i < n; i++) {
 			array[i] = in.nextInt();
@@ -48,11 +50,13 @@ public class WaveSort {
 		for (int i = 0; i < array.length; i = i + 2) {
 
 			// if current element is less than its previous element, we swap them
-			if (i > 1 && array[i] < array[i - 1]) {
-				swap(array, i, i - 1);
-			} else if (i + 1 < array.length) {
+			if (i > 0 && array[i] < array[i - 1]) {
 
-				// if current element is greater than its previous element, we swap it with the
+				swap(array, i, i - 1);
+			}
+			if (i < array.length - 1 && array[i] < array[i + 1]) {
+
+				// if current element is less than its next element, we swap it with the
 				// next element
 				swap(array, i, i + 1);
 			}
@@ -72,6 +76,6 @@ public class WaveSort {
 // This solution takes O(n) time as we traverse the array only once and make
 // swaps accordingly.
 
-//Space complexity analysis - 
+// Space complexity analysis -
 
-//This solution takes O(1) extra space.
+// This solution takes O(1) extra space.
