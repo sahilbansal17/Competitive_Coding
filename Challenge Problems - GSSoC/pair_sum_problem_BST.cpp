@@ -68,8 +68,8 @@ node* findSuccessor(node * root)
 		return NULL;
 	}
 	// For any node on the top the stack we can say that it's left subtree has already been traversed. 
-	// Left nodes are pushed into the stack and if current node is on top of the stack it means its left 
-	// child and its children have already been popped from stack which means they have already been traversed.
+	// For any node its left child is pushed into the stack and if current node is on top of the stack it means 
+	// its left child and its children have already been popped from stack which means they have already been traversed.
 	// In case of inorder traversal we move from left->root->right. Since the left subtree of current node has 
 	// already been traversed we assign v1 = current->val and current->right to l so that traversal in next step 
 	// starts from the current node's right subtree. 
@@ -93,8 +93,8 @@ node* findPredecessor(node * root)
 		return NULL;
 	}
 	// For any node on the top the stack we can say that it's right subtree has already been traversed. 
-	// Right nodes are pushed into the stack and if current node is on top of the stack it means its right 
-	// child and its children have already been popped from stack which means they have already been traversed.
+	// For any node its right child is pushed into the stack and if current node is on top of the stack it means 
+	// its right child and its children have already been popped from stack which means they have already been traversed.
 	// In case of reverse inorder traversal we move from right->root->left. Since the right subtree of current 
 	// node has already been traversed we assign v1 = current->val and current->left to r so that traversal in 
 	// next step starts from the current node's left subtree. 
