@@ -6,28 +6,34 @@
 #include <iostream>
 using namespace std;
 
+//allocating original array of size 1
+int* arr = new int[1];
+
 // function to double array size using amortised technique
-void arrayDoubling(int c, int arr[], int* size)
+void arrayDoubling(int c, int* size)
 {
-	//doubling array size (using call by reference)
-	*size = (*size) * 2;
 	// creating temporary array of double size
-	int double_arr[*size];
+	int double_arr[(*size) * 2] = {0};
 	// copying existing elements in original array to temporary array
 	for(int i = 0; i < c; i++)
 		double_arr[i] = arr[i];
 	// deleting memory allocated by original array
 	delete [] arr;
+	//doubling array size (using call by reference)
+	*size = (*size) * 2;
+	int* arr = new int[*size];
 	// re-inserting values into original array with double size
 	for(int i = 0; i < c; i++)
 		arr[i] = double_arr[i];
+	//cout << "Array elements after doubling :\n";
+	for(int i = 0; i < c; i++)
+		cout<<arr[i]<<" ";
+	cout<<endl;
 }
  
 int main(){
 	int c = 0;
 	int size = 1;
-	//allocating original array of size 1
-	int* arr = new int[size];
 	while(1){
 		cout << "Please enter a number.\n";
 		int n;
@@ -38,7 +44,7 @@ int main(){
 			arr[c++] = n;
 		else{
 			//doubling array using amortise technique
-			arrayDoubling(c, arr, &size);
+			arrayDoubling(c, &size);
 			//entering new number
 			arr[c++] = n;
 		}
