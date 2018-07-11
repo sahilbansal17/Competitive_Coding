@@ -5,9 +5,9 @@
  
 #include <iostream>
 using namespace std;
- 
+
 // function to double array size using amortised technique
-void array_doubling(int c, int arr[], int* size)
+void arrayDoubling(int c, int arr[], int* size)
 {
 	//doubling array size (using call by reference)
 	*size = (*size) * 2;
@@ -38,14 +38,13 @@ int main(){
 			arr[c++] = n;
 		else{
 			//doubling array using amortise technique
-			array_doubling(c, arr, &size);
+			arrayDoubling(c, arr, &size);
 			//entering new number
 			arr[c++] = n;
 		}
 		cout << "Do you wish to enter another number ? (Y, y / N, n)\n";
 		char p;
 		cin >> p;
-		cout << p << endl;
 		if (p == 'N' || p == 'n')
 			break;
 	}
@@ -79,8 +78,12 @@ int main(){
  
  
  
-//Time Complexity for insertion : O(1)
-//Analysis : 
+// Amortised Time Complexity for insertion : O(1)
+// Worst Case Time complexity : O(n^2)
+// This is because each insertion takes O(n) time and we are considering n insertions. This is only an upper
+// bound and not strictly (n^2). 
+
+// Analysis of amortised time complexity : 
  
 // Let us take the case of inserting 5 elements.
 // For the 1st element, we need only 1 operation for insertion.
