@@ -170,3 +170,16 @@ int main(){
     cout << findHeight(root);
     return 0;
 }
+/* Time Complexity
+    Insertion operation takes O(n) as insertion of each node takes O(1) time and there are n
+    nodes therefore insertion takes O(n) time
+    Deletion operation takes O(2*n) which is basically O(n) since we have to find the last node inserted
+    before the node to be deleted so two different tasks
+    For level order traversal time complexity is O(n) since nodes are put in queue and traversed
+    one by one using FIFO structure
+
+   Space Complexity
+    Space Complexity for each node we n*(2*(size of pointer) + size of data)
+    where n is the no of elements and queue of size O(n/2) in worst case
+    therefore overall space complexity can be considered to be O(n) in insertion as well as deletion
+*/
