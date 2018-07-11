@@ -12,24 +12,22 @@ struct ListNode{
     ListNode* next;
 };
 
-void insertInList(ListNode **node, int data){
+void insertInList(ListNode **head, int data, ListNode **tail){
 
     ListNode *newNode = new ListNode();
-    ListNode *last = *node;
-    newNode->data = data;
 
+    newNode->data = data;
     newNode->next = NULL;
 
-    if(*node == NULL){
-        *node = newNode;
+    if(*head == NULL){
+        *head = newNode;
+        *tail = *head;
         return;
     }
 
-    while(last->next != NULL)
-        last = last->next;
+    (*tail)->next = newNode;
 
-    last->next = newNode;
-    return;
+    *tail = newNode;
 }
 
 void multiply( ListNode* head1, ListNode *head2 ){
@@ -49,6 +47,7 @@ void multiply( ListNode* head1, ListNode *head2 ){
     cout<<n1*n2;
 }
 
+
 int main(){
     int n1,n2;
 
@@ -58,13 +57,14 @@ int main(){
     cout << "Enter digits in the first number" << endl;
 
     ListNode *head1 = NULL;
+    ListNode *tail1 = NULL;
     int val1;
 
     int i;
 
     for(i = 0; i < n1; i ++){
         cin>>val1;
-        insertInList(&head1, val1);
+        insertInList(&head1, val1, &tail1);
     }
 
     cout << "Enter number of digits in the second number" << endl;
@@ -73,11 +73,12 @@ int main(){
     cout << "Enter digits in the second number" << endl;
 
     ListNode *head2 = NULL;
+    ListNode *tail2 = NULL;
     int val2;
 
     for(i = 0; i < n2; i ++){
         cin>>val2;
-        insertInList(&head2, val2);
+        insertInList(&head2, val2, &tail2);
     }
 
     multiply(head1, head2);
@@ -89,6 +90,5 @@ int main(){
  * The time complexity of this program is O(m*n) where m and n are
  * the number of digits in the respective numbers.
  *
- * Moreover, the insertion operations take O(n) time each, where n
- * is the number of nodes/digits to be inserted.
+ * Moreover, the insertion operations take O(1) time.
  */
