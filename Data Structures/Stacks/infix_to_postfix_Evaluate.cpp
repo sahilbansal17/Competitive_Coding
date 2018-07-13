@@ -70,7 +70,6 @@ string infixToPostfix(string exp){
 
   //initialize stack
   stack<char> bucket;
-  bucket.push('N');    // To  track the empty stack
   string postfix;
   
   // Iterate through every char
@@ -88,7 +87,7 @@ string infixToPostfix(string exp){
     // If the scanned char is an ‘)’ pop and add to output string until '('
     else if(exp[i] == ')')
       {
-        while(bucket.top() != 'N' && bucket.top() != '(')
+        while((!bucket.empty()) && bucket.top() != '(')
           {
             char c = bucket.top();
             bucket.pop();
@@ -103,7 +102,7 @@ string infixToPostfix(string exp){
          
     //If an operator is scanned 
         else{
-          while(bucket.top() != 'N' && precedence(exp[i]) <= precedence(bucket.top()))
+          while((!bucket.empty()) && precedence(exp[i]) <= precedence(bucket.top()))
           {
             char c = bucket.top();
             bucket.pop();
@@ -114,7 +113,7 @@ string infixToPostfix(string exp){
  
     }
     //Pop all the remaining elements from the stack
-    while(bucket.top() != 'N')
+    while(!bucket.empty())
     {
         char c = bucket.top();
         bucket.pop();
@@ -129,7 +128,7 @@ string infixToPostfix(string exp){
 int evaluatePostfix(string exp){
 
   stack<int> buck; 
-  //buck.push('N');
+
   
   // Scan one char at a time.
   for(int i = 0; i<exp.size(); i++){
