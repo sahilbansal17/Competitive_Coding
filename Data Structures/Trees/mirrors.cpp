@@ -4,6 +4,7 @@
  *
  * All nodes of the first tree and their children and parents are stored
  * in a stack and the other in a queue.
+ * Elements are popped and dequeued one by one to check for mirror property.
  */
 
 #include <bits/stdc++.h>
@@ -70,6 +71,6 @@ int main(){
         cout << "Not mirror" << endl;
 }
 
-/* Time complexity of this program is O(e) where e is the number of
+/* Both time and space complexity of this program is O(e) where e is the number of
  * edges in each of the trees.
  */
