@@ -25,7 +25,7 @@ void countingSort(int place, int number_of_elements)
 	{
 		for (auto &x : buckets[i])
 		{
-			arr[idx++] = *it;
+			arr[idx++] = x;
 		}
 	}
 	return;
