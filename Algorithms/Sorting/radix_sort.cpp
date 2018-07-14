@@ -15,17 +15,17 @@ void countingSort(int place, int number_of_elements)
 		// elements of arr are divided into buckets based on the digit at current place
 		buckets[digit].push_back(arr[i]);
 	}
-	int idx = number_of_elements-1;
+	int idx = 0;
 	
-	// Starting from the last bucket elements are placed into the base Array as the elements
-	// in bucket having larger index would be larger(considering only digits upto the current place)
+	// Starting from the first bucket elements are placed into the base Array as the elements
+	// in bucket having smaller index would be smaller(considering only digits upto the current place)
 	// Also elements in the same bucket will be in increasing order on the basis of digit at place-1
 	// This way elements in arr will be sorted on the basis of digits upto the current place
-	for (int i = 9; i >= 0 ; --i)
+	for (int i = 0; i < 10 ; ++i)
 	{
-		for (auto it=buckets[i].rbegin() ;it != buckets[i].rend() ;++it)
+		for (auto &x : buckets[i])
 		{
-			arr[idx--] = *it;
+			arr[idx++] = *it;
 		}
 	}
 	return;
