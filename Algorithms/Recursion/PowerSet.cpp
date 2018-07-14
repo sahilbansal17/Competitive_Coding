@@ -1,11 +1,11 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-//void PowerSet(string, int, string);
 void PowerSet(string array, int index = -1, string subset = ""){
 	
-	//if(index == array.size())
-	//	return;
+	// base case
+	if(index == array.size())
+		return;
 
 	cout<<"{"<<subset<<"}"<<endl;
 	
@@ -35,7 +35,6 @@ int main(void){
 	for(int i : array)
 		os << i;
 	string str(os.str());
-	//cout<<str;
 
 	PowerSet(str);
 	return 0;
