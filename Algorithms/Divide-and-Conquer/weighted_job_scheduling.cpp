@@ -3,7 +3,8 @@
 
 // Algorithm on weighted job scheduling
 
-#include <bits/stdc++.h>
+#include <iostream>
+#include <algorithm>
 using namespace std;
 
 struct node{
@@ -28,7 +29,7 @@ int binarySearch(node a[], int index){
         if (a[mid].finish <= a[index].start){
         	if (a[mid + 1].finish > a[index].start)
         		return mid;
-            else
+			else
 				low = mid + 1;
         }
         else
