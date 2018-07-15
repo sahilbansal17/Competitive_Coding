@@ -32,10 +32,14 @@ void morrisTraversal(Node* root){
             cout << current->data << " ";
             current = current -> right;
         }
+        /* for morris traversal instead of maintaing a stack to store the reference of nodes
+           for traversal we make use of concept of inorder predecessor of the node,the inorder
+           predecessor maintains a pointer that would point back to the root node of the subtree 
+        */
         else{
             // calculating the in order predecessor of the current node
             Node* predecessor = current->left;
-
+            // the inorder predecessor which is right most node of left subtree
             while(predecessor -> right != NULL && predecessor->right != current){
                 predecessor = predecessor -> right;
             }
