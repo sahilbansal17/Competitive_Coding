@@ -7,8 +7,7 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-const int L = 1e5 + 7;
-int arr[L];
+std::vector<int> arr;
 void countingSort(int place, int number_of_elements)
 {
 	std::vector<int> buckets[10];
@@ -52,13 +51,14 @@ void radixSort(int number_of_elements, int max_element)
 }
 int main()
 {
-	int number_of_elements, max_element;
+	int number_of_elements, max_element, num;
 	cout << "Enter number of elements = ";
 	cin >> number_of_elements;
 	cout << "Enter elements ";
 	for (int i = 0; i < number_of_elements; ++i)
 	{
-		cin >> arr[i];
+		cin >> num;
+		arr.push_back(num);
 		// finding the maximum element in the input array
 		max_element = max(max_element, arr[i]);
 	}
