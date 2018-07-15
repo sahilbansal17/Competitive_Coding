@@ -68,9 +68,15 @@ void printSubsetSumToK(int input[], int size, int k) {
 //Main function that drives the program
 int main()
 {
+	int number_of_elements;
+	cout<<"Enter the number of numbers in array:";
+	cin>>number_of_elements;
 	//input array
-	int arr[9]={5,12,3,17,1,18,15,3,17};
-	
+	int *arr = new int[number_of_elements];
+	cout<<"Enter "<<number_of_elements<<" Elements"<<endl;
+	for(int i=0;i<number_of_elements;i++){
+		cin>>arr[i];
+	}
 	//calling ths function with 3 parameters 
 	//1st parameter is array 2nd is the size of array and 3rd is the sum for which the subsets are to be printed
 	printSubsetSumToK(arr, 9, 6);
