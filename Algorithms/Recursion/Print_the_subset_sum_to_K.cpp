@@ -77,9 +77,13 @@ int main()
 	for(int i=0;i<number_of_elements;i++){
 		cin>>arr[i];
 	}
+	//Ask User for the value of k i.e whose sum is to be computer
+	int k;
+	cout<<"Enter the value of k :";
+	cin>>k;
 	//calling ths function with 3 parameters 
 	//1st parameter is array 2nd is the size of array and 3rd is the sum for which the subsets are to be printed
-	printSubsetSumToK(arr, 9, 6);
+	printSubsetSumToK(arr, number_of_elements, k);
 }
 
 
