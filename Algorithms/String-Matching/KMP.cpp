@@ -106,7 +106,10 @@ int main()
 //                  as often it has been incresed by j++ which happens at most m times. So overall complexity becomes 
 //                  O(2m) which is O(m).
 // Searching - O(n)
-//             The loop for searching runs n times. So time complexity is O(n).
+//             The same logic as Pre-processing can be applied here. i either increases or decreases by 1. i decreases
+//             only when cur != 0 and there's a mismatch. So it can decrease as much as cur increases which increases 
+//             at most by 1 in 1 iteration. cur can increase at most by n so i can decrease at most by n.So overall
+//             complexity becomes O(n).
 
 // Space Complexity : O(m)
 //                    The space required by the lps array is O(m).
