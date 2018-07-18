@@ -35,8 +35,8 @@ void preprocess(string s)
 		}
 		else
 		{
-			// If we're still at the beginning of the pattern and there's a mismatch then next index must be 
-			// compared with the 0th index of the pattern as there is no prefix which is equal to suffix
+			// If we're still at the beginning of the pattern and there's a mismatch then next index must 
+			// be compared with the 0th index of the pattern as there is no prefix which is equal to suffix
 			if(j == 0)
 			{
 				lps.push_back(0);
@@ -48,8 +48,8 @@ void preprocess(string s)
 				{
 					j = lps[j-1];
 				}
-				// If there's a suffix which is equal to prefix then the next index must be compared with the next
-				// index of the prefix.So increment j
+				// If there's a suffix which is equal to prefix then the next index must be compared with 
+				// the next index of the prefix.So increment j
 				if(s[i] == s[j])
 				{
 					j++;
@@ -79,16 +79,16 @@ int main()
 		}
 		else 
 		{
-			// pattern[0..cur-1] matched with the text so move the pattern pointer to lps[cur - 1] and current index
-			// must be compared with lps[cur - 1], so decrement i, to balance the increment due to for loop.
+			// pattern[0..cur-1] matched with the text so move the pattern pointer to lps[cur - 1] and current 
+			// index must be compared with lps[cur - 1], so decrement i, to balance the increment due to for loop.
 			if(cur != 0)
 			{
 				cur = lps[cur - 1];
 				i--;
 			}
 		}
-		// if the pattern fully matched with the text then print the starting point of the pattern and move the cur pointer
-		// to lps[cur - 1] to find other occurences of the pattern
+		// if the pattern fully matched with the text then print the starting point of the pattern and move the 
+		// cur pointer to lps[cur - 1] to find other occurences of the pattern
 		if(cur == pattern_length)
 		{
 			cout << i - cur + 1 << " ";
@@ -106,9 +106,7 @@ int main()
 //                  as often it has been incresed by j++ which happens at most m times. So overall complexity becomes 
 //                  O(2m) which is O(m).
 // Searching - O(n)
-//             The same logic as Pre-processing can be applied here. i either increases or decreases by 1.It decreases
-//             only when cur!=0 and there's a mismatch. So i can only decrease as much as cur increases which can increase
-//             at most by n. So overall complexity is O(n). 
+//             The loop for searching runs n times. So time complexity is O(n).
 
 // Space Complexity : O(m)
 //                    The space required by the lps array is O(m).
