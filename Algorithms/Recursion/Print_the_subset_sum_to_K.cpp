@@ -17,7 +17,7 @@ void printSubsets(int input[],int n, int output[],int m,int k){
 	if(n==0){
 		//checks if the sum is reduced to zero or not
     	if(k==0){
-    		//ifthe input array is empty and the sum is zero 
+    		//if the input array is empty and the sum is zero 
     		//then we need to print the subset which is stored in output[] array
       		for(int i=0;i<m;i++){
       			cout<<output[i]<<" ";
@@ -48,7 +48,7 @@ void printSubsets(int input[],int n, int output[],int m,int k){
 	newarr[m] = input[0];
 	
 	//recursive call to small input array i.e 1 element less with less sum to be computed 
-	//i.e included the lement zero in the sum
+	//i.e included the element zero in the sum
 	printSubsets(input+1,n-1,newarr,m+1,k-input[0]);
 }
 
@@ -58,7 +58,7 @@ void printSubsets(int input[],int n, int output[],int m,int k){
 void printSubsetSumToK(int input[], int size, int k) {
 	
   	//temporary arra which stores the temporary subset of the array of summ equal to k
-  	//this array helps ijn printing of subsets
+  	//this array helps in printing of subsets
 	int output[size];
 	//Calls the helper function
 	printSubsets(input, size, output, 0,k);
