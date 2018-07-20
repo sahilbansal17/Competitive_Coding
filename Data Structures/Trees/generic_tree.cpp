@@ -46,18 +46,19 @@ class GenericTreeNode{
 };
 
 //takeInput() function takes the input from the user level wise
-GenericTreeNode<int>* takeInput(){
+template <typename T>
+GenericTreeNode<T>* takeInput(){
 	//prompt the user to enter the starting root data
-	int rootData;
+	T rootData;
 	cout<<"Enter root data :"<<endl;
 	cin>>rootData;
 	
 	//created an object of class GenericTreeNode root with input of rootData
-	GenericTreeNode<int>* root = new GenericTreeNode<int>(rootData);
+	GenericTreeNode<T>* root = new GenericTreeNode<T>(rootData);
 	
 	//made a queue  of type GenericTreeNode which will help in taking the inputs from the user levelwise
 	//it accounts for all the pending nodes that are not yet taken input of
-	queue<GenericTreeNode<int>*>pendingNodes;
+	queue<GenericTreeNode<T>*>pendingNodes;
 	
 	//pushed the root in the pendingNodes queue because
 	//it's childrens are yet to be added
@@ -67,7 +68,7 @@ GenericTreeNode<int>* takeInput(){
 	while(pendingNodes.size()!=0){
 		
 		//created an object of class GenericTreeNode front which takes the front element of pendingNodes queue
-		GenericTreeNode<int>* front = pendingNodes.front();
+		GenericTreeNode<T>* front = pendingNodes.front();
 		//clearing the front element from pendingNodes queue because we have saved in front object
 		pendingNodes.pop();
 		
@@ -79,12 +80,12 @@ GenericTreeNode<int>* takeInput(){
 		//running the for loop for numbe of childrens time to take the inputs
 		for(int i=0;i<numChild;i++){
 			//prompt the user for entring the data of parcular child
-			int childData;
+			T childData;
 			cout<<"Enter "<<i<<"th child of "<<front->data<<endl;
 			cin>>childData;
 			
 			//created a child object with input childData as data
-			GenericTreeNode<int>* child = new GenericTreeNode<int>(childData);
+			GenericTreeNode<T>* child = new GenericTreeNode<T>(childData);
 			//connecting the child which user just inputed to the front object 
 			//which itself is connected to root  
 			front->children.push_back(child);
@@ -98,10 +99,11 @@ GenericTreeNode<int>* takeInput(){
 
 //printLevelWise() is a function that prints the data levelwise
 //this function takes the root of tree as input parameter 
-void printLevelWise(GenericTreeNode<int>* root){
+template <typename T>
+void printLevelWise(GenericTreeNode<T>* root){
 	//made a queue  of type GenericTreeNode which will help in printing the data levelwise
 	//it accounts for all the pending nodes that are not yet printed
-	queue<GenericTreeNode<int>*>pendingNodes;
+	queue<GenericTreeNode<T>*>pendingNodes;
 	
 	//pushing the root in that pendingNodes queue
 	pendingNodes.push(root);
@@ -109,7 +111,7 @@ void printLevelWise(GenericTreeNode<int>* root){
 	//this loop works until there is any pending node left to be taken input of
 	while(pendingNodes.size()!=0){
 		//created an object of class GenericTreeNode front which takes the front element of pendingNodes queue
-		GenericTreeNode<int>* front = pendingNodes.front();
+		GenericTreeNode<T>* front = pendingNodes.front();
 		//clearing the front element from pendingNodes queue because we have saved in front object
 		pendingNodes.pop();
 		//printing the data of the front element with colon
@@ -123,7 +125,7 @@ void printLevelWise(GenericTreeNode<int>* root){
 				cout<<",";
 			}
 			//creating a child object of GenericTreeNode class which takes the input of children of front 
-			GenericTreeNode<int>* child  = front->children[i];
+			GenericTreeNode<T>* child  = front->children[i];
 			//pushing the element child to pending Nodes for prining their childrens
 			pendingNodes.push(child);
 		}
@@ -132,7 +134,8 @@ void printLevelWise(GenericTreeNode<int>* root){
 	}
 }
 //countingNumberOfNodes() function returns the total numebr of node in a tree
-int countingNumberOfNodes(GenericTreeNode<int>* root){
+template <typename T>
+int countingNumberOfNodes(GenericTreeNode<T>* root){
 	//this is an edge case to tackel the condition if the user gives a null tree in input
 	//don't misunderstood it with base case of recurson it's not the base case but an edge case
 	if(root==NULL){
@@ -192,7 +195,8 @@ GenericTreeNode<int>* maxDataNode(GenericTreeNode<int>* root){
 
 //this height() function returns the height of the tree
 //this returns 1 if theree is no children only a root
-int height(GenericTreeNode<int>* root){
+template <typename T>
+int height(GenericTreeNode<T>* root){
 	//initialize temp variable to 0
 	int temp = 0;
 	
@@ -212,7 +216,8 @@ int height(GenericTreeNode<int>* root){
 // depthOfNode() function prints the elements of the treee of a particular depth from a givenn node
 //for example i have taken root node at depth 0 and there childrens are obviously at depth 1 from root
 // so if i give the funccion first parameter as root and other as 1 then the children of root  prints
-void depthOfNode(GenericTreeNode<int>* root,int k){
+template <typename T>
+void depthOfNode(GenericTreeNode<T>* root,int k){
 	//base case of recursion
 	//if k i.e depth is zero then print the data of that node
 	if(k==0){
@@ -227,7 +232,8 @@ void depthOfNode(GenericTreeNode<int>* root,int k){
 
 //leafNodes() function returns the total number of leaf nodes of tree
 //leaf node is a tree which doesn't have their childrens
-int leafNodes(GenericTreeNode<int>* root){
+template <typename T>
+int leafNodes(GenericTreeNode<T>* root){
 	//base case of recursion is that if there is no children of the node
 	//then return 1 as it is a leaf node 
 	if(root->children.size()==0){
@@ -244,7 +250,8 @@ int leafNodes(GenericTreeNode<int>* root){
 }
 
 //preOrder Traversal of the the tree
-void preOrder(GenericTreeNode<int>* root){
+template <typename T>
+void preOrder(GenericTreeNode<T>* root){
 	//as before it is the edge case not base case
 	if(root==NULL){
 		return;
@@ -260,7 +267,8 @@ void preOrder(GenericTreeNode<int>* root){
 }
 
 //postOrder GenericTreeNode of the tree
-void postOrder(GenericTreeNode<int>* root){
+template <typename T>
+void postOrder(GenericTreeNode<T>* root){
 	//as before it is the edge case not base case
 	if(root==NULL){
 		return;
@@ -290,12 +298,15 @@ int main()
 {
 	//takeinput() function takes the input from the user
 	//and made a object of GenericTreeNode root
-	GenericTreeNode<int> *root=takeInput();
+	GenericTreeNode<int> *root=takeInput<int>();
 	
 	//printLevelWise() prints the tree level wise
 	cout<<"Level Wise printing of tree is is follows"<<endl;
 	printLevelWise(root);
 	cout<<"Total number of node are : "<<countingNumberOfNodes(root)<<endl;
+	
+	//please note that sumOfNodes() function and maxDataNode() function will not work 
+	//for character or string type datatype 
 	cout<<"Summ of the data of all the nodes of tree are : "<<sumOfNodes(root)<<endl;
 	cout<<"Data of Maximum data node : "<<maxDataNode(root)->data<<endl;
 	cout<<"Height of Tree is : "<<height(root)<<endl;
