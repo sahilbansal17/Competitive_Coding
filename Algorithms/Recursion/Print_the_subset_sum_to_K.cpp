@@ -7,7 +7,6 @@
 
 using namespace std;
 
-
 //printSubsets() is a helper function 
 //this function breaks the input array in two parts 
 //i.e including the 1st element of array in the sum and excluding it from the sum
@@ -25,6 +24,7 @@ void printSubsets(int input[],int n, int output[],int m,int k){
       		cout<<endl;
       		return;
     	}
+		
     	//this else is for the condition when the input array is empty 
 		//but the sum to be computed is still not zero
 		//in that case we need to return zero as in that case we don't get any subset for given sum
@@ -44,6 +44,7 @@ void printSubsets(int input[],int n, int output[],int m,int k){
 	for(int i=0;i<m;i++){
     	newarr[i]= output[i];
   	}
+	
   	//putting the 1st element of the input array in the newarr[] array
 	newarr[m] = input[0];
 	
@@ -60,6 +61,7 @@ void printSubsetSumToK(int input[], int size, int k) {
   	//temporary arra which stores the temporary subset of the array of summ equal to k
   	//this array helps in printing of subsets
 	int output[size];
+	
 	//Calls the helper function
 	printSubsets(input, size, output, 0,k);
 	return;
@@ -77,10 +79,12 @@ int main()
 	for(int i=0;i<number_of_elements;i++){
 		cin>>arr[i];
 	}
+	
 	//Ask User for the value of k i.e whose sum is to be computer
 	int k;
 	cout<<"Enter the value of k :";
 	cin>>k;
+	
 	//calling ths function with 3 parameters 
 	//1st parameter is array 2nd is the size of array and 3rd is the sum for which the subsets are to be printed
 	printSubsetSumToK(arr, number_of_elements, k);
@@ -88,4 +92,5 @@ int main()
 
 
 //Time complexity
-	//the time complexity of this program is O(2^n) because for every element of the array, we have 2 kinds of options, either to include it or to exclude it.
+	//the time complexity of this program is O(2^n) because for every element of the array, 
+    //we have 2 kinds of options, either to include it or to exclude it.
