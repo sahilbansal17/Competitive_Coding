@@ -1,3 +1,7 @@
+/* The following code prints the nodes of binary tree using the morris 
+traversal.It is an efficient approach as it does not take extra space.
+We make use of inorder predecessor of a node to traverse the tree */
+
 #include<iostream>
 #include<queue>
 using namespace std;
