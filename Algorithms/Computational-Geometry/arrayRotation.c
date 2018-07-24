@@ -20,10 +20,17 @@ int main()
 	}
 	printf("Enter how much do you want to left rotate the array\n ");
 	scanf("%d",&rotations);
-	for (i = 0; i < gcd(rotations, n); i++)       //The real purpose of GCD is that it gives
-           {                                          //the actual rotation of an array.
-      	       temp = arr[i];                         //It minimises some rotation.It is calculated  
-               j = i;                                 //through function in this program.
+	//The below function has the main logic of the program.In this we have to find GCD.
+	//The purpose of finding of GCD is that when we got the n and rotations, then we calculate the 
+	//GCD of the both the numbers.Then that array will broke into groups of size no. equal to GCD.
+	//This GCD helps to minimize the comparison within the array.The temination condition came when
+	//GCD goes down to 1.If GCD is one then elements will be moved within their small patch.
+	//With the help of GCD, elements jumps directily leaving rotation variable in one loop.
+	//By this way also,this method decreases the time complexity also. 
+	for (i = 0; i < gcd(rotations, n); i++)       
+           {                                          
+      	       temp = arr[i];                           
+               j = i;                                 
                while(1)              						
                  {
                      k = j + rotations;
@@ -49,6 +56,7 @@ int gcd(int p,int q)
    else
      return gcd(q, p%q);                             //Recursive Function
 }
-
-// TIME COMPLEXITY = O(N) , where n is the size of array
+//GCD function has O(log n) time complexity but time complexity of printing function of O(n)
+//and we have to take the maximum time complexity and we also know that (O(log n)<O(n)).So  
+// TIME COMPLEXITY OF PROGRAM = O(N) , where n is the size of array
 //SPACE COMPLEXITY = O(1)
