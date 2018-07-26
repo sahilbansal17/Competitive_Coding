@@ -81,3 +81,11 @@ return 0;
     }
     cout << '\n';
  }
+
+ // Time Complexity  =>
+ //                     pop() => O(1)  
+ //                     push(x)/emplace(x) = > O(LogN)   -> We have to traverse heap data structure to insert the value at right place.
+ //                     empty() => O(1)
+ //                     top()   => O(1)
+
+ // Space Complexity =>  O(N)   => Storing the Elements 
