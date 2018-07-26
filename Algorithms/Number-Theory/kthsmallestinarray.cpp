@@ -1,3 +1,4 @@
+// lavishsaluja
 #include<iostream>
 #include<vector>
 #include<queue>
@@ -23,11 +24,14 @@ int main(void){
 }
 
 int KthSmallest(vector<int> v, int k){
+	// building an empty minimum heap and intializing with given values
 	priority_queue<int, vector<int>, greater<> > pq(v.begin(), v.end());
-
+	// popping out n times.
 	while(--k){
 		pq.pop();
 	}
-
 	return pq.top();
 }
+
+// Time Complexity: it's O(n + k*log(n)) since we have a for loop contributing O(n) and k iterations over building heap which takes O(logn)
+// Space Complexity: It's O(n)
