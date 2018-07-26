@@ -5,25 +5,33 @@
   Email-Id: anil.soccer.khatri@gmail.com
 
 */
-
-// (STL priority_queue) => In this we will discuss about a Container that provide constant
-// time extraction of the largest element (Priority) at the expense of Log time insertion.
-// Similer to heap.
-// we will explore all the frequent & available functions.
-
-// We will also discuss about a special Constructor provided by priority_queue to function like Min_Heap() in other Article.
+// STL -> priority_queue foe creating min Heap.
+// as discussed in "stl_priority_queue.cpp" here we will talk about a Constructor provided
+// that can be used to function priority_queue in reverse order (minimum first)
+// Like Min Heap.
 
 #include<iostream>
-#include<queue>   
+#include<queue>
+#include<vector>
 
 using namespace std;
 
 // Function Decleration
-void Print(priority_queue<int>);
+void Print(priority_queue<int,vector<int> ,greater<int>>);
 
 int main(){
 
-  priority_queue<int> pq ;
+  //priority_queue supports a constructor that requires two extra arguments to make it min heap.
+  // priority_queue <Type, vector<Type>, ComparisonType > min_heap;
+
+  // We can use any Custom Type in the Constructor but of understanding purpose we will use int here.
+
+  priority_queue<int , vector<int> ,greater<int>> pq;
+
+  // greater<int>() => Binary function object class whose call returns whether the its first argument compares greater 
+  //              than the second (as returned by operator >).
+
+  // Now we wil do all stuffs as Min Heap.
 
   // Printing the Initial size of pq '0'
   cout << "The initial size of priority_queue : " << pq.size()<<endl;
@@ -52,11 +60,11 @@ int main(){
   
   cout << "Print after emplace (12), (50) :";
   Print(pq);
-  //We can excess the max of all the elements using top() => reference to topmost element.
+  //We can excess the min of all the elements using top() => reference to topmost element.
 
   cout << "The Maximum Element : " << pq.top() <<endl;
 
-  // Extracting the max element => pop()
+  // Extracting the min element => pop()
 
   cout << "1.pop(): " << pq.top()<<endl;
   pq.pop();
@@ -71,9 +79,9 @@ return 0;
 }
 
 // Function Defination to print all values.
- void Print(priority_queue<int> pq ){
+ void Print(priority_queue<int,vector<int> ,greater<int> > pq ){
 
-  priority_queue <int> copy = pq;
+  priority_queue <int, vector<int> ,greater<int> > copy = pq;
     while (!copy.empty())
     {
         cout << '\t' << copy.top();
