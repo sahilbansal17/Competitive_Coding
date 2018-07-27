@@ -33,5 +33,5 @@ int KthSmallest(vector<int> v, int k){
 	return pq.top();
 }
 
-// Time Complexity: it's O(n + k*log(n)) since we have a for loop contributing O(n) and k iterations over building heap which takes O(logn)
+// Time Complexity: it's O(nlog(n)) since we have a for loop contributing O(n) and k iterations over building heap which takes O(n + klogn) and k can be of order of n
 // Space Complexity: It's O(n)
