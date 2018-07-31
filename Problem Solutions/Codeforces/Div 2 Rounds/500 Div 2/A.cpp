@@ -73,6 +73,25 @@ int main(){
     freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
     #endif
 
-    
+    int n;
+    cin >> n;
+
+    vi a(n, 0), b(n, 0);
+    int sum1 = 0, sum2 = 0;
+    rep(i, n){
+        cin >> a[i];
+        sum1 += a[i];
+    }
+    rep(i, n){
+        cin >> b[i];
+        sum2 += b[i];
+    }
+    if(sum1 >= sum2){
+        cout << "Yes";
+    }
+    else{
+        cout << "No";
+    }
+
     return 0;
 }

@@ -73,6 +73,39 @@ int main(){
     freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
     #endif
 
+    int n, k;
+    cin >> n >> k;
+    
+    int val, profit = 0;
+    vpii my_vec;
+
+    rep(i, n){
+        cin >> val;
+        my_vec.pb(mp(val, i));
+    }
+
+    sort(all(my_vec));
+
+    vi indices;
+    rfl(i, n - 1, n - k){
+        indices.pb(my_vec[i].S);
+        profit += my_vec[i].F;
+    }
+    srt(indices);
+
+    cout << profit << endl;
+    if(k > 1){
+        cout << indices[0] + 1 << " ";
+
+        rep1(i, k - 1){
+             cout << indices[i] - indices[i - 1] << " ";
+        }
+
+        cout << n - 1 - indices[k - 2];
+    }
+    else{
+        cout << n;
+    }
     
     return 0;
 }

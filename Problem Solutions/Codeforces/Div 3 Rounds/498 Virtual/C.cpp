@@ -73,6 +73,35 @@ int main(){
     freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
     #endif
 
-    
+    int n;
+    cin >> n;
+    vi a(n, 0);
+    rep(i, n){
+        cin >> a[i];
+    }
+
+    int i = 0, j = n - 1;
+    ll ls = a[i], rs = a[j];
+    ll max_sum = 0;
+    while(i < j){
+        if(ls < rs){
+            i ++;
+            ls += a[i];
+        }
+        else if(ls == rs){
+            if(ls > max_sum){
+                max_sum = ls;
+            }
+            i ++;
+            j --;
+            ls += a[i];
+            rs += a[j];
+        }
+        else{
+            j --;
+            rs += a[j];
+        }
+    }
+    cout << max_sum;
     return 0;
 }

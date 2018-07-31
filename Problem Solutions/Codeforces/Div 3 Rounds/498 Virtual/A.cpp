@@ -73,6 +73,16 @@ int main(){
     freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
     #endif
 
-    
+    int n;
+    cin >> n;
+    vi a(n, 0);
+    rep(i, n){
+        cin >> a[i];
+        if(a[i] % 2 == 0)
+            cout << a[i] - 1 << " ";
+        else
+            cout << a[i] << " ";
+    }
+
     return 0;
 }

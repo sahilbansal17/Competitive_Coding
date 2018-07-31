@@ -73,6 +73,36 @@ int main(){
     freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
     #endif
 
-    
+    int n, x;
+    cin >> n >> x;
+
+    vi hash(100010, 0), a(n, 0), hash2(100010, 0), index(100010, 0);
+    int res = -1;
+    rep(i, n){
+        cin >> a[i];
+        hash[a[i]] ++;
+        if(hash[a[i]] >= 2){
+            res = 0;
+        }
+        index[a[i]] = i;
+    }    
+    if(res == 0){
+        cout << "0";
+        return 0;
+    }
+
+    rep(i, n){
+        a[i] = a[i] & x;
+        if(hash[a[i]] == 1 && index[a[i]] != i){
+            res = 1;
+            break;
+        }
+        hash2[a[i]] ++;
+        if(hash2[a[i]] >= 2){
+            res = 2;
+        }
+    }
+
+    cout << res;
     return 0;
 }
