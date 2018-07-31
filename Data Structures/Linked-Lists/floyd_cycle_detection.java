@@ -1,7 +1,7 @@
 
 //A linked list is said to contain a cycle if any node is visited more than once while 
 //traversing the list. The problem is to determine if a given Linked list contains a 
-//cycle or not. (Floyd’s Cycle-Finding Algorithm)
+//cycle or not. (Floydâ€™s Cycle-Finding Algorithm)
 
 //		Author - Aastha Aneja (Github handle - Aashu24)
 //		Email - anejaaastha@gmail.com
@@ -116,7 +116,7 @@ public class linkedlist {
 		return this.hasCycle(this.head);
 	}
 
-	// Floyd’s Cycle-Finding Algorithm
+	// Floydâ€™s Cycle-Finding Algorithm
 	// This function returns true if there is a cycle in the linked list
 	private boolean hasCycle(Node head) {
 
@@ -229,7 +229,7 @@ public class linkedlist {
 
 // Time complexity analysis -
 
-// The Floyd’s Cycle-Finding Algorithm takes O(n) time where n is the number of
+// The Floydâ€™s Cycle-Finding Algorithm takes O(n) time where n is the number of
 // nodes in the linked list. This is so because if the list doesn't contain a
 // cycle, it just traverses the whole linked list once and then returns false
 // and if the linked list contains a cycle, then as we traverse the list using
@@ -238,5 +238,5 @@ public class linkedlist {
 
 // Space complexity analysis -
 
-// The Floyd’s Cycle-Finding Algorithm takes O(1) extra space as only two
+// The Floydâ€™s Cycle-Finding Algorithm takes O(1) extra space as only two
 // pointers namely slow and fast are declared to traverse the list.
