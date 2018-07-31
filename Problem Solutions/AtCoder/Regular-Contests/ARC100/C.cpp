@@ -41,7 +41,7 @@ using namespace std;
     #define fill(x, y)      memset(x, y, sizeof(x))
 /* Templates */
 template<class T> T abs(T x) { re x > 0 ? x : -x; }
-
+	
 int main(){
 
 	#ifndef ONLINE_JUDGE
@@ -49,47 +49,34 @@ int main(){
 	freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
 	#endif
 
-	int n, val;
-	vi a;
+	int n;
 
-	cin >> n;
+    cin >> n;
 
-	rep(i, n){
-		cin >> val;
-		a.pb(val);
-	}
+    vector <ll> a(n + 1, 0);
 
-	map <int, int> dp;
-	
-	int ans = 0, lst = 0; // lst is the last element of the req subsequence
+    ll sum = 0;
+    rep1(i, n + 1){
+        cin >> a[i];
+        a[i] -= i;
+        sum += a[i];
+    }
 
-	rep(i, n){
-		int ele = a[i];
-		// largest length of subsequence ending at ele is = 1 + length of that ending at ele - 1
-		dp[ele] = dp[ele - 1] + 1;
-		if(ans < dp[ele]){
-			ans = dp[ele];
-			lst = ele;
-		}	
-	}
+    sort(a.begin() + 1, a.end());
 
-	vi res; 
+    ll median;
+    if(n % 2 == 0){
+        median = floor(1.0*(a[n/2] + a[(n + 1)/2])/2);
+    }
+    else{
+        median = a[(n + 1)/2];
+    }
+    ll min_sad = 0;
+    rep1(i, n + 1){
+        a[i] -= median;
+        min_sad += abs(a[i]);
+    }
 
-	// find indices of the required subsequence
-	rfl(i, n - 1, 0){
-		if(a[i] == lst){
-			res.pb(i);
-			lst --;
-		}
-	}
-
-	reverse(res.begin(), res.end());
-	
-	cout << ans << "\n";
-	rep(i, ans){
-		cout << 1 + res[i] << " ";
-	}
-
-
+    cout << min_sad;
 	return 0;
 }

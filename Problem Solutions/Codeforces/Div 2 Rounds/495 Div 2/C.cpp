@@ -36,60 +36,66 @@ using namespace std;
     #define MAX             100010
     #define re              return 
     #define sz(x)           ((int) (x).size())
-    #define all(x)          ((x).begin(), (x).end())
+    #define all(x)          (x).begin(), (x).end()
     #define sqr(x)          ((x) * (x))
     #define fill(x, y)      memset(x, y, sizeof(x))
 /* Templates */
 template<class T> T abs(T x) { re x > 0 ? x : -x; }
 
+	
 int main(){
 
-	#ifndef ONLINE_JUDGE
-	freopen("/Users/sahilbansal/Desktop/input.txt","r",stdin);
-	freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
-	#endif
+    #ifndef ONLINE_JUDGE
+    freopen("/Users/sahilbansal/Desktop/input.txt","r",stdin);
+    freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
+    #endif
 
-	int n, val;
-	vi a;
+    int numbers;
 
-	cin >> n;
+    cin >> numbers;
 
-	rep(i, n){
-		cin >> val;
-		a.pb(val);
-	}
+    vi number(numbers, 0);
 
-	map <int, int> dp;
-	
-	int ans = 0, lst = 0; // lst is the last element of the req subsequence
+    rep(i, numbers){
+        cin >> number[i];
+    }
 
-	rep(i, n){
-		int ele = a[i];
-		// largest length of subsequence ending at ele is = 1 + length of that ending at ele - 1
-		dp[ele] = dp[ele - 1] + 1;
-		if(ans < dp[ele]){
-			ans = dp[ele];
-			lst = ele;
-		}	
-	}
+    // simply take the count of distinct numbers from the end
 
-	vi res; 
+    // the pairs for a number = no. of distinct numbers after the number 
 
-	// find indices of the required subsequence
-	rfl(i, n - 1, 0){
-		if(a[i] == lst){
-			res.pb(i);
-			lst --;
-		}
-	}
+    // need to make sure that we don't overcount
 
-	reverse(res.begin(), res.end());
-	
-	cout << ans << "\n";
-	rep(i, ans){
-		cout << 1 + res[i] << " ";
-	}
+    // so we set a number to be done, if its pairs are already taken 
 
+    int count_distinct_from_index[numbers];
 
-	return 0;
+    count_distinct_from_index[numbers - 1] = 1;
+
+    int count_array[100005] = {0};
+
+    count_array[number[numbers - 1]] ++;
+    rfl(i, numbers - 2, 0){
+        if(count_array[number[i]] == 0){
+            count_array[number[i]] = 1;
+            count_distinct_from_index[i] = count_distinct_from_index[i + 1] + 1;
+        }
+        else{
+            count_distinct_from_index[i] = count_distinct_from_index[i + 1];
+            count_array[number[i]] ++; // not required
+        }
+    }   
+
+    int done[100005] = {0};
+    ll total_pairs = 0;
+
+    rep(i, numbers - 1){
+        if(!done[number[i]]){
+            total_pairs += 1ll*count_distinct_from_index[i + 1];
+            done[number[i]] = 1;
+        }   
+    }
+
+    cout << total_pairs;
+    return 0;
 }

@@ -41,55 +41,53 @@ using namespace std;
     #define fill(x, y)      memset(x, y, sizeof(x))
 /* Templates */
 template<class T> T abs(T x) { re x > 0 ? x : -x; }
+    
+vi digits(10, 0);
+bool check_digits(int n){
+    while(n){
+        int dig = n % 10;
+        n /= 10;
+        if(digits[dig] > 0){
+            re true;
+        }
+    }
+    re false;
+} 
 
 int main(){
 
-	#ifndef ONLINE_JUDGE
-	freopen("/Users/sahilbansal/Desktop/input.txt","r",stdin);
-	freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
-	#endif
+    #ifndef ONLINE_JUDGE
+    freopen("/Users/sahilbansal/Desktop/input.txt","r",stdin);
+    freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
+    #endif
 
-	int n, val;
-	vi a;
+    int x;
 
-	cin >> n;
+    cin >> x;
 
-	rep(i, n){
-		cin >> val;
-		a.pb(val);
-	}
+    int cp = x;
+    while(cp){
+        int dig = cp % 10;
+        cp /= 10;
+        digits[dig] ++;
+    }
 
-	map <int, int> dp;
-	
-	int ans = 0, lst = 0; // lst is the last element of the req subsequence
+    int fac = 1;
+    int max_poss = sqrt(x);
+    int ans = 0;
+    while(fac <= max_poss){
+        if(x % fac == 0){
+            if(check_digits(fac)){
+                ans ++;
+            }
+            if(check_digits(x/fac) && fac != x/fac){
+                ans ++;
+            }
+        }
+        fac ++;
+    }
 
-	rep(i, n){
-		int ele = a[i];
-		// largest length of subsequence ending at ele is = 1 + length of that ending at ele - 1
-		dp[ele] = dp[ele - 1] + 1;
-		if(ans < dp[ele]){
-			ans = dp[ele];
-			lst = ele;
-		}	
-	}
+    cout << ans;
 
-	vi res; 
-
-	// find indices of the required subsequence
-	rfl(i, n - 1, 0){
-		if(a[i] == lst){
-			res.pb(i);
-			lst --;
-		}
-	}
-
-	reverse(res.begin(), res.end());
-	
-	cout << ans << "\n";
-	rep(i, ans){
-		cout << 1 + res[i] << " ";
-	}
-
-
-	return 0;
+    return 0;
 }

@@ -36,7 +36,7 @@ using namespace std;
     #define MAX             100010
     #define re              return 
     #define sz(x)           ((int) (x).size())
-    #define all(x)          ((x).begin(), (x).end())
+    #define all(x)          (x).begin(), (x).end()
     #define sqr(x)          ((x) * (x))
     #define fill(x, y)      memset(x, y, sizeof(x))
 /* Templates */
@@ -44,52 +44,24 @@ template<class T> T abs(T x) { re x > 0 ? x : -x; }
 
 int main(){
 
-	#ifndef ONLINE_JUDGE
-	freopen("/Users/sahilbansal/Desktop/input.txt","r",stdin);
-	freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
-	#endif
+    #ifndef ONLINE_JUDGE
+    freopen("/Users/sahilbansal/Desktop/input.txt","r",stdin);
+    freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
+    #endif
+    
+    int a, b;
 
-	int n, val;
-	vi a;
+    cin >> a >> b;
 
-	cin >> n;
-
-	rep(i, n){
-		cin >> val;
-		a.pb(val);
-	}
-
-	map <int, int> dp;
-	
-	int ans = 0, lst = 0; // lst is the last element of the req subsequence
-
-	rep(i, n){
-		int ele = a[i];
-		// largest length of subsequence ending at ele is = 1 + length of that ending at ele - 1
-		dp[ele] = dp[ele - 1] + 1;
-		if(ans < dp[ele]){
-			ans = dp[ele];
-			lst = ele;
-		}	
-	}
-
-	vi res; 
-
-	// find indices of the required subsequence
-	rfl(i, n - 1, 0){
-		if(a[i] == lst){
-			res.pb(i);
-			lst --;
-		}
-	}
-
-	reverse(res.begin(), res.end());
-	
-	cout << ans << "\n";
-	rep(i, ans){
-		cout << 1 + res[i] << " ";
-	}
-
-
-	return 0;
+    if(a + b == 15){
+        cout << "+";
+    }
+    else if(a * b == 15){
+        cout << "*";
+    }
+    else{
+        cout << "x";
+    }
+    
+    return 0;
 }

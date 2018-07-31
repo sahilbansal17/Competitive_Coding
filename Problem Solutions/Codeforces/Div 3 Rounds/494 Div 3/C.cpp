@@ -36,12 +36,13 @@ using namespace std;
     #define MAX             100010
     #define re              return 
     #define sz(x)           ((int) (x).size())
-    #define all(x)          ((x).begin(), (x).end())
+    #define all(x)          (x).begin(), (x).end()
     #define sqr(x)          ((x) * (x))
     #define fill(x, y)      memset(x, y, sizeof(x))
 /* Templates */
 template<class T> T abs(T x) { re x > 0 ? x : -x; }
 
+	
 int main(){
 
 	#ifndef ONLINE_JUDGE
@@ -49,47 +50,34 @@ int main(){
 	freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
 	#endif
 
-	int n, val;
-	vi a;
+    int n, k;
 
-	cin >> n;
+    cin >> n >> k;
 
-	rep(i, n){
-		cin >> val;
-		a.pb(val);
-	}
+    vi a(n + 1, 0), sum(n + 1, 0);
 
-	map <int, int> dp;
-	
-	int ans = 0, lst = 0; // lst is the last element of the req subsequence
+    rep1(i, n + 1){
+        cin >> a[i];
+        if(i == 1){
+            sum[1] = a[1];
+        }
+        else{
+            sum[i] = sum[i - 1] + a[i];
+        }
+    }
 
-	rep(i, n){
-		int ele = a[i];
-		// largest length of subsequence ending at ele is = 1 + length of that ending at ele - 1
-		dp[ele] = dp[ele - 1] + 1;
-		if(ans < dp[ele]){
-			ans = dp[ele];
-			lst = ele;
-		}	
-	}
-
-	vi res; 
-
-	// find indices of the required subsequence
-	rfl(i, n - 1, 0){
-		if(a[i] == lst){
-			res.pb(i);
-			lst --;
-		}
-	}
-
-	reverse(res.begin(), res.end());
-	
-	cout << ans << "\n";
-	rep(i, ans){
-		cout << 1 + res[i] << " ";
-	}
-
-
+    double check_sum, max_temp = 0.00, temp;
+    fl(i, k, n + 1){
+        fl(j, i, n + 1){
+            check_sum = sum[j] - sum[j - i];
+            temp = check_sum/i;
+            // cout << temp << "\n";
+            if(temp >= max_temp){
+                max_temp = temp;
+            }
+        }
+    }
+    cout << fixed;
+    cout << setprecision(15) << max_temp;
 	return 0;
 }

@@ -36,12 +36,13 @@ using namespace std;
     #define MAX             100010
     #define re              return 
     #define sz(x)           ((int) (x).size())
-    #define all(x)          ((x).begin(), (x).end())
+    #define all(x)          (x).begin(), (x).end()
     #define sqr(x)          ((x) * (x))
     #define fill(x, y)      memset(x, y, sizeof(x))
 /* Templates */
 template<class T> T abs(T x) { re x > 0 ? x : -x; }
 
+	
 int main(){
 
 	#ifndef ONLINE_JUDGE
@@ -49,47 +50,27 @@ int main(){
 	freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
 	#endif
 
-	int n, val;
-	vi a;
+    int no_of_flowers, no_of_visitors;
 
-	cin >> n;
+    cin >> no_of_flowers >> no_of_visitors;
 
-	rep(i, n){
-		cin >> val;
-		a.pb(val);
-	}
+    int left, right;
 
-	map <int, int> dp;
-	
-	int ans = 0, lst = 0; // lst is the last element of the req subsequence
+    rep(i, no_of_visitors){
+        cin >> left >> right;
+    }		
 
-	rep(i, n){
-		int ele = a[i];
-		// largest length of subsequence ending at ele is = 1 + length of that ending at ele - 1
-		dp[ele] = dp[ele - 1] + 1;
-		if(ans < dp[ele]){
-			ans = dp[ele];
-			lst = ele;
-		}	
-	}
-
-	vi res; 
-
-	// find indices of the required subsequence
-	rfl(i, n - 1, 0){
-		if(a[i] == lst){
-			res.pb(i);
-			lst --;
-		}
-	}
-
-	reverse(res.begin(), res.end());
-	
-	cout << ans << "\n";
-	rep(i, ans){
-		cout << 1 + res[i] << " ";
-	}
-
+    bool even = true;
+    rep(i, no_of_flowers){
+        if(even){
+            even = false;
+            cout << "1";
+        }
+        else{
+            even = true;
+            cout << "0";
+        }
+    }
 
 	return 0;
 }
