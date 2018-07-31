@@ -1,5 +1,5 @@
 // The Rabin-Karp algorithm makes use of hash functions and the rolling hash technique. Rolling hash allows 
-// us to calculate a hash value without having the rehash the entire string. In case of a mismatch of hash values 
+// us to calculate a hash value without having to rehash the entire string. In case of a mismatch of hash values 
 // of pattern and substring we can be sure that pattern doesn't match with the substring. This would avoid checking
 // the whole substring by iterating through it and hence would improve the performance drastically. Also if a good
 // hash function is chosen then it would avoid hash collisions.
