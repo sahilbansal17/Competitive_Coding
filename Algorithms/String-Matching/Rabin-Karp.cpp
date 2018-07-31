@@ -6,8 +6,8 @@
 
 // Hash function generally used in Rabin-Karp Algorithm
 // H[1..3] = c1*26^2 + c2*26 + c3
-// Now if we want to calculate H[2..4] the H[1..3] can be used
-// H[2..4] = (H[1..3] - c1*26^3) * 26 + c4
+// Now if we want to calculate H[2..4] then H[1..3] can be used
+// H[2..4] = (H[1..3] - c1*26^2) * 26 + c4
 // Take modulo with a large prime number at each step to avoid integer overflow
 
 #include <iostream>
@@ -40,7 +40,7 @@ int main()
 		mul = (mul * 26)%MOD;
 	}
 	mul /= 26;
-	// mul stores 26^pattern_length
+	// mul stores 26^(pattern_length-1)
 
 	if(flag == 0)
 	{
@@ -65,6 +65,7 @@ int main()
 			{
 				if(text[j] != pattern[j - i])
 				{
+					// Set flag to 1 in case of a mismatch
 					flag = 1;
 					break;
 				}
@@ -89,4 +90,4 @@ int main()
 //                   of this algorithm.
 
 // Space Complexity : ans vector stores only indices in case of match. So auxiliary space required is 
-//                    O(number_of_matches)
+//                    O(number_of_matches).
