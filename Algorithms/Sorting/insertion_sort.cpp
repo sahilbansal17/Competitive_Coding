@@ -53,7 +53,12 @@ proper position to place
 For best case time complexity is O(n) (best case is when all the 
 elements are in sorted order by default) because we do not need to 
 make additional swaps
-For the average case the time complexity is O(n^2)
+For the average case the time complexity is O(n^2) because in avg case
+we can consider half of elements need no shifting as they are already
+sorted and remaining half require to move to their correct position.
+Thus time required would be half of that of worst case.But we don't 
+consider constants in analysis of time complexity.Therefore the result
+is same as that of worst case
 
 Space Complexity of insertion sort is O(n) because there is no auxiliary
 space used
