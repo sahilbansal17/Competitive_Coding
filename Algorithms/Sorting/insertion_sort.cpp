@@ -52,7 +52,8 @@ for every element we insert into the sorted part we need to find its
 proper position to place
 For best case time complexity is O(n) (best case is when all the 
 elements are in sorted order by default) because we do not need to 
-make additional swaps and for the average case the time complexity is O(n^2)
+make additional swaps
+For the average case the time complexity is O(n^2)
 
 Space Complexity of insertion sort is O(n) because there is no auxiliary
 space used
