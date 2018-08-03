@@ -18,21 +18,11 @@ public class isBST {
 
 	public static void main(String[] args) {
 
-		// object of LCA class
+		// object of isBST class
 		isBST m = new isBST();
 
 		// Binary Tree
 		BinaryTree bt = m.new BinaryTree();
-
-		System.out.println("Enter data 1:");
-
-		// input for data1
-		int data1 = scn.nextInt();
-
-		System.out.println("Enter data 2:");
-
-		// input for data2
-		int data2 = scn.nextInt();
 
 		// This is the function call for the required question
 		if (bt.isBST()) {
