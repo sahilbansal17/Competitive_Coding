@@ -54,3 +54,15 @@ int main(){
     cout << "The square root of " << num << " upto "<< p <<" precision is " << calculateSquareRoot(num,p) << endl;
     return 0;
 }
+
+/*Time Complexity of the above code is calcluated 
+  Total time = time to compute integer part + time to compute fractional part
+             = O(log n) + time to compute fractional part
+  for integer part as it is a binary search therefore complexity is O(logn)
+  for fractional part for computing each precision we require a constant time
+  therefore for p precision we require k*p time where k is a constant
+  So total time = O(log n) + k*p 
+  but k is constant and p is limited upto 8 to 9 in case of storage capacity inside machine
+  so therefore overall the term will be constant and which can be ignored therefore
+  the complexity can be considered to be O(log n)
+*/
