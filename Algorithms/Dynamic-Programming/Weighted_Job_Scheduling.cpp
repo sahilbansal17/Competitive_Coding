@@ -141,7 +141,8 @@ int main()
 }
 
 // Time Complexity =>  O(N log N)  => We iterate the jobs only one time because we are storing the subproblems
-//                                    Result O(N) and O(Log N) for Binary Search.
+//                                    Result O(N) and O(Log N) for Binary Search Net O(N LogN) and For Sorting 
+//                                    too O(N LogN) So => O(NlogN + NLogN)
 //                                    Overall O(N Log N)
 // Space Complexity => O(N)       => Storing Jobs
 
