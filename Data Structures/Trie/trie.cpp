@@ -84,6 +84,46 @@ bool searchWord(TrieNode *root , string word){
     Time Complexity clearly depends on the length of the word so total time being being directly
     dependent on the length of string
 */
+
+//removeWord function takes the root node and the string tobe deleted froom trie
+void removeWord(TrieNode * root,string word){
+    //base case of recursion if size of word decreases to 10
+    //than this means that we came to end of the word and 
+    //made end_of_word to false
+    if(word.size() ==0){
+    	root->end_of_word = false;
+    	return;
+    }
+			
+	//small calculations for recursive function
+			
+	TrieNode *chil;
+	int index = word[0]-'a';
+	
+	if(root->child[index]!=NULL){
+		chil =root->child[index];
+	}
+	else{
+		//word not found 
+		return;
+	}
+    //calling recursion
+	removeWord(chil,word.substr(1));
+	
+	//Remove child node if its  useless
+    //remove the node only if its a leaf node so that no other word gets affected
+    //from that
+	if(chil->end_of_word == false){
+		for(int i=0;i<26;i++){
+			if(chil->child[i] !=NULL){
+				return;
+			}
+		}
+		delete chil;
+		root->child[index] = NULL;
+	}
+}
+
 int main(){
     string word_array[10];
     int number_of_words;
@@ -100,6 +140,17 @@ int main(){
     string key;
     cout << "Enter the word which you want to search" << endl;
     cin >> key;
+    if(searchWord(root, key) == true)
+        cout << "Word is found" << endl;
+    else
+        cout <<"Not Found !!" << endl;
+    
+    cout << "Enter the word which you want to delete" << endl;
+    cin >> key;
+    
+    removeWord(root,key);
+    
+    cout<<"After deltetion of "<<key<<endl;
     if(searchWord(root, key) == true)
         cout << "Word is found" << endl;
     else
