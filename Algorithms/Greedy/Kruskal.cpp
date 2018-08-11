@@ -84,4 +84,10 @@ int main()
     kruskalMST(input, V, E);  
 
 }
+//While taking the input for a graph it will have O(n) complexity since it has a for loop.
+//When it goes into the kruskalMST()function the sorting algorithm will have O(n logn) complexity,since there
+//is comparsion function which makes it to O(n logn).
+//Then the union-find algorithm has a constant time complexity of O(n).
+//In displaying the output since there is also a for loop present it has complexity of O(n) too.
+//overall time and space complexity is O(n).
 
