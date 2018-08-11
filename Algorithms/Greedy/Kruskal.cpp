@@ -17,12 +17,27 @@ bool mycomp(Edge e1, Edge e2)
 {
     return e1.weight<e2.weight ;
 }
+/*
+// Uninon-find without path compression
 //This function provides the start and end vertex parent of an edge
 int find(int v, int* parent)
 {
     if(parent[v]==v)
         return v;
     return find(parent[v],parent);
+}
+*/
+//Union-Find using path compression
+int find(int x, int *parent)
+{
+    // initially one need to define the root's element to itself as parent[x]=x
+    // if an element finds the parent pointing to itself,then root is found    
+    if(x == parent[x])
+        return parent[x];
+    int temp = parent[x];
+    // root of x's parent is same with root of x's parent's root
+    parent[x] = find(temp,parent);
+    return parent[x];
 }
 //Main function to find MST using Kruskal's Algorithm
 //It needs input array,Vertices,Edges of the graph
@@ -90,4 +105,6 @@ int main()
 //Then the union-find algorithm has a constant time complexity of O(n).
 //In displaying the output since there is also a for loop present it has complexity of O(n) too.
 //overall time and space complexity is O(n).
-
+//The worst case of Union-Find without path compression is O(n)
+//But using path compression it becomes O(logn), as the element which has to searched
+//directly becomes the cild of a parent in a weiegted graph
