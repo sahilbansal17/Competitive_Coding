@@ -10,23 +10,20 @@ using namespace std;
 int main(void){
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
-	long long int n, m, a, b;
-	cin>>n>>m>>a>>b;
-	if(n%m == 0){
-		cout<<"0"<<ln;
+	string s;
+	cin>>s;
+	int flag = 0;
+	FOR(i,0,s.size()){
+		if(s[i] == 'H' || s[i] == 'Q' || s[i] == '9'){
+			cout<<"YES";
+			flag = 1;
+			break;
+		}
+		else{
+			;
+		}
 	}
-	else{
-		long long int left = 0, right = 0;
-		left = n - ((n/m)*m);
-		right = ((n/m + 1)*m) - n;
-		//debug2(left, right);
-		left *= b;
-		right *= a;
-		//debug2(left, right);
-		if(left <= right)
-			cout<<left<<ln;
-		else
-			cout<<right<<ln;
-	}
+	if(!flag)
+		cout<<"NO";
 	return 0;
 }

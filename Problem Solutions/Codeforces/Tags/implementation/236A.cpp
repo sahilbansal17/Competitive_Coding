@@ -10,23 +10,24 @@ using namespace std;
 int main(void){
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
-	long long int n, m, a, b;
-	cin>>n>>m>>a>>b;
-	if(n%m == 0){
-		cout<<"0"<<ln;
+	string s;
+	cin>>s;
+	int n = s.size();
+	int array[26] = {0};
+	FOR(i,0,n){
+		//cout<<s[i]<<" ";
+		//cout<<(s[i]-'a')<<" "<<ln;
+		array[s[i] - 'a']++;
 	}
-	else{
-		long long int left = 0, right = 0;
-		left = n - ((n/m)*m);
-		right = ((n/m + 1)*m) - n;
-		//debug2(left, right);
-		left *= b;
-		right *= a;
-		//debug2(left, right);
-		if(left <= right)
-			cout<<left<<ln;
-		else
-			cout<<right<<ln;
+	int count = 0;
+	FOR(i,0,26){
+		//debug1(array[i]);
+		if(array[i] != 0)
+			count++;
 	}
+	if(count % 2 == 0)
+		cout<<"CHAT WITH HER!"<<ln;
+	else
+		cout<<"IGNORE HIM!"<<ln;
 	return 0;
 }
