@@ -76,7 +76,6 @@ int main(){
     #endif
 
     FAST_IO;
-            
-
+    
     return 0;
 }
