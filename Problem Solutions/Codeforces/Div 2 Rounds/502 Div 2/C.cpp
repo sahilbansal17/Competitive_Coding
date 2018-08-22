@@ -58,24 +58,47 @@ typedef priority_queue <pii, vpii, greater<pii> > spq;
     #define trace4(a, b, c, d)       cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << endl
     #define trace5(a, b, c, d, e)    cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << endl
     #define trace6(a, b, c, d, e, f) cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << " | " << #f << ": " << f << endl
-    /* Fast Input Output */
-    #define FAST_IO                  ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0)
 /* Constants */
     const ll MOD = 1000000007LL;
     const ll MAX = 100010LL;
 /* Templates */
 template<class T> T abs(T x) { re x > 0 ? x : -x; }
 template<typename T> T gcd(T a, T b){ if(b == 0) return a; return gcd(b, a % b); }
-template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; x %= m; while(y > 0){ if(y & 1LL) ans = (ans * x)%m; y >>= 1LL; x = (x*x)%m; } return ans%m; }
+template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; while(y > 0){ if(y & 1LL) ans = (ans * x)%m; y >>= 1LL; x = (x*x)%m; } return ans%m; }
 
 int main(){
 
     #ifndef ONLINE_JUDGE
     freopen("/Users/sahilbansal/Desktop/input.txt","r",stdin);
     freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
+    freopen("/Users/sahilbansal/Desktop/error.txt", "w",stderr);
     #endif
 
-    FAST_IO;
+    int n, l;
+    cin >> n;
+
+    // we can always partition the permutation of length n
+    // to have 2 specific LIS and LDS values
+    // where LIS = i (1 <= i <= n) and LDS = ceil(n/i)
+    // example. n = 9
+    // i = 3, ceil(n/i) = 3
+    // the permutation can be [7, 8, 9, 4, 5, 6, 1, 2, 3]
+
+    // for minimizing (i + ceil(n/i)), i = floor(sqrt(n)) works
+
+    l = sqrt(n);
+
+    int a[MAX];
+
+    for(int i = 1, val = n; i <= n; i += l){
+        for(int j = min(i + l - 1, n); j >= i; j --){
+            a[j] = val--;
+        }
+    }
+
+    rep1(i, n + 1){
+        cout << a[i] << " ";
+    }
     
     return 0;
 }

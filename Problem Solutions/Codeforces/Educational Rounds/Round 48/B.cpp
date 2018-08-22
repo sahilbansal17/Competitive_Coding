@@ -58,15 +58,13 @@ typedef priority_queue <pii, vpii, greater<pii> > spq;
     #define trace4(a, b, c, d)       cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << endl
     #define trace5(a, b, c, d, e)    cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << endl
     #define trace6(a, b, c, d, e, f) cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << " | " << #f << ": " << f << endl
-    /* Fast Input Output */
-    #define FAST_IO                  ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0)
 /* Constants */
-    const ll MOD = 1000000007LL;
-    const ll MAX = 100010LL;
+    const ll MOD = 100000000LL;
+    const ll MAX = 10010LL;
 /* Templates */
 template<class T> T abs(T x) { re x > 0 ? x : -x; }
 template<typename T> T gcd(T a, T b){ if(b == 0) return a; return gcd(b, a % b); }
-template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; x %= m; while(y > 0){ if(y & 1LL) ans = (ans * x)%m; y >>= 1LL; x = (x*x)%m; } return ans%m; }
+template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; while(y > 0){ if(y & 1LL) ans = (ans * x)%m; y >>= 1LL; x = (x*x)%m; } return ans%m; }
 
 int main(){
 
@@ -75,7 +73,42 @@ int main(){
     freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
     #endif
 
-    FAST_IO;
-    
+    int n, m, q, l, r;
+    cin >> n >> m >> q;
+
+    string s, t;
+    cin >> s >> t;
+
+    int start[1005] = {0};
+
+    rep(i, n){
+        int k = 0;
+        fl(j, i, i + m){
+            if(s[j] == t[k]){
+                k ++;
+            }
+            else{
+                break;
+            }
+        }
+        if(k == m){
+            start[i + 1] = 1;
+        }
+    }
+
+    while (q --) {
+        cin >> l >> r;
+       
+        int cnt = 0;
+
+        fl(i, l, r + 1){
+            if(start[i] == 1 && i + m - 1 <= r){
+                cnt ++;
+            }
+        }
+
+        cout << cnt << endl;
+        
+    }    
     return 0;
 }

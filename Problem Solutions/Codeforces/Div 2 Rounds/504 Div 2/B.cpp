@@ -58,8 +58,6 @@ typedef priority_queue <pii, vpii, greater<pii> > spq;
     #define trace4(a, b, c, d)       cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << endl
     #define trace5(a, b, c, d, e)    cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << endl
     #define trace6(a, b, c, d, e, f) cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << " | " << #f << ": " << f << endl
-    /* Fast Input Output */
-    #define FAST_IO                  ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0)
 /* Constants */
     const ll MOD = 1000000007LL;
     const ll MAX = 100010LL;
@@ -75,7 +73,28 @@ int main(){
     freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
     #endif
 
-    FAST_IO;
-    
+    ll n, k;
+    cin >> n >> k;
+
+    ll small = k / 2, large = ceil(1.0 * k / 2);
+
+    if (small == large) {
+        small --;
+        large ++;
+    }
+    // small gets smaller, large gets larger
+
+    // trace2(small, large);
+
+    if (large > n) {
+        cout << "0";
+    }
+    else {
+        ll a = min (k - 1, n) - large + 1;
+        ll b = small;
+
+        // trace2(a, b);
+        cout << min (a, b);
+    }
     return 0;
 }

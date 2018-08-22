@@ -68,6 +68,54 @@ template<class T> T abs(T x) { re x > 0 ? x : -x; }
 template<typename T> T gcd(T a, T b){ if(b == 0) return a; return gcd(b, a % b); }
 template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; x %= m; while(y > 0){ if(y & 1LL) ans = (ans * x)%m; y >>= 1LL; x = (x*x)%m; } return ans%m; }
 
+ll _sieve_size;
+bitset<50010> bs;   
+vi primes; 
+void sieve(ll upperbound) {          
+  _sieve_size = upperbound + 1;                   
+  bs.set();                                                 
+  bs[0] = bs[1] = 0;                                     
+  for (ll i = 2; i <= _sieve_size; i++) if (bs[i]) {
+    
+    for (ll j = i * i; j <= _sieve_size; j += i) bs[j] = 0;
+    primes.push_back((int)i);  
+} }       
+vi pf;
+void init (int p, int q) {
+    int s = primes[0], t = 0, k = sz(primes);
+    while ((p > 1 || q > 1) && t < k) {
+            if (p % s == 0 && q % s == 0) {
+                while (p % s == 0) {
+                    p /= s;
+                }
+                while (q % s == 0) {
+                    q /= s;
+                }
+                pf.pb(s);
+            }
+            else if (p % s == 0) {
+                pf.pb(s);
+                while (p % s == 0) {
+                    p /= s;
+                }
+            }
+            else if (q % s == 0) {
+                pf.pb(s);
+                while (q % s == 0) {
+                    q /= s;
+                }
+            }
+            t ++;
+            s = primes[t];
+        }
+        if (p > 1) {
+            pf.pb(p);
+        }
+        if (q > 1 && p != q) {
+            pf.pb(q);
+        }
+}
+
 int main(){
 
     #ifndef ONLINE_JUDGE
@@ -76,6 +124,39 @@ int main(){
     #endif
 
     FAST_IO;
-    
+    int n;
+    cin >> n;
+
+    int m = 2000000000;
+    m = sqrt(m);
+    sieve(m + 10);
+
+    int k = sz(primes);    
+    int a[150010], b[150010];
+
+    rep (j, n) {
+        cin >> a[j] >> b[j];
+    }
+
+    init(a[0], b[0]);
+    // rep (i, sz(pf)) {
+    //     cout << pf[i] << " ";
+    // }
+    rep1 (i, n) {
+        int p = a[i], q = b[i];
+        rep (i, sz(pf)) {
+            if (pf[i] != -1 && p % pf[i] != 0 && q % pf[i] != 0) {
+                pf[i] = -1;
+            }
+        }
+    }
+
+    rep (i, sz(pf)) {
+        if (pf[i] != -1) {
+            cout << pf[i] << endl;
+            return 0;
+        }
+    }
+    cout << "-1" << endl;
     return 0;
 }

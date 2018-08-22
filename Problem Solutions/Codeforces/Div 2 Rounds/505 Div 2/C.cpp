@@ -76,6 +76,53 @@ int main(){
     #endif
 
     FAST_IO;
+    string s;
+    cin >> s;
+
+    int n = slen(s);
+
+    int dp[MAX] = {-1}, dp2[MAX] = {-1}, res = 1;
+
+    dp[0] = 1;
+    rep1 (i, n) {
+        if (s[i - 1] != s[i]) {
+            dp[i] = dp[i - 1] + 1;
+        }
+        else {
+            dp[i] = 1;
+        }
+        if (dp[i] > res) {
+            res = dp[i];
+        }
+    }
+
+    dp2[n - 1] = 1;
+    rfl (i, n - 1, 1) {
+        if (s[i - 1] != s[i]) {
+            dp2[i - 1] = dp2[i] + 1;
+        }
+        else {
+            dp2[i - 1] = 1;
+        }
+        if (dp2[i - 1] > res) {
+            res = dp2[i - 1];
+        }
+    }
+
+    // rep (i, n) {
+    //     cout << dp2[i] << " ";
+    // }
+    // cout << endl;
     
+    rep (i, n) {
+        int a = dp[i];
+        int b = min (dp[n - 1], n - i - 1);
+        // trace2(a, b);
+        if (a == i + 1 && s[0] != s[n - 1]) {
+            res = max (res, a + b);
+        }
+    }
+
+    cout << res << endl;
     return 0;
 }

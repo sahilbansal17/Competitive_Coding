@@ -58,8 +58,6 @@ typedef priority_queue <pii, vpii, greater<pii> > spq;
     #define trace4(a, b, c, d)       cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << endl
     #define trace5(a, b, c, d, e)    cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << endl
     #define trace6(a, b, c, d, e, f) cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << " | " << #f << ": " << f << endl
-    /* Fast Input Output */
-    #define FAST_IO                  ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0)
 /* Constants */
     const ll MOD = 1000000007LL;
     const ll MAX = 100010LL;
@@ -75,7 +73,43 @@ int main(){
     freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
     #endif
 
-    FAST_IO;
-    
+    int n, q;
+    cin >> n >> q;
+
+    int x, y;
+    rep (i, q) {
+        cin >> x >> y;
+        ll res;
+        if ((x + y) & 1) {
+            ll start = ceil(1.0 * 1ll * n * n / 2) + 1ll;
+            start += 1ll * n * ll((x - 1)/2);
+            if (x & 1) {
+                // odd row covers floor(n/2)
+                res = start + ll(y/2) - 1;
+            }
+            else {
+                // update start by no of elements in previous row = floor(n/2)
+                start += 1ll * floor(1.0 * n / 2);
+                // even row covers ceil(n/2)
+                res = start + ll(y/2);
+            }
+        }
+        else {
+            // first 2 rows cover first n numbers
+            ll start = 1ll * n * ll((x - 1)/2) + 1ll ; // first element of the row starts with this number
+            if (x & 1) {
+                // odd row covers ceil(n/2)
+                res = start + ll(y/2);
+            }   
+            else {
+                // update start by no of elements in previous row = ceil(n/2)
+                start += 1ll * ceil(1.0 * n / 2);
+                // even row covers floor(n/2)
+                res = start + ll(y/2) - 1;
+            }
+        }
+        cout << res << endl;
+    }
+
     return 0;
 }

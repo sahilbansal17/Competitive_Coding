@@ -58,15 +58,23 @@ typedef priority_queue <pii, vpii, greater<pii> > spq;
     #define trace4(a, b, c, d)       cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << endl
     #define trace5(a, b, c, d, e)    cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << endl
     #define trace6(a, b, c, d, e, f) cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << " | " << #f << ": " << f << endl
-    /* Fast Input Output */
-    #define FAST_IO                  ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0)
 /* Constants */
-    const ll MOD = 1000000007LL;
-    const ll MAX = 100010LL;
+    const ll MOD = 100000000LL;
+    const ll MAX = 10010LL;
 /* Templates */
 template<class T> T abs(T x) { re x > 0 ? x : -x; }
 template<typename T> T gcd(T a, T b){ if(b == 0) return a; return gcd(b, a % b); }
-template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; x %= m; while(y > 0){ if(y & 1LL) ans = (ans * x)%m; y >>= 1LL; x = (x*x)%m; } return ans%m; }
+template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; while(y > 0){ if(y & 1LL) ans = (ans * x)%m; y >>= 1LL; x = (x*x)%m; } return ans%m; }
+
+bool srt_fn(pair < int, pii > p1, pair < int, pii > p2){
+    int s1, s2, e1, e2;
+    s1 = p1.S.F, s2 = p2.S.F;
+    e1 = p1.S.S, e2 = p2.S.S;
+    if(s1 != s2){
+        return s1 < s2;
+    }
+    return e1 > e2;
+}
 
 int main(){
 
@@ -75,7 +83,36 @@ int main(){
     freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
     #endif
 
-    FAST_IO;
-    
+    int n, start, end;
+    cin >> n;
+
+    vector < pair <int, pii > > intervals; // index, start, end
+
+    rep(i, n){
+        cin >> start >> end;
+        intervals.pb(mp(i, mp(start, end)));
+    }
+
+    sort(all(intervals), srt_fn);
+
+    int ans1 = -2, ans2 = -2;
+
+    /*/
+    trace1("\n");
+    rep(i, n){
+        trace2(intervals[i].S.F, intervals[i].S.S);
+    }
+    //*/
+
+    rep1(i, n){
+        if(intervals[i].S.F >= intervals[i - 1].S.F && intervals[i].S.S <= intervals[i - 1].S.S){
+            ans1 = intervals[i].F;
+            ans2 = intervals[i - 1].F;
+            break;
+        }
+    }
+
+    cout << ans1 + 1 << " " << ans2 + 1;
+
     return 0;
 }

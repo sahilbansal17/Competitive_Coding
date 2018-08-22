@@ -58,8 +58,6 @@ typedef priority_queue <pii, vpii, greater<pii> > spq;
     #define trace4(a, b, c, d)       cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << endl
     #define trace5(a, b, c, d, e)    cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << endl
     #define trace6(a, b, c, d, e, f) cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << " | " << #f << ": " << f << endl
-    /* Fast Input Output */
-    #define FAST_IO                  ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0)
 /* Constants */
     const ll MOD = 1000000007LL;
     const ll MAX = 100010LL;
@@ -75,7 +73,65 @@ int main(){
     freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
     #endif
 
-    FAST_IO;
-    
+    int n, m;
+    cin >> n >> m;
+
+    string s, t;
+    cin >> s >> t;
+
+    bool flag = true;
+    int j = 0;
+    int i = 0;
+    int a, b;
+    bool cnt = 0;
+    while (i < n && j < m) {
+        if (s[i] == t[j]) {
+            i ++;
+            j ++;
+        }
+        else if (s[i] == '*'){
+            cnt = 1;
+            i ++;
+            if (m >= n) {
+                b = j + (m - n) + 1;
+            }
+            else{
+                b = j;
+            }
+            break;
+        }
+        else {
+            cout << "NO";
+            return 0;
+        }
+    }
+    if (j == m) {
+        b = m;
+    }
+    // trace1(b);
+    // trace1(i);
+    while (b < m && i < n) {
+        if (s[i] == t[b]) {
+            i ++ ; b ++;
+        }
+        else {
+            cout << "NO";
+            return 0;
+        }
+    }
+    if (s[i] == '*') {
+        cnt = 1;
+        i ++;
+    }
+    if (!cnt && n != m) {
+        cout << "NO";
+    }
+    else if (i == n) {
+        cout << "YES";
+    }
+    else {
+        cout << "NO";
+    }
+
     return 0;
 }
