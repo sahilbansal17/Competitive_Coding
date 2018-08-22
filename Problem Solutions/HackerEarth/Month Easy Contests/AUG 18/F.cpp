@@ -58,15 +58,13 @@ typedef priority_queue <pii, vpii, greater<pii> > spq;
     #define trace4(a, b, c, d)       cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << endl
     #define trace5(a, b, c, d, e)    cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << endl
     #define trace6(a, b, c, d, e, f) cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << " | " << #f << ": " << f << endl
-    /* Fast Input Output */
-    #define FAST_IO                  ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0)
 /* Constants */
-    const ll MOD = 1000000007LL;
-    const ll MAX = 100010LL;
+    const ll MOD = 100000000LL;
+    const ll MAX = 100010;
 /* Templates */
 template<class T> T abs(T x) { re x > 0 ? x : -x; }
 template<typename T> T gcd(T a, T b){ if(b == 0) return a; return gcd(b, a % b); }
-template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; x %= m; while(y > 0){ if(y & 1LL) ans = (ans * x)%m; y >>= 1LL; x = (x*x)%m; } return ans%m; }
+template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; while(y > 0){ if(y & 1LL) ans = (ans * x)%m; y >>= 1LL; x = (x*x)%m; } return ans%m; }
 
 int main(){
 
@@ -75,8 +73,46 @@ int main(){
     freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
     #endif
 
-    FAST_IO;
-            
+    int n, q;
+    cin >> n >> q;
+
+    vi a(n, 0);
+    rep(i, n){
+        cin >> a[i];
+    }
+
+    while (q --) {
+        int type, l, r, p, k;
+        cin >> type;
+        if(type == 1){
+            cin >> l >> r;
+            l --, r --;
+            int max_health = 0;
+            fl(i, l, r + 1){
+                if(a[i] > max_health){
+                    max_health = a[i];
+                }
+            }
+            cout << max_health << endl;
+        }
+        else{
+            cin >> p >> k;
+            k --;
+            int cur = a[k];
+            if(p == 1){
+                fl(j, k, n - 1){
+                    a[j] = a[j + 1];
+                }
+                a[n - 1] = cur;
+            }
+            else{
+                rfl(j, k, 1){
+                    a[j] = a[j - 1];
+                }
+                a[0] = cur;
+            }
+        }
+    }
 
     return 0;
 }

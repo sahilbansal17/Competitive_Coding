@@ -58,15 +58,33 @@ typedef priority_queue <pii, vpii, greater<pii> > spq;
     #define trace4(a, b, c, d)       cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << endl
     #define trace5(a, b, c, d, e)    cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << endl
     #define trace6(a, b, c, d, e, f) cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << " | " << #f << ": " << f << endl
-    /* Fast Input Output */
-    #define FAST_IO                  ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0)
 /* Constants */
-    const ll MOD = 1000000007LL;
-    const ll MAX = 100010LL;
+    const ll MOD = 100000000LL;
+    const ll MAX = 100010;
 /* Templates */
 template<class T> T abs(T x) { re x > 0 ? x : -x; }
 template<typename T> T gcd(T a, T b){ if(b == 0) return a; return gcd(b, a % b); }
-template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; x %= m; while(y > 0){ if(y & 1LL) ans = (ans * x)%m; y >>= 1LL; x = (x*x)%m; } return ans%m; }
+template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; while(y > 0){ if(y & 1LL) ans = (ans * x)%m; y >>= 1LL; x = (x*x)%m; } return ans%m; }
+
+int num_of_vertices, val[MAX], lft[MAX], rht[MAX], not_root[MAX], root, sorted[MAX]; 
+
+int solve(int vertex_idx, int beg, int end){
+    // if not a valid interval, return 0
+    if(end - beg <= 0) return 0;
+
+    // if the elements in the range end to beg can't be searched
+    // since the vertex doesn't exist
+    // return the number of elements = end - beg
+    if(vertex_idx == -1) return end - beg;
+
+    int low = lower_bound(sorted + beg, sorted + end, val[vertex_idx]) - sorted;
+    int high = upper_bound(sorted + beg, sorted + end, val[vertex_idx]) - sorted;
+    
+    // elements from sorted[beg] to sorted[low - 1] reach the left vertex during search
+    // elements from sorted[high] to sorted[end - 1] reach the right vertex during search 
+
+    re solve(lft[vertex_idx], beg, low) + solve(rht[vertex_idx], high, end);
+}
 
 int main(){
 
@@ -75,8 +93,33 @@ int main(){
     freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
     #endif
 
-    FAST_IO;
-            
+    cin >> num_of_vertices;
 
+    rep(i, num_of_vertices){
+        cin >> val[i] >> lft[i] >> rht[i];
+        if(lft[i] >= 0){
+            lft[i] --; // zero-based indexing
+            // the vertex at this index can't be a root
+            not_root[lft[i]] = 1;
+        }
+        if(rht[i] >= 0){
+            rht[i] --;
+            not_root[rht[i]] = 1;
+        }
+        sorted[i] = val[i];
+    }
+
+    sort(sorted, sorted + num_of_vertices);
+
+    // find the root vertex
+    rep(i, num_of_vertices){
+        if(!not_root[i]){
+            root = i;
+            break;
+        }
+    }
+
+    cout << solve(root, 0, num_of_vertices);
+    
     return 0;
 }

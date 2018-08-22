@@ -58,15 +58,13 @@ typedef priority_queue <pii, vpii, greater<pii> > spq;
     #define trace4(a, b, c, d)       cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << endl
     #define trace5(a, b, c, d, e)    cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << endl
     #define trace6(a, b, c, d, e, f) cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << " | " << #f << ": " << f << endl
-    /* Fast Input Output */
-    #define FAST_IO                  ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0)
 /* Constants */
-    const ll MOD = 1000000007LL;
-    const ll MAX = 100010LL;
+    const ll MOD = 100000000LL;
+    const ll MAX = 10010LL;
 /* Templates */
 template<class T> T abs(T x) { re x > 0 ? x : -x; }
 template<typename T> T gcd(T a, T b){ if(b == 0) return a; return gcd(b, a % b); }
-template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; x %= m; while(y > 0){ if(y & 1LL) ans = (ans * x)%m; y >>= 1LL; x = (x*x)%m; } return ans%m; }
+template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; while(y > 0){ if(y & 1LL) ans = (ans * x)%m; y >>= 1LL; x = (x*x)%m; } return ans%m; }
 
 int main(){
 
@@ -75,8 +73,54 @@ int main(){
     freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
     #endif
 
-    FAST_IO;
-            
+    int p, s;
 
+    vpii res;
+
+    cin >> p >> s;
+
+    int prob = 0;
+    vpii cp;
+    vi st(s, 0), ns(s, 0);
+
+    rep1(i, 2*p + 1){
+
+        int cnt = 0;
+
+        if(i & 1){
+            rep(j, s){
+                cin >> st[j];
+            }
+        }
+        else{
+            rep(j, s){
+                cin >> ns[j];
+            }
+        }
+
+        if(!(i & 1)){
+            rep(j, s){
+                cp.pb(mp(st[j], ns[j]));
+            }
+
+            srt(cp);
+
+            rep(j, s - 1){
+                if(cp[j].S > cp[j + 1].S){
+                    cnt ++;
+                }
+            }
+            res.pb(mp(cnt, prob + 1));
+
+            cp.clear();
+            prob ++;
+        }
+    }    
+
+    srt(res);
+
+    rep(i, sz(res)){
+        cout << res[i].S << endl;
+    }
     return 0;
 }

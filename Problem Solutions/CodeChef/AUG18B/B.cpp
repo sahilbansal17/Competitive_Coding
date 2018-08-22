@@ -58,15 +58,35 @@ typedef priority_queue <pii, vpii, greater<pii> > spq;
     #define trace4(a, b, c, d)       cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << endl
     #define trace5(a, b, c, d, e)    cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << endl
     #define trace6(a, b, c, d, e, f) cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << " | " << #f << ": " << f << endl
-    /* Fast Input Output */
-    #define FAST_IO                  ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0)
 /* Constants */
-    const ll MOD = 1000000007LL;
-    const ll MAX = 100010LL;
+    const ll MOD = 100000000LL;
+    const ll MAX = 1e10;
 /* Templates */
 template<class T> T abs(T x) { re x > 0 ? x : -x; }
 template<typename T> T gcd(T a, T b){ if(b == 0) return a; return gcd(b, a % b); }
-template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; x %= m; while(y > 0){ if(y & 1LL) ans = (ans * x)%m; y >>= 1LL; x = (x*x)%m; } return ans%m; }
+template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; while(y > 0){ if(y & 1LL) ans = (ans * x)%m; y >>= 1LL; x = (x*x)%m; } return ans%m; }
+
+#define isOn(S, j) (S & (1 << j))
+
+vll num_with_two_set_bits;
+
+// store numbers with two set bits
+void initialize(){
+    int high = 1;
+    ll current = 0;
+    
+    while (high < 32) {
+        int low = 0;
+        while (low < high) {
+            current = (1ll << low) + (1ll << high);
+            
+            num_with_two_set_bits.pb(current);
+
+            low ++;
+        }
+        high ++;
+    }
+}
 
 int main(){
 
@@ -75,8 +95,56 @@ int main(){
     freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
     #endif
 
-    FAST_IO;
-            
+    int t, n;
+    cin >> t;
+
+    initialize();
+
+    // trace1("\n");
+    // trace1(sz(num_with_two_set_bits));
+    // trace1(num_with_two_set_bits[sz(num_with_two_set_bits) - 1]);
+
+    int total = sz(num_with_two_set_bits);
+
+    while (t --) {
+        cin >> n;
+        /*
+        int cnt = 0, first, second = -1;
+        rfl (j, 31, 0) {
+            if (isOn(n, j) && cnt == 1) {
+                second = j;
+                break;
+            }
+            if (isOn(n, j) && cnt == 0) {
+                first = j;
+                cnt ++;
+            }
+        }
+
+        if (second == -1) {
+            cout << "1" << endl;
+        }
+        else if(first != second + 1) {
+            int subt = (1 << first) + (1 << second);
+            int add = (1 << first) + (1 << (second + 1));
+            cout << min(n - subt, add - n) << endl;
+        }
+        else {
+            cout << n - ((1 << first) + (1 << second));
+        }
+        */
+
+        ll min_diff;
+        min_diff = LLINF;
+
+        rep(j, total){
+            if(abs(num_with_two_set_bits[j] - n) < min_diff){
+                min_diff = abs(num_with_two_set_bits[j] - n);
+            }
+        }
+
+        cout << min_diff << endl;
+    }
 
     return 0;
 }

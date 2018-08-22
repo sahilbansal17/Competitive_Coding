@@ -58,11 +58,9 @@ typedef priority_queue <pii, vpii, greater<pii> > spq;
     #define trace4(a, b, c, d)       cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << endl
     #define trace5(a, b, c, d, e)    cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << endl
     #define trace6(a, b, c, d, e, f) cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << " | " << #f << ": " << f << endl
-    /* Fast Input Output */
-    #define FAST_IO                  ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0)
 /* Constants */
     const ll MOD = 1000000007LL;
-    const ll MAX = 100010LL;
+    const ll MAX = 200010LL;
 /* Templates */
 template<class T> T abs(T x) { re x > 0 ? x : -x; }
 template<typename T> T gcd(T a, T b){ if(b == 0) return a; return gcd(b, a % b); }
@@ -75,8 +73,51 @@ int main(){
     freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
     #endif
 
-    FAST_IO;
-            
+    int n, k;
+    cin >> n >> k;
+
+    string s;
+    cin >> s;
+
+    stack < int > st;
+
+    int closing[MAX] = {-1};
+
+    vector <char> res (n + 1, '0');
+
+    rep (i, n) {
+        if (s[i] == '(') {
+            st.push(i + 1);
+        }
+        else {
+            int op = st.top();
+            st.pop();
+            closing[op] = i + 1;
+        }
+    }
+
+    // rep1 (i, n + 1) {
+    //     cout << closing[i] << " ";
+    // }
+
+    int cnt = 0;
+    rep (i, n) {
+        if (s[i] == '(') {
+            res[i + 1] = '(';
+            res[closing[i + 1]] = ')';
+            cnt ++;
+            if (cnt == k/2) {
+                break;
+            }
+        }
+    }
+
+    rep1 (i, n + 1) {
+        if (res[i] != '0') {
+            cout << res[i];
+        }
+    }
+
 
     return 0;
 }

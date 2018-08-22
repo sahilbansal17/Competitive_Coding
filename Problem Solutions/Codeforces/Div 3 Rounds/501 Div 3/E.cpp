@@ -48,7 +48,7 @@ typedef priority_queue <pii, vpii, greater<pii> > spq;
     #define fill(x, y)      memset(x, y, sizeof(x))
     #define endl            '\n'
     /* Mathematical */
-    #define oo              0x3f3f3f3f
+    #define INF             0x3f3f3f3f
     #define LLINF           1000111000111000111LL
     #define PI              3.14159265358979323
     /* Debugging purpose */
@@ -58,15 +58,17 @@ typedef priority_queue <pii, vpii, greater<pii> > spq;
     #define trace4(a, b, c, d)       cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << endl
     #define trace5(a, b, c, d, e)    cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << endl
     #define trace6(a, b, c, d, e, f) cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << " | " << #f << ": " << f << endl
-    /* Fast Input Output */
-    #define FAST_IO                  ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0)
 /* Constants */
     const ll MOD = 1000000007LL;
-    const ll MAX = 100010LL;
+    const ll MAX = 10010LL;
 /* Templates */
 template<class T> T abs(T x) { re x > 0 ? x : -x; }
 template<typename T> T gcd(T a, T b){ if(b == 0) return a; return gcd(b, a % b); }
-template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; x %= m; while(y > 0){ if(y & 1LL) ans = (ans * x)%m; y >>= 1LL; x = (x*x)%m; } return ans%m; }
+template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; while(y > 0){ if(y & 1LL) ans = (ans * x)%m; y >>= 1LL; x = (x*x)%m; } return ans%m; }
+
+vector < pair < int, pii > > res; // sz, x, y
+char s[1005][1005];
+bool done[1005][1005];
 
 int main(){
 
@@ -75,8 +77,78 @@ int main(){
     freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
     #endif
 
-    FAST_IO;
-            
+    int n, m;
+    cin >> n >> m;
+
+    rep(i, n){
+        rep(j, m){
+            cin >> s[i][j];
+        }
+    }
+    
+    pii left, right, top, bottom;
+
+    int x, y, siz;
+
+    rep1(i, n - 1){
+        rep1(j, m - 1){
+
+            if(s[i][j] == '*'){
+                x = i;
+                y = j;
+                siz = 0;
+
+                // unchanged
+                left.F = x;
+                right.F = x;
+                top.S = y;
+                bottom.S = y;
+                // changeable
+                left.S = y;
+                right.S = y;
+                top.F = x;
+                bottom.F = x;
+
+                fl(k, 1, 1000){
+                    left.S --;
+                    right.S ++;
+                    top.F --;
+                    bottom.F ++;
+                    if(left.S < 0 || right.S >=m || top.F < 0 || bottom.F >= n){
+                        break;
+                    }
+                    if(s[x][left.S] == '*' && s[x][right.S] == '*' && s[top.F][y] == '*' && s[bottom.F][y] == '*'){
+                        done[x][left.S] = true;
+                        done[x][right.S] = true;
+                        done[top.F][y] = true;
+                        done[bottom.F][y] = true;
+                        siz = k;
+                    }
+                    else{
+                        break;
+                    }
+                }
+                if(siz > 0){
+                    done[x][y] = true;
+                    res.pb(mp(siz, mp(x + 1, y + 1)));
+                }
+            }
+        }
+    }
+
+    rep(i, n){
+        rep(j, m){
+            if(s[i][j] == '*' && !done[i][j]){
+                cout << "-1";
+                return 0;
+            }
+        }
+    }
+    cout << res.size() << endl;
+
+    rep(i, res.size()){
+        cout << res[i].S.F << " " << res[i].S.S << " " << res[i].F << "\n";
+    }
 
     return 0;
 }

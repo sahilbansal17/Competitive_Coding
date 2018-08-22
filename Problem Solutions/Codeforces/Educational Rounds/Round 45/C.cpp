@@ -58,15 +58,55 @@ typedef priority_queue <pii, vpii, greater<pii> > spq;
     #define trace4(a, b, c, d)       cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << endl
     #define trace5(a, b, c, d, e)    cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << endl
     #define trace6(a, b, c, d, e, f) cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << " | " << #f << ": " << f << endl
-    /* Fast Input Output */
-    #define FAST_IO                  ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0)
 /* Constants */
-    const ll MOD = 1000000007LL;
-    const ll MAX = 100010LL;
+    const ll MOD = 100000000LL;
+    const ll MAX = 10010LL;
 /* Templates */
 template<class T> T abs(T x) { re x > 0 ? x : -x; }
 template<typename T> T gcd(T a, T b){ if(b == 0) return a; return gcd(b, a % b); }
-template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; x %= m; while(y > 0){ if(y & 1LL) ans = (ans * x)%m; y >>= 1LL; x = (x*x)%m; } return ans%m; }
+template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; while(y > 0){ if(y & 1LL) ans = (ans * x)%m; y >>= 1LL; x = (x*x)%m; } return ans%m; }
+
+int cnt[300010];
+
+// this function returns the mirror of the string
+// when mirror is considered as vertical plane
+// at the end of the string
+string mirror(string &s){
+    string rev = s;
+    reverse(all(rev));
+
+    rep(i, sz(rev)){
+        if(rev[i] == '('){
+            rev[i] = ')';
+        }
+        else{
+            rev[i] = '(';
+        }
+    }
+    return rev;
+}
+
+
+// this function returns 
+//  •   -1 when the string has a prefix which has more closing brackets 
+//      such a string cannot be balanced after adding any other string
+//  •   the difference between the no of opening and closing brackets
+//      when the string is good (bal = -1 is not returned) 
+int getBalance(string &s){
+    int bal = 0;
+    rep(i, sz(s)){
+        if(s[i] == '('){
+            bal ++;
+        }
+        else{
+            bal --;
+        }
+        if(bal < 0){
+            return -1;
+        }
+    }
+    return bal;
+}
 
 int main(){
 
@@ -75,8 +115,36 @@ int main(){
     freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
     #endif
 
-    FAST_IO;
-            
+    int n;
+    cin >> n;
 
+    string s;
+    vs strings;
+    rep(i, n){
+        cin >> s;
+        strings.pb(s);
+    }
+
+    rep(i, n){
+        int bal = getBalance(strings[i]);
+        if(bal != -1){
+            cnt[bal] ++ ;
+        }
+    }
+
+    ll res = 0;
+    rep(i, n){
+        strings[i] = mirror(strings[i]);
+
+        int bal = getBalance(strings[i]);
+        // if mirror is good string (no of opening paren > closing paren)
+        // then we can concatenate all strings with this balance 'bal'
+        // before the original unmirrored string, strings[i]
+        if(bal != -1){
+            res += cnt[bal];
+        }
+    }
+
+    cout << res;
     return 0;
 }

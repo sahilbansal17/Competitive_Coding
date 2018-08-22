@@ -48,7 +48,7 @@ typedef priority_queue <pii, vpii, greater<pii> > spq;
     #define fill(x, y)      memset(x, y, sizeof(x))
     #define endl            '\n'
     /* Mathematical */
-    #define oo              0x3f3f3f3f
+    #define INF             0x3f3f3f3f
     #define LLINF           1000111000111000111LL
     #define PI              3.14159265358979323
     /* Debugging purpose */
@@ -58,15 +58,13 @@ typedef priority_queue <pii, vpii, greater<pii> > spq;
     #define trace4(a, b, c, d)       cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << endl
     #define trace5(a, b, c, d, e)    cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << endl
     #define trace6(a, b, c, d, e, f) cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << " | " << #f << ": " << f << endl
-    /* Fast Input Output */
-    #define FAST_IO                  ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0)
 /* Constants */
     const ll MOD = 1000000007LL;
-    const ll MAX = 100010LL;
+    const ll MAX = 10010LL;
 /* Templates */
 template<class T> T abs(T x) { re x > 0 ? x : -x; }
 template<typename T> T gcd(T a, T b){ if(b == 0) return a; return gcd(b, a % b); }
-template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; x %= m; while(y > 0){ if(y & 1LL) ans = (ans * x)%m; y >>= 1LL; x = (x*x)%m; } return ans%m; }
+template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; while(y > 0){ if(y & 1LL) ans = (ans * x)%m; y >>= 1LL; x = (x*x)%m; } return ans%m; }
 
 int main(){
 
@@ -75,8 +73,41 @@ int main(){
     freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
     #endif
 
-    FAST_IO;
-            
+    int n;
+    cin >> n;
 
+    string s, t;
+    cin >> s >> t;
+
+    vi res;
+    rep(i, n){
+        if(s[i] != t[i]){
+            int ind;
+            bool flag = false;
+            fl(j, i + 1, n){
+                if(s[j] == t[i]){
+                    ind = j;
+                    flag = true;
+                    break;
+                }
+            }
+            if(flag == false){
+                cout << "-1";
+                return 0;
+            }
+            rfl(j, ind - 1, i){
+                swap(s[j], s[j + 1]);
+                res.pb(j + 1);
+            }
+        }
+        // trace1(s);
+    }
+    
+    int k = sz(res);
+    cout << k << endl;
+
+    rep(i, k){
+        cout << res[i] << " ";
+    }
     return 0;
 }

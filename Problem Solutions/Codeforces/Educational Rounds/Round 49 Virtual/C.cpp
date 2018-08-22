@@ -58,8 +58,6 @@ typedef priority_queue <pii, vpii, greater<pii> > spq;
     #define trace4(a, b, c, d)       cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << endl
     #define trace5(a, b, c, d, e)    cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << endl
     #define trace6(a, b, c, d, e, f) cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << " | " << #f << ": " << f << endl
-    /* Fast Input Output */
-    #define FAST_IO                  ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0)
 /* Constants */
     const ll MOD = 1000000007LL;
     const ll MAX = 100010LL;
@@ -75,8 +73,56 @@ int main(){
     freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
     #endif
 
-    FAST_IO;
-            
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+    
+    int t, n, val;
+    cin >> t;
+
+    vi cnt (10010, 0), p;
+    rep (i, t) {
+        cin >> n;
+
+        int res = -1;
+        rep (j, n) {
+            cin >> val;
+            cnt[val] ++;
+            if (cnt[val] == 2) {
+                p.pb(val);
+            }
+            if (cnt[val] >= 4) {
+                res = val;
+            }
+        }
+
+        if (res != -1) {
+            rep (j, 4) {
+                cout << res << " ";
+            }
+            cout << endl;
+        }
+        else {
+            srt(p);
+            double min = 400000.00;
+            ll sa, sb;
+            rep1 (j, sz(p)) {
+                double a = 1.0 * p[j - 1], b = 1.0 * p[j];
+                double cur = 4.0 * ((a + b) / (a*b)) * (a + b);
+                // trace1(cur);
+                if (cur < min) {
+                    min = cur;
+                    sa = a;
+                    sb = b;
+                }
+            }
+            cout << sa << " " << sa << " " << sb << " " << sb << endl;
+        }
+        p.clear();
+        rep (i, 10010) {
+            cnt[i] = 0;
+        }
+    }            
 
     return 0;
 }
