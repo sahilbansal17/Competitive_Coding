@@ -77,6 +77,37 @@ int main(){
     #endif
 
     FAST_IO;
-    
+    int n, k;
+    cin >> n >> k;
+
+    string t, s;
+    cin >> t;
+
+    int maxl = 0;
+    rfl (j, n - 1, 1) {
+        int l = 0;
+        rep (i, n - j) {
+            if (t[i] == t[j + i]) {
+                l ++;
+            }
+            else {
+                l = 0;
+                break;
+            }
+        }
+        if (l > maxl) {
+            // trace1(j);
+            maxl = l;
+        }
+        // trace1(l);
+    }
+
+    cout << t ;
+    rep (i, k - 1) {
+        int start = maxl;
+        fl (j, start, n) {
+            cout << t[j];
+        }
+    }
     return 0;
 }

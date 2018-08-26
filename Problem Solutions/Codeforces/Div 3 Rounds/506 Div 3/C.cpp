@@ -68,6 +68,20 @@ template<class T> T abs(T x) { re x > 0 ? x : -x; }
 template<typename T> T gcd(T a, T b){ if(b == 0) return a; return gcd(b, a % b); }
 template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; x %= m; while(y > 0){ if(y & 1LL) ans = (ans * x)%m; y >>= 1LL; x = (x*x)%m; } return ans%m; }
 
+bool cmp1 (pii a, pii b) {
+    if (a.F == b.F) {
+        return a.S > b.S;
+    }
+    return a.F < b.F;
+}   
+
+bool cmp2 (pii a, pii b) {
+    if (a.S == b.S) {
+        return a.F > b.F;
+    }
+    return a.S < b.S;
+}
+
 int main(){
 
     #ifndef ONLINE_JUDGE
@@ -77,6 +91,50 @@ int main(){
     #endif
 
     FAST_IO;
-    
+    int n, x, y;
+    cin >> n;
+
+    vpii it1, it2;
+    rep (i, n) {
+        cin >> x >> y;
+        it1.pb(mp(x, y));
+        it2.pb(mp(x, y));
+    }
+
+    sort(all(it1), cmp1);
+    sort(all(it2), cmp2);
+
+    int s_max = 0, e_min = 1000000010, ans = 0;
+    rep (i, n - 1) {
+        // trace2(it1[i].F, it1[i].S);
+        // trace2(it2[i].F, it2[i].S);
+        if (it1[i].F > s_max) {
+            s_max = it1[i].F;
+        }
+        if (it1[i].S < e_min) {
+            e_min = it1[i].S;
+        }
+    }
+
+    ans = max (ans, e_min - s_max);
+
+    s_max = 0, e_min = 1000000010;
+    rep1 (i, n) {
+        if (it2[i].F > s_max) {
+            s_max = it2[i].F;
+        }
+        if (it2[i].S < e_min) {
+            e_min = it2[i].S;
+        }
+    }
+
+    ans = max (ans, e_min - s_max);
+
+    // cout << ans;
+
+    vector <int> v(3, 0);
+    for (auto i: v) {
+        cout << i << endl;
+    }
     return 0;
 }

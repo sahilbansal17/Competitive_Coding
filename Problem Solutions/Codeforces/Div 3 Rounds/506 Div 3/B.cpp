@@ -77,6 +77,28 @@ int main(){
     #endif
 
     FAST_IO;
-    
+    int n;
+    cin >> n;
+
+    vi a(n, 0);
+    int cur = 0, prev = 0, cnt = 1, max_cnt = 0;
+    rep (i, n) {
+        cin >> a[i];
+        cur = a[i];
+        if (cur <= 2*prev) {
+            cnt ++;
+        }
+        else {
+            cnt = 1;
+            // trace2(cur, prev);
+        }
+        prev = cur;
+        if (cnt > max_cnt) {
+            max_cnt = cnt;
+        }
+    }
+
+    cout << max_cnt << endl;
+
     return 0;
 }

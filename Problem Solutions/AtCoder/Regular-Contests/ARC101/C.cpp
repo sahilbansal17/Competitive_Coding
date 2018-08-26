@@ -78,5 +78,70 @@ int main(){
 
     FAST_IO;
     
+    int n, k, xi;
+    cin >> n >> k;
+
+    vi x;
+    int neg = 0, pos = 0, zero = -1;
+    rep (i, n) {
+        cin >> xi;
+        x.pb(xi);
+        if (xi < 0) {
+            neg ++;
+        }
+        else if (xi == 0) {
+            zero = i;
+        }
+        else {
+            pos ++;
+        }
+    }
+
+    vi left(n + 1, 0), right(n + 1, 0);
+    int c_pos = 1, c_neg = neg;
+    rep (i, n) {
+        if (x[i] < 0) {
+            left[c_neg--] = abs(x[i]);
+        }
+        else if (x[i] > 0) {
+            right[c_pos++] = x[i];
+        }
+    }
+
+    if (zero != -1) {
+        k --;
+    }
+
+    int res = oo, cur = 0;
+    if (pos >= k) {
+        cur = right[k];
+        if (cur < res) {
+            res = cur;
+        }
+    }
+
+    fl (l, 1, k) {
+        int r = k - l;
+        if (left[l] != 0 && r <= pos) {
+            cur = 2 * left[l] + right[r];
+            if (cur < res) {
+                res = cur;
+            }
+        }
+        if (right[r] != 0 && l <= neg) {
+            cur = 2 * right[r] + left[l];
+            if (cur < res) {
+                res = cur;
+            }
+        }
+    }
+    if (neg >= k) {
+        cur = left[k];
+        if (cur < res) {
+            res = cur;
+        }
+    }
+
+    cout << res;
     return 0;
 }

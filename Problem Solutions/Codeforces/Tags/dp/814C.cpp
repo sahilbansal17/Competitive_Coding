@@ -68,6 +68,9 @@ template<class T> T abs(T x) { re x > 0 ? x : -x; }
 template<typename T> T gcd(T a, T b){ if(b == 0) return a; return gcd(b, a % b); }
 template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; x %= m; while(y > 0){ if(y & 1LL) ans = (ans * x)%m; y >>= 1LL; x = (x*x)%m; } return ans%m; }
 
+static const int APLHABET_SIZE = 26;
+static const int MAX_LENGTH = 1501;
+
 int main(){
 
     #ifndef ONLINE_JUDGE
@@ -77,6 +80,48 @@ int main(){
     #endif
 
     FAST_IO;
-    
+    int n;
+    cin >> n;
+
+    string s;
+    cin >> s;
+
+    int dp[APLHABET_SIZE][MAX_LENGTH] = {{ 0 }};
+    // dp[i][j] denotes the length required 
+    // when the char is i ('a' for 0)
+    // and j is the max no of allowed changes to char i
+
+    rep (c, APLHABET_SIZE) {
+        rep (i, n) {
+            int replace_cnt = 0;
+            fl (j, i, n) {
+                if (s[j] - 'a' != c) {
+                    replace_cnt ++;
+                }
+                // with replace_cnt minimum replaces, we can take the 
+                // max of dp[c][replace_cnt] and the current interval 
+                // length (j - i + 1) for which replace_cnt holds
+                dp[c][replace_cnt] = max (dp[c][replace_cnt], j - i + 1);
+            }
+        }
+        rep1 (i, MAX_LENGTH) {
+            // to fill the table across its whole length in a row
+            dp[c][i] = max (dp[c][i], dp[c][i - 1]);
+        }
+    }
+    int q;
+    cin >> q;
+
+    rep (i, q) {
+        int m; char c;
+        cin >> m >> c;
+
+        // find the max substring length with all chars equal to c 
+        // that can be obtained by changing atmost m chars in the 
+        // given string to the char c
+
+        cout << dp[c - 'a'][m] << endl;
+    }
+
     return 0;
 }

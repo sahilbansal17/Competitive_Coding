@@ -78,5 +78,39 @@ int main(){
 
     FAST_IO;
     
+    int n, t;
+    double p;
+    cin >> n >> p >> t;
+
+    // dp[i][j] denotes the probability that there are j people on the escalator
+    // after i seconds 
+    double dp[201][201] = {{0.0}};
+    // probability that no one is on the escalator at t = 0 is 1
+    dp[0][0] = 1; 
+
+    rep (i, t) {
+        rep (j, n + 1) {
+            // if already n people on the escalator
+            if (j == n) {
+                // at next moment (t = i + 1), the probability gets added up 
+                dp[i + 1][j] += dp[i][j];
+            }
+            else {
+                // if the j-th person stays at his/her place
+                dp[i + 1][j] += dp[i][j] * (1 - p);
+                // if the j-th person goes to the escalator at the i-th second
+                dp[i + 1][j + 1] += dp[i][j] * p;
+            }
+        }
+    }
+
+    // to calculate the answer, just add up (i * dp[t][i]) for i ranging from 1 to n
+    double ans = 0;
+    rep (i, n + 1) {
+        ans += i * dp[t][i];
+    }
+
+    cout << fixed;
+    cout << setprecision(9) << ans;
     return 0;
 }

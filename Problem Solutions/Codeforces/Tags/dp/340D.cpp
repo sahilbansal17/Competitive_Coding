@@ -52,6 +52,7 @@ typedef priority_queue <pii, vpii, greater<pii> > spq;
     #define LLINF           1000111000111000111LL
     #define PI              3.14159265358979323
     /* Debugging purpose */
+    #define trace(c, x)              for (auto &x : c)
     #define trace1(x)                cerr << #x << ": " << x << endl
     #define trace2(x, y)             cerr << #x << ": " << x << " | " << #y << ": " << y << endl
     #define trace3(x, y, z)          cerr << #x << ": " << x << " | " << #y << ": " << y << " | " << #z << ": " << z << endl
@@ -68,6 +69,9 @@ template<class T> T abs(T x) { re x > 0 ? x : -x; }
 template<typename T> T gcd(T a, T b){ if(b == 0) return a; return gcd(b, a % b); }
 template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; x %= m; while(y > 0){ if(y & 1LL) ans = (ans * x)%m; y >>= 1LL; x = (x*x)%m; } return ans%m; }
 
+static const int APLHABET_SIZE = 26;
+static const int MAX_LENGTH = 1501;
+
 int main(){
 
     #ifndef ONLINE_JUDGE
@@ -77,6 +81,48 @@ int main(){
     #endif
 
     FAST_IO;
-    
+    int n, val;
+    cin >> n;
+
+    vi a;
+    rep (i, n) {
+        cin >> val;
+        a.pb(val);
+    }
+
+    // this problem simply reduces to finding the longest increasing 
+    // subsequence of the sequence given
+
+    // Check the editorial for proofs
+
+    vi lis;
+    lis.pb(a[0]);
+
+    vi :: iterator it;
+    rep1 (i, n) {
+        if (a[i] < lis[0]) {
+            // a[i] is smaller than the smallest element
+            lis[0] = a[i];
+        }
+        else if (a[i] > lis[sz(lis) - 1]) {
+            // a[i] is larger than the largest element of LIS
+            lis.pb(a[i]);
+        }
+        else {
+            // a[i] replaces the element which is just larger than a[i]
+            // so that more elements can be chosen later
+            it = lower_bound(all(lis), a[i]);
+            lis[it - lis.begin()] = a[i];
+        }   
+        // trace(lis, x) cout << x << " ";
+        // cout << endl;
+
+        // Note that lis doesnt actually end up being the LIS
+        // because of the replacements made in this loops
+        // to get the best possible LIS length till a particular 
+        // iteration of this loops
+    }
+
+    cout << sz(lis) << endl;
     return 0;
 }
