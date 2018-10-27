@@ -19,8 +19,15 @@ Some tricks and templates are available in [Templates](Templates/) folder.
 
   2. #### Refer to the [Coding Standards Wiki Page](https://github.com/sahilbansal17/Competitive_Coding/wiki/Coding-Standards) for the coding standards to be followed. 
 
+### How to contribute to Hacktoberfest ?
+  1. #### Register for Hacktoberfest. Visit [Hacktoberfest page](https://hacktoberfest.digitalocean.com/sign_up/register).
+  2. #### Fork this repository. 
+  3. #### Clone the forked repository in your local machine.
+  4. #### Create a separate branch. 
+  5. #### Pick an issue with Hacktoberfest tag.
+  6. #### Commit and push your changes
+  7. #### Create a Pull Request.
 
-## How to contribute to Hacktoberfest ?
-Hacktoberfest is an event to encourage the contributions of open source coding and the developer community. The event is sponsored this year by DigitalOcean, Twillio, and GitHub. The event runs until October 31st at 11:59pm.\
-A thorough walk through and further links to popular repositories can be found from [FreeCodeCamp's links](https://medium.freecodecamp.org/hacktoberfest-2018-how-you-can-get-your-free-shirt-even-if-youre-new-to-coding-96080dd0b01b). The official event page is:
-[Hacktoberfest](https://hacktoberfest.digitalocean.com/)
+  Note: Kindly avoid profanity and document your code well. Refer these links for more details
+  * [Hacktoberfest FAQ](https://hacktoberfest.digitalocean.com/faq)
+  * [Hacktoberfest Details](https://hacktoberfest.digitalocean.com/details)    
