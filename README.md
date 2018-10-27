@@ -18,3 +18,9 @@ Some tricks and templates are available in [Templates](Templates/) folder.
   1. #### Refer to the [GSSoC Wiki Page](https://github.com/sahilbansal17/Competitive_Coding/wiki/GSSoC) for contribution guidelines.
 
   2. #### Refer to the [Coding Standards Wiki Page](https://github.com/sahilbansal17/Competitive_Coding/wiki/Coding-Standards) for the coding standards to be followed. 
+
+
+## How to contribute to Hacktoberfest ?
+Hacktoberfest is an event to encourage the contributions of open source coding and the developer community. The event is sponsored this year by DigitalOcean, Twillio, and GitHub. The event runs until October 31st at 11:59pm.\
+A thorough walk through and further links to popular repositories can be found from [FreeCodeCamp's links](https://medium.freecodecamp.org/hacktoberfest-2018-how-you-can-get-your-free-shirt-even-if-youre-new-to-coding-96080dd0b01b). The official event page is:
+[Hacktoberfest](https://hacktoberfest.digitalocean.com/)
