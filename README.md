@@ -20,7 +20,7 @@ Some tricks and templates are available in [Templates](Templates/) folder.
   2. #### Refer to the [Coding Standards Wiki Page](https://github.com/sahilbansal17/Competitive_Coding/wiki/Coding-Standards) for the coding standards to be followed. 
 
 ### How to contribute to Hacktoberfest ?
-  1. #### Register for Hacktoberfest. Visit https://hacktoberfest.digitalocean.com/sign_up/register
+  1. #### Register for Hacktoberfest. Visit [Hacktoberfest page](https://hacktoberfest.digitalocean.com/sign_up/register).
   2. #### Fork this repository. 
   3. #### Clone the forked repository in your local machine.
   4. #### Create a separate branch. 
@@ -29,5 +29,5 @@ Some tricks and templates are available in [Templates](Templates/) folder.
   7. #### Create a Pull Request.
 
   Note: Kindly avoid profanity and document your code well. Refer these links for more details
-  * Hacktoberfest FAQ - https://hacktoberfest.digitalocean.com/faq
-  * Hacktoberfest Details - https://hacktoberfest.digitalocean.com/details    
+  * [Hacktoberfest FAQ](https://hacktoberfest.digitalocean.com/faq)
+  * [Hacktoberfest Details](https://hacktoberfest.digitalocean.com/details)    
