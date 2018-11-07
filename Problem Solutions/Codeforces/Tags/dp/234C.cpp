@@ -33,7 +33,6 @@ using namespace std;
     #define mp              make_pair
     #define eb              emplace_back
     /* String methods */
-    #define dig(i)          (s[i] - '0')
     #define slen(s)         s.length()
     /* Shorthand notations */
     #define F               first
@@ -67,15 +66,47 @@ template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; x %= m; while(y > 
 
 int main(){
 
-    #ifndef ONLINE_JUDGE
-    freopen("/Users/sahilbansal/Desktop/input.txt","r",stdin);
-    freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
-    freopen("/Users/sahilbansal/Desktop/error.txt","w",stderr);
-    #endif
+    // #ifndef ONLINE_JUDGE
+    freopen("input.txt","r",stdin);
+    freopen("output.txt","w",stdout);
+    // freopen("/Users/sahilbansal/Desktop/error.txt","w",stderr);
+    // #endif
 
     FAST_IO;
+    
+    int n;
+    int t[MAX];
 
-    
-    
+    cin >> n;
+    rep (i, n) {
+        cin >> t[i];
+    }
+
+    int c_neg[MAX] = {0}, c_non_neg[MAX] = {0};
+    rep1 (i, n + 1) {
+        if (t[i - 1] < 0) {
+            c_neg[i] = c_neg[i - 1] + 1;
+            c_non_neg[i] = c_non_neg[i - 1];
+        }
+        else if (t[i - 1] > 0) {
+            c_neg[i] = c_neg[i - 1];
+            c_non_neg[i] = c_non_neg[i - 1] + 1;
+        }
+        else {
+            c_neg[i] = c_neg[i - 1];
+            c_non_neg[i] = c_non_neg[i - 1];
+        }
+    }
+
+    int res = oo;
+    rep1 (i, n) {
+        int count_neg_left = c_neg[i];
+        int count_non_neg_right = c_non_neg[n] - c_non_neg[i];
+
+        // trace2(count_neg_left, count_non_neg_right);
+        res = min (res, i - count_neg_left + (n - i) - count_non_neg_right);
+    }
+
+    cout << res << endl;
     return 0;
 }

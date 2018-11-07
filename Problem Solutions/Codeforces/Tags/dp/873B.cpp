@@ -33,7 +33,6 @@ using namespace std;
     #define mp              make_pair
     #define eb              emplace_back
     /* String methods */
-    #define dig(i)          (s[i] - '0')
     #define slen(s)         s.length()
     /* Shorthand notations */
     #define F               first
@@ -74,8 +73,40 @@ int main(){
     #endif
 
     FAST_IO;
+    
+    int n, res = 0;
+    string s;
 
+    cin >> n;
+    cin >> s;
+
+    int cnt_1[MAX] = {0}, cnt_0[MAX] = {0}, balance[MAX], done[2*MAX] = {0}, min_index[2*MAX];
     
+    // initially, both counts are zero
+    min_index[0] = 0;
+    done[0 + 100000] = 1;
     
+    rep1 (i, n + 1) {
+        if (s[i - 1] == '1') {
+            cnt_1[i] = cnt_1[i - 1] + 1;
+            cnt_0[i] = cnt_0[i - 1];
+        }
+        else {
+            cnt_0[i] = cnt_0[i - 1] + 1;
+            cnt_1[i] = cnt_1[i - 1];
+        }
+
+        balance[i] = cnt_1[i] - cnt_0[i] + 100000;
+        if (!done[balance[i]]) {
+            done[balance[i]] = 1;
+            min_index[balance[i]] = i;
+        }
+        else {
+            res = max (res, i - min_index[balance[i]]);
+        }
+    }
+
+    cout << res << endl;
+
     return 0;
 }

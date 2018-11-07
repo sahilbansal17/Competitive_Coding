@@ -33,7 +33,6 @@ using namespace std;
     #define mp              make_pair
     #define eb              emplace_back
     /* String methods */
-    #define dig(i)          (s[i] - '0')
     #define slen(s)         s.length()
     /* Shorthand notations */
     #define F               first
@@ -59,7 +58,7 @@ using namespace std;
     #define FAST_IO                  ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0)
 /* Constants */
     const ll MOD = 1000000007LL;
-    const ll MAX = 100010LL;
+    const ll MAX = 105LL;
 /* Templates */
 template<class T> T abs(T x) { re x > 0 ? x : -x; }
 template<typename T> T gcd(T a, T b){ if(b == 0) return a; return gcd(b, a % b); }
@@ -74,8 +73,31 @@ int main(){
     #endif
 
     FAST_IO;
+    
+    int n, m;
+    cin >> n >> m;
 
-    
-    
+    char grid[MAX][MAX];
+
+    int x_4 = 0, y_4 = 0;
+
+    rep (i, n) {
+        rep (j, m) {
+            cin >> grid[i][j];
+            if (grid[i][j] == '*') {
+
+                // since the xor of all x-coordinates of the points on rectangle = 0
+                // and the xor of all y-coordinates of the points on rectangle = 0
+                // we can know the 4-th point on rectangle by taking xor of 
+                // respective x and y-coordinates of other 3 points
+
+                x_4 = x_4 ^ (i + 1);
+                y_4 = y_4 ^ (j + 1);
+            }
+        }
+    }
+
+    cout << x_4 << " " << y_4 << endl;
+
     return 0;
 }

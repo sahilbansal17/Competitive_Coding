@@ -33,7 +33,6 @@ using namespace std;
     #define mp              make_pair
     #define eb              emplace_back
     /* String methods */
-    #define dig(i)          (s[i] - '0')
     #define slen(s)         s.length()
     /* Shorthand notations */
     #define F               first
@@ -59,7 +58,7 @@ using namespace std;
     #define FAST_IO                  ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0)
 /* Constants */
     const ll MOD = 1000000007LL;
-    const ll MAX = 100010LL;
+    const ll MAX = 1010LL;
 /* Templates */
 template<class T> T abs(T x) { re x > 0 ? x : -x; }
 template<typename T> T gcd(T a, T b){ if(b == 0) return a; return gcd(b, a % b); }
@@ -74,8 +73,25 @@ int main(){
     #endif
 
     FAST_IO;
+    
+    int n, k;
+    cin >> n >> k;
 
-    
-    
+    ll x[MAX], y[MAX];
+    rep (i, n) {
+        cin >> x[i] >> y[i];
+    }
+
+    double total_distance = 0;
+    rep1 (i, n) {
+        total_distance += sqrt (sqr(x[i] - x[i - 1]) + sqr(y[i] - y[i - 1]) );
+    }
+
+    // cerr << sqrt(101);
+
+    double res = (1.0 * total_distance * k)/50;
+    cout << fixed;
+    cout << setprecision(6) << res << endl;
+
     return 0;
 }

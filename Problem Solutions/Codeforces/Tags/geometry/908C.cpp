@@ -33,7 +33,6 @@ using namespace std;
     #define mp              make_pair
     #define eb              emplace_back
     /* String methods */
-    #define dig(i)          (s[i] - '0')
     #define slen(s)         s.length()
     /* Shorthand notations */
     #define F               first
@@ -59,7 +58,7 @@ using namespace std;
     #define FAST_IO                  ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0)
 /* Constants */
     const ll MOD = 1000000007LL;
-    const ll MAX = 100010LL;
+    const int MAX = 1010;
 /* Templates */
 template<class T> T abs(T x) { re x > 0 ? x : -x; }
 template<typename T> T gcd(T a, T b){ if(b == 0) return a; return gcd(b, a % b); }
@@ -74,8 +73,54 @@ int main(){
     #endif
 
     FAST_IO;
+    
+    ll n, r;
+    cin >> n >> r;
 
-    
-    
+    double x[MAX];
+    // double y[MAX] = {-1}; THIS LINE CAUSES A BIG ERROR, IT ASSIGNS VALUE -1 ONLY TO THE FIRST ELEMENT OF THE ARRAY
+    double y[MAX];
+    rep (i, n) {
+        cin >> x[i];
+        // trace1(y[i]);
+        y[i] = -1;
+    }
+
+    vector < pair <double, double> > touch(n);
+
+    double touch_x, touch_y; // coordinates of circle of topmost circle which will touch current circle
+    double res;
+    rep (i, n) {
+        touch_x = x[i], touch_y = -r;
+
+        // chose the circle which will touch the current circle earliest
+        rfl (j, i - 1, 0) {
+            // assuming centre to centre distance = 2*r, find y-coordinate of centre of current circle
+            double disc = 4*r*r - 1.0*sqr(x[j] - x[i]);
+            if (disc < 0) {
+                continue;
+            }
+            res = 1.0*y[j] + sqrt(disc);
+            if (res > y[i]) {
+                touch_x = x[j];
+                touch_y = y[j];
+                y[i] = res;
+            }
+        }
+        // trace2(touch_x, touch_y);
+        // trace2(x[i], y[i]);
+        // cerr << endl;
+
+        if (y[i] == -1) {
+            y[i] = r;
+        }
+        touch[i] = {touch_x, touch_y};
+    }
+
+    rep (i, n) {
+        cout << fixed;
+        cout << setprecision(6) << y[i] << " ";
+    }
+    cout << endl;
     return 0;
 }

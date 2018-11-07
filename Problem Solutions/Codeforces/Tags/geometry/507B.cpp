@@ -33,7 +33,6 @@ using namespace std;
     #define mp              make_pair
     #define eb              emplace_back
     /* String methods */
-    #define dig(i)          (s[i] - '0')
     #define slen(s)         s.length()
     /* Shorthand notations */
     #define F               first
@@ -74,8 +73,15 @@ int main(){
     #endif
 
     FAST_IO;
+    
+    ll r, x, y, xx, yy;
 
-    
-    
+    cin >> r >> x >> y >> xx >> yy;
+
+    double dist = sqrt(sqr(xx - x) + sqr(yy - y));
+
+    ll min_steps = ceil(dist/(2*r));
+
+    cout << min_steps << endl;
     return 0;
 }

@@ -74,8 +74,48 @@ int main(){
     #endif
 
     FAST_IO;
+    
+    string s;
+    cin >> s;
 
-    
-    
+    int n = slen(s);
+    int dp[n][8]; // 1st index: prefix of string, second index: modulo 8 value
+    // dp[i][j] is true if there exist a prefix of string from which after removing some digits we can get j after taking mod with 8
+    fill (dp, 0);
+
+    string store[n][8];
+    dp[0][dig(0) % 8]++;
+    store[0][dig(0) % 8] = s[0];
+
+    rep1 (i, n) {
+        rep (j, 8) {
+            // only for the current digit at s[i]
+            dp[i][dig(i) % 8] = 1;
+            store[i][dig(i) % 8] = s[i];
+
+            if (dp[i - 1][j]) {
+                // dont include the current digit at s[i]
+                store[i][j] = store[i - 1][j];
+
+                // include the current digit at s[i]
+                store[i][(j*10 + dig(i)) % 8] = store[i - 1][j] + s[i];
+            }
+
+            // dont include the current digit at s[i]
+            dp[i][j] |= dp[i - 1][j];
+
+            // include the current digit at s[i]
+            dp[i][(j*10 + dig(i)) % 8] |= dp[i - 1][j];
+        }
+    }
+
+    rep (i, n) {
+        if (dp[i][0] && store[i][0].length()) {
+            cout << "YES\n" << store[i][0] << endl;
+            return 0;
+        }
+    }
+
+    cout << "NO\n";
     return 0;
 }

@@ -65,6 +65,31 @@ template<class T> T abs(T x) { re x > 0 ? x : -x; }
 template<typename T> T gcd(T a, T b){ if(b == 0) return a; return gcd(b, a % b); }
 template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; x %= m; while(y > 0){ if(y & 1LL) ans = (ans * x)%m; y >>= 1LL; x = (x*x)%m; } return ans%m; }
 
+double res = 0.0;
+vector <int> adj[MAX];
+bool visited[MAX];
+
+void dfs (int x, double p, int depth) {
+    visited[x] = true;
+
+    int cnt = 0;
+    rep (i, sz(adj[x])) {
+        if (!visited[adj[x][i]]) {
+            cnt ++;
+        }
+    }
+
+    if (cnt == 0) {
+        res += p*depth;
+    }
+
+    for (auto next: adj[x]) {
+        if (!visited[next]) {
+            dfs (next, p*1/cnt, depth + 1);
+        }
+    }
+}
+
 int main(){
 
     #ifndef ONLINE_JUDGE
@@ -74,8 +99,21 @@ int main(){
     #endif
 
     FAST_IO;
+    
+    int n, u, v;
+    cin >> n;
 
-    
-    
+    rep (i, n - 1) {
+        cin >> u >> v;
+        u --, v --;
+        adj[u].pb(v);
+        adj[v].pb(u);
+    }
+
+    dfs (0, 1.0, 0);
+
+    cout << fixed;
+    cout << setprecision(6) << res << endl;
+
     return 0;
 }

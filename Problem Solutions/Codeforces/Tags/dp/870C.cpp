@@ -33,7 +33,6 @@ using namespace std;
     #define mp              make_pair
     #define eb              emplace_back
     /* String methods */
-    #define dig(i)          (s[i] - '0')
     #define slen(s)         s.length()
     /* Shorthand notations */
     #define F               first
@@ -59,7 +58,7 @@ using namespace std;
     #define FAST_IO                  ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0)
 /* Constants */
     const ll MOD = 1000000007LL;
-    const ll MAX = 100010LL;
+    const ll MAX = 1000010LL;
 /* Templates */
 template<class T> T abs(T x) { re x > 0 ? x : -x; }
 template<typename T> T gcd(T a, T b){ if(b == 0) return a; return gcd(b, a % b); }
@@ -74,8 +73,20 @@ int main(){
     #endif
 
     FAST_IO;
+    
+    int q, n;
+    cin >> q;
 
-    
-    
+    int dp[16] = {-1, -1, -1, -1, 1, -1, 1, -1, 2, 1, 2, -1, 3, 2, 3, 2};
+    rep (i, q) {
+        cin >> n;
+        if (n <= 15) {
+            cout << dp[n] << endl;
+            continue;
+        }
+        int k = ceil(1.0*(n - 15)/4);
+        cout << k + dp[n - 4*k] << endl;
+    }
+
     return 0;
 }

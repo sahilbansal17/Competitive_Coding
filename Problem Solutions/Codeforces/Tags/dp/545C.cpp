@@ -74,8 +74,37 @@ int main(){
     #endif
 
     FAST_IO;
+    
+    int n;
+    cin >> n;
 
-    
-    
+    ll x[MAX], h[MAX];
+
+    ll current = -oo, res = 0;
+    rep (i, n) {
+        cin >> x[i] >> h[i];
+    }
+
+    x[n] = LLINF;
+
+    // string left = "left", right = "right", no_fell = "no_fell";
+    rep (i, n) {
+        if (x[i] - h[i] >= current) {
+            // trace1(left);
+            res ++;
+            current = x[i] + 1;
+        }
+        else if (x[i] + h[i] < x[i + 1]) {
+            // trace1(right);
+            res ++;
+            current = x[i] + h[i] + 1;
+        }
+        else {
+            // trace1(no_fell);
+            current = x[i] + 1;
+        }
+    }
+
+    cout << res << endl;
     return 0;
 }

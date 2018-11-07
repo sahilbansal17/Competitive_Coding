@@ -33,7 +33,6 @@ using namespace std;
     #define mp              make_pair
     #define eb              emplace_back
     /* String methods */
-    #define dig(i)          (s[i] - '0')
     #define slen(s)         s.length()
     /* Shorthand notations */
     #define F               first
@@ -74,8 +73,25 @@ int main(){
     #endif
 
     FAST_IO;
+    
+    int n;
+    cin >> n;
 
-    
-    
+    int a[MAX];
+
+    rep (i, n) {
+        cin >> a[i];
+    }
+
+    sort (a, a + n);
+
+    rfl (i, n - 1, 2) {
+        if (a[i - 2] + a[i - 1] > a[i]) {
+            cout << "YES" << endl;
+            return 0;
+        }
+    }
+
+    cout << "NO" << endl;
     return 0;
 }
