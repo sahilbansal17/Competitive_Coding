@@ -75,7 +75,38 @@ int main(){
 
     FAST_IO;
 
-        
+    int t;
+    ll n, x, y, d, res = LLINF, f, l;
+
+    cin >> t;
+
+    while (t -- ) {
+        cin >> n >> x >> y >> d;
+
+        res = LLINF;
+        if (abs(y - x) % d == 0) {
+            res = (abs(y - x))/d;
+        }
+        else {  
+            if (abs(y - 1) % d == 0) {
+                f = ceil((1.0*abs(x - 1))/d);
+                // trace1(f);
+                res = min (res, f + abs(y - 1)/d);
+            }
+            if (abs(n - y) % d == 0) {
+                l = ceil((1.0*abs(n - x))/d);
+                // trace1(l);
+                res = min (res, l + abs (n - y)/d);
+            }
+        }
+
+        if (res == LLINF) {
+            cout << "-1" << endl;
+        }
+        else {
+            cout << res << endl;
+        }
+    }
 
     return 0;
 }

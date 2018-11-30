@@ -45,7 +45,7 @@ using namespace std;
     #define fill(x, y)      memset(x, y, sizeof(x))
     #define endl            '\n'
     /* Mathematical */
-    #define IINF            0x3f3f3f3f
+    #define oo              0x3f3f3f3f
     #define LLINF           1000111000111000111LL
     #define PI              3.14159265358979323
     /* Debugging purpose */
@@ -75,7 +75,13 @@ int main(){
 
     FAST_IO;
 
-        
+    int n, s;
 
+    cin >> n >> s;
+
+    int res = ceil ((1.0*s)/n);
+
+    cout << res << endl;
+    
     return 0;
 }

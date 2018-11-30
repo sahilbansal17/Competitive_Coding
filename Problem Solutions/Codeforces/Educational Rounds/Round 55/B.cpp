@@ -75,7 +75,75 @@ int main(){
 
     FAST_IO;
 
-        
+    int n;
+    cin >> n;
+
+    string s;
+    cin >> s;
+
+    int cnt_r[MAX] = {0}, cnt_l[MAX] = {0}, tot_g = 0, res = 0;
+    if (s[0] == 'G') {
+        cnt_l[0] = 1;
+        tot_g ++;
+        res = 1;
+    }
+    if (s[n - 1] == 'G') {
+        cnt_r[n - 1] = 1;
+        res = 1;
+    }
+
+    rep1 (i, n) {
+        if (s[i] == 'G') {
+            tot_g ++;
+            cnt_l[i] = cnt_l[i - 1] + 1;
+        }
+        else {
+            cnt_l[i] = 0;
+        }
+
+        res = max(res, cnt_l[i]);
+    }
+
+    rfl (i, n - 2, 0) {
+        if (s[i] == 'G') {
+            cnt_r[i] = cnt_r[i + 1] + 1;
+        }
+        else {
+            cnt_r[i] = 0;
+        }
+        res = max(res, cnt_r[i]);
+    }
+
+    // trace1(res);
+    /*/
+    rep (i, n) {
+        cerr << cnt_r[i] << " ";
+    }
+    //*/
+
+    int idx = -1;
+    rep (i, n) {
+        if (s[i] == 'S' && i > 0 && i < n - 1) {
+            if (tot_g > cnt_l[i - 1] + cnt_r[i + 1]) {
+                res = max (cnt_l[i - 1] + cnt_r[i + 1] + 1, res);
+                idx = i;
+            }
+            else {
+                res = max (cnt_l[i - 1] + cnt_r[i + 1], res);
+            }
+        }
+        else if (s[i] == 'S' && i == 0 && tot_g > cnt_r[i + 1]) {
+            res = max (res, cnt_r[i + 1] + 1);
+            idx = i;
+        }
+        else if (s[i] == 'S' && i == n - 1 && tot_g > cnt_l[i - 1]) {
+            res = max (res, cnt_l[i - 1] + 1);
+            idx = i;
+        }
+        // trace2(idx, res);
+    }
+
+    cout << res << endl;
 
     return 0;
 }

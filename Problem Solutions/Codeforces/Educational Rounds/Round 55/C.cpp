@@ -65,6 +65,13 @@ template<class T> T abs(T x) { re x > 0 ? x : -x; }
 template<typename T> T gcd(T a, T b){ if(b == 0) return a; return gcd(b, a % b); }
 template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; x %= m; while(y > 0){ if(y & 1LL) ans = (ans * x)%m; y >>= 1LL; x = (x*x)%m; } return ans%m; }
 
+bool comp_size (vi a, vi b) {
+    if (sz(a) == sz(b) && sz(a) > 0) {
+        return a[0] > b[0];
+    }
+    return sz(a) > sz(b);
+}
+
 int main(){
 
     #ifndef ONLINE_JUDGE
@@ -75,7 +82,89 @@ int main(){
 
     FAST_IO;
 
-        
+    int n, m, s, r, ms = 0;
+    cin >> n >> m;
+
+    vector <int> v[MAX], sum(MAX, 0), done(MAX, 0);
+
+    rep (i, n) {
+        cin >> s >> r;
+        v[s].pb(r);
+    }
+
+    sort (v, v + MAX, comp_size);
+
+    int i = 0;
+    ms = sz(v[0]);
+
+    //*/
+    while (sz(v[i]) > 0) {
+        srt(v[i]);
+        reverse(all(v[i]));
+
+        rep (j, sz(v[i])) {
+            cerr << v[i][j] << " ";
+            // sum[i] += v[i][j];
+        }
+        // trace2(i, sum[i]);
+        cerr << endl;
+        i ++;
+    }
+    //*/
+
+    int l = i;
+    // trace1(l);
+
+    int cs = 0, res = 0, prev_count;
+    rep (j, ms) {
+
+        bool flag = 0;
+        prev_count = 0;
+        rep (i, l) {
+            int t = sz(v[i]);
+
+            if (t <= j && !done[i]) {
+                cs -= sum[i];
+                done[i] = 1;
+            }
+            else if (!done[i] && v[i][j] < 0) {
+                if (sum[i] + v[i][j] < 0) {
+                    cs -= sum[i];
+                    done[i] = 1;
+                }
+                else {
+                    flag = 1;
+                }
+            } 
+        }
+
+        rep (i, l) {
+            int t = sz(v[i]);
+            if (t > j && !done[i]) {
+                if (v[i][j] > 0) {
+                    cs += v[i][j];
+                    sum[i] += v[i][j];
+                    if (!flag && cs > res) {
+                        res = cs;
+                    }
+                }
+                else {
+                    cs += v[i][j];
+                    sum[i] += v[i][j];
+                }
+            }
+            if (t > j) {
+                prev_count ++;
+            }
+        }
+        if (cs > res) {
+            res = cs;
+        }    
+        trace2(cs, prev_count);
+        l = prev_count;
+    }
+
+    cout << res << endl;
 
     return 0;
 }

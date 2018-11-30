@@ -45,7 +45,7 @@ using namespace std;
     #define fill(x, y)      memset(x, y, sizeof(x))
     #define endl            '\n'
     /* Mathematical */
-    #define IINF            0x3f3f3f3f
+    #define oo              0x3f3f3f3f
     #define LLINF           1000111000111000111LL
     #define PI              3.14159265358979323
     /* Debugging purpose */
@@ -75,7 +75,28 @@ int main(){
 
     FAST_IO;
 
-        
+    int n, m;
 
+    ll a[MAX], sum = 0;
+
+    cin >> n >> m;
+
+    rep (i, n) {
+        cin >> a[i];
+        sum += a[i];
+    }
+
+    sort (a, a + n);
+
+    ll cnt = 0, prev = 0;
+    rep (i, n) {
+        cnt ++;
+        if (a[i] > prev) {
+            prev ++;
+        }
+    }
+
+    cnt += a[n - 1] - prev;
+    cout << sum - cnt << endl;
     return 0;
 }
