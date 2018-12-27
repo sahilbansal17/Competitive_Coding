@@ -23,10 +23,10 @@ using namespace std;
 /* Macros */
     /* Loops */
     #define fl(i, a, b)     for(int i(a); i <= (b); i ++)
-    #define rep(i, n)       fl(i, 1, (n))
-    #define loop(i, n)      fl(i, 0, (n) - 1)
+    #define rep(i, n)       fl(i, 1, n)
+    #define loop(i, n)      fl(i, 0, n - 1)
     #define rfl(i, a, b)    for(int i(a); i >= (b); i --)
-    #define rrep(i, n)      rfl(i, (n), 1)
+    #define rrep(i, n)      rfl(i, n, 1)
     /* Algorithmic functions */
     #define srt(v)          sort((v).begin(), (v).end())
     /* STL container methods */
@@ -57,24 +57,108 @@ using namespace std;
     /* Fast Input Output */
     #define FAST_IO                  ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0)
 /* Constants */
-    const ll MOD = 1000000007LL;
-    const ll MAX = 100010LL;
+    const ll MOD = 998244353LL;
+    const ll MAX = 300010LL;
 /* Templates */
 template<class T> T abs(T x) { re x > 0 ? x : -x; }
 template<typename T> T gcd(T a, T b){ if(b == 0) return a; return gcd(b, a % b); }
 template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; x %= m; while(y > 0){ if(y & 1LL) ans = (ans * x)%m; y >>= 1LL; x = (x*x)%m; } return ans%m; }
 
+
+vector <int> g[MAX];
+bool visited[MAX];
+bool label[MAX];
+
+ll bfs (int s) {
+
+    queue <int> q;
+    q.push(s);
+
+    int n, nn;
+
+    visited[s] = true;
+    label[s] = 0;
+
+    ll l0 = 1, l1 = 0;
+    while (!q.empty()) {
+        n = q.front();
+        q.pop();
+        loop (i, sz(g[n])) {
+            nn = g[n][i];
+            if (!visited[nn]) {
+                label[nn] = !label[n];
+                // trace2(nn, label[nn]);
+                if (label[nn] == 0) {
+                    l0 ++;
+                }
+                else {
+                    l1 ++;
+                }
+                q.push(nn);
+                visited[nn] = true;
+            }
+            else if (label[nn] == label[n]) {
+                return -1;
+            }
+        }
+    }
+
+    ll res = (power(2ll, l0, MOD) + power(2ll, l1, MOD))% MOD;
+    // trace3(l0, l1, res);
+    return res;
+
+}
+
 int main(){
 
     #ifndef ONLINE_JUDGE
-    freopen("input.txt","r",stdin);
-    freopen("output.txt","w",stdout);
-    freopen("error.txt","w",stderr);
+    freopen("/Users/sahilbansal/Desktop/input.txt","r",stdin);
+    freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
+    freopen("/Users/sahilbansal/Desktop/error.txt","w",stderr);
     #endif
 
     FAST_IO;    
 
-    
+    int t, n, m, x, y;
+    cin >> t;
 
+    ll bp;
+
+    while (t -- ) {
+        cin >> n >> m;
+
+        ll ans = 1;
+        while (m --) {
+            cin >> x >> y;
+            g[x].pb(y);
+            g[y].pb(x);
+        }
+
+        rep (i, n) {
+            if (!visited[i]) {
+                bp = bfs(i);
+                if (bp == -1) {
+                    break;
+                }
+                else {
+                    ans *= bp;
+                    ans %= MOD;
+                }
+            }
+        }
+
+        if (bp == -1) {
+            cout << "0" << endl;
+        }
+        else {
+            cout << ans << endl;
+        }
+        // clear
+        rep (i, n) {
+            g[i].clear();
+            visited[i] = false;
+        }
+
+    }
     return 0;
 }

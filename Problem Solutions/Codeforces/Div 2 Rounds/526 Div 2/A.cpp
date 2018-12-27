@@ -22,11 +22,10 @@ using namespace std;
     typedef set <int>       si;
 /* Macros */
     /* Loops */
-    #define fl(i, a, b)     for(int i(a); i <= (b); i ++)
-    #define rep(i, n)       fl(i, 1, (n))
-    #define loop(i, n)      fl(i, 0, (n) - 1)
+    #define fl(i, a, b)     for(int i(a); i < (b); i ++)
+    #define rep(i, n)       fl(i, 0, n)
+    #define rep1(i, n)      fl(i, 1, n)
     #define rfl(i, a, b)    for(int i(a); i >= (b); i --)
-    #define rrep(i, n)      rfl(i, (n), 1)
     /* Algorithmic functions */
     #define srt(v)          sort((v).begin(), (v).end())
     /* STL container methods */
@@ -37,14 +36,13 @@ using namespace std;
     #define dig(i)          (s[i] - '0')
     #define slen(s)         s.length()
     /* Shorthand notations */
-    #define fr              first
-    #define sc              second
+    #define F               first
+    #define S               second
     #define re              return 
     #define sz(x)           ((int) (x).size())
     #define all(x)          (x).begin(), (x).end()
     #define sqr(x)          ((x) * (x))
     #define fill(x, y)      memset(x, y, sizeof(x))
-    #define clr(a)          fill(a, 0)
     #define endl            '\n'
     /* Mathematical */
     #define IINF            0x3f3f3f3f
@@ -54,6 +52,9 @@ using namespace std;
     #define trace1(x)                cerr << #x << ": " << x << endl
     #define trace2(x, y)             cerr << #x << ": " << x << " | " << #y << ": " << y << endl
     #define trace3(x, y, z)          cerr << #x << ": " << x << " | " << #y << ": " << y << " | " << #z << ": " << z << endl
+    #define trace4(a, b, c, d)       cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << endl
+    #define trace5(a, b, c, d, e)    cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << endl
+    #define trace6(a, b, c, d, e, f) cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << " | " << #f << ": " << f << endl
     /* Fast Input Output */
     #define FAST_IO                  ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0)
 /* Constants */
@@ -67,14 +68,33 @@ template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; x %= m; while(y > 
 int main(){
 
     #ifndef ONLINE_JUDGE
-    freopen("input.txt","r",stdin);
-    freopen("output.txt","w",stdout);
-    freopen("error.txt","w",stderr);
+    freopen("/Users/sahilbansal/Desktop/input.txt","r",stdin);
+    freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
+    freopen("/Users/sahilbansal/Desktop/error.txt","w",stderr);
     #endif
 
-    FAST_IO;    
+    FAST_IO;
 
-    
+    int n;
+    cin >> n;
+
+    vi a(110, 0);
+    rep1 (i, n + 1) {
+        cin >> a[i];
+    }
+
+    int ans = IINF;
+    rep1 (i, n + 1) {
+        int cans = 0;
+        rep1 (j, n + 1) {
+            cans += a[j]*(abs(i - j) + abs(j - 1) + abs(i - 1) + abs(i - 1) + abs(j - 1) + abs(i - j));
+        }
+        // trace1(cans);
+        if (cans < ans) {
+            ans = cans;
+        }
+    }
+    cout << ans << endl;
 
     return 0;
 }

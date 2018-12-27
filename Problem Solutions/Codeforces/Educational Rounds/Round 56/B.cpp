@@ -23,10 +23,10 @@ using namespace std;
 /* Macros */
     /* Loops */
     #define fl(i, a, b)     for(int i(a); i <= (b); i ++)
-    #define rep(i, n)       fl(i, 1, (n))
-    #define loop(i, n)      fl(i, 0, (n) - 1)
+    #define rep(i, n)       fl(i, 1, n)
+    #define loop(i, n)      fl(i, 0, n - 1)
     #define rfl(i, a, b)    for(int i(a); i >= (b); i --)
-    #define rrep(i, n)      rfl(i, (n), 1)
+    #define rrep(i, n)      rfl(i, n, 1)
     /* Algorithmic functions */
     #define srt(v)          sort((v).begin(), (v).end())
     /* STL container methods */
@@ -67,14 +67,56 @@ template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; x %= m; while(y > 
 int main(){
 
     #ifndef ONLINE_JUDGE
-    freopen("input.txt","r",stdin);
-    freopen("output.txt","w",stdout);
-    freopen("error.txt","w",stderr);
+    freopen("/Users/sahilbansal/Desktop/input.txt","r",stdin);
+    freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
+    freopen("/Users/sahilbansal/Desktop/error.txt","w",stderr);
     #endif
 
     FAST_IO;    
 
-    
+    int t;
+    cin >> t;
 
+    string s;
+    rep (i, t) {
+        cin >> s;
+
+        vi cnt(26, 0);
+
+        int n = slen(s), unique = 0;
+
+        int i1, i2;
+
+        loop (j, n) {
+            if (!cnt[s[j] - 'a']){
+                unique ++;
+                cnt[s[j] - 'a'] ++;
+                if (unique == 1) {
+                    i1 = j;
+                }
+                else if (unique == 2) {
+                    i2 = j;
+                }
+            }
+            else{
+                cnt[s[j] - 'a'] ++;
+            }
+        }
+
+        if (unique == 1) {
+            cout << "-1" << endl;
+        }
+        else {
+            cout << s[i1];
+            // trace2(i1, i2);
+            loop (j, n) {
+                if (j != i1 && j != i2) {
+                    cout << s[j];
+                }
+            }
+            cout << s[i2] << endl;
+        }
+    }
+    
     return 0;
 }

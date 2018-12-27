@@ -23,10 +23,10 @@ using namespace std;
 /* Macros */
     /* Loops */
     #define fl(i, a, b)     for(int i(a); i <= (b); i ++)
-    #define rep(i, n)       fl(i, 1, (n))
-    #define loop(i, n)      fl(i, 0, (n) - 1)
+    #define rep(i, n)       fl(i, 1, n)
+    #define loop(i, n)      fl(i, 0, n - 1)
     #define rfl(i, a, b)    for(int i(a); i >= (b); i --)
-    #define rrep(i, n)      rfl(i, (n), 1)
+    #define rrep(i, n)      rfl(i, n, 1)
     /* Algorithmic functions */
     #define srt(v)          sort((v).begin(), (v).end())
     /* STL container methods */
@@ -67,14 +67,29 @@ template<typename T> T power(T x, T y, ll m = MOD){T ans = 1; x %= m; while(y > 
 int main(){
 
     #ifndef ONLINE_JUDGE
-    freopen("input.txt","r",stdin);
-    freopen("output.txt","w",stdout);
-    freopen("error.txt","w",stderr);
+    freopen("/Users/sahilbansal/Desktop/input.txt","r",stdin);
+    freopen("/Users/sahilbansal/Desktop/output.txt","w",stdout);
+    freopen("/Users/sahilbansal/Desktop/error.txt","w",stderr);
     #endif
 
     FAST_IO;    
 
-    
+    string s;
+    cin >> s;
 
+    int n = slen(s), count_b = 0;
+
+    ll res = 0;
+    loop (i, n) {
+        if (s[i] == 'W') {
+            res += count_b;
+            // trace1(res);
+        }
+        else {
+            count_b ++;
+        }
+    }
+
+    cout << res << endl;
     return 0;
 }
