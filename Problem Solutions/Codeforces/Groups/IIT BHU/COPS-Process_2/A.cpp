@@ -6,7 +6,8 @@ typedef vector <int> vi;
 typedef pair <int,int> pii;
 typedef long long ll;
 typedef unsigned long long ull;
-#define fl(i,a,b) for(int i(a);i<(b);i++)
+#define fl(i,a,b) for(int i(a);i<(b);i++)                     /*it would have been better if you added the question and link 
+                                                                   to that online judge as well*/
 #define rep(i,n) fl(i,0,n)
 #define rfl(i,a,b) for(int i(a);i>=(b);i--)
 #define srt(v) sort((v).begin(),(v).end())
