@@ -1,7 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <map>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
 
 #define FAST_IO ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
@@ -68,7 +65,7 @@ ll solve(ll n, ll p) {
 
 int main(){
 
-	#ifndef ONLINE_JUDGE
+    #ifndef ONLINE_JUDGE
     freopen("/Users/sahilbansal/Desktop/input.txt", "r", stdin);
     freopen("/Users/sahilbansal/Desktop/output.txt", "w", stdout);
     freopen("/Users/sahilbansal/Desktop/error.txt", "w", stderr);
