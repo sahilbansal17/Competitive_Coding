@@ -31,12 +31,6 @@ template <typename T> T power(T x, T y, ll m = MOD) {
 
 int main(){ 
 
-    #ifndef ONLINE_JUDGE
-    freopen("/Users/sahilbansal/Desktop/input.txt", "r", stdin);
-    freopen("/Users/sahilbansal/Desktop/output.txt", "w", stdout);
-    freopen("/Users/sahilbansal/Desktop/error.txt", "w", stderr);
-    #endif
-
     FAST_IO;
 
     int t, p, q;
