@@ -88,15 +88,18 @@ int main(){
     }
 
     // count the no. of lines that intersect with each other
-    int res = 0;
+    ll res = 0;
+    map < pair <int, int>, int> slope_count;
     for (int i = 0; i < m.size(); i ++) {
-        for (int j = i + 1; j < m.size(); j ++) {
-            if (m[j] != m[i]) {
-                res ++;
-            }
-        }
+        // the current line forms a pair with all the previous lines
+        // which had a different slope
+        res += 1ll*(i - slope_count[m[i]]);
+
+        // increment the no. of lines with the given slope
+        slope_count[m[i]] ++;
     }
+
     cout << res << endl;
-    
+
     return 0;
 }
