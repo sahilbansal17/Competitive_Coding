@@ -1,3 +1,4 @@
+// solved subtask 1 and subtask 2
 #include <bits/stdc++.h>
 
 using namespace std;
