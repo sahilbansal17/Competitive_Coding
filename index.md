@@ -1,3 +1,1 @@
-# Welcome to the world of Competitive Coding!
-
-Hope that you get to learn something new here.
+<h1> Welcome to the website on Competitive Programming. </h1>
