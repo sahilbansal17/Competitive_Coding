@@ -1,7 +1,23 @@
 title: Competitive_Coding
+author: sahilbansal17
 description: >
-  Blog to share what is learnt!
+  Website to learn new Algorithms! 
 baseurl: /Competitive_Coding # to fix the issue that CSS files linked have relative path
-url: http://sahilbansal17.github.io/Competitive_Coding
+
+# Minima date format
+# refer to http://shopify.github.io/liquid/filters/date/ if you want to customize this
+minima:
+  date_format: "%b %-d, %Y"
+  # generate social links in footer
+  social_links:
+    github:  sahilbansal17
+    youtube_channel: UC23h8gtQHiRXFOcR05Zcx5w
+    github_repo: Competitive_Coding
+# If you want to link only specific pages in your header, uncomment
+# this and add the path to the pages in order as they should show up
+header_pages:
+- index.md
+
+# Build settings
 theme: minima
 plugins: [jekyll_github_sample]
