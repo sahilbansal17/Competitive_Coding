@@ -1,5 +1,50 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/Competitive_Coding/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/Competitive_Coding/" rel="alternate" type="text/html" /><updated>2019-05-16T10:27:40+05:30</updated><id>http://localhost:4000/Competitive_Coding/feed.xml</id><title type="html">Competitive_Coding</title><subtitle>Website to learn new Algorithms! 
-</subtitle><author><name>sahilbansal17</name></author><entry><title type="html">DP Problem ROCK on SPOJ</title><link href="http://localhost:4000/Competitive_Coding/2018/06/16/spoj-problem-rock.html" rel="alternate" type="text/html" title="DP Problem ROCK on SPOJ" /><published>2018-06-16T00:00:00+05:30</published><updated>2018-06-16T00:00:00+05:30</updated><id>http://localhost:4000/Competitive_Coding/2018/06/16/spoj-problem-rock</id><content type="html" xml:base="http://localhost:4000/Competitive_Coding/2018/06/16/spoj-problem-rock.html">&lt;h3 id=&quot;code&quot;&gt;Code:&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/Competitive_Coding/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/Competitive_Coding/" rel="alternate" type="text/html" /><updated>2019-05-22T01:26:50+05:30</updated><id>http://localhost:4000/Competitive_Coding/feed.xml</id><title type="html">Competitive_Coding</title><subtitle>Website to learn new Algorithms! 
+</subtitle><author><name>sahilbansal17</name></author><entry><title type="html">Graph Edges Classification</title><link href="http://localhost:4000/Competitive_Coding/2019/05/22/edge-classification.html" rel="alternate" type="text/html" title="Graph Edges Classification" /><published>2019-05-22T00:00:00+05:30</published><updated>2019-05-22T00:00:00+05:30</updated><id>http://localhost:4000/Competitive_Coding/2019/05/22/edge-classification</id><content type="html" xml:base="http://localhost:4000/Competitive_Coding/2019/05/22/edge-classification.html">&lt;script src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;While using depth first search to explore a graph, the &lt;strong&gt;DFS&lt;/strong&gt; can be modified to find the different edges in the &lt;strong&gt;DFS tree&lt;/strong&gt; formed.&lt;/p&gt;
+
+&lt;p&gt;Let us go through each component one by one and try to understand it all.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;cm&quot;&gt;/* 	Function to perform DFS traversal on a graph
+*	u:	source vertex
+*	visited:boolean vector to mark vertices as visited
+*	adj[]:	array of vectors to store graph as adjacency list
+*/&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;adj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;auto&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;adj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+			&lt;span class=&quot;n&quot;&gt;dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;adj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This above simple DFS function visits all the vertices in the graph reachable from the &lt;strong&gt;source vertex&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;div style=&quot;text-align: left&quot;&gt;&lt;img src=&quot;/Competitive_Coding/assets/posts/graphs/graph_1.png&quot; width=&quot;200&quot; /&gt;
+	Consider the graph on the left, a call on DFS with source as 0 would mark vertices 1, 2, and 3 as visited. Now, calling DFS with source as 4 would not visit the edge $$4 \rightarrow 2$$
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;So, which edges are exactly traversed during DFS?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Precisely, an edge &lt;script type=&quot;math/tex&quot;&gt;u \rightarrow v&lt;/script&gt; is visited only when vertex &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt; is marked as unvisited. Thus, these edges form a tree, called the &lt;strong&gt;depth-first-tree&lt;/strong&gt; of the graph starting at the source. &lt;br /&gt;
+If the graph is &lt;em&gt;disconnected&lt;/em&gt;, what we get will be called a &lt;strong&gt;DFS forest&lt;/strong&gt;. &lt;br /&gt;
+The edges in a &lt;strong&gt;DFS-Tree&lt;/strong&gt; are what are called as the &lt;strong&gt;tree edges&lt;/strong&gt; in the original graph. &lt;br /&gt;
+The edges &lt;script type=&quot;math/tex&quot;&gt;0 \rightarrow 1&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;0 \rightarrow 2&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;1 \rightarrow 3&lt;/script&gt; are few tree edges.&lt;/p&gt;
+
+&lt;p&gt;What is the edge &lt;script type=&quot;math/tex&quot;&gt;4 \rightarrow 2&lt;/script&gt; known as, then?&lt;/p&gt;
+
+&lt;p&gt;It is called as a &lt;strong&gt;cross-edge&lt;/strong&gt; since it connects two different DFS trees in the DFS forest. What if we got only one DFS tree? Can it have &lt;strong&gt;cross edges&lt;/strong&gt;? Yes, it would then connect two different subtrees.&lt;/p&gt;
+
+&lt;div style=&quot;text-align: left&quot;&gt;&lt;img src=&quot;/Competitive_Coding/assets/posts/graphs/graph_2.png&quot; width=&quot;200&quot; /&gt;
+	This is the DFS forst for the above graph.
+&lt;/div&gt;
+
+&lt;p&gt;There are also two other types of edges known as -&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Back edge&lt;/li&gt;
+  &lt;li&gt;Forward edge&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>sahilbansal17</name></author><summary type="html"></summary></entry><entry><title type="html">DP Problem ROCK on SPOJ</title><link href="http://localhost:4000/Competitive_Coding/2018/06/16/spoj-problem-rock.html" rel="alternate" type="text/html" title="DP Problem ROCK on SPOJ" /><published>2018-06-16T00:00:00+05:30</published><updated>2018-06-16T00:00:00+05:30</updated><id>http://localhost:4000/Competitive_Coding/2018/06/16/spoj-problem-rock</id><content type="html" xml:base="http://localhost:4000/Competitive_Coding/2018/06/16/spoj-problem-rock.html">&lt;h3 id=&quot;code&quot;&gt;Code:&lt;/h3&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
 &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
