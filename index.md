@@ -1,1 +1,1 @@
-<h1> Welcome to the website on Competitive Programming. </h1>
+<h1> Welcome to the blog on Competitive Programming. </h1>
