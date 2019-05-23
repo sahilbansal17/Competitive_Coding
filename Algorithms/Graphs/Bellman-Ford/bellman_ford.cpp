@@ -24,8 +24,8 @@ bool relax(int u, int v, int w, vector <int> &dist) {
         return false;
     }
 
-    if (dist[u] > dist[v] + w) {
-        dist[u] = dist[v] + w;
+    if (dist[v] > dist[u] + w) {
+        dist[v] = dist[u] + w;
         return true;
     }
     return false;
@@ -70,12 +70,6 @@ bool bellman_ford(int source, int v, int e, vector <pair <int, pair <int, int> >
 }
 
 int main () {
-
-    #ifndef ONLINE_JUDGE
-    freopen("/Users/sahilbansal/Desktop/input.txt", "r", stdin);
-    freopen("/Users/sahilbansal/Desktop/output.txt", "w", stdout);
-    freopen("/Users/sahilbansal/Desktop/error.txt", "w", stderr);
-    #endif
 
     int t;
     cin >> t;
