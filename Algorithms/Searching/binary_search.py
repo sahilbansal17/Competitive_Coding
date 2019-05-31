@@ -1,7 +1,7 @@
-// Name : Nabanita Dash
-// Email ID : dashnabanita@gmail.com
+# Name : Nabanita Dash
+# Email ID : dashnabanita@gmail.com
 
-// find an element in an array using binary search
+# find an element in an array using binary search
 
 # Code
 def binary_search(arr, l, r, x):
@@ -28,7 +28,7 @@ else:
    print "Element is not present in array"
 
 # Time-Complexity
-// Worst Case : O(log n)
+# Worst Case : O(log n)
 
 # Space-Complexity
-// O(1)
+# O(1)

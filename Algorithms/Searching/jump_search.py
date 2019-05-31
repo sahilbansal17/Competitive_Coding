@@ -1,7 +1,7 @@
-// Name : Nabanita Dash
-// Email ID : dashnabanita@gmail.com
+# Name : Nabanita Dash
+# Email ID : dashnabanita@gmail.com
 
-// find the element in the array using jump search
+# find the element in the array using jump search
 
 # Code
 import math
@@ -40,8 +40,8 @@ else:
     print("The element is present at position ", position)
 
 #Time-Complexity
-O(sqrt(n))
+# O(sqrt(n))
 
 #Space-Complexity
-O(1)
+# O(1)
 

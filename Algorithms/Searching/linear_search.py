@@ -1,7 +1,7 @@
-// Name : Nabanita Dash
-// Email ID : dashnabanita@gmail.com
+# Name : Nabanita Dash
+# Email ID : dashnabanita@gmail.com
 
-// Find an element in an array using linear search
+# Find an element in an array using linear search
 
 # Code
 def linear_search(arr, x):
@@ -17,7 +17,7 @@ x = 07
 result = linear_search(arr, x)
 
 # Time-Complexity
-// Worst Case : O(n)
+# Worst Case : O(n)
 
 # Space-Complexity
-// O(1)
+# O(1)
