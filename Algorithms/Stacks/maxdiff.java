@@ -61,7 +61,7 @@ class maxdiff
      }
      return arr;
   }
-  //function to reverse original array
+  //function to reverse the original array
   public static int[] reverse(int a[])
   {
       int[] arr=new int[a.length];
