@@ -18,30 +18,30 @@ class next_greater
             for (int i = 0; i < n; i++) 
                 arr[i] = Long.parseLong(strs[i]); 
             Stack<Integer> st = new Stack<>();
-	    int i;
-	    long[] ans = new long[n];
-	    for(i=0;i<n;i++)
-	    {
-	        ans[i] = -1;//initialise all the elements by -1
-	    }
-	    for(i=0;i<n;i++)
-	    {
-	        while(!st.isEmpty()&&arr[i]>arr[st.peek()])
-            //if the element at the current position is greater than the position of element in stack
-            //it is the next greatest element 
-	        {
-	            int t = st.peek();
-	            st.pop();
-	            ans[t] = arr[i];
-	        }
-	        st.push(i);//push the index of current element
-	    }
-	    for(i=0;i<n;i++)
-	    {
-	        System.out.print(ans[i]+" ");
-	    }
-        System.out.println();
-        testcase--;
+			int i;
+			long[] ans = new long[n];
+			for(i=0;i<n;i++)
+			{
+				ans[i] = -1;//initialise all the elements by -1
+			}
+			for(i=0;i<n;i++)
+			{
+				while(!st.isEmpty()&&arr[i]>arr[st.peek()])
+				//if the element at the current position is greater than the position of element in stack
+				//it is the next greatest element 
+				{
+					int t = st.peek();
+					st.pop();
+					ans[t] = arr[i];
+				}
+				st.push(i);//push the index of current element
+			}
+			for(i=0;i<n;i++)
+			{
+				System.out.print(ans[i]+" ");
+			}
+			System.out.println();
+			testcase--;
         }
 	}
 }
