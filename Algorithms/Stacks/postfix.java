@@ -15,6 +15,9 @@ class postfix
             for(int i=0;i<str.length();i++)
             {
                 char ch=str.charAt(i);
+                //check if the character is operator or an operand 
+                //if character is operator pop the top two elements and 
+                //store the resultant string in stack
                 if(ch=='+'||ch=='-'||ch=='+'||ch=='*')
                 {
                     String op1=st.peek();
@@ -24,9 +27,11 @@ class postfix
                     st.push("("+op2+" "+ch+" "+op1+")");
                 }
                 else
-                st.push(str.charAt(i)+"");
+                //if character is an operand push it in stack
+                st.push(ch+"");
             }
             ans=st.peek();
+            //the ans would be the last element of the stack
             System.out.println(ans);
             testcase--;
         }
