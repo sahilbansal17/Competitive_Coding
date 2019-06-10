@@ -5,24 +5,24 @@ class postfix
 {
     public static void main(String[] args)
     {
-        Scanner s=new Scanner(System.in);
-        int testcase=s.nextInt();
+        Scanner s = new Scanner(System.in);
+        int testcase = s.nextInt();
         while(testcase>0)
         {
-            String str=s.next();
-            String ans="";
-            Stack<String> st =new Stack<>();
-            for(int i=0;i<str.length();i++)
+            String str = s.next();
+            String ans = "";
+            Stack<String> st = new Stack<>();
+            for(int i = 0;i<str.length();i++)
             {
-                char ch=str.charAt(i);
+                char ch = str.charAt(i);
                 //check if the character is operator or an operand 
                 //if character is operator pop the top two elements and 
                 //store the resultant string in stack
-                if(ch=='+'||ch=='-'||ch=='+'||ch=='*')
+                if(ch == '+'||ch == '-'||ch == '+'||ch == '*')
                 {
-                    String op1=st.peek();
+                    String op1 = st.peek();
                     st.pop();
-                    String op2=st.peek();
+                    String op2 = st.peek();
                     st.pop();
                     st.push("("+op2+" "+ch+" "+op1+")");
                 }
