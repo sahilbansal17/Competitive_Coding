@@ -30,52 +30,19 @@ template <typename T> T power(T x, T y, ll m = MOD) {
 }
 
 // w: max no. of queries
-vector <ll> interact(int w) {
+int interact(int w) {
     // return -1 if interaction resulted in failure
-    vector <ll> b(6, 0);
-    bool res = true;;
-    for (int i = 0; i < 6; i ++) {
-        cout << i + 1 << endl;
-        cout.flush();
-        cin >> b[i];
-        if (b[i] == -1) {
-            res = false;
-            break;
-        }
-    }
-    if (res == false) {
-        // return empty vector
-        vector <ll> temp;
-        return temp;
-    }
-    return b;
+    return -1;
 }
 
-vector <ll> calculate(vector <ll> b) {
+int calculate(int x) {
     // return the res after calculation
-    vector <ll> x(6, 0);
-
-    x[0] = 4*(b[0] - b[1]) - 2*b[2] + b[5];
-    x[0] /= 40;
-    x[1] = 24*(b[1] - b[0]) + 2*b[2] - b[5];
-    x[1] /= 20;
-    x[2] = -4*b[0] -6*b[1] + 12*b[2] - b[5];
-    x[2] /= 10;
-    x[3] = 16*(b[0] - b[1]) - 8*b[2] + 10*b[3] - b[5];
-    x[3] /= 10;
-    x[4] = 8*(b[1] - b[0]) + 4*b[2] - 5*b[3] + 5*b[4] - 2*b[5];
-    x[4] /= 5; 
-    x[5] = 12*b[0] - 2*b[1] - 6*b[2] - 5*b[4] + 3*b[5];
-    x[5] /= 5;
-
-    return x;
+    return 1;
 }
 
-void display(vector <ll> x) {
-    for (int j = 0; j < 6; j ++) {
-        cout << x[j] << " ";
-    }
-    cout << endl;
+void display(int res) {
+    // display the result
+    cout << res << endl;
     cout.flush();
 }
 
@@ -89,17 +56,17 @@ bool check() {
 }
 
 bool solve(int case_no, int w) {
-    vector <ll> interact_res;
+    int interact_res;
     // interactions => solve function
     interact_res = interact(w);
 
     // failure
-    if (interact_res.size() == 0) {
+    if (interact_res == -1) {
         return 0;
     }
 
     // calculate result
-    vector <ll> res;
+    int res;
     // get res => calculate function
     res = calculate(interact_res);
 
@@ -123,7 +90,7 @@ int main(){
 
     for (int i = 0; i < t; i ++) {
         // W max queries
-        bool res = solve(i + 1, w);
+        int res = solve(i + 1, w);
         // break if the result is wrong
         if (res == 0) {
             break;

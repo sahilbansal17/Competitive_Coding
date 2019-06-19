@@ -1,4 +1,10 @@
 ## Competitive Coding Repository 
+[![Issues](https://img.shields.io/github/issues/sahilbansal17/Competitive_Coding.svg)](https://github.com/sahilbansal17/Competitive_Coding/issues) 
+![Forks](https://img.shields.io/github/forks/sahilbansal17/Competitive_Coding.svg)
+![Stars](https://img.shields.io/github/stars/sahilbansal17/Competitive_Coding.svg)
+[![License](https://img.shields.io/github/license/sahilbansal17/Competitive_Coding.svg)](https://github.com/sahilbansal17/Competitive_Coding/blob/master/LICENSE) 
+[![Gitter](https://img.shields.io/gitter/room/sahilbansal17/Competitive-Coding.svg)](https://gitter.im/Competitive-Coding/)
+
 This project aims to create a vast collection of *algorithms* and *data structures* that can be helpful in Competitive Coding along with the solutions to various problems on various competitive coding platforms.
 
 ### Algorithms

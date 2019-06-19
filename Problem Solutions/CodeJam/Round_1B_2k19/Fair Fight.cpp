@@ -29,52 +29,51 @@ template <typename T> T power(T x, T y, ll m = MOD) {
     return (ans % m); 
 }
 
+void solve(int case_no, int n, int k) {
+
+    int c[n], d[n];
+
+    for (int j = 0; j < n; j ++) {
+        cin >> c[j];
+    }
+    for (int j = 0; j < n; j ++) {
+        cin >> d[j];
+    }
+
+    int res = 0;
+    for (int l = 0; l < n; l ++) {
+        for (int j = l; j < n; j ++) {
+            int max1 = -1, max2 = -1;
+            for (int t = l; t <= j; t ++) {
+                if (c[t] > max1) {
+                    max1 = c[t];
+                }
+                if (d[t] > max2) {
+                    max2 = d[t];
+                }
+            }
+            if (abs(max1 - max2) <= k) {
+                res ++;
+                // cerr << k << " " << j << " " << max1 << " " << max2 << endl;
+            }
+        }
+    }
+
+    cout << "Case #" << case_no << ": " << res << endl;
+}
+
 int main(){ 
-
-    #ifndef ONLINE_JUDGE
-    freopen("/Users/sahilbansal/Desktop/input.txt", "r", stdin);
-    freopen("/Users/sahilbansal/Desktop/output.txt", "w", stdout);
-    freopen("/Users/sahilbansal/Desktop/error.txt", "w", stderr);
-    #endif
-
 
     FAST_IO;
 
-    int t, n, k;
+    int t;
     cin >> t;
 
+    int n, k;
     for (int i = 0; i < t; i ++) {
         cin >> n >> k;
 
-        int c[n], d[n];
-
-        for (int j = 0; j < n; j ++) {
-            cin >> c[j];
-        }
-        for (int j = 0; j < n; j ++) {
-            cin >> d[j];
-        }
-
-        int res = 0;
-        for (int l = 0; l < n; l ++) {
-            for (int j = l; j < n; j ++) {
-                int max1 = -1, max2 = -1;
-                for (int t = l; t <= j; t ++) {
-                    if (c[t] > max1) {
-                        max1 = c[t];
-                    }
-                    if (d[t] > max2) {
-                        max2 = d[t];
-                    }
-                }
-                if (abs(max1 - max2) <= k) {
-                    res ++;
-                    // cerr << k << " " << j << " " << max1 << " " << max2 << endl;
-                }
-            }
-        }
-        // cerr << endl;
-        cout << "Case #" << i + 1 << ": " << res << endl;
+        solve(i + 1, n, k);
     }
 
     return 0;
