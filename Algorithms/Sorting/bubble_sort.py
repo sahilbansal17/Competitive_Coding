@@ -3,8 +3,12 @@
 
 # find the element in array by insertion sort
 # Code
-def bubble_sort(arr):
-    n = len(arr)
+def bubble_sort():
+    arr = list()
+    n1 = input("Enter the number of elements of the Array :")
+    n = int(n1)
+    for i in range(n):
+        arr.append(int(input("Enter the number :")))
     for i in range(n):
         for j in range(0, n-i-1):
             if arr[j] > arr[j+1] :
@@ -14,7 +18,7 @@ def bubble_sort(arr):
 
 # Test-Case
 arr = [1, 13, 78, 6, 45689 78, 678, 45689]
-bubble_sort(arr)
+bubble_sort()
 
 # Time-Complexity
 # Worst-Case : O(n*n)
