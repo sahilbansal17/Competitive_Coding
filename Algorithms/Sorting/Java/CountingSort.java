@@ -1,5 +1,7 @@
 //  Counting Sort in java
 
+import java.util.*;
+import java.lang.*;
 class CountingSort { 
   static  void sort(char arr[]) 
     { 
@@ -33,20 +35,34 @@ class CountingSort {
         for (int i = 0; i < n; ++i) 
            arr[i] = out[i]; 
     } 
+
   
     // Driver method 
     public static void main(String args[]) 
     { 
-       
-        char a[] = {'a','f', 'd','j','w','i'}; 
+          Scanner sc=new Scanner(System.in);
+
+          //Enter the size of array.
+          int n=sc.nextInt();
+
+          char arr[]=new char[n];
+
+          //Entering array elements.
+          for(int i=0;i<n;i++)
+          {
+             arr[i]= sc.next().charAt(0);
+
+          }
+ 
+      
   
-        //sort function is called which sorts the array.
-        sort(a);
+         //sort function is called which sorts the array.
+         sort(arr);
                     
   
-        //Printing the sorted array.
-        for (int i = 0; i < a.length; i++) 
-            System.out.println(a[i]); 
+         //Printing the sorted array.
+         for (int i = 0; i < arr.length; i++) 
+            System.out.println(arr[i]); 
     } 
 } 
 

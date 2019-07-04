@@ -6,19 +6,29 @@ import java.util.*;
 public class BucketSort {
 
 
-     //Driver method
+        //Driver method
 	public static void main(String[] args) {
 		
+               Scanner sc=new Scanner(System.in);
 
-        double a[] = {0.33,0.756,0.146,0.94,0.32,0.545};
-		double res[] = new double[a.length];
+               //Enter the size of array.
+               int n=sc.nextInt();
+
+               double a[]=new double[n];
+
+               //Entering array elements.
+               for(int i=0;i<n;i++)
+                  a[i]=sc.nextDouble();
+
+	       double res[] = new double[a.length];
 		
-		//Calling a function named buket.
-		 res =	bucket(a,a.length);
+               //Calling a function named buket.
+	       res = bucket(a,a.length);
+                  
 
-		//Printing the sorted array. 
-       for(int i=0;i<res.length;i++)
-		System.out.println(res[i]);
+	       //Printing the sorted array. 
+               for(int i=0;i<res.length;i++)
+	         System.out.println(res[i]);
 	}
 
 	//Method implementing bucket sort.
@@ -34,7 +44,9 @@ public class BucketSort {
 	    //  Put array elements in different buckets
 	    for (int i=0; i<n; i++)
 	    {
-	       int val = (int) (n*arr[i]); // val is storing the index for an element in bucket
+	       // val is storing the index for an element in bucket
+               int val = (int) (n*arr[i]);
+
 	       b.get(val).add(arr[i]);
 	    }
 	 
@@ -48,7 +60,7 @@ public class BucketSort {
 	        for (int j = 0; j < b.get(i).size(); j++)
 	          arr[num++] = b.get(i).get(j);
 	
-	return arr;
+	   return arr;
 	
 	
 	}
