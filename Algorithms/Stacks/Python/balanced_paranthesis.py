@@ -21,6 +21,8 @@ class Stack():
     def pop(self):
         return self.items.pop()
 
+#this function checks whether the paranthesis are balanced
+#time complexity of the function: O(n)
 def checkParanthesis():
     
     stack = Stack()
