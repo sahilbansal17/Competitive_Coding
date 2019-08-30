@@ -8,8 +8,31 @@ using namespace std;
 class Solution {
 public:
   vector<int> deckRevealedIncreasing(vector<int>& deck) {
-    // yet to complete
-    return {};
+    sort(deck.begin(), deck.end());
+    int n = deck.size();
+    vector<int> res(n); // to hold the answer
+    queue<int> index;
+    // add all indices in the queue
+    for (int i = 0; i < n; ++i) {
+      index.push(i);
+    }
+
+    // sort the deck cards
+    sort(deck.begin(), deck.end());
+
+    // simulate the process
+    for (auto card: deck) {
+      // place the card at the index present at top of the queue
+      int idx = index.front();
+      res[idx] = card;
+      // pop the top index
+      index.pop();
+      // pop the second index and push at the end
+      index.push(index.front());
+      index.pop();
+    }
+
+    return res;
   }
 };
 
