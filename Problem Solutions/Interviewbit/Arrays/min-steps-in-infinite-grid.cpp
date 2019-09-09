@@ -1,5 +1,5 @@
 /*
- * Yet to solve
+ * https://www.interviewbit.com/problems/min-steps-in-infinite-grid/
  */
 
 #include <bits/stdc++.h>
@@ -12,7 +12,14 @@ class Solution {
 };
 
 int Solution::coverPoints(vector<int> &A, vector<int> &B) {
-
+  int res = 0;
+  int n = A.size();
+  int prevX = A[0];
+  int prevY = B[0];
+  for (int i = 1; i < n; ++i) {
+    res += max(abs(A[i] - prevX), abs(B[i] - prevY));
+    prevX = A[i];
+    prevY = B[i];
   }
   return res;
 }
