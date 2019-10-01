@@ -2,21 +2,6 @@
 // Author: @NavonilDas
 // Question: https://www.codechef.com/LTIME76B/problems/PAIRSUM2
 
-using namespace std;
-typedef long long i64;
-typedef vector<int> vi;
-typedef vector<i64> vi64;
-typedef vector<vi> vvi;
-typedef long double Ld;
-
-
-#define  FastIo     ios_base::sync_with_stdio(false); cin.tie(NULL); 
-#define pb push_back
-#define forn(i,n) for(int i=0;i<(int)(n);++i)
-#define for1(i,n) for(int i=1;i<(int)(n);++i)
-#define ford(i,n) for(int i=(int)(n);i>=0;--i)
-#define forr(i,a,b) for(int i=(int)(a);i<=(int)(b);++i)
-#define fore(i,v) for(auto i:v)
 template <class T> void Swap(T &a,T &b){T c=a;a=b;b=c;}
 
 using namespace std;
@@ -37,21 +22,18 @@ using namespace std;
  * */
 
 int main(){
-	#ifdef OFFLINE_EXE
-	freopen("input.txt","r",stdin);
-	#endif
     int t;
     cin>>t;
     while(t--){
         int n,q;
         cin>>n>>q;
-        vi ar(n-1),br(n-1); // Two vectors to store prefix sum
+        vector<int> ar(n-1),br(n-1); // Two vectors to store prefix sum
 
-        forn(i,n-1){
+        for(int i=0;i<(n-1);++i){
             cin>>ar[i]; // input the array
             br[i] = ar[i]; // copy the array
         }
-        for1(i,n-1){
+        for(int i=1;i<n-1;++i){
             ar[i] += ar[i-1]; /// Prefix sum all the numbers from 0 to i
             if(i >= 2) br[i] += br[i-2]; // Prefix sum add all the alternating elements as we need to subtract it from answer
         }
@@ -71,8 +53,5 @@ int main(){
             else cout<<"UNKNOWN\n";
         }
     }
-	#ifdef OFFLINE_EXE
-	cout<<"Time :"<<(1.0*clock()/CLOCKS_PER_SEC)<<"S.\n";
-	#endif
 	return 0;
 }
