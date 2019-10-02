@@ -1,0 +1,82 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+struct node{
+    int data;
+    struct node* left,*right;
+};
+
+struct node* newnode(int data){
+    struct node* Node = (struct node*)malloc(sizeof(struct node));
+    Node->left = Node->right = NULL;
+    Node->data = data;
+    return Node;
+};
+
+void Inorder(struct node* root){
+    if(!root) return ;
+    Inorder(root->left);
+    cout<<root->data;
+    Inorder(root->right);
+}
+
+node* insertion(node* root, int data){
+    if(root==NULL) return (newnode(data));
+    if(root->data >data) root->left =insertion(root->left, data);
+    else if(data> root->data) root->right= insertion(root->right, data);
+    return root;
+}
+
+node* successor(node* root){
+    while(root->right!=NULL) root= root->left;
+    return root;
+}
+
+node* deletion(node* root, int data){
+    if(root == NULL) return root;
+    
+    if(data < root->data)  root->left = deletion(root->left, data);
+    else if(data > root->data)  root->right = deletion(root->right, data);
+    else{
+        if(root->left == NULL){
+            node* temp = root->right;
+            free(root);
+            return temp;
+        }
+        else if(root->right == NULL){
+            node* temp = root->left;
+            free(root);
+            return temp;
+        }
+        struct node* temp = successor(root->right);
+        root->data = temp->data;
+        root ->right = deletion(root->right , temp->data);
+    }
+    return root;
+}
+int main() {
+    cout<<"Enter the number of node for insertion"<<endl;
+    int n ;  cin>>n;
+    int x;
+    cin>>x;
+    struct node* root = insertion(root, x);
+    n--;
+    while(n--){
+        cin>>x;
+        insertion(root, x);
+    }
+    cout<<endl;
+    Inorder(root);
+    cout<<endl<<"Enter number of nodes for deletion"<<endl;
+    int m;cin>>m;
+    int z;cin>>z;
+    deletion(root,z);
+    m--;
+    while(m--){
+        cin>>z;
+        deletion(root,z );
+    }
+    cout<<endl;
+    Inorder(root);
+	return 0;
+}
