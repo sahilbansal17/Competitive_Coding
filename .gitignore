@@ -1,0 +1,19 @@
+.DS_Store
+_site/
+Gemfile.lock
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata/
+a.out
+Problem Solutions/CodeChef/CCDSAP/
+Problem Solutions/CodeChef/COOK110B/
+Problem Solutions/CodeChef/LTIME74A/
+Problem Solutions/CodeChef/ZCO Practice Contest/ZCO16001.cpp
+Problem Solutions/Codeforces/Concept Building Practice/962D.cpp
+Problem Solutions/Codeforces/Div 2 Rounds/558 Div 2/D.cpp
+Problem Solutions/Codeforces/Div 2 Rounds/564 Div 2/C.cpp
+Problem Solutions/Codeforces/Other Rounds/CEOI 2019 Day 1 Online Mirror/A.cpp
+Problem Solutions/HackerRank/Practice/transmission-towers.cpp
+Problem Solutions/IOI-Path_to_Gold-CommonLounge/CodeChef-TLG.cpp
+Problem Solutions/IOI-Path_to_Gold-CommonLounge/CodeChef-ZCO14001.cpp
+Problem Solutions/Techgig/Code-Gladiators-2018.cpp
