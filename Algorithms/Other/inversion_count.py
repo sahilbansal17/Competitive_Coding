@@ -1,4 +1,4 @@
-from bisect import bisect_left as lower_bound
+from sortedcontainers import SortedList
 
 '''
 Given an array A, a pair (i,j) is called a inversion pair if:
@@ -15,13 +15,13 @@ Here's a different approach to the same problem using Merge Sort:
 https://www.hackerrank.com/challenges/ctci-merge-sort/problem
 '''
 def inversion_count(arr: list, n: int) -> int:
-	b = []
+	b = SortedList()
 	count = 0
 	
 	for i in range(n-1, -1, -1):
-		pos = lower_bound(b, arr[i])
+		pos = b.bisect_left(arr[i])
 		count += pos
-		b.insert(pos, arr[i])
+		b.add(arr[i])
 
 	return count
 
