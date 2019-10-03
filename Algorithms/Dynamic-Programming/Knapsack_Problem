@@ -1,0 +1,56 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int i,j,temp;
+
+void swap(int x,int y)
+{
+    int t=x;
+    x=y;
+    y=t;
+}
+int Getitdone(int n, int a[], int b[])
+{
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<n;j++)
+        {
+            if(b[j]<b[j+1])
+            {
+                swap(b[j],b[j+1]);
+                swap(a[j],a[j+1]);
+            }
+        }
+    }
+    /*for(i=0;i<n;i++)
+        cout<<a[i]<<" ";
+    cout<<"\n";
+    for(i=0;i<n;i++)
+        cout<<b[i]<<" ";*/
+    int g,h;
+    g=0,h=0;
+    for(i=0;i<n;i++)
+    {
+        if(g<=15)
+        {
+            g+=a[i];
+            h+=b[i];
+        }
+    }
+    return h;
+}
+int main()
+{
+    int n;
+    cout<<"Enter the size of array:";
+    cin>>n;
+    int w[n],p[n];
+    for(i=0;i<n;i++)
+        cin>>w[i];
+    for(j=0;j<n;j++)
+        cin>>p[j];
+    int d=Getitdone(n,w,p);
+    cout<<"\nProfit is: "<<d;
+    return 0;
+}
