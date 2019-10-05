@@ -16,7 +16,7 @@ int orientation(pii a, pii b){
 	return a.first*b.second - a.second*b.first;
 }
 
-// Check if the orierntation of the three points is clockwise
+// Check if the orientation of the three points is clockwise
 bool clockwise(pii a, pii b, pii c){
 	int r = orientation(getVector(a,c),getVector(b,c));
 	return r <=  0;
@@ -65,7 +65,7 @@ vector<pii> monotoneChain(vector<pii> v){
 }
 // Time Complexity: O(n logn), due to sorting
 // O(n logn) complexity for sorting
-// O(n) complexity for creating the upper and lower chain, because every element can be push and pop from a chain at most once 
+// O(n) complexity for creating the upper and lower chain, because every element can be push and pop from each chain at most once 
 
 
 // Solution for Convex Hull 1
