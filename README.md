@@ -7,6 +7,11 @@
 
 This project aims to create a vast collection of *algorithms* and *data structures* that can be helpful in Competitive Coding along with the solutions to various problems on various competitive coding platforms.
 
+### Hacktoberfest
+1. You can take up the [HacktoberFest Challenge Issue](https://github.com/sahilbansal17/Competitive_Coding/issues/471) and send pull requests solving the Hackerrank's problems in any of their tracks/domains.
+2. You can create new issues. Before that, read the [Introduction to Contributing](https://github.com/sahilbansal17/Competitive_Coding/wiki/Introduction-to-Contributing) wiki page.
+3. Make sure to read the [Coding Standards Wiki Page](https://github.com/sahilbansal17/Competitive_Coding/wiki/Coding-Standards).
+
 ### Algorithms
 The algorithms list is available in this [wiki page](https://github.com/sahilbansal17/Competitive_Coding/wiki/Algorithms). The folder [Algorithms](Algorithms/) contains all the implementations.
 
