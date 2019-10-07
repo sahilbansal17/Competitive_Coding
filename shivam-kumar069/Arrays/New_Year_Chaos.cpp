@@ -7,6 +7,7 @@ using namespace std;
 
 vector<string> split_string(string);
 
+//################## The important part ###################################
 // Complete the minimumBribes function below.
 void minimumBribes(vector<int> q) {
     
@@ -55,6 +56,8 @@ void minimumBribes(vector<int> q) {
     cout<<count<<endl;
 
 }
+//########################################################################
+
 
 int main()
 {
