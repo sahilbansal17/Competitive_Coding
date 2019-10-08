@@ -1,4 +1,5 @@
 // A C++ solution to the problem: https://www.hackerrank.com/challenges/binary-search-tree-lowest-common-ancestor/problem
+// This is a general solution to any binary tree (not limited to binary search tree)
 // Complexity: O(n)
 
 #include <bits/stdc++.h>
