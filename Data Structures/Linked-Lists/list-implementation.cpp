@@ -1,6 +1,6 @@
 // Name: Harsh Aryan
 // Email-id: 12harsharyan@gmail.com
-// THIS IS A PROGRAM TO IMPLEMENT LIST . IT CONSISTS OF INSERTION, DELETION, TRAVERSAL, SEARCH, REVERSE, SPLICE.
+// THIS IS A PROGRAM TO IMPLEMENT LIST . IT CONSISTS OF INSERTION, DELETION, TRAVERSAL, SEARCH, REVERSE, SPLICE, Palindrome.
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -136,7 +136,7 @@ struct node *insertAtPosn(struct node *head,struct node **end, int n, int d)
 struct node *deleteFromBeg(struct node *head,struct node **end)
 {
     if(head==NULL)
-        return;
+        return NULL;
     if(head->next==NULL)
     {
         *end=NULL;
@@ -156,7 +156,7 @@ struct node *deleteFromBeg(struct node *head,struct node **end)
 struct node *deleteFromEnd(struct node *head,struct node **end)
 {
     if(head==NULL)
-        return;
+        return NULL;
     else if(head->next==NULL)
     {
         head=NULL;
@@ -189,7 +189,7 @@ struct node *deleteFromEnd(struct node *head,struct node **end)
 void traversal(struct node *head)
 {
     if(head==NULL)
-        return head;
+        return;
     struct node *temp=head;
     while(temp!=NULL)
     {
@@ -303,8 +303,32 @@ struct node *splice(struct node *head,struct node **end, int start, int endd)
     
 }
 
-//the main function to run the code
+//function to check palindrome, first goes to last element by recursion
+//then start comparing with element at start pointer and incrementing it at each step
+// Time Complexity: O(n)
+int pa_check(node *tem, int con, node *&ch){
+  if(tem == NULL)
+    return 1;
+  con = pa_check(tem->next, con, ch);
+  if(con == 0)
+    return 0;
+  if(tem->data != ch->data){
+    con = 0;
+  }
+  ch = ch->next;
+  return con; //returns 1 if till this step its palindrome
+}
+void palindrome(struct node *head){
+  node *tem = head;
+  node *ch = head;
+  int con = pa_check(tem, 1, ch);
+  if(con == 1)
+    printf("Palindrome\n");
+  else 
+    printf("NOT Palindrome\n");
+}
 
+//the main function to run the code
 int main()
 {
     int option = 0;
@@ -320,7 +344,7 @@ int main()
 // a menu is given to select from
 //the menu repeats until the user selects 9 that is Exit
 
-    while (option != 10 )
+    while (option != 11 )
     {
         printf("\n\nPress the index of the work to be performed : \n");
         printf("1.Insert at beginning\n");
@@ -332,7 +356,8 @@ int main()
         printf("7.Search\n");
         printf("8.Reverse the linked list\n");
         printf("9.Splice the linked list\n");
-        printf("10.Exit\n");
+        printf("10.Palindrome Check linked list\n");
+        printf("11.Exit\n");
 
         scanf("%d", &option);
 
@@ -435,6 +460,14 @@ int main()
             scanf("%d", &endd);
             head=splice(head,&end,start,endd);
             printf("Splicing done:\n");
+        }
+
+        //option to palindrome check the linked list
+        //palindrome function called
+        if (option == 10)
+        {
+            palindrome(head);
+            printf("checked Successful\n");
         }
 
     }
