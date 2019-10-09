@@ -303,25 +303,26 @@ struct node *splice(struct node *head,struct node **end, int start, int endd)
     
 }
 
-//function to check palindrome, first recursion till last element
-//then start comparing with element at start pointer
-int pa_check(node *tem,int con,node *&ch){
-  if(tem==NULL)
+//function to check palindrome, first goes to last element by recursion
+//then start comparing with element at start pointer and incrementing it at each step
+// Time Complexity: O(n)
+int pa_check(node *tem, int con, node *&ch){
+  if(tem == NULL)
     return 1;
-  con=pa_check(tem->next,con,ch);
-  if(con==0)
+  con = pa_check(tem->next, con, ch);
+  if(con == 0)
     return 0;
-  if(tem->data!=ch->data){
-    con=0;
+  if(tem->data != ch->data){
+    con = 0;
   }
-  ch=ch->next;
+  ch = ch->next;
   return con; //returns 1 if till this step its palindrome
 }
 void palindrome(struct node *head){
-  node *tem=head;
-  node *ch=head;
-  int con=pa_check(tem,1,ch);
-  if(con==1)
+  node *tem = head;
+  node *ch = head;
+  int con = pa_check(tem, 1, ch);
+  if(con == 1)
     printf("Palindrome\n");
   else 
     printf("NOT Palindrome\n");
