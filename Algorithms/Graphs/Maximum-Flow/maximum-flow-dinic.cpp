@@ -93,15 +93,18 @@ int Graph::sendFlow(int s, int flow, int t, vector<int> &start) {
 }
 
 int Graph::maxFlow(int s, int t) {
-    if(s == t)
+    /*
+     Returns maximum flow in the graph
+    */
+    if(s == t) // Corner Case
         return -1;
     
-    int total = 0;
+    int total = 0; // Initialize resources
 
-    while(BFS(s, t)) {
-        vector<int> start(V, 0);
-        while(int flow = sendFlow(s, INT_MAX, t, start))
-            total += flow;
+    while(BFS(s, t)) { //Augment the flow when there is path from source to sink
+        vector<int> start(V, 0);// Edges visited from 0 to V
+        while(int flow = sendFlow(s, INT_MAX, t, start)) //While flow is not zero from s to t
+            total += flow; // Add path to overall flow
     }
 
     return total;
