@@ -18,6 +18,7 @@ import sys
 def search(matrix : list):
     answer = 0
     
+    # this search has O(N^2) complexity
     for i in range(n):
         for j in range(m):
             if matrix[i][j] == 1:
