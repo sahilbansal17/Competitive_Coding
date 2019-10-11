@@ -9,8 +9,8 @@ import sys
 """
     Iqrar Agalosi Nureyza (@Iqrar99)
 
-    This program is to find right position.
-    So, left total and right total from the position that we found before are same.
+    This program is to find correct position so left total and right total 
+    from the position that we found before are same.
 """
 
 
