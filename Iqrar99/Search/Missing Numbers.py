@@ -9,7 +9,7 @@ def main():
     # read the input and use map to convert all elements
     # to be integer
     arr = list(map(int, input().split()))    
-    setA = list(set(arr))
+    set_A = list(set(arr))
 
     b = int(input())
 
@@ -18,12 +18,12 @@ def main():
     miss = []
 
     # if the frequency is not same, then we get the missing number
-    for number in list(setA):
+    for number in list(set_A):
         if arr.count(number) < brr.count(number):
             miss.append(number)
 
     for number in brr:
-        if number not in setA:
+        if number not in set_A:
             miss.append(number)
 
     # merge the duplicate numbers
