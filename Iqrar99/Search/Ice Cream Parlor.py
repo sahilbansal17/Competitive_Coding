@@ -1,6 +1,6 @@
 # Iqrar Agalosi Nureyza (@Iqrar99)
 
-# This program for finding a pair of numbers. If the sum is equal to m
+# This program is to findi a pair of numbers. If the sum is equal to m,
 # then print the output
 
 import sys
