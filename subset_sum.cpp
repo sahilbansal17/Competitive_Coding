@@ -64,9 +64,7 @@ int main()
 
 	solve(a,n,x);     // Function to check whether any subset from given array can add upto give sum 
 }
-
-
-                                       /*   Time Complexity :- O(x * n)  */
+               /*   Time Complexity :- O(x * n)  */
 
 
 
