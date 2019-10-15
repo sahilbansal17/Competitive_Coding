@@ -23,6 +23,22 @@ treeNode* newNode(int data){
 	return t;
 }
 
+/* desc : insert a node in the tree
+   input : root and integer data
+  */
+treeNode* insert(treeNode* root,int data){
+	if(!root){
+		return newNode(data);
+	}
+	if(data < root->data){
+		root->left = insert(root->left,data);
+	}
+	if(data > root->data){
+		root->right = insert(root->right,data);
+	}
+	return root;
+}
+
 /* desc : calculates the diameter of the tree
    input : root of the binary tree
 */
@@ -42,24 +58,14 @@ int treeDiameter(treeNode* root,int &dia){
 	return lh + 1;
 }
 
-/*
-		  4
-		/   \
-		10  15
-	   /  \   \
-	   2  20   16
-	    \
-	     8	
-*/
 int main(){
-    int result,dia = 0;
-	treeNode* root = newNode(4);
-	root->left = newNode(10);
-	root->right = newNode(15);
-	root->left->right = newNode(20);
-	root->right->right = newNode(16);
-	root->left->left = newNode(2);
-	root->left->left->right = newNode(8);
+	treeNode* root = NULL;
+    int n,data,result,dia = 0;
+	cin>>n;
+	for(int i = 0;i<n;i++){
+		cin>>data;
+		root = insert(root,data);
+	}
 	result = treeDiameter(root,dia);
     cout<<"Diameter = "<<result;
 }
