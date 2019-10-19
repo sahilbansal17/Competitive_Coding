@@ -16,12 +16,12 @@ int main(){
 		int i,j;
 		for(i=2;i<=n;i++){
 			int k=0;
-			for(j=i-1;j>=(i-5);j--){
+			for(j=i-1;j>=(i-5);j--){// loop to check previous elements
 				if(j<1) break;
 				if(v[j] > v[i])
 					k++;
 			}	
-			if(k == ((i-1) - j)){
+			if(k == ((i-1) - j)){// to confirm if all possible out of previous 5 are smaller
 				count++;
 			}
 		}
