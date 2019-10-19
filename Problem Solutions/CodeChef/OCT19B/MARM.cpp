@@ -13,10 +13,20 @@ int main(int argc, char const *argv[])
         ll N, K;
         cin >> N >> K;
         vector<ll> v(N);
-        for(ll &i : v) cin >> i;
+        for(ll &i : v) cin >> i; // Input array
+        // If N is odd and K > N/2 that means v[(N-1)/2] = v[(N-1)/2] ^ v[(N-1)/2] = 0
+        // So we set that to zero
         if((N % 2) && (K > N/2))
             v[(N-1)/2] = 0;
-        K = K % (N * 3); // After 2 * N xor will repeat values from original array
+        // After 3N values xor will restore the array
+        // A = A ^ B = C
+        // B = B ^ A = B ^ C = A
+        // A = A ^ B = C ^ A = B
+        // B = B ^ A = A ^ B = C
+        // A = A ^ B = B ^ C = A
+        // B = B ^ A = C ^ A = B
+        // Hence we will revert back to the same array, except for (N-1)/2 that will remain zero
+        K = K % (N * 3);
         for(ll i = 0;i < K;i++) v[i % N] ^= v[N-(i % N) - 1];
         for(ll i : v) cout << i << " ";
         cout << endl;
