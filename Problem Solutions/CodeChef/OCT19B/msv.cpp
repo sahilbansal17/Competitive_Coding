@@ -13,8 +13,9 @@ int main(){
 			cin>>arr[i];
 		}
 		ll ans = 0;
+		// Having an array of upto the largest element in the list provided
 		ll MAX = *max_element(arr, arr + n); 
-		ll cnt[MAX + 1] = {0};
+		ll cnt[MAX + 1] = {0}; // avoiding garbage
 		for(ll i=0;i<n;i++){
 			ll count = 0;
 			ll val = arr[i];
@@ -22,7 +23,8 @@ int main(){
 				count= cnt[val];
 			}
 			ll j=1;
-			while(j<= sqrt(val)){
+			while(j<= sqrt(val)){ // runs a loop to increment every divisor 
+				//to show how many multiples elements in the array might have, which is the question indirectly
 				if(val%j==0){
                 	cnt[j]++;
 					if(j!=(val/j)){
@@ -31,7 +33,7 @@ int main(){
                 }
                 j++;
 			}
-			ans = (ans > count) ? ans:count;
+			ans = (ans > count) ? ans:count; // getting the maximum count
 		}
 		cout<<ans<<"\n";
 	}
