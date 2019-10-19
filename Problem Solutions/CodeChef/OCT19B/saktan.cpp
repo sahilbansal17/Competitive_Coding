@@ -14,6 +14,7 @@ int main(){
 			x[O[i][0] - 1]++;
 			y[O[i][1] - 1]++;
 		}
+		// solution is based of observation of how many possible times a position can be incremented as per the question
 		ll oddrow=0,oddcol=0,evenrow=0,evencol=0;
 		for(i=0;i<n;i++){
 			if(x[i] %2 == 0)
@@ -27,7 +28,7 @@ int main(){
 			else
 				oddcol++;
 		}
-
+		//below formula indicates every odd possibility (odd + even == even + odd == an odd number)
 		cout<<(evenrow*oddcol + oddrow*evencol)<<endl;
 		
 	}
