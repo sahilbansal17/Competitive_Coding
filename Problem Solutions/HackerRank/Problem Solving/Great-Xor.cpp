@@ -1,29 +1,44 @@
+//Nmae: Neha Gupta
+//Email: nehaguptang.ng@gmail.com
+//Given a long integer x , count the number of values of a satisfying the following conditions:
+//a XOR x > x 
+//and
+// 0 < a < x
+
 #include <bits/stdc++.h>
 
 using namespace std;
 
-// Complete the theGreatXor function below.
-long theGreatXor(long x) {
-long result,num=0,a;
-    int s,o=0,z=0;
-    a=x;
-    while(x!=0)
+// theGreatXor function below.
+long theGreatXor(long x) 
+{
+    long result , num=0 , a ;
+    int total , o=0 , z=0 ;         //here o are number of ones in binary form and z are number of zeroes in binary form of x
+    
+    a=x;                        //saving value of x in a for future use
+    
+    while(x!=0)                 //finding number of zeroes and ones in binary form of x
+        
     {
-        if(x&1==1)
-            o++;
-        else
-            z++;
-        x=x>>1;
+        
+        if( x & 1 == 1 )        //if number is one
+            o++;                   //increment number of ones 'o'
+        
+        else                    //else if digit is zero   
+            z++;                //increment number of zeroes 'z'            
+        x=x >> 1 ;                //right shift number
     }
-    s=o+z;
-    while(s!=0)
+    
+    total = o + z ;             //adding 'o' and 'z' to get total number of digit
+    
+    while(total!=0)            //loop to find values of a
     {
-        num=num+pow(2,s-1);
-        s--;
+        num=num+pow(2,total-1);     //to get number 2's power till length - 1
+        total--;
     }
-    result=num^a;
-    return result;
-    return x;
+    result=num^a;                   //xor initial number with num
+    
+    return result;                  //return result
 
 }
 
