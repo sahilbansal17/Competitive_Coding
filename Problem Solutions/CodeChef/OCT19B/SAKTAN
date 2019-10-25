@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+int main(){
+	int t;
+	cin>>t;
+	while(t){
+		t--;
+		unsigned long long int n,m,q,i=0;
+		unordered_map<unsigned long long int, unsigned long long int> r;
+		unordered_map<unsigned long long int, unsigned long long int> c;
+		cin>>m>>n>>q;
+		unsigned long long int row[q],col[q];
+		while(i<q){
+			cin>>row[i]>>col[i];
+			i++;
+		}
+		 
+   		for (long long int i = 0; i < q; i++) 
+        r[row[i]]++; 
+  
+   		 unsigned long long int x = 0; 
+    		for (auto itr = r.begin(); itr != r.end(); itr++) { 
+  
+        // check if frequency is odd 
+       	 if (itr->second % 2 != 0) 
+       	 x++;
+		}
+				 
+   		for (int long long i = 0; i < q; i++) 
+        c[col[i]]++; 
+  
+   		unsigned long long int y = 0; 
+    		for (auto itr = c.begin(); itr != c.end(); itr++) { 
+  
+        // check if frequency is odd 
+       	 if (itr->second % 2 != 0) 
+       	 y++;
+		}
+		cout<<m*y+n*x-2*x*y<<endl;
+	}
+}
