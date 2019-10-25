@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+	long long int t;
+	cin>>t;
+	while(t>0){
+		cout<<endl;
+		t--;
+		long long int n,k,i=0;
+		cin>>n>>k;
+		vector<long long int>a(n);
+		while(i<n){
+			cin>>a[i];
+			i++;
+		}
+		i=0;
+		long long int A,B,xa=(k%(3*n));
+		while(i<xa){
+			A=a[(i%n)];
+			B=a[(n-(i%n)-1)];
+			a[(i%n)]=(A^B); 
+			i++;
+		}
+		if(n%2==1&&k>n/2)
+			a[n/2]=0;
+		i=0;
+		while(i<n){
+			cout<<a[i]<<" ";
+			i++;
+		}
+	}
+	return 0;
+}	
