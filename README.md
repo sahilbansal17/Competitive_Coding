@@ -21,6 +21,9 @@ The data structures list is available in this [wiki page](https://github.com/sah
 ### Problem Solutions
 The solutions to various problems in different contests or practice problems on the following sites are available in [Problem Solutions](Problem%20Solutions/) folder.
 
+#### My [Programming Board 2020](https://www.notion.so/competitivecoding/fe38d49f88104cbeb1fb362738e4e77b?v=d879a421950c47ada5b526f2a958b879)
+It contains track of the problems I'm working on, and those which I've completed in this new year! Don't miss to make a copy for yourself!
+
 ### Template for Contests
 Templates are available in [Templates](Templates/) folder.
 
