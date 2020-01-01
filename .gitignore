@@ -6,6 +6,7 @@ Gemfile.lock
 .jekyll-cache/
 .jekyll-metadata/
 a.out
+.vscode
 Problem Solutions/CodeChef/CCDSAP/
 Problem Solutions/CodeChef/COOK110B/
 Problem Solutions/CodeChef/LTIME74A/
