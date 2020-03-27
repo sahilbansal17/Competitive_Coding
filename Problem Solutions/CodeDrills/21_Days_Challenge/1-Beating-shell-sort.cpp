@@ -6,41 +6,33 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define MAX 5000
+#define MAX 5001
 int main () {
 
     int n;
     cin >> n;
-
-    vector<int> a(MAX);
-    for (int i = 0; i < MAX; ++i) {
-        a[i] = (i + 1);
-    }
-
-    // takes the position as input which is to be changed to ZERO
-    int pos;
-    cin >> pos;
-    a[pos] = 0;
 
     vector<int> gaps(n);
     for (auto &gap: gaps) {
         cin >> gap;
     }
 
-    int i, j;
-    for (auto gap: gaps) {
-        for (i = gap; i < MAX; i += 1) {
-            int temp = a[i];
-            for (j = i; j >= gap and a[j - gap] > temp; j -= gap) {
-                a[j] = a[j - gap];
+    // reverse(gaps.begin(), gaps.end());
+    int res = 0;
+    for (int i = 0; i < MAX; ++i) {
+        int j = i;
+        int cur = 0;
+        while (j != 0 && cur < n) {
+            while (j >= gaps[cur]) {
+                j -= gaps[cur];
             }
-            a[j] = temp;
+            ++cur;
+        }
+        if (j != 0) {
+            // cout << i << endl;
+            ++res;
         }
     }
-
-    for (int i = 0; i < MAX; ++i) {
-        cout << a[i] << endl;
-    }
-
+    cout << res << endl;
     return 0;
 }
