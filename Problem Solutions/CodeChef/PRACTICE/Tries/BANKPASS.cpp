@@ -29,20 +29,6 @@ public:
         cur->end = true;
     }
     
-    /** Returns if the word is in the trie. */
-    bool search(string word) {
-        Trie* cur = this;
-        int n = word.length();
-        for (int i = 0; i < n; ++i) {
-            int idx = word[i] - 'a';
-            if (!cur->children[idx]) {
-                return false;
-            }
-            cur = cur->children[idx];
-        }
-        return (cur != NULL && cur->end);
-    }
-    
     /** Returns if there is any word in the trie that starts with the given prefix. */
     bool startsWith(string prefix) {
         Trie* cur = this;
@@ -54,6 +40,20 @@ public:
             }
             cur = cur->children[idx];
         }
+        if (cur == NULL) {
+            return false;
+        }
+        // should have one child
+        int cnt = 0;
+        for (int i = 0; i < 26; ++i) {
+            if (!cur->children[i]) {
+                ++cnt;
+            }
+        }
+        if (cnt == 26) {
+            // no child
+            return false;
+        }
         return true;
     }
 };
@@ -62,15 +62,24 @@ void solve() {
     int n;
     cin >> n;
 
+    if (n == 0) {
+        cout << "non vulnerable";
+        return;
+    }
     string pass;
     Trie* passwords = new Trie;
+    vector<string> passes;
     for (int i = 0; i < n; ++i) {
         cin >> pass;
+        passwords->insert(pass);
+        passes.push_back(pass);
+    }
+
+    for (auto pass: passes) {
         if (passwords->startsWith(pass)) {
             cout << "vulnerable";
             return ;
         }
-        passwords->insert(pass);
     }
     cout << "non vulnerable";
 }
