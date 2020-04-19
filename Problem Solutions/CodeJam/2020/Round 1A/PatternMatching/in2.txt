@@ -1,0 +1,7 @@
+1
+5
+A*B
+AA*BB
+AAB*BBB
+A*BB
+AA*B
