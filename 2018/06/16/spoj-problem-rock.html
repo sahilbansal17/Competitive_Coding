@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>DP Problem ROCK on SPOJ | Competitive_Coding</title>
+<title>DP Problem ROCK on SPOJ | Competitive Coding Blog - Let’s upsolve contest problems!</title>
 <meta name="generator" content="Jekyll v3.8.5" />
 <meta property="og:title" content="DP Problem ROCK on SPOJ" />
 <meta name="author" content="sahilbansal17" />
@@ -12,16 +12,16 @@
 <meta property="og:description" content="Code: #include &lt;bits/stdc++.h&gt; using namespace std; int dp[205][205]; // dp[i][j] denotes the maximum length possible for a[i] to a[j] (i &lt;= j) int solve(int i, int j, string s){ if(i == j){ // base case: one length string if(s[i] == &#39;1&#39;){ return dp[i][j] = 1; } return dp[i][j] = 0; } // memoization part if(dp[i][j] != -1){ return dp[i][j]; } // if in string from i-th index to j-th index, count of 1&#39;s is more, // then the entire length from i to j is the answer int count1 = 0, count0 = 0; for(int k = i; k &lt;= j; k++){ if(s[k] == &#39;0&#39;){ count0 ++; } else{ count1 ++; } } if(count1 &gt; count0){ return dp[i][j] = j - i + 1; // entire length } dp[i][j] = 0; // try all possible partitions, select one that yields maximum dp[i][j] for(int k = i; k &lt; j; k++){ if(solve(i, k, s) + solve(k + 1, j, s) &gt; dp[i][j]){ dp[i][j] = solve(i, k, s) + solve(k + 1, j, s); } } return dp[i][j]; } int main(){ string s; int t, n; cin &gt;&gt; t; for(int i = 0; i &lt; t; i++){ cin &gt;&gt; n; cin &gt;&gt; s; // intialize dp table for(int j = 0; j &lt; n; j++){ for(int k = 0; k &lt; n; k++){ dp[j][k] = -1; } } cout &lt;&lt; solve(0, n - 1, s) &lt;&lt; &quot;\n&quot;; } /*/ for(int i = 0; i &lt; n; i++){ for(int j = 0; j &lt; n; j++){ cout &lt;&lt; dp[i][j] &lt;&lt; &quot; &quot;; } cout &lt;&lt; &quot;\n&quot;; } //*/ return 0; }" />
 <link rel="canonical" href="http://localhost:4000/Competitive_Coding/2018/06/16/spoj-problem-rock.html" />
 <meta property="og:url" content="http://localhost:4000/Competitive_Coding/2018/06/16/spoj-problem-rock.html" />
-<meta property="og:site_name" content="Competitive_Coding" />
+<meta property="og:site_name" content="Competitive Coding Blog - Let’s upsolve contest problems!" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-06-16T00:00:00+05:30" />
 <script type="application/ld+json">
 {"author":{"@type":"Person","name":"sahilbansal17"},"url":"http://localhost:4000/Competitive_Coding/2018/06/16/spoj-problem-rock.html","headline":"DP Problem ROCK on SPOJ","dateModified":"2018-06-16T00:00:00+05:30","datePublished":"2018-06-16T00:00:00+05:30","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/Competitive_Coding/2018/06/16/spoj-problem-rock.html"},"description":"Code: #include &lt;bits/stdc++.h&gt; using namespace std; int dp[205][205]; // dp[i][j] denotes the maximum length possible for a[i] to a[j] (i &lt;= j) int solve(int i, int j, string s){ if(i == j){ // base case: one length string if(s[i] == &#39;1&#39;){ return dp[i][j] = 1; } return dp[i][j] = 0; } // memoization part if(dp[i][j] != -1){ return dp[i][j]; } // if in string from i-th index to j-th index, count of 1&#39;s is more, // then the entire length from i to j is the answer int count1 = 0, count0 = 0; for(int k = i; k &lt;= j; k++){ if(s[k] == &#39;0&#39;){ count0 ++; } else{ count1 ++; } } if(count1 &gt; count0){ return dp[i][j] = j - i + 1; // entire length } dp[i][j] = 0; // try all possible partitions, select one that yields maximum dp[i][j] for(int k = i; k &lt; j; k++){ if(solve(i, k, s) + solve(k + 1, j, s) &gt; dp[i][j]){ dp[i][j] = solve(i, k, s) + solve(k + 1, j, s); } } return dp[i][j]; } int main(){ string s; int t, n; cin &gt;&gt; t; for(int i = 0; i &lt; t; i++){ cin &gt;&gt; n; cin &gt;&gt; s; // intialize dp table for(int j = 0; j &lt; n; j++){ for(int k = 0; k &lt; n; k++){ dp[j][k] = -1; } } cout &lt;&lt; solve(0, n - 1, s) &lt;&lt; &quot;\\n&quot;; } /*/ for(int i = 0; i &lt; n; i++){ for(int j = 0; j &lt; n; j++){ cout &lt;&lt; dp[i][j] &lt;&lt; &quot; &quot;; } cout &lt;&lt; &quot;\\n&quot;; } //*/ return 0; }","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/Competitive_Coding/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/Competitive_Coding/feed.xml" title="Competitive_Coding" /></head>
+<link rel="stylesheet" href="/Competitive_Coding/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/Competitive_Coding/feed.xml" title="Competitive Coding Blog - Let's upsolve contest problems!" /></head>
 <body><header class="site-header">
 
-  <div class="wrapper"><a class="site-title" rel="author" href="/Competitive_Coding/">Competitive_Coding</a></div>
+  <div class="wrapper"><a class="site-title" rel="author" href="/Competitive_Coding/">Competitive Coding Blog - Let&#39;s upsolve contest problems!</a></div>
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
@@ -122,13 +122,13 @@
 
     <div class="footer-col-wrapper">
       <div class="footer-col one-half">
-      <h2 class="footer-heading">Competitive_Coding</h2>
+      
         <!-- <ul class="contact-list">
           <li class="p-name">sahilbansal17</li></ul> -->
       </div>
 
       <!-- <div class="footer-col one-half">
-        <p>Website to learn new Algorithms! 
+        <p>A blog with hints and solutions to recent contest problems. 
 </p>
       </div> -->
 

@@ -3,25 +3,25 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>AtCoder Beginner Contest 166 | Competitive_Coding</title>
+<title>AtCoder Beginner Contest 166 | Competitive Coding Blog - Let’s upsolve contest problems!</title>
 <meta name="generator" content="Jekyll v3.8.5" />
 <meta property="og:title" content="AtCoder Beginner Contest 166" />
 <meta name="author" content="sahilbansal17" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Website to learn new Algorithms!" />
-<meta property="og:description" content="Website to learn new Algorithms!" />
+<meta name="description" content="A blog with hints and solutions to recent contest problems." />
+<meta property="og:description" content="A blog with hints and solutions to recent contest problems." />
 <link rel="canonical" href="http://localhost:4000/Competitive_Coding/2020/05/03/atcoder-166.html" />
 <meta property="og:url" content="http://localhost:4000/Competitive_Coding/2020/05/03/atcoder-166.html" />
-<meta property="og:site_name" content="Competitive_Coding" />
+<meta property="og:site_name" content="Competitive Coding Blog - Let’s upsolve contest problems!" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-05-03T00:00:00+05:30" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"sahilbansal17"},"url":"http://localhost:4000/Competitive_Coding/2020/05/03/atcoder-166.html","headline":"AtCoder Beginner Contest 166","dateModified":"2020-05-03T00:00:00+05:30","datePublished":"2020-05-03T00:00:00+05:30","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/Competitive_Coding/2020/05/03/atcoder-166.html"},"description":"Website to learn new Algorithms!","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"sahilbansal17"},"url":"http://localhost:4000/Competitive_Coding/2020/05/03/atcoder-166.html","headline":"AtCoder Beginner Contest 166","dateModified":"2020-05-03T00:00:00+05:30","datePublished":"2020-05-03T00:00:00+05:30","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/Competitive_Coding/2020/05/03/atcoder-166.html"},"description":"A blog with hints and solutions to recent contest problems.","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/Competitive_Coding/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/Competitive_Coding/feed.xml" title="Competitive_Coding" /></head>
+<link rel="stylesheet" href="/Competitive_Coding/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/Competitive_Coding/feed.xml" title="Competitive Coding Blog - Let's upsolve contest problems!" /></head>
 <body><header class="site-header">
 
-  <div class="wrapper"><a class="site-title" rel="author" href="/Competitive_Coding/">Competitive_Coding</a></div>
+  <div class="wrapper"><a class="site-title" rel="author" href="/Competitive_Coding/">Competitive Coding Blog - Let&#39;s upsolve contest problems!</a></div>
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
@@ -40,6 +40,10 @@
 <h3 id="problem-a-ac">Problem A: A?C</h3>
 
 <p>Check the element at 1st index and print “ARC” or “ABC” accordingly.</p>
+<details>
+<summary>
+Code
+</summary>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cm">/**
  * The code below is just a snippet of solution code.
@@ -52,6 +56,8 @@
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
 	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"ABC"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 <span class="p">}</span></code></pre></figure>
+
+</details>
 
 <h3 id="problem-b-trick-or-treat">Problem B: Trick or Treat</h3>
 
@@ -102,6 +108,71 @@ Code
 
 </details>
 
+<h3 id="problem-c-peaks">Problem C: Peaks</h3>
+
+<p><strong>Simplified problem:</strong></p>
+
+<ul>
+  <li>Given a graph with N nodes and M undirected edges, and each node has a value H[i] associated with it.</li>
+  <li>Find the count of nodes which either do not have any adjacent nodes, or whose value is more than all of its adjacent nodes.</li>
+</ul>
+
+<details>
+<summary>
+Hint 
+</summary>
+<ul>
+<li> Create an adjacency list and the answer is the sum of nodes with no element in this list or </li>
+<li> the nodes whose all elements in the adjacency list have a value less than the node's value. </li>
+</ul>
+</details>
+
+<details>
+<summary>
+Code
+</summary>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">m</span><span class="p">;</span>
+
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">h</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">h</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">adj</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="n">b</span><span class="p">;</span>
+        <span class="o">--</span><span class="n">a</span><span class="p">;</span> <span class="o">--</span><span class="n">b</span><span class="p">;</span> <span class="c1">// 0-based</span>
+        <span class="n">adj</span><span class="p">[</span><span class="n">a</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+        <span class="n">adj</span><span class="p">[</span><span class="n">b</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">adj</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="o">++</span><span class="n">res</span><span class="p">;</span>
+            <span class="k">continue</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kt">int</span> <span class="n">curval</span> <span class="o">=</span> <span class="n">h</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="kt">bool</span> <span class="n">possible</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">next</span><span class="o">:</span> <span class="n">adj</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="n">next</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">curval</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">possible</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">possible</span><span class="p">)</span> <span class="p">{</span>
+            <span class="o">++</span><span class="n">res</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+
+</details>
+
   </div><a class="u-url" href="/Competitive_Coding/2020/05/03/atcoder-166.html" hidden></a>
 </article>
 
@@ -113,13 +184,13 @@ Code
 
     <div class="footer-col-wrapper">
       <div class="footer-col one-half">
-      <h2 class="footer-heading">Competitive_Coding</h2>
+      
         <!-- <ul class="contact-list">
           <li class="p-name">sahilbansal17</li></ul> -->
       </div>
 
       <!-- <div class="footer-col one-half">
-        <p>Website to learn new Algorithms! 
+        <p>A blog with hints and solutions to recent contest problems. 
 </p>
       </div> -->
 
