@@ -1,7 +1,7 @@
-title: Competitive_Coding
+title: Competitive Coding Blog - Let's upsolve contest problems!
 author: sahilbansal17
 description: >
-  Website to learn new Algorithms! 
+  A blog with hints and solutions to recent contest problems. 
 baseurl: /Competitive_Coding # to fix the issue that CSS files linked have relative path
 
 # Minima date format
