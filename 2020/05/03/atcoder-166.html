@@ -59,6 +59,8 @@ Code
 
 </details>
 
+<hr />
+
 <h3 id="problem-b-trick-or-treat">Problem B: Trick or Treat</h3>
 
 <p><strong>Simplified problem:</strong></p>
@@ -107,6 +109,8 @@ Code
 
 
 </details>
+
+<hr />
 
 <h3 id="problem-c-peaks">Problem C: Peaks</h3>
 
@@ -169,6 +173,141 @@ Code
     <span class="p">}</span>
     <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 <span class="p">}</span></code></pre></figure>
+
+
+</details>
+
+<hr />
+
+<h3 id="problem-d-i-hate-factorization">Problem D: I hate factorization</h3>
+
+<p><strong>Simplified problem:</strong>
+Given an integer X find integers A and B such that</p>
+
+<script type="math/tex; mode=display">A^{5} - B^{5} = X</script>
+
+<details>
+<summary>
+Hint 
+</summary>
+<ul>
+<li> Since X is an integer, can we somehow brute force over values of A and B? </li>
+<li> Can A and B ever exceed 1000? (The limit can be further narrowed)</li> 
+</ul>
+</details>
+
+<details>
+<summary>
+Code
+</summary>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ll</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">ll</span> <span class="n">x</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">x</span><span class="p">;</span>
+    <span class="n">ll</span> <span class="n">res_a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">res_b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">bool</span> <span class="n">done</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1000</span><span class="p">;</span> <span class="n">a</span> <span class="o">&lt;=</span> <span class="mi">1000</span><span class="p">;</span> <span class="o">++</span><span class="n">a</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1000</span><span class="p">;</span> <span class="n">b</span> <span class="o">&lt;=</span> <span class="mi">1000</span><span class="p">;</span> <span class="o">++</span><span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">ll</span> <span class="n">v1</span> <span class="o">=</span> <span class="n">pow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+            <span class="n">ll</span> <span class="n">v2</span> <span class="o">=</span> <span class="n">pow</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">v1</span> <span class="o">-</span> <span class="n">v2</span> <span class="o">==</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">res_a</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+                <span class="n">res_b</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
+                <span class="n">done</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">done</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res_a</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span> <span class="o">&lt;&lt;</span> <span class="n">res_b</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+
+</details>
+
+<hr />
+
+<h3 id="problem-e-this-message-will-self-destruct-in-5s">Problem E: This Message Will Self-Destruct in 5s</h3>
+
+<p><strong>Simplified problem:</strong>
+Given an array <strong>arr</strong> containing <strong>N</strong> integers, find the no. of pairs</p>
+
+<p><script type="math/tex">\textbf{(i, j)}</script> where <script type="math/tex">% <![CDATA[
+\textbf{i < j} %]]></script> and <script type="math/tex">\textbf{j - i = arr[i] + arr[j]}</script></p>
+
+<details>
+<summary>
+Hint 
+</summary>
+<ul>
+<li> Try to rearrange the expression to bring terms containing i and j separately.
+
+$$ j - arr[j] = i + arr[i] $$ 
+
+</li>
+
+<li>
+So, you need to count the pair of indices in the array for which the above expression holds true.
+</li>
+
+<li>
+As you iterate over the array, store the count of say (i + arr[i]) in a map (say cnt), also add 
+
+$$ cnt[i - arr[i]] $$ to the result before adding to count of (i + arr[i]).
+
+This will count the pairs where the current index is the second one in the pair. It will be more clear in the code below.
+</li>
+</ul>
+</details>
+
+<details>
+<summary>
+Code
+</summary>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="p">;</span>
+
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="n">x</span><span class="o">:</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">x</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">ll</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">map</span><span class="o">&lt;</span><span class="n">ll</span><span class="p">,</span> <span class="n">ll</span><span class="o">&gt;</span> <span class="n">cnt</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ll</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="n">res</span> <span class="o">+=</span> <span class="n">cnt</span><span class="p">[</span><span class="n">cur</span><span class="p">];</span>
+        <span class="o">++</span><span class="n">cnt</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]];</span>
+    <span class="p">}</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+
+</details>
+
+<hr />
+
+<h3 id="problem-f-three-variables-game">Problem F: Three Variables Game</h3>
+
+<p><strong>Simplified problem:</strong></p>
+
+<details>
+<summary>
+Hint 
+</summary>
+<ul>
+</ul>
+</details>
+
+<details>
+<summary>
+Code
+</summary>
 
 
 </details>
