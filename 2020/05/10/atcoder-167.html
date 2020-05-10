@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>AtCoder Beginner Contest 167 | Competitive Coding Blog - Let’s upsolve contest problems!</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="AtCoder Beginner Contest 167" />
+<meta name="author" content="sahilbansal17" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A blog with hints and solutions to recent contest problems." />
+<meta property="og:description" content="A blog with hints and solutions to recent contest problems." />
+<link rel="canonical" href="http://localhost:4000/Competitive_Coding/2020/05/10/atcoder-167.html" />
+<meta property="og:url" content="http://localhost:4000/Competitive_Coding/2020/05/10/atcoder-167.html" />
+<meta property="og:site_name" content="Competitive Coding Blog - Let’s upsolve contest problems!" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-05-10T00:00:00+05:30" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"sahilbansal17"},"url":"http://localhost:4000/Competitive_Coding/2020/05/10/atcoder-167.html","headline":"AtCoder Beginner Contest 167","dateModified":"2020-05-10T00:00:00+05:30","datePublished":"2020-05-10T00:00:00+05:30","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/Competitive_Coding/2020/05/10/atcoder-167.html"},"description":"A blog with hints and solutions to recent contest problems.","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/Competitive_Coding/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/Competitive_Coding/feed.xml" title="Competitive Coding Blog - Let's upsolve contest problems!" /></head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/Competitive_Coding/">Competitive Coding Blog - Let&#39;s upsolve contest problems!</a></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">AtCoder Beginner Contest 167</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2020-05-10T00:00:00+05:30" itemprop="datePublished">May 10, 2020
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+<h3 id="problem-a-registration">Problem A: Registration</h3>
+
+<p>Given two strings <strong>S</strong> and <strong>T</strong>, check if <strong>T</strong> can be obtained by appending exactly one letter to the end of <strong>S</strong>.</p>
+
+<details>
+<summary>
+Code
+</summary>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">string</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">s</span> <span class="o">&gt;&gt;</span> <span class="n">t</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">char</span> <span class="n">ch</span> <span class="o">=</span> <span class="sc">'a'</span><span class="p">;</span> <span class="n">ch</span> <span class="o">&lt;=</span> <span class="sc">'z'</span><span class="p">;</span> <span class="o">++</span><span class="n">ch</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">s</span> <span class="o">+</span> <span class="n">ch</span> <span class="o">==</span> <span class="n">t</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Yes"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"No"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+</details>
+
+<hr />
+
+<h3 id="problem-b-easy-linear-programming">Problem B: Easy Linear Programming</h3>
+
+<p><strong>Problem Statement:</strong></p>
+
+<ul>
+  <li>There are <strong>A</strong> cards with value <strong>1</strong>, <strong>B</strong> cards with value <strong>0</strong> and <strong>C</strong> cards with value <strong>-1</strong>.</li>
+  <li>You need to pick up exactly K cards so that the sum of numbers on the cards is maximized.</li>
+</ul>
+
+<details>
+<summary>
+Hint 
+</summary>
+<ul>
+<li> Try to pick as many as cards with value 1 possible, next with 0 and finally with value -1. </li>
+</ul>
+</details>
+
+<details>
+<summary>
+Code
+</summary>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">ll</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">k</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="n">b</span> <span class="o">&gt;&gt;</span> <span class="n">c</span> <span class="o">&gt;&gt;</span> <span class="n">k</span><span class="p">;</span>
+
+    <span class="n">ll</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="c1">// pick cards with value 1</span>
+    <span class="n">res</span> <span class="o">+=</span> <span class="n">min</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+    <span class="n">k</span> <span class="o">-=</span> <span class="n">min</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// pick cards with value 0</span>
+    <span class="n">k</span> <span class="o">-=</span> <span class="n">min</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// pick cards with value -1</span>
+    <span class="n">res</span> <span class="o">-=</span> <span class="n">min</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+    <span class="n">k</span> <span class="o">-=</span> <span class="n">min</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+
+</details>
+
+<hr />
+
+<h3 id="problem-c-skill-up">Problem C: Skill Up</h3>
+
+<p><strong>Problem Statement:</strong></p>
+
+<ul>
+  <li>There are <strong>M</strong> algorithms, for each of them, you have an understanding level of <strong>0</strong> initially.</li>
+  <li>There are <strong>N</strong> books, each of them costing some value, say <strong>C[i]</strong> for i-th book, and by reading the i-th book, the level of understanding of j-th algorithm gets increased by <strong>A[i][j]</strong>.</li>
+  <li>You need to make the understanding level of each algorithm greater or equal to <strong>X</strong>.</li>
+  <li>Tell whether it is possible to do so by buying some subset of the books and if so, print the minimum cost of books which will achieve it.</li>
+</ul>
+
+<p><strong>Constraints:</strong></p>
+
+<ul>
+  <li>
+    <script type="math/tex; mode=display">1 \leq N, M \leq 12</script>
+  </li>
+  <li>
+    <script type="math/tex; mode=display">1 \leq X, C[i] \leq 10^5</script>
+  </li>
+  <li>
+    <script type="math/tex; mode=display">0 \leq A[i][j] \leq 10^5</script>
+  </li>
+</ul>
+
+<details>
+<summary>
+Hints 
+</summary>
+<ul>
+<li> Check the constraints of the values of N and M in the problem statement. </li>
+<li> For every book, you have 2 choices to make, either buy it or don't. </li>
+<li> Apply standard recursion to check for cost in each possibility, and take the minimum one, and also check that level of understanding for each book must be greater or equal to X in the end! </li>
+</ul>
+</details>
+
+<details>
+<summary>
+Code
+</summary>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">x</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">res</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">rec_solve</span><span class="p">(</span><span class="kt">int</span> <span class="n">cur</span><span class="p">,</span> <span class="kt">int</span> <span class="n">cost</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&gt;&amp;</span> <span class="n">books</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">levels</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">cur</span> <span class="o">==</span> <span class="n">books</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">levels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">cost</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// don't pick the book</span>
+    <span class="n">rec_solve</span><span class="p">(</span><span class="n">cur</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cost</span><span class="p">,</span> <span class="n">books</span><span class="p">,</span> <span class="n">levels</span><span class="p">);</span>
+    <span class="c1">// pick the book</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">levels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">books</span><span class="p">[</span><span class="n">cur</span><span class="p">].</span><span class="n">second</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="n">rec_solve</span><span class="p">(</span><span class="n">cur</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cost</span> <span class="o">+</span> <span class="n">books</span><span class="p">[</span><span class="n">cur</span><span class="p">].</span><span class="n">first</span><span class="p">,</span> <span class="n">books</span><span class="p">,</span> <span class="n">levels</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">m</span> <span class="o">&gt;&gt;</span> <span class="n">x</span><span class="p">;</span>
+
+    <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&gt;</span> <span class="n">books</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">c</span><span class="p">;</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">level</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="n">l</span><span class="o">:</span> <span class="n">level</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">l</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">books</span><span class="p">.</span><span class="n">push_back</span><span class="p">({</span><span class="n">c</span><span class="p">,</span> <span class="n">level</span><span class="p">});</span>
+    <span class="p">}</span>
+
+    <span class="n">res</span> <span class="o">=</span> <span class="n">INT_MAX</span><span class="p">;</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">levels</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="n">rec_solve</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">books</span><span class="p">,</span> <span class="n">levels</span><span class="p">);</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="n">res</span> <span class="o">==</span> <span class="n">INT_MAX</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+
+</details>
+
+<hr />
+
+<h3 id="problem-d-teleporter">Problem D: Teleporter</h3>
+
+<p><strong>Problem Statement:</strong></p>
+
+<ul>
+  <li>You are given an array contains <strong>N</strong> values, each in the range of <strong>1</strong> to <strong>N</strong>, (may not be all distinct).</li>
+  <li>You are currently at position 1 in the array. (consider 1-based indexing).</li>
+  <li>At each step, if you are position <strong>pos</strong>, you get to <strong>arr[pos]</strong>.</li>
+  <li>You need to find out the position where you will be after <strong>K</strong> steps.</li>
+</ul>
+
+<p><strong>Constraints:</strong></p>
+
+<ul>
+  <li>
+    <script type="math/tex; mode=display">2 \leq N \leq 2 * 10^5</script>
+  </li>
+  <li>
+    <script type="math/tex; mode=display">1 \leq arr[i] \leq N</script>
+  </li>
+  <li>
+    <script type="math/tex; mode=display">1 \leq K \leq 10^{18}</script>
+  </li>
+</ul>
+
+<details>
+<summary>
+Hints
+</summary>
+<ul>
+<li> Since K is very large, we cannot simulate the entire process. So there must be some mathematics involved since we just need the final position. </li>
+<li> We are at position 1 initially, and in atmost N steps, we will reach a position which is already visited earlier (why?). So, what happens next? </li> 
+<li> We will keep on looping over from the start of the cycle, to the same positions visited earlier from the cycle start. </li>
+<li> Consider the example <b>arr = [3, 2, 4, 3]</b>. 
+    We go from 1 -&gt; 3 -&gt; 4 -&gt; 3. After this, we will keep on looping between 3 and 4. </li>
+<li> See what all do we need to compute the final position after K steps, we will need the start of the cycle and when it is reached (steps) and also the length of the cycle. </li>
+<li> We will cover some steps before cycle start, say <b>done</b>, and remaining steps will be <b>k - done</b>. We can find remainder of it when divided by cycle length and then simulate the process that many times to get the final position, see code for details. </li>
+</ul>
+</details>
+
+<details>
+<summary>
+Code
+</summary>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">ll</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">k</span><span class="p">;</span>
+
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="n">arr</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="n">a</span><span class="o">:</span> <span class="n">arr</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">next</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">cur</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">steps</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">next</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">next</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 0-based indexing</span>
+        <span class="n">cur</span> <span class="o">=</span> <span class="n">next</span><span class="p">[</span><span class="n">cur</span><span class="p">];</span>
+        <span class="n">steps</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">cycle</span> <span class="o">=</span> <span class="n">cur</span><span class="p">;</span> <span class="c1">// start of cycle</span>
+    <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// length of cycle</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">next</span><span class="p">[</span><span class="n">cycle</span><span class="p">];</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">cur</span> <span class="o">!=</span> <span class="n">cycle</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cur</span> <span class="o">=</span> <span class="n">next</span><span class="p">[</span><span class="n">cur</span><span class="p">];</span>
+        <span class="o">++</span><span class="n">len</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="c1">// already covered before cycle start</span>
+    <span class="kt">int</span> <span class="n">done</span> <span class="o">=</span> <span class="n">steps</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="n">len</span><span class="p">;</span>
+    <span class="c1">// remaining steps</span>
+    <span class="kt">int</span> <span class="n">rem</span> <span class="o">=</span> <span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="n">done</span><span class="p">)</span> <span class="o">%</span> <span class="n">len</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="o">&lt;=</span> <span class="n">steps</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="p">{</span> <span class="c1">// if before cycle starts</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">steps</span><span class="p">[</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 1-based indexing</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="c1">// simulate for remaining steps</span>
+        <span class="n">cur</span> <span class="o">=</span> <span class="n">cycle</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">rem</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">cur</span> <span class="o">=</span> <span class="n">next</span><span class="p">[</span><span class="n">cur</span><span class="p">];</span>
+            <span class="o">--</span><span class="n">rem</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">cur</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 1-based indexing</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+
+</details>
+
+<hr />
+
+  </div><a class="u-url" href="/Competitive_Coding/2020/05/10/atcoder-167.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/Competitive_Coding/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col one-half">
+      
+        <!-- <ul class="contact-list">
+          <li class="p-name">sahilbansal17</li></ul> -->
+      </div>
+
+      <!-- <div class="footer-col one-half">
+        <p>A blog with hints and solutions to recent contest problems. 
+</p>
+      </div> -->
+
+      <div class="social-links"><ul class="social-media-list"><li><a href="https://github.com/sahilbansal17/Competitive_Coding" title="sahilbansal17" target="_blank"><svg class="svg-icon grey"><use xlink:href="/Competitive_Coding/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a href="https://www.youtube.com/channel/UC23h8gtQHiRXFOcR05Zcx5w" title="YouTube" target="_blank"><svg class="svg-icon grey"><use xlink:href="/Competitive_Coding/assets/minima-social-icons.svg#youtube"></use></svg></a></li></ul></div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
