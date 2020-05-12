@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Codeforces Round 641 Div 2 | Competitive Coding Blog - Let’s upsolve contest problems!</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Codeforces Round 641 Div 2" />
+<meta name="author" content="sahilbansal17" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A blog with hints and solutions to recent contest problems." />
+<meta property="og:description" content="A blog with hints and solutions to recent contest problems." />
+<link rel="canonical" href="http://localhost:4000/Competitive_Coding/2020/05/12/cf-641.html" />
+<meta property="og:url" content="http://localhost:4000/Competitive_Coding/2020/05/12/cf-641.html" />
+<meta property="og:site_name" content="Competitive Coding Blog - Let’s upsolve contest problems!" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-05-12T00:00:00+05:30" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"sahilbansal17"},"url":"http://localhost:4000/Competitive_Coding/2020/05/12/cf-641.html","headline":"Codeforces Round 641 Div 2","dateModified":"2020-05-12T00:00:00+05:30","datePublished":"2020-05-12T00:00:00+05:30","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/Competitive_Coding/2020/05/12/cf-641.html"},"description":"A blog with hints and solutions to recent contest problems.","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/Competitive_Coding/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/Competitive_Coding/feed.xml" title="Competitive Coding Blog - Let's upsolve contest problems!" /></head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/Competitive_Coding/">Competitive Coding Blog - Let&#39;s upsolve contest problems!</a></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Codeforces Round 641 Div 2</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2020-05-12T00:00:00+05:30" itemprop="datePublished">May 12, 2020
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+<h3 id="problem-a-orac-and-factors">Problem A: Orac and Factors</h3>
+
+<p>Given two numbers <strong>N</strong> and <strong>K</strong>, apply <code class="language-plaintext highlighter-rouge">f(N)</code> to <strong>N</strong> exactly <strong>K</strong> times, where <code class="language-plaintext highlighter-rouge">f(n)</code> is the smallest positive divisor of n except 1.</p>
+
+<details>
+<summary>
+Hint 1 
+</summary>
+<ul>
+<li> After applying f(N) for the first time, what property do you observe on the result? </li>
+</ul>
+</details>
+
+<details>
+<summary>
+Hint 2 
+</summary>
+<ul>
+<li> After applying f once, the resulting number will be even, why? </li>
+<li> If so, for the remaining (k - 1) times, 2 will be added to the result. </li>
+</ul>
+</details>
+
+<details>
+<summary>
+Time Complexity
+</summary>
+$$\mathcal{O}(\sqrt{N})$$
+</details>
+
+<details>
+<summary>
+Code
+</summary>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ll</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">ll</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">k</span><span class="p">;</span>
+
+    <span class="n">ll</span> <span class="n">factor</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">ll</span> <span class="n">maxFactor</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">factor</span> <span class="o">&lt;=</span> <span class="n">maxFactor</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">factor</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// smallest factor except 1</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="o">++</span><span class="n">factor</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">factor</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// no factor in [2, sqrt(n)], so f(n) = n</span>
+        <span class="n">factor</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">ll</span> <span class="n">res</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="n">factor</span> <span class="o">+</span> <span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="p">;</span> <span class="c1">// 2 for the remaining (k - 1) times</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+</details>
+
+<hr />
+
+<h3 id="problem-b-orac-and-models">Problem B: Orac and Models</h3>
+
+<p><strong>Problem Statement:</strong></p>
+
+<ul>
+  <li>You are given an array <strong>arr</strong> containing <strong>n</strong> elements. Find the maximum beautiful subsequence length.</li>
+  <li>A subsequence of <strong>arr</strong> is beautiful, if for every adjacent elements, with indices <script type="math/tex">i_{j}</script> and <script type="math/tex">i_{j + 1}</script> in the array, where <script type="math/tex">% <![CDATA[
+i_{j} < i_{j+1} %]]></script>, <script type="math/tex">i_{j+1}</script> is divisible by <script type="math/tex">i_{j}</script> and <script type="math/tex">% <![CDATA[
+arr[i_{j}] < arr[i_{j+1}] %]]></script>.</li>
+</ul>
+
+<details>
+<summary>
+Hint 1
+</summary>
+<ul>
+<li> What if you already knew the maximum subsequence length for all subarrays starting from 0 and ending till index (i-1)? </li>
+<li> How will you find the answer for subarray starting from 0 and ending at index (i) ? </li>
+</ul>
+</details>
+
+<details>
+<summary>
+Hint 2
+</summary>
+<ul>
+<li> Well, what can be the previous index where you may pick an element in the subsequence? It must be a factor of i! </li>
+<li> So, for all factors of i, say j, which can be computed in sqrt(n) time, see if arr[j] &lt; arr[i] holds, then update answer for arr[0...i] by maximum of ans[i], ans[j] + 1. </li>
+<li> See code for details. </li>
+</ul>
+</details>
+
+<details>
+<summary>
+Time Complexity
+</summary>
+$$\mathcal{O}(N \sqrt{N})$$
+</details>
+
+<details>
+<summary>
+Code
+</summary>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ll</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">ll</span> <span class="n">n</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="p">;</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="n">arr</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="n">dp</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="n">ll</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ll</span> <span class="n">cur</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">i</span><span class="p">);</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
+                <span class="n">cur</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="o">/</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
+                <span class="n">cur</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">/</span><span class="n">j</span><span class="p">]);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cur</span><span class="p">;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+
+</details>
+
+<hr />
+
+<h3 id="problem-c-orac-and-lcm">Problem C: Orac and LCM</h3>
+
+<p><strong>Problem Statement:</strong></p>
+
+<ul>
+  <li>You are given an array <strong>arr</strong> containing <strong>n</strong> elements.</li>
+  <li>Construct a multiset containing the lcm of all pairs of elements, say M.</li>
+  <li>Find the gcd of all the elements in M.</li>
+  <li>Note the constraints. So, <script type="math/tex">\mathcal{O}(n^2)</script> solution won’t work.</li>
+</ul>
+
+<p><strong>Constraints:</strong></p>
+
+<ul>
+  <li>
+    <script type="math/tex; mode=display">2 \leq N \leq 10^5</script>
+  </li>
+  <li>
+    <script type="math/tex; mode=display">1 \leq arr[i] \leq 2*10^5</script>
+  </li>
+</ul>
+
+<details>
+<summary>
+Hints 
+</summary>
+<ul>
+<li> Will be updated in 10 minutes.</li>
+</ul>
+</details>
+
+<details>
+<summary>
+Code
+</summary>
+
+
+</details>
+
+<hr />
+
+  </div><a class="u-url" href="/Competitive_Coding/2020/05/12/cf-641.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/Competitive_Coding/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col one-half">
+      
+        <!-- <ul class="contact-list">
+          <li class="p-name">sahilbansal17</li></ul> -->
+      </div>
+
+      <!-- <div class="footer-col one-half">
+        <p>A blog with hints and solutions to recent contest problems. 
+</p>
+      </div> -->
+
+      <div class="social-links"><ul class="social-media-list"><li><a href="https://github.com/sahilbansal17/Competitive_Coding" title="sahilbansal17" target="_blank"><svg class="svg-icon grey"><use xlink:href="/Competitive_Coding/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a href="https://www.youtube.com/channel/UC23h8gtQHiRXFOcR05Zcx5w" title="YouTube" target="_blank"><svg class="svg-icon grey"><use xlink:href="/Competitive_Coding/assets/minima-social-icons.svg#youtube"></use></svg></a></li></ul></div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
