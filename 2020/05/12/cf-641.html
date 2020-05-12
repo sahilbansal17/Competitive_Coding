@@ -195,19 +195,163 @@ Code
   </li>
 </ul>
 
-<details>
-<summary>
-Hints 
-</summary>
+<p><strong>Hints:</strong></p>
+
 <ul>
-<li> Will be updated in 10 minutes.</li>
+  <li>Consider the prime factorization of two numbers <code class="language-plaintext highlighter-rouge">a</code> and <code class="language-plaintext highlighter-rouge">b</code> say:
+    <ul>
+      <li>For simplicity, considering <code class="language-plaintext highlighter-rouge">k</code> as the maximum no. of primes that we can get in the problem.</li>
+      <li>
+        <script type="math/tex; mode=display">a = p_{1}^{n_{1}} p_{2}^{n_{2}} \cdots p_{k}^{n_{k}}</script>
+      </li>
+      <li>
+        <script type="math/tex; mode=display">b = p_{1}^{m_{1}} p_{2}^{m_{2}} \cdots p_{k}^{m_{k}}</script>
+      </li>
+      <li>So, gcd(a, b) = <script type="math/tex">p_{1}^{min(n_{1}, m_{1})} p_{2}^{min(n_{2}, m_{2})} \cdots p_{k}^{min(n_{k}, m_{k})}</script></li>
+      <li>And lcm(a, b) = <script type="math/tex">p_{1}^{max(n_{1}, m_{1})} p_{2}^{max(n_{2}, m_{2})} \cdots p_{k}^{max(n_{k}, m_{k})}</script></li>
+    </ul>
+  </li>
+  <li>So, when we take lcm of two numbers, we get the maximum of the powers of the primes for each prime and multiply them.</li>
+  <li>We need to get gcd of lcm of all pairs of the numbers.</li>
+  <li>So, let’s just focus on one prime number, say 2, that might occur in factorization of the numbers.
+    <ul>
+      <li>Let’s assume there are 3 numbers and powers of 2 in their factorizations are: 1, 2, 3.</li>
+      <li>So, when you will consider all 3 choose 2, i.e. 3 pairs, the powers of 2 you will be getting in the lcms will be: max(1, 2), max(1, 3), max(2, 3) = 2, 3, 3.</li>
+      <li>So, in the gcd, the power of 2 will be 2, since we need to take the minimum one in gcd.</li>
+      <li>Can you try building up some observation for more numbers and given the power of the prime?</li>
+      <li>Will the power be the second minimum one? Always? Or in some particular case? When the prime is present in factorization of all <code class="language-plaintext highlighter-rouge">N</code> numbers.</li>
+    </ul>
+  </li>
+  <li>Consider a case when a particular prime is not available in atleast 2 numbers, so multiplying those 2 numbers you get no power of that prime. Thus, it won’t come in gcd also.</li>
+  <li>Consider one more example:
+    <ul>
+      <li>There are 5 numbers and powers of 2 are: 0, 3, 4, 4, 5.</li>
+      <li>Here, also when computing lcm of pairs, the min power you will get will be 3, i.e. second minimum.</li>
+      <li>Now, also thinking about complexity of solution, you can’t see for every prime if it divides every number, That will cost <script type="math/tex">\mathcal{O}(primes \ below\ 2*10^5 \times N)</script>.</li>
+      <li>So, we will update the minimum powers as we factorize the number, using the shortest prime factor approach (see some articles on it) to do prime factorization in <script type="math/tex">\mathcal{O}(log N)</script>.</li>
+      <li>Please see the code for more details.</li>
+    </ul>
+  </li>
 </ul>
-</details>
 
 <details>
 <summary>
 Code
 </summary>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ll</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">MAXN</span> <span class="o">=</span> <span class="mf">2e5</span><span class="p">;</span>
+<span class="c1">// stores smallest prime factor for every number</span>
+<span class="n">ll</span> <span class="n">spf</span><span class="p">[</span><span class="n">MAXN</span><span class="p">];</span>
+<span class="c1">// stores the minimum power of a prime occurring in any factorization</span>
+<span class="n">ll</span> <span class="n">min1</span><span class="p">[</span><span class="n">MAXN</span><span class="p">];</span>
+<span class="c1">// stores the second minimum power of a prime occurring in any factorization</span>
+<span class="n">ll</span> <span class="n">min2</span><span class="p">[</span><span class="n">MAXN</span><span class="p">];</span>
+<span class="c1">// Calculating SPF (Smallest Prime Factor) for every number till MAXN.</span>
+<span class="kt">void</span> <span class="nf">sieve</span><span class="p">();</span>
+<span class="c1">// A O(log n) function returning prime factorization</span>
+<span class="c1">// by dividing by smallest prime factor at every step</span>
+<span class="c1">// returns the pairs of {prime, its power}</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">getFactorization</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="p">;</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">arr</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="n">a</span> <span class="o">:</span> <span class="n">arr</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">sieve</span><span class="p">();</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">min1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">min1</span><span class="p">));</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">min2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">min2</span><span class="p">));</span>
+
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">cnt</span><span class="p">(</span><span class="n">MAXN</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">// count of the numbers in which a particular prime appears in the factorization</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">fact</span> <span class="o">=</span> <span class="n">getFactorization</span><span class="p">(</span><span class="n">x</span><span class="p">);</span> <span class="c1">// {prime, its power} pairs</span>
+        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">ff</span> <span class="o">:</span> <span class="n">fact</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">ff</span><span class="p">.</span><span class="n">first</span><span class="p">;</span> <span class="c1">// prime</span>
+            <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">ff</span><span class="p">.</span><span class="n">second</span><span class="p">;</span> <span class="c1">// power of prime occurring in factorization</span>
+
+            <span class="c1">// update first min and second min for the given power</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">min1</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">min1</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">min2</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">min1</span><span class="p">[</span><span class="n">p</span><span class="p">];</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">min1</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>
+                    <span class="n">min2</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">m</span><span class="p">;</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="n">min1</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">m</span><span class="p">;</span>
+                    <span class="n">min2</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="kt">int</span> <span class="n">m1</span> <span class="o">=</span> <span class="n">min1</span><span class="p">[</span><span class="n">p</span><span class="p">];</span>
+                <span class="kt">int</span> <span class="n">m2</span> <span class="o">=</span> <span class="n">min2</span><span class="p">[</span><span class="n">p</span><span class="p">];</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">&lt;=</span> <span class="n">m1</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">min1</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>
+                    <span class="n">min2</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">m1</span><span class="p">;</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">&lt;=</span> <span class="n">m2</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">min2</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">m2</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="o">++</span><span class="n">cnt</span><span class="p">[</span><span class="n">p</span><span class="p">];</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">ll</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">MAXN</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">cnt</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// prime occurring in all the numbers, consider second min power</span>
+            <span class="n">res</span> <span class="o">*=</span> <span class="n">pow</span><span class="p">(</span><span class="mi">1ll</span> <span class="o">*</span> <span class="n">i</span><span class="p">,</span> <span class="n">min2</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">cnt</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// prime occuring in n - 1 numbers, consider first min power</span>
+            <span class="n">res</span> <span class="o">*=</span> <span class="n">pow</span><span class="p">(</span><span class="mi">1ll</span> <span class="o">*</span> <span class="n">i</span><span class="p">,</span> <span class="n">min1</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="kt">void</span> <span class="nf">sieve</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">spf</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">MAXN</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+
+    <span class="c1">// marking smallest prime factor for every</span>
+    <span class="c1">// number to be itself.</span>
+    <span class="n">spf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+
+    <span class="c1">// separately marking spf for every even</span>
+    <span class="c1">// number as 2</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">MAXN</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">)</span> <span class="n">spf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">MAXN</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// checking if i is prime</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">spf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// marking SPF for all numbers divisible by i</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">MAXN</span><span class="p">;</span> <span class="n">j</span> <span class="o">+=</span> <span class="n">i</span><span class="p">)</span>
+            <span class="c1">// marking spf[j] if it is not</span>
+            <span class="c1">// previously marked</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">spf</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">j</span><span class="p">)</span> <span class="n">spf</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// A O(log n) function returning prime factorization</span>
+<span class="c1">// by dividing by smallest prime factor at every step</span>
+<span class="c1">// returns the pairs of {prime, its power}</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">getFactorization</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">x</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">spf</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+        <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">x</span> <span class="o">&amp;&amp;</span> <span class="n">spf</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">==</span> <span class="n">cur</span><span class="p">)</span> <span class="p">{</span>
+            <span class="o">++</span><span class="n">cnt</span><span class="p">;</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="n">spf</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+        <span class="p">}</span>
+        <span class="n">ret</span><span class="p">.</span><span class="n">push_back</span><span class="p">({</span><span class="n">cur</span><span class="p">,</span> <span class="n">cnt</span><span class="p">});</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
 
 
 </details>
