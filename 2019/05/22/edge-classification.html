@@ -41,7 +41,8 @@
 
 <p>Let us go through each component one by one and try to understand it all.</p>
 
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cm">/* 	Function to perform DFS traversal on a graph
+<figure class="highlight">
+  <pre><code class="language-c--" data-lang="c++"><span class="cm">/* 	Function to perform DFS traversal on a graph
 *	u:	source vertex
 *	visited:boolean vector to mark vertices as visited
 *	adj[]:	array of vectors to store graph as adjacency list
@@ -53,12 +54,14 @@
 			<span class="n">dfs</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">visited</span><span class="p">,</span> <span class="n">adj</span><span class="p">);</span>
 		<span class="p">}</span>
 	<span class="p">}</span>
-<span class="p">}</span></code></pre></figure>
+<span class="p">}</span></code></pre>
+</figure>
 
 <p>This above simple DFS function visits all the vertices in the graph reachable from the <strong>source vertex</strong>.</p>
 
-<div style="text-align: left"><img src="/Competitive_Coding/assets/posts/graphs/graph_1.png" width="200" />
-	Consider the graph on the left, a call on DFS with source as 0 would mark vertices 1, 2, and 3 as visited. Now, calling DFS with source as 4 would not visit the edge $$4 \rightarrow 2$$
+<div style="text-align: left">
+  <p><img src="/Competitive_Coding/assets/posts/graphs/graph_1.png" width="200" />
+	Consider the graph on the left, a call on DFS with source as 0 would mark vertices 1, 2, and 3 as visited. Now, calling DFS with source as 4 would not visit the edge <script type="math/tex">4 \rightarrow 2</script></p>
 </div>
 
 <p><strong>So, which edges are exactly traversed during DFS?</strong></p>
@@ -72,8 +75,9 @@ The edges <script type="math/tex">0 \rightarrow 1</script>, <script type="math/t
 
 <p>It is called as a <strong>cross-edge</strong> since it connects two different DFS trees in the DFS forest. What if we got only one DFS tree? Can it have <strong>cross edges</strong>? Yes, it would then connect two different subtrees.</p>
 
-<div style="text-align: left"><img src="/Competitive_Coding/assets/posts/graphs/graph_2.png" width="200" />
-	This is the DFS forst for the above graph.
+<div style="text-align: left">
+  <p><img src="/Competitive_Coding/assets/posts/graphs/graph_2.png" width="200" />
+	This is the DFS forst for the above graph.</p>
 </div>
 
 <p>There are also two other types of edges known as -</p>

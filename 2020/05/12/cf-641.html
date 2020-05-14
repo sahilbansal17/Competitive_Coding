@@ -42,37 +42,38 @@
 <p>Given two numbers <strong>N</strong> and <strong>K</strong>, apply <code class="language-plaintext highlighter-rouge">f(N)</code> to <strong>N</strong> exactly <strong>K</strong> times, where <code class="language-plaintext highlighter-rouge">f(n)</code> is the smallest positive divisor of n except 1.</p>
 
 <details>
-<summary>
-Hint 1 
-</summary>
-<ul>
+  <summary>
+    <p>Hint 1</p>
+  </summary>
+  <ul>
 <li> After applying f(N) for the first time, what property do you observe on the result? </li>
 </ul>
 </details>
 
 <details>
-<summary>
-Hint 2 
-</summary>
-<ul>
+  <summary>
+    <p>Hint 2</p>
+  </summary>
+  <ul>
 <li> After applying f once, the resulting number will be even, why? </li>
 <li> If so, for the remaining (k - 1) times, 2 will be added to the result. </li>
 </ul>
 </details>
 
 <details>
-<summary>
-Time Complexity
-</summary>
-$$\mathcal{O}(\sqrt{N})$$
+  <summary>
+    <p>Time Complexity</p>
+  </summary>
+  <p><script type="math/tex">\mathcal{O}(\sqrt{N})</script></p>
 </details>
 
 <details>
-<summary>
-Code
-</summary>
+  <summary>
+    <p>Code</p>
+  </summary>
 
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ll</span><span class="p">;</span>
+  <figure class="highlight">
+    <pre><code class="language-c--" data-lang="c++"><span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ll</span><span class="p">;</span>
 <span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">ll</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">;</span>
     <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">k</span><span class="p">;</span>
@@ -91,7 +92,8 @@ Code
 
     <span class="n">ll</span> <span class="n">res</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="n">factor</span> <span class="o">+</span> <span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="p">;</span> <span class="c1">// 2 for the remaining (k - 1) times</span>
     <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span></code></pre></figure>
+<span class="p">}</span></code></pre>
+  </figure>
 
 </details>
 
@@ -109,20 +111,20 @@ arr[i_{j}] < arr[i_{j+1}] %]]></script>.</li>
 </ul>
 
 <details>
-<summary>
-Hint 1
-</summary>
-<ul>
+  <summary>
+    <p>Hint 1</p>
+  </summary>
+  <ul>
 <li> What if you already knew the maximum subsequence length for all subarrays starting from 0 and ending till index (i-1)? </li>
 <li> How will you find the answer for subarray starting from 0 and ending at index (i) ? </li>
 </ul>
 </details>
 
 <details>
-<summary>
-Hint 2
-</summary>
-<ul>
+  <summary>
+    <p>Hint 2</p>
+  </summary>
+  <ul>
 <li> Well, what can be the previous index where you may pick an element in the subsequence? It must be a factor of i! </li>
 <li> So, for all factors of i, say j, which can be computed in sqrt(n) time, see if arr[j] &lt; arr[i] holds, then update answer for arr[0...i] by maximum of ans[i], ans[j] + 1. </li>
 <li> See code for details. </li>
@@ -130,18 +132,19 @@ Hint 2
 </details>
 
 <details>
-<summary>
-Time Complexity
-</summary>
-$$\mathcal{O}(N \sqrt{N})$$
+  <summary>
+    <p>Time Complexity</p>
+  </summary>
+  <p><script type="math/tex">\mathcal{O}(N \sqrt{N})</script></p>
 </details>
 
 <details>
-<summary>
-Code
-</summary>
+  <summary>
+    <p>Code</p>
+  </summary>
 
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ll</span><span class="p">;</span>
+  <figure class="highlight">
+    <pre><code class="language-c--" data-lang="c++"><span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ll</span><span class="p">;</span>
 <span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">ll</span> <span class="n">n</span><span class="p">;</span>
     <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="p">;</span>
@@ -166,8 +169,8 @@ Code
         <span class="n">res</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
     <span class="p">}</span>
     <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span></code></pre></figure>
-
+<span class="p">}</span></code></pre>
+  </figure>
 
 </details>
 
@@ -235,11 +238,12 @@ Code
 </ul>
 
 <details>
-<summary>
-Code
-</summary>
+  <summary>
+    <p>Code</p>
+  </summary>
 
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ll</span><span class="p">;</span>
+  <figure class="highlight">
+    <pre><code class="language-c--" data-lang="c++"><span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ll</span><span class="p">;</span>
 <span class="k">const</span> <span class="kt">int</span> <span class="n">MAXN</span> <span class="o">=</span> <span class="mf">2e5</span><span class="p">;</span>
 <span class="c1">// stores smallest prime factor for every number</span>
 <span class="n">ll</span> <span class="n">spf</span><span class="p">[</span><span class="n">MAXN</span><span class="p">];</span>
@@ -351,8 +355,8 @@ Code
         <span class="n">ret</span><span class="p">.</span><span class="n">push_back</span><span class="p">({</span><span class="n">cur</span><span class="p">,</span> <span class="n">cnt</span><span class="p">});</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
-<span class="p">}</span></code></pre></figure>
-
+<span class="p">}</span></code></pre>
+  </figure>
 
 </details>
 

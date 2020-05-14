@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Codeforces Round 642 Div 3 | Competitive Coding Blog - Let’s upsolve contest problems!</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Codeforces Round 642 Div 3" />
+<meta name="author" content="sahilbansal17" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A blog with hints and solutions to recent contest problems." />
+<meta property="og:description" content="A blog with hints and solutions to recent contest problems." />
+<link rel="canonical" href="http://localhost:4000/Competitive_Coding/2020/05/14/cf-642.html" />
+<meta property="og:url" content="http://localhost:4000/Competitive_Coding/2020/05/14/cf-642.html" />
+<meta property="og:site_name" content="Competitive Coding Blog - Let’s upsolve contest problems!" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-05-14T00:00:00+05:30" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"sahilbansal17"},"url":"http://localhost:4000/Competitive_Coding/2020/05/14/cf-642.html","headline":"Codeforces Round 642 Div 3","dateModified":"2020-05-14T00:00:00+05:30","datePublished":"2020-05-14T00:00:00+05:30","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/Competitive_Coding/2020/05/14/cf-642.html"},"description":"A blog with hints and solutions to recent contest problems.","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/Competitive_Coding/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/Competitive_Coding/feed.xml" title="Competitive Coding Blog - Let's upsolve contest problems!" /></head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/Competitive_Coding/">Competitive Coding Blog - Let&#39;s upsolve contest problems!</a></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Codeforces Round 642 Div 3</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2020-05-14T00:00:00+05:30" itemprop="datePublished">May 14, 2020
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+<h3 id="problem-d">Problem D:</h3>
+
+<!-- problem description -->
+<p>You have an array <code class="language-plaintext highlighter-rouge">arr</code> containing <code class="language-plaintext highlighter-rouge">N</code> integers, which are all initially <code class="language-plaintext highlighter-rouge">0</code>. You need to perform <code class="language-plaintext highlighter-rouge">N</code> actions, and in the <script type="math/tex">i^{th}</script> action you do the following:</p>
+
+<ul>
+  <li>Choose the subarray with maximum length having all zeroes, if multiple choose one which starts earlier</li>
+  <li>Let it be <script type="math/tex">[l, r]</script> if length is odd, set <script type="math/tex">arr[\frac{l + r}{2}] = i</script> otherwise, <script type="math/tex">arr[\frac{l + r - 1}{2}] = i</script></li>
+</ul>
+
+<!-- problem hint 1 -->
+<details>
+  <summary>
+    <p>Hint 1</p>
+  </summary>
+
+  <ul>
+    <li>
+      <p>You just need to implement the algorithm as stated, but need to think how to get the interval on which we need to perform the action easily!</p>
+    </li>
+    <li>
+      <p>As we will process an interval, we put a value in the middle of it, and the left and right intervals will have all zeroes. Next time, we need an interval with larger length, and if length is same, with smaller start index. <strong>Can you think of some data structure that can query this quickly for you?</strong></p>
+    </li>
+  </ul>
+</details>
+
+<!-- hint 2 -->
+<details>
+  <summary>
+    <p>Hint 2</p>
+  </summary>
+
+  <ul>
+    <li>What about a priority queue (pq)?</li>
+    <li>Push the interval as <code class="language-plaintext highlighter-rouge">{length, {start, end}}</code> pair. Initially, pq will have <code class="language-plaintext highlighter-rouge">{n, {0, n - 1}}</code> as the first element.</li>
+    <li>Now, while pq is not empty, pop the element at the front (that should be one with max length and if multiple, with smallest start) so you need to define a custom comparator.</li>
+    <li>Once you pop this interval, update the value at middle, and push the left and right intervals. There are some minute implementation details you need to take care of.</li>
+    <li>Also, note that the <strong>maximum no. of intervals</strong> in pq will not be more than <code class="language-plaintext highlighter-rouge">N</code>, think about it!</li>
+  </ul>
+</details>
+
+<!-- time complexity -->
+<details>
+  <summary>
+    <p>Time Complexity</p>
+  </summary>
+  <p><script type="math/tex">\mathcal{O}(N log N)</script></p>
+</details>
+
+<details>
+  <summary>
+    <p>Implementation Details</p>
+  </summary>
+
+  <ul>
+    <li>Read <a href="https://en.cppreference.com/w/cpp/container/priority_queue">priority_queue docs</a> to know more about custom comparators.</li>
+    <li>In short, you can define a struct or class and overrride the () operator inside it.</li>
+    <li>This comparator works different from the custom comparators of sort function, you return exactly the opposite value of what is required.</li>
+    <li>Do check for validity of an interval before pushing to the priority queue. (start must be &lt;= end)</li>
+  </ul>
+</details>
+
+<!-- code -->
+<details>
+  <summary>
+    <p>Code</p>
+  </summary>
+
+  <figure class="highlight">
+    <pre><code class="language-c--" data-lang="c++"><span class="cp">#include &lt;bits/stdc++.h&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="cp">#define FAST_IO ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+</span><span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ll</span><span class="p">;</span>
+<span class="cp">#define endl '\n'
+</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">MAXN</span> <span class="o">=</span> <span class="mf">2e5</span> <span class="o">+</span> <span class="mi">10</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="n">MAXN</span><span class="p">];</span>
+
+<span class="k">using</span> <span class="n">mykey</span> <span class="o">=</span> <span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&gt;</span><span class="p">;</span>
+<span class="k">struct</span> <span class="n">mycompare</span><span class="p">{</span>
+    <span class="kt">bool</span> <span class="k">operator</span><span class="p">()(</span><span class="k">const</span> <span class="n">mykey</span><span class="o">&amp;</span> <span class="n">k1</span><span class="p">,</span> <span class="k">const</span> <span class="n">mykey</span><span class="o">&amp;</span> <span class="n">k2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">l1</span> <span class="o">=</span> <span class="n">k1</span><span class="p">.</span><span class="n">first</span><span class="p">;</span> <span class="c1">// length of first </span>
+        <span class="kt">int</span> <span class="n">l2</span> <span class="o">=</span> <span class="n">k2</span><span class="p">.</span><span class="n">first</span><span class="p">;</span> <span class="c1">// length of second</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">l1</span> <span class="o">!=</span> <span class="n">l2</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">l1</span> <span class="o">&lt;</span> <span class="n">l2</span><span class="p">;</span> <span class="c1">// return 1 if l1 is not larger</span>
+        <span class="p">}</span>
+        <span class="kt">int</span> <span class="n">i1</span> <span class="o">=</span> <span class="n">k1</span><span class="p">.</span><span class="n">second</span><span class="p">.</span><span class="n">first</span><span class="p">;</span> <span class="c1">// start index of first</span>
+        <span class="kt">int</span> <span class="n">i2</span> <span class="o">=</span> <span class="n">k2</span><span class="p">.</span><span class="n">second</span><span class="p">.</span><span class="n">first</span><span class="p">;</span> <span class="c1">// start index of second;</span>
+        <span class="k">return</span> <span class="n">i1</span> <span class="o">&gt;</span> <span class="n">i2</span><span class="p">;</span> <span class="c1">// reutrn 1 if i1 is not smaller</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+<span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">mykey</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">mykey</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">mycompare</span><span class="o">&gt;</span> <span class="n">pq</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="p">;</span>
+
+    <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// value to be updated in array, action number</span>
+
+    <span class="c1">// push the starting interval (0, n - 1)</span>
+    <span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="n">n</span><span class="p">,</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">}});</span>
+    <span class="kt">int</span> <span class="n">len</span><span class="p">,</span> <span class="n">mid</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">left</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">pq</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">mykey</span> <span class="n">fr</span> <span class="o">=</span> <span class="n">pq</span><span class="p">.</span><span class="n">top</span><span class="p">();</span> <span class="c1">// max length interval to be chosen</span>
+        <span class="n">pq</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+        <span class="n">len</span> <span class="o">=</span> <span class="n">fr</span><span class="p">.</span><span class="n">first</span><span class="p">;</span> <span class="c1">// length</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="n">fr</span><span class="p">.</span><span class="n">second</span><span class="p">.</span><span class="n">first</span><span class="p">;</span> <span class="c1">// left index</span>
+        <span class="n">right</span> <span class="o">=</span> <span class="n">fr</span><span class="p">.</span><span class="n">second</span><span class="p">.</span><span class="n">second</span><span class="p">;</span> <span class="c1">// right index</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">left</span> <span class="o">==</span> <span class="n">right</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">arr</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">=</span> <span class="n">k</span><span class="o">++</span><span class="p">;</span> <span class="c1">// update the value</span>
+            <span class="k">continue</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="c1">// find mid</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">len</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">arr</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">=</span> <span class="n">k</span><span class="o">++</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// {start, end} should be valid</span>
+            <span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="n">right</span> <span class="o">-</span> <span class="n">mid</span><span class="p">,</span> <span class="p">{</span><span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">right</span><span class="p">}});</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="n">mid</span> <span class="o">-</span> <span class="n">left</span><span class="p">,</span> <span class="p">{</span><span class="n">left</span><span class="p">,</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">}});</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">FAST_IO</span><span class="p">;</span>
+
+    <span class="kt">int</span> <span class="n">t</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">t</span><span class="p">;</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="n">t</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">solve</span><span class="p">();</span>
+    <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+  </figure>
+
+</details>
+
+<hr />
+
+<h3 id="problem-c">Problem C:</h3>
+
+<!-- problem description -->
+
+<!-- problem hint 1 -->
+<details>
+  <summary>
+    <p>Hint 1</p>
+  </summary>
+  <ul>
+
+</ul>
+</details>
+
+<!-- hint 2 -->
+<details>
+  <summary>
+    <p>Hint 2</p>
+  </summary>
+  <ul>
+
+</ul>
+</details>
+
+<!-- time complexity -->
+<details>
+  <summary>
+    <p>Time Complexity</p>
+  </summary>
+  <p><script type="math/tex">\mathcal{O}()</script></p>
+</details>
+
+<!-- code -->
+<details>
+  <summary>
+    <p>Code</p>
+  </summary>
+
+</details>
+
+<hr />
+
+<h3 id="problem-b">Problem B:</h3>
+
+<!-- problem description -->
+
+<!-- problem hint 1 -->
+<details>
+  <summary>
+    <p>Hint 1</p>
+  </summary>
+  <ul>
+
+</ul>
+</details>
+
+<!-- hint 2 -->
+<details>
+  <summary>
+    <p>Hint 2</p>
+  </summary>
+  <ul>
+
+</ul>
+</details>
+
+<!-- time complexity -->
+<details>
+  <summary>
+    <p>Time Complexity</p>
+  </summary>
+  <p><script type="math/tex">\mathcal{O}()</script></p>
+</details>
+
+<!-- code -->
+<details>
+  <summary>
+    <p>Code</p>
+  </summary>
+
+</details>
+
+<hr />
+
+<h3 id="problem-a">Problem A:</h3>
+
+<!-- problem description -->
+
+<!-- problem hint 1 -->
+<details>
+  <summary>
+    <p>Hint 1</p>
+  </summary>
+  <ul>
+
+</ul>
+</details>
+
+<!-- hint 2 -->
+<details>
+  <summary>
+    <p>Hint 2</p>
+  </summary>
+  <ul>
+
+</ul>
+</details>
+
+<!-- time complexity -->
+<details>
+  <summary>
+    <p>Time Complexity</p>
+  </summary>
+  <p><script type="math/tex">\mathcal{O}()</script></p>
+</details>
+
+<!-- code -->
+<details>
+  <summary>
+    <p>Code</p>
+  </summary>
+
+</details>
+
+<hr />
+
+
+  </div><a class="u-url" href="/Competitive_Coding/2020/05/14/cf-642.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/Competitive_Coding/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col one-half">
+      
+        <!-- <ul class="contact-list">
+          <li class="p-name">sahilbansal17</li></ul> -->
+      </div>
+
+      <!-- <div class="footer-col one-half">
+        <p>A blog with hints and solutions to recent contest problems. 
+</p>
+      </div> -->
+
+      <div class="social-links"><ul class="social-media-list"><li><a href="https://github.com/sahilbansal17/Competitive_Coding" title="sahilbansal17" target="_blank"><svg class="svg-icon grey"><use xlink:href="/Competitive_Coding/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a href="https://www.youtube.com/channel/UC23h8gtQHiRXFOcR05Zcx5w" title="YouTube" target="_blank"><svg class="svg-icon grey"><use xlink:href="/Competitive_Coding/assets/minima-social-icons.svg#youtube"></use></svg></a></li></ul></div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
