@@ -4,6 +4,10 @@ description: >
   A blog with hints and solutions to recent contest problems. 
 baseurl: /Competitive_Coding # to fix the issue that CSS files linked have relative path
 
+markdown: kramdown
+kramdown:
+  parse_block_html: true
+  
 # Minima date format
 # refer to http://shopify.github.io/liquid/filters/date/ if you want to customize this
 minima:
