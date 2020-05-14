@@ -55,7 +55,7 @@ Implementation Details
 Code
 </summary>
 {% highlight c++ %}
-
+{% github_sample sahilbansal17/Competitive_Coding/blob/5f252f19a8f06cdc7337843b99d01e9f3b36b89d/Problem%20Solutions/Codeforces/Div%203%20Rounds/641%20Div%203/D/D.cpp %}
 {% endhighlight %}
 </details>
 
