@@ -3,31 +3,10 @@
 ![Forks](https://img.shields.io/github/forks/sahilbansal17/Competitive_Coding.svg)
 ![Stars](https://img.shields.io/github/stars/sahilbansal17/Competitive_Coding.svg)
 [![License](https://img.shields.io/github/license/sahilbansal17/Competitive_Coding.svg)](https://github.com/sahilbansal17/Competitive_Coding/blob/master/LICENSE) 
-[![Gitter](https://img.shields.io/gitter/room/sahilbansal17/Competitive-Coding.svg)](https://gitter.im/Competitive-Coding/)
+[![Gitter](https://img.shields.io/discord/664156473944834079)](https://discord.gg/Emjp7sN)
 
-This project aims to create a vast collection of *algorithms* and *data structures* that can be helpful in Competitive Coding along with the solutions to various problems on various competitive coding platforms.
+This repository contains template code for various algorithms and data structures, in different programming languages that can be used during contests.
 
-### Hacktoberfest
-1. You can take up the [HacktoberFest Challenge Issue](https://github.com/sahilbansal17/Competitive_Coding/issues/471) and send pull requests solving the Hackerrank's problems in any of their tracks/domains.
-2. You can create new issues. Before that, read the [Introduction to Contributing](https://github.com/sahilbansal17/Competitive_Coding/wiki/Introduction-to-Contributing) wiki page.
-3. Make sure to read the [Coding Standards Wiki Page](https://github.com/sahilbansal17/Competitive_Coding/wiki/Coding-Standards).
+The detailed editorials and hints to some of the recent contests are also made available [here](https://sahilbansal17.github.io/Competitive_Coding/), source is in the [gh-pages-source](https://github.com/sahilbansal17/Competitive_Coding/tree/gh-pages-source) branch.
 
-### Algorithms
-The algorithms list is available in this [wiki page](https://github.com/sahilbansal17/Competitive_Coding/wiki/Algorithms). The folder [Algorithms](Algorithms/) contains all the implementations.
-
-### Data Structures
-The data structures list is available in this [wiki page](https://github.com/sahilbansal17/Competitive_Coding/wiki/Data-Structures). The folder [Data Structures](Data%20Structures) contains all the implementations.
-
-### Problem Solutions
-The solutions to various problems in different contests or practice problems on the following sites are available in [Problem Solutions](Problem%20Solutions/) folder.
-
-#### My [Programming Board 2020](https://www.notion.so/competitivecoding/fe38d49f88104cbeb1fb362738e4e77b?v=d879a421950c47ada5b526f2a958b879)
-It contains track of the problems I'm working on, and those which I've completed in this new year! Don't miss to make a copy for yourself!
-
-### Template for Contests
-Templates are available in [Templates](Templates/) folder.
-
-### How to contribute
-  1. #### Refer to [Introduction to Contributing](https://github.com/sahilbansal17/Competitive_Coding/wiki/Introduction-to-Contributing) for contribution guidelines.
-
-  2. #### Refer to the [Coding Standards Wiki Page](https://github.com/sahilbansal17/Competitive_Coding/wiki/Coding-Standards) for the coding standards to be followed.
+The old version of this repository has been moved to [old](https://github.com/sahilbansal17/Competitive_Coding/tree/dsa_old) branch.
