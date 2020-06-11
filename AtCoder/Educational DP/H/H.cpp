@@ -43,11 +43,11 @@ void solve() {
       if (grid[r][c] == '#') {
         continue;  // no way to reach here
       }
-      if (safeChecker(r - 1, c, h, w)) {
+      if (safeChecker(r - 1, c, h, w)) {  // from up
         ways[r][c] += ways[r - 1][c];
         ways[r][c] %= MOD;
       }
-      if (safeChecker(r, c - 1, h, w)) {
+      if (safeChecker(r, c - 1, h, w)) {  // from left
         ways[r][c] += ways[r][c - 1];
         ways[r][c] %= MOD;
       }
