@@ -69,7 +69,7 @@ $$ \mathcal{O(N * 20)} $$
 Code
 </summary>
 {% highlight c++ %}
-
+{% github_sample sahilbansal17/Competitive_Coding/blob/758fd21425a969cd7a44ece4f11871b79f00c7fe/Codeforces/Global/8/D/D.cpp %}
 {% endhighlight %}
 
 </details>
