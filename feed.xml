@@ -1,5 +1,276 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/Competitive_Coding/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/Competitive_Coding/" rel="alternate" type="text/html" /><updated>2020-05-14T22:20:50+05:30</updated><id>http://localhost:4000/Competitive_Coding/feed.xml</id><title type="html">Competitive Coding Blog - Let’s upsolve contest problems!</title><subtitle>A blog with hints and solutions to recent contest problems. 
-</subtitle><author><name>sahilbansal17</name></author><entry><title type="html">Codeforces Round 642 Div 3</title><link href="http://localhost:4000/Competitive_Coding/2020/05/14/cf-642.html" rel="alternate" type="text/html" title="Codeforces Round 642 Div 3" /><published>2020-05-14T00:00:00+05:30</published><updated>2020-05-14T00:00:00+05:30</updated><id>http://localhost:4000/Competitive_Coding/2020/05/14/cf-642</id><content type="html" xml:base="http://localhost:4000/Competitive_Coding/2020/05/14/cf-642.html">&lt;script src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/Competitive_Coding/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/Competitive_Coding/" rel="alternate" type="text/html" /><updated>2020-06-18T22:59:38+05:30</updated><id>http://localhost:4000/Competitive_Coding/feed.xml</id><title type="html">Competitive Coding Blog - Let’s upsolve contest problems!</title><subtitle>A blog with hints and solutions to recent contest problems. 
+</subtitle><author><name>sahilbansal17</name></author><entry><title type="html">Codeforces Global Round 8</title><link href="http://localhost:4000/Competitive_Coding/2020/06/18/cf-global-8.html" rel="alternate" type="text/html" title="Codeforces Global Round 8" /><published>2020-06-18T00:00:00+05:30</published><updated>2020-06-18T00:00:00+05:30</updated><id>http://localhost:4000/Competitive_Coding/2020/06/18/cf-global-8</id><content type="html" xml:base="http://localhost:4000/Competitive_Coding/2020/06/18/cf-global-8.html">&lt;script src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+
+&lt;h3 id=&quot;problem-d&quot;&gt;Problem D:&lt;/h3&gt;
+
+&lt;!-- problem description --&gt;
+
+&lt;p&gt;You have an array &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;arr&lt;/code&gt; containing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;N&lt;/code&gt; integers.
+You can perform the following operation as many time as required:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Choose any two elements say &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;arr[i] = x&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;arr[j] = y&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Set &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;arr[i] = x | y&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;arr[j] = x &amp;amp; y&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You need to maximize the sum of squares of the resulting array.&lt;/p&gt;
+
+&lt;p&gt;Constraints are:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;1 \leq N \leq 2 \times 10^5&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;0 \leq arr[i] \leq 2^{20}&lt;/script&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- problem hint 1 --&gt;
+&lt;details&gt;
+  &lt;summary&gt;
+    &lt;p&gt;Hint 1&lt;/p&gt;
+  &lt;/summary&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;Take some &lt;strong&gt;small examples&lt;/strong&gt; and write numbers in binary representation and try to &lt;strong&gt;observe&lt;/strong&gt; when you get the maximum sum of squares.&lt;/li&gt;
+    &lt;li&gt;
+      &lt;p&gt;To verify:&lt;/p&gt;
+
+      &lt;ul&gt;
+        &lt;li&gt;if the following binary numbers are input: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0001, 0011, 0101, 1000&lt;/code&gt;.&lt;/li&gt;
+        &lt;li&gt;They will get converted to: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0000, 0001, 0001, 1111&lt;/code&gt;, to get the optimal answer.&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+
+&lt;/details&gt;
+
+&lt;!-- hint 2 --&gt;
+&lt;details&gt;
+  &lt;summary&gt;
+    &lt;p&gt;Hint 2&lt;/p&gt;
+  &lt;/summary&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;Try to &lt;strong&gt;sort&lt;/strong&gt; the numbers and perform operations on adjacent numbers, observe that this &lt;strong&gt;does not&lt;/strong&gt; lead to optimal solution in some cases, for eg (numbers in binary):
+      &lt;ul&gt;
+        &lt;li&gt;&lt;strong&gt;Input&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;00011, 00110, 01000, 10000, 10001, 11000&lt;/code&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Output&lt;/strong&gt; array for optimal answer: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;00000, 00000, 00000, 10000, 11011, 11111&lt;/code&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;Observe any pattern?&lt;/li&gt;
+    &lt;li&gt;Think in terms of &lt;strong&gt;count of bits set at a particular position&lt;/strong&gt; in the input numbers!&lt;/li&gt;
+  &lt;/ul&gt;
+
+&lt;/details&gt;
+
+&lt;!-- Solution approach --&gt;
+&lt;details&gt;
+  &lt;summary&gt;
+    &lt;p&gt;Solution approach&lt;/p&gt;
+  &lt;/summary&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;&lt;strong&gt;OBSERVATION&lt;/strong&gt;: We can shift the bits set at a particular position to the maximum numbers (in the end, i.e. largest numbers), so as to maximize the square value.&lt;/li&gt;
+    &lt;li&gt;Find the count of set bits at a particular position in all the numbers, &lt;strong&gt;these many numbers from the end&lt;/strong&gt; should have this bit set while calculating the answer, try some examples yourself.&lt;/li&gt;
+    &lt;li&gt;So, we can just maintain a &lt;strong&gt;count array for 20 bits&lt;/strong&gt;, and at the end, &lt;strong&gt;construct numbers&lt;/strong&gt; from the last number using the counts, and break when constructed no is zero, i.e. all counts are used up. See implementation below for details.&lt;/li&gt;
+  &lt;/ul&gt;
+
+&lt;/details&gt;
+
+&lt;!-- time complexity --&gt;
+&lt;details&gt;
+  &lt;summary&gt;
+    &lt;p&gt;Time Complexity&lt;/p&gt;
+  &lt;/summary&gt;
+  &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\mathcal{O(N * 20)}&lt;/script&gt;&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;!-- code --&gt;
+&lt;details&gt;
+  &lt;summary&gt;
+    &lt;p&gt;Code&lt;/p&gt;
+  &lt;/summary&gt;
+
+  &lt;figure class=&quot;highlight&quot;&gt;
+    &lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;template&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typename&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;inline&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;readArray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;resize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;element&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;cin&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;cin&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ll&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;readArray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;ll&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ll&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cnt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;21&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// bit is set in j-th num&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cnt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ll&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cur&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// constructed number from the last&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cnt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// bit available for use&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;cur&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cnt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// used up;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cur&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cur&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// update ans&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cur&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;cout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;endl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;solve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+  &lt;/figure&gt;
+
+&lt;/details&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;problem-c&quot;&gt;Problem C:&lt;/h3&gt;
+
+&lt;!-- problem description --&gt;
+
+&lt;!-- problem hint 1 --&gt;
+&lt;details&gt;
+  &lt;summary&gt;
+    &lt;p&gt;Hint 1&lt;/p&gt;
+  &lt;/summary&gt;
+  &lt;ul&gt;
+
+&lt;/ul&gt;
+&lt;/details&gt;
+
+&lt;!-- hint 2 --&gt;
+&lt;details&gt;
+  &lt;summary&gt;
+    &lt;p&gt;Hint 2&lt;/p&gt;
+  &lt;/summary&gt;
+  &lt;ul&gt;
+
+&lt;/ul&gt;
+&lt;/details&gt;
+
+&lt;!-- time complexity --&gt;
+&lt;details&gt;
+  &lt;summary&gt;
+    &lt;p&gt;Time Complexity&lt;/p&gt;
+  &lt;/summary&gt;
+  &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\mathcal{O}()&lt;/script&gt;&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;!-- code --&gt;
+&lt;details&gt;
+  &lt;summary&gt;
+    &lt;p&gt;Code&lt;/p&gt;
+  &lt;/summary&gt;
+
+&lt;/details&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;problem-b&quot;&gt;Problem B:&lt;/h3&gt;
+
+&lt;!-- problem description --&gt;
+
+&lt;!-- problem hint 1 --&gt;
+&lt;details&gt;
+  &lt;summary&gt;
+    &lt;p&gt;Hint 1&lt;/p&gt;
+  &lt;/summary&gt;
+  &lt;ul&gt;
+
+&lt;/ul&gt;
+&lt;/details&gt;
+
+&lt;!-- hint 2 --&gt;
+&lt;details&gt;
+  &lt;summary&gt;
+    &lt;p&gt;Hint 2&lt;/p&gt;
+  &lt;/summary&gt;
+  &lt;ul&gt;
+
+&lt;/ul&gt;
+&lt;/details&gt;
+
+&lt;!-- time complexity --&gt;
+&lt;details&gt;
+  &lt;summary&gt;
+    &lt;p&gt;Time Complexity&lt;/p&gt;
+  &lt;/summary&gt;
+  &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\mathcal{O}()&lt;/script&gt;&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;!-- code --&gt;
+&lt;details&gt;
+  &lt;summary&gt;
+    &lt;p&gt;Code&lt;/p&gt;
+  &lt;/summary&gt;
+
+&lt;/details&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;problem-a&quot;&gt;Problem A:&lt;/h3&gt;
+
+&lt;!-- problem description --&gt;
+
+&lt;!-- problem hint 1 --&gt;
+&lt;details&gt;
+  &lt;summary&gt;
+    &lt;p&gt;Hint 1&lt;/p&gt;
+  &lt;/summary&gt;
+  &lt;ul&gt;
+
+&lt;/ul&gt;
+&lt;/details&gt;
+
+&lt;!-- hint 2 --&gt;
+&lt;details&gt;
+  &lt;summary&gt;
+    &lt;p&gt;Hint 2&lt;/p&gt;
+  &lt;/summary&gt;
+  &lt;ul&gt;
+
+&lt;/ul&gt;
+&lt;/details&gt;
+
+&lt;!-- time complexity --&gt;
+&lt;details&gt;
+  &lt;summary&gt;
+    &lt;p&gt;Time Complexity&lt;/p&gt;
+  &lt;/summary&gt;
+  &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\mathcal{O}()&lt;/script&gt;&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;!-- code --&gt;
+&lt;details&gt;
+  &lt;summary&gt;
+    &lt;p&gt;Code&lt;/p&gt;
+  &lt;/summary&gt;
+
+&lt;/details&gt;
+
+&lt;hr /&gt;</content><author><name>sahilbansal17</name></author><summary type="html"></summary></entry><entry><title type="html">Codeforces Round 642 Div 3</title><link href="http://localhost:4000/Competitive_Coding/2020/05/14/cf-642.html" rel="alternate" type="text/html" title="Codeforces Round 642 Div 3" /><published>2020-05-14T00:00:00+05:30</published><updated>2020-05-14T00:00:00+05:30</updated><id>http://localhost:4000/Competitive_Coding/2020/05/14/cf-642</id><content type="html" xml:base="http://localhost:4000/Competitive_Coding/2020/05/14/cf-642.html">&lt;script src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
 
 &lt;h3 id=&quot;problem-d&quot;&gt;Problem D:&lt;/h3&gt;
 
