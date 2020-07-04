@@ -8,10 +8,19 @@ typedef long long ll;
 /**
  * Uncomment the #define below if problem contains multiple test cases
  */
-// #define MULTIPLE_TESTS 1
+#define MULTIPLE_TESTS 1
 
 void solve() {
-  // write your code here
+  ll n, r;
+  cin >> n >> r;
+
+  ll ans = 0;
+  if (n > r) {
+    ans = (r * (r + 1)) / 2;
+  } else {
+    ans = ((n - 1) * n) / 2 + 1;
+  }
+  cout << ans << endl;
 }
 
 int main() {
