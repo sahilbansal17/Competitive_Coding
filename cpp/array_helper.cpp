@@ -26,6 +26,11 @@ inline void sortContainer(Container& container) {
   sort(container.begin(), container.end());
 }
 
+template <typename Container>
+inline void reverseContainer(Container& container) {
+  reverse(container.begin(), container.end());
+}
+
 template <typename T>
 inline void withIdConstruction(vector<pair<T, T>>& with_id,
                                const vector<int>& arr) {
