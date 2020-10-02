@@ -31,7 +31,14 @@ inline void reverseContainer(Container& container) {
   reverse(container.begin(), container.end());
 }
 
+template <typename Container>
+//Finding the frequency of an element in an array (change the data type as needed)
+inline int frequency(Container& container,int ele) {
+  return count(container.begin(), container.end(),ele);
+}
+
 template <typename T>
+//for making a list of value and index pairs from a list
 inline void withIdConstruction(vector<pair<T, T>>& with_id,
                                const vector<int>& arr) {
   for (int idx = 0; idx < arr.size(); ++idx) {

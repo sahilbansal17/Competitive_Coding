@@ -11,6 +11,7 @@ inline void readGrid(vector<vector<T>>& grid, int R, int C) {
   }
 }
 
+//checks whether the point (x,y) is inside the matrix R*C
 inline bool safeChecker(int x, int y, int R, int C) {
   if (x < 0 || y < 0 || x >= R || y >= C) {
     return false;
