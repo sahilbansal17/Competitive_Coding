@@ -1,0 +1,54 @@
+class Github{
+    // Variable to store reversed number after every
+    // recursive call
+    static int ans = 0;
+
+    static int Reverse(int var)
+    {
+
+        // base condition to end the recursive calling of
+        // function
+        if (var == 0) {
+
+            // We have reversed the complete number and
+            // stored in ans variable
+            return ans;
+        }
+
+        if (var > 0) {
+
+            // temp varibale to store the digit at unit
+            // place in the number
+            int temp = var % 10;
+
+            // Add this temp varibale in the ans variable
+            // which stores the number reversed till now
+            ans = ans * 10 + temp;
+
+            // recursive calling of function to reverse the
+            // remaining number
+            Reverse(var / 10);
+        }
+
+        // returning final answer when the number is
+        // reversed completely
+        return ans;
+    }
+
+    public static void main(String[] args)
+    {
+
+        // Number to be reversed
+        int var = 98765;
+        // Variable to store reversed number returned by
+        // reverse function
+        int rev;
+
+        // Calling reverse function and storing the return
+        // value in rev variable
+        rev = Reverse(var);
+
+        // Printing the Reversed Number
+        System.out.println("Reversed number: " + rev);
+    }
+}
