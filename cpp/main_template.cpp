@@ -5,14 +5,11 @@ using namespace std;
   cin.tie(0);                       \
   cout.tie(0);
 typedef long long ll;
-/**
- * Uncomment the #define below if problem contains multiple test cases
- */
+
+// Uncomment the #define below if problem contains multiple test cases
 // #define MULTIPLE_TESTS 1
 
-void solve() {
-  // write your code here
-}
+void solve() {}
 
 int main() {
   FAST_IO;
