@@ -9,6 +9,9 @@ inline void readArray(vector<T>& arr, int n) {
 template <typename T>
 inline void printArray(const vector<T>& arr) {
   int n = arr.size();
+  if (n == 0) {
+    return;
+  }
   for (int i = 0; i < n - 1; ++i) {
     cout << arr[i] << " ";
   }
