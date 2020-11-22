@@ -4,7 +4,7 @@ int dy[4] = {0, -1, +1, 0};
 template <typename T>
 inline void readGrid(vector<vector<T>>& grid, int R, int C) {
   grid.assign(R, vector<T>(C));
-  for (int r = 0; i < R; ++r) {
+  for (int r = 0; r < R; ++r) {
     for (int c = 0; c < C; ++c) {
       cin >> grid[r][c];
     }
