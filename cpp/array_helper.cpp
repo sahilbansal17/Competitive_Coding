@@ -36,7 +36,7 @@ inline void reverseContainer(Container& container) {
 
 template <typename T>
 inline void withIdConstruction(vector<pair<T, T>>& with_id,
-                               const vector<int>& arr) {
+                               const vector<T>& arr) {
   for (int idx = 0; idx < arr.size(); ++idx) {
     with_id.push_back({arr[idx], idx});
   }
