@@ -1,1 +1,1 @@
-###Java Template
+Java Template
