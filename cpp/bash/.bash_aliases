@@ -1,0 +1,7 @@
+alias g++='g++ --std=c++11'
+alias set1='cat > in1.txt'
+alias set2='cat > in2.txt'
+alias set3='cat > in3.txt'
+alias run1='./a.out < in1.txt'
+alias run2='./a.out < in2.txt'
+alias run3='./a.out < in3.txt'
